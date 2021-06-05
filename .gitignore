@@ -1,0 +1,23 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+#fichiers persos :
+# ex: infos_persos.txt
+# /test_files
+
+#fichiers de config (connexion) :
+# ex: /server/config/config.json
+
+
+# compiled output :
+/out
+
+# dependencies
+
+
+# IDEs and editors
+/.idea
+
+
+# System Files
+.DS_Store
+Thumbs.db
