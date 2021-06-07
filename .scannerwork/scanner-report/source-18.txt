@@ -5,33 +5,33 @@ import java.util.*;
 /**
  * @author Yannis Guéguen
  */
-public class ActivityStatus {
+public class ControlAction {
 
     /**
      * Default constructor
      */
-    public ActivityStatus() {
+    public ControlAction() {
     }
 
     /**
      * 
      */
-    protected static final String TO_DO = "En Définition";
+    protected static final String MONTH_BEFORE = "Mois Précédent";
 
     /**
      * 
      */
-    protected static final String RUNNING = "En Cours";
+    protected static final String ADD_ACTIVITY = "Ajouter une Activité";
 
     /**
      * 
      */
-    protected static final String IN_TEST = "En Test";
+    protected static final String NEXT_MONTH = "Mois Suivant";
 
     /**
      * 
      */
-    protected static final String DONE = "Terminé";
+    protected String EXIT_PROGRAM = "Quitter Application";
 
 
 }

@@ -1,1 +1,1 @@
- 2javaXEhr src/fr/cnam/pmain/MainPanel.java
+ 2javaXhr)src/fr/cnam/pmain/MainPanelInterface.java

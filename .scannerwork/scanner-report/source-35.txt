@@ -5,30 +5,11 @@ import java.util.*;
 /**
  * 
  */
-public interface DaoInterface<T> {
+public interface MysqlConnexionInterface {
 
     /**
-     * @param obj 
      * @return
      */
-    public boolean create(T obj);
-
-    /**
-     * @param obj 
-     * @return
-     */
-    public boolean update(T obj);
-
-    /**
-     * @param obj 
-     * @return
-     */
-    public boolean delete(T obj);
-
-    /**
-     * @param id 
-     * @return
-     */
-    public T find(int id);
+    public boolean getMysqlConnexionInstance();
 
 }

@@ -1,1 +1,1 @@
- 2javaXMhr-src/fr/cnam/pcalendarpanel/CalendarPanel.java
+ 2javaXhr6src/fr/cnam/pcalendarpanel/CalendarPanelInterface.java

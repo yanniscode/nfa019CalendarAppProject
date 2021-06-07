@@ -1,1 +1,1 @@
- 2javaX2hr-src/fr/cnam/pbuttons/ControlButtonsPanel.java
+ 2javaXJhr+src/fr/cnam/pbuttons/FormControlButton.java

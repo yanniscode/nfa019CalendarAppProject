@@ -1,39 +1,50 @@
-package fr.cnam.penums;
+package fr.cnam.pbuttons;
 
-import fr.cnam.perrors.FormErrorPanel;
+import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ErrorMessage {
+public class ControlButtonsPanel implements ControlButtonsPanelInterface {
 
     /**
      * Default constructor
      */
-    public ErrorMessage() {
+    public ControlButtonsPanel() {
     }
 
     /**
      * 
      */
-    protected String DATA_ERROR = "Données saisies erronées";
+    protected ControlButton leftBtn;
 
     /**
      * 
      */
-    protected String BDD_CONNECT_ERROR = "Erreur de connexion à la BDD";
+    protected ControlButton enterActivityBtn;
 
     /**
      * 
      */
-    public String BDD_TIMEOUT_RECORD = "Durée de connexion à la BDD dépassée";
+    protected ControlButton rightBtn;
 
     /**
      * 
      */
-    public FormErrorPanel compose;
+    protected ControlButton exitAppButton;
 
+
+
+
+
+    /**
+     * @return
+     */
+    public void displayControlButtons() {
+        // TODO implement here
+        return;
+    }
 
 }

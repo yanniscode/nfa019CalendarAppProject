@@ -5,11 +5,11 @@ import java.util.*;
 /**
  * 
  */
-public interface CalendarSideInterface {
+public interface DateButtonInterface {
 
     /**
      * @return
      */
-    public void displayCalendarSide();
+    public void displayDateButton();
 
 }

@@ -1,1 +1,1 @@
- 2javaX'hr$src/fr/cnam/penums/ErrorMessage.java
+ 2javaX2hr-src/fr/cnam/pbuttons/ControlButtonsPanel.java

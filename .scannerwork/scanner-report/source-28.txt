@@ -5,18 +5,13 @@ import java.util.*;
 /**
  * @author Yannis Guéguen
  */
-public class DatePart {
+public class DateActivityDAO {
 
     /**
      * Default constructor
      */
-    public DatePart() {
+    public DateActivityDAO() {
     }
-
-    /**
-     * 
-     */
-    public Date dateValue;
 
 
 

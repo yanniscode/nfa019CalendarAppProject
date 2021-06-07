@@ -1,46 +1,28 @@
-package fr.cnam.pcalendarapp;
-
-import fr.cnam.pmain.MainPanel;
+package fr.cnam.penums;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class RunCalendarApp {
+public class FormControlAction {
 
     /**
      * Default constructor
      */
-    public RunCalendarApp() {
+    public FormControlAction() {
     }
 
     /**
      * 
      */
-    private MainPanel mainPanel;
-
-
-
-
-
+    protected String VALIDATION = "Validation";
 
     /**
-     * @param args 
-     * @return
+     * 
      */
-    public static void main (String[] args) {
-        System.out.println("Hello Great Calendar Of The World !");
-        // TODO implement here
-        return;
-    }
+    protected String ANNULATION = "Annulation";
 
-    /**
-     * @return
-     */
-    public void getMainPanel() {
-        // TODO implement here
-        return;
-    }
+
 
 }

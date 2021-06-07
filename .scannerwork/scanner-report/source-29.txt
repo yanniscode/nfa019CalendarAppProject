@@ -1,15 +1,24 @@
-package fr.cnam.perrors;
+package fr.cnam.pactivity;
 
 import java.util.*;
 
 /**
- * 
+ * @author Yannis Guéguen
  */
-public interface FormErrorPanelInterface {
+public class DatePart {
 
     /**
-     * @return
+     * Default constructor
      */
-    public void displayErrorPanel();
+    public DatePart() {
+    }
+
+    /**
+     * 
+     */
+    public Date dateValue;
+
+
+
 
 }

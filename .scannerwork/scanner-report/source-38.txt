@@ -5,11 +5,12 @@ import java.util.*;
 /**
  * 
  */
-public interface ControlButtonsPanelInterface {
+public interface ControlButtonInterface {
+
 
     /**
      * @return
      */
-    public void displayControlButtons();
+    public void displayButton();
 
 }

@@ -1,1 +1,1 @@
-& 2javaXhr9src/fr/cnam/pinterfaces/ControlButtonsPanelInterface.java
+& 2javaXhr3src/fr/cnam/pinterfaces/ControlButtonInterface.java

@@ -1,38 +1,37 @@
 package fr.cnam.penums;
 
-import java.awt.*;
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ActivityColor {
+public class ActivityStatus {
 
     /**
      * Default constructor
      */
-    public ActivityColor() {
+    public ActivityStatus() {
     }
 
     /**
      * 
      */
-    protected static final Color ORANGE = Color.ORANGE;
+    protected static final String TO_DO = "En Définition";
 
     /**
      * 
      */
-    protected static final Color BLUE = Color.BLUE;
+    protected static final String RUNNING = "En Cours";
 
     /**
      * 
      */
-    protected static final Color RED = Color.RED;
+    protected static final String IN_TEST = "En Test";
 
     /**
      * 
      */
-    protected static final Color GREEN = Color.GREEN;
+    protected static final String DONE = "Terminé";
 
 
 }

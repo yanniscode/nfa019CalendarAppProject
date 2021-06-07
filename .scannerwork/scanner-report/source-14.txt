@@ -1,30 +1,34 @@
 package fr.cnam.pbuttons;
 
-import fr.cnam.perrors.FormControlButtonInterface;
-
 import javax.swing.*;
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class FormControlButton implements FormControlButtonInterface {
+public class ControlButton {
 
     /**
      * Default constructor
      */
-    public FormControlButton() {
+    public ControlButton() {
     }
 
     /**
      * 
      */
-    private String formControlBtnValue;
+    public JButton controlButton;
 
     /**
      * 
      */
-    private ImageIcon formControlBtnIcon;
+    private String controlBtnValue;
+
+    /**
+     * 
+     */
+    public ImageIcon controlBtnIcon;
+
 
 
 
@@ -32,41 +36,16 @@ public class FormControlButton implements FormControlButtonInterface {
     /**
      * @return
      */
-    public String getFormControlBtnValue() {
+    public String getControlBtnValue() {
         // TODO implement here
         return "";
     }
 
     /**
-     * @param formControlValue 
+     * @param controlValue 
      * @return
      */
-    public void setControlBtnValue(String formControlValue) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
-     */
-    public ImageIcon getFormControlBtnIcon() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param imageIcon 
-     * @return
-     */
-    public void setFormControlBtnIcon(ImageIcon imageIcon) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
-     */
-    public void displayFormControlBtn() {
+    public void setControlBtnValue(String controlValue) {
         // TODO implement here
         return;
     }

@@ -1,54 +1,58 @@
 package fr.cnam.pactivity;
 
-import fr.cnam.penums.ActivityColor;
-
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class DateActivityItem implements DateActivityItemInterface {
+public class ActivityFormPanel implements ActivityFormPanelInterface {
 
     /**
      * Default constructor
      */
-    public DateActivityItem() {
+    public ActivityFormPanel() {
     }
 
     /**
      * 
      */
-    private Date aggregatedDate = null;
+    private String activityPanelTitle;
+
+    /**
+     * Date de format: dd
+     */
+    private Date daySelect;
+
+    /**
+     * Date de format: MM
+     */
+    private Date monthSelect;
+
+    /**
+     * Date de format: yyyy
+     */
+    private Date yearSelect;
 
     /**
      * 
      */
-    private String activityDescription = null;
+    private Date newAggregatedDate;
 
     /**
      * 
      */
-    private final String activityStatus = null;
+    private String newActivityDescription;
 
     /**
      * 
      */
-    private final ActivityColor activityColor = null;
+    private String newActivityStatus;
 
     /**
      * 
      */
-    private DatePart yearSelect = null;
+    private int timeOut;
 
-    /**
-     * 
-     */
-    private DatePart monthSelect = null;
-
-    /**
-     * 
-     */
-    private DatePart daySelect = null;
 
 
 
@@ -58,18 +62,16 @@ public class DateActivityItem implements DateActivityItemInterface {
     /**
      * @return
      */
-    public Date getAggregatedDate() {
+    public Date getNewDay() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param yearSelect 
-     * @param MonthSelect 
-     * @param DaySelect 
+     * @param selectedDay 
      * @return
      */
-public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePart DaySelect) {
+    public void setNewDay(Date selectedDay) {
         // TODO implement here
         return;
     }
@@ -77,16 +79,16 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public DatePart getYearSelect() {
+    public Date getNewMonth() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param yearSelect 
+     * @param selectedMonth 
      * @return
      */
-    public void setYearSelect(DatePart yearSelect) {
+    public void setNewMonth(Date selectedMonth) {
         // TODO implement here
         return;
     }
@@ -94,33 +96,16 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public void getMonthSelect() {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @param monthSelect 
-     * @return
-     */
-    public void setMonthSelect(DatePart monthSelect) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
-     */
-    public DatePart getDaySelect() {
+    public Date getNewYear() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param daySelect 
+     * @param selectedYear 
      * @return
      */
-    public void setDaySelect(DatePart daySelect) {
+    public void setNewYear(Date selectedYear) {
         // TODO implement here
         return;
     }
@@ -128,16 +113,25 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public String getActivityDescription() {
+    public String getNewActivityDescription() {
         // TODO implement here
         return "";
     }
 
     /**
-     * @param activityDescription 
+     * @param newActivityText 
      * @return
      */
-    public void setActivityDescription(String activityDescription) {
+    public void setNewActivityDescription(String newActivityText) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @param selectedStatus 
+     * @return
+     */
+    public void setNewActivityStatus(String selectedStatus) {
         // TODO implement here
         return;
     }
@@ -145,33 +139,35 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public String getActivityStatus() {
+    public String getNewActivityStatus() {
         // TODO implement here
         return "";
     }
 
     /**
-     * @param activityStatus 
      * @return
      */
-    public void setActivityStatus(String activityStatus) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
-     */
-    public ActivityColor getActivityColor() {
+    public DateActivityItem getDateActivityItem() {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param activityColor 
+     * @param newAggregatedDate 
+     * @param newActivityDescription 
+     * @param newActivityStatus 
      * @return
      */
-    public void setActivityColor(ActivityColor activityColor) {
+    public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @param timeOut 
+     * @return
+     */
+    public void setTimeOut(int timeOut) {
         // TODO implement here
         return;
     }
@@ -179,7 +175,15 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public void displayActivity() {
+    public int resetTimeOut() {
+        // TODO implement here
+        return -1;
+    }
+
+    /**
+     * @return
+     */
+    public void displayActivityPanel() {
         // TODO implement here
         return;
     }

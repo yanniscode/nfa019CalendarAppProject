@@ -3,17 +3,13 @@ package fr.cnam.pactivity;
 import java.util.*;
 
 /**
- * @author Yannis Guéguen
+ * 
  */
-public class DateActivityDAO {
+public interface DateActivityItemInterface {
 
     /**
-     * Default constructor
+     * @return
      */
-    public DateActivityDAO() {
-    }
-
-
-
+    public void displayActivity();
 
 }

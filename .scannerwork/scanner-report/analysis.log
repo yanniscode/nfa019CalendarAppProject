@@ -27,6 +27,7 @@ Project scanner properties:
   - sonar.jdbc.url=jdbc:postgresql://localhost/sonar
   - sonar.jdbc.username=sonar
   - sonar.login=******
+  - sonar.modules=javaPart
   - sonar.projectBaseDir=/home/yannis/nfa019CalendarAppProject-V0.0
   - sonar.projectKey=my:calendar
   - sonar.projectName=My Calendar
@@ -37,3 +38,9 @@ Project scanner properties:
   - sonar.sources=.
   - sonar.verbose=true
   - sonar.working.directory=/home/yannis/nfa019CalendarAppProject-V0.0/.scannerwork
+Scanner properties of module: my:calendar:javaPart
+  - sonar.inclusions=src
+  - sonar.language=java
+  - sonar.moduleKey=my:calendar:javaPart
+  - sonar.projectKey=my:calendar:javaPart
+  - sonar.projectName=javaPart

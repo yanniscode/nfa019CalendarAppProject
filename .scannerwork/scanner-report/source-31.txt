@@ -5,24 +5,51 @@ import java.util.*;
 /**
  * @author Yannis Guéguen
  */
-public class ReturnButton implements FormControlButtonInterface {
+public class FormErrorPanel implements FormErrorPanelInterface {
 
     /**
      * Default constructor
      */
-    public ReturnButton() {
+    public FormErrorPanel() {
     }
 
     /**
      * 
      */
-    protected String returnButtonValue = "Retour";
+    private String errorMessage;
+
+    /**
+     * 
+     */
+    protected ReturnButton returnButton;
+
+
+
+
+
 
 
     /**
      * @return
      */
-    public void displayFormControlBtn() {
+    public String getErrorMessage() {
+        // TODO implement here
+        return "";
+    }
+
+    /**
+     * @param errorMessage 
+     * @return
+     */
+    public void setErrorMessage(String errorMessage) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return
+     */
+    public void displayErrorPanel() {
         // TODO implement here
         return;
     }

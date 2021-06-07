@@ -1,39 +1,44 @@
-package fr.cnam.pactivity;
+package fr.cnam.pcalendarapp;
 
-import fr.cnam.pbuttons.FormControlButton;
-import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
+import fr.cnam.pmain.MainPanel;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class FormControlButtonsPanel implements ControlButtonsPanelInterface {
+public class RunCalendarApp {
 
     /**
      * Default constructor
      */
-    public FormControlButtonsPanel() {
+    public RunCalendarApp() {
     }
 
     /**
      * 
      */
-    protected FormControlButton validationBtn;
+    private MainPanel mainPanel;
+
+
+
+
+
 
     /**
-     * 
+     * @param args 
+     * @return
      */
-    protected FormControlButton annulationBtn;
-
-
-
-
+    public static void main (String[] args) {
+        System.out.println("Hello Great Calendar Of The World !");
+        // TODO implement here
+        return;
+    }
 
     /**
      * @return
      */
-    public void displayControlButtons() {
+    public void getMainPanel() {
         // TODO implement here
         return;
     }

@@ -1,37 +1,39 @@
 package fr.cnam.penums;
 
+import fr.cnam.perrors.FormErrorPanel;
+
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ControlAction {
+public class ErrorMessage {
 
     /**
      * Default constructor
      */
-    public ControlAction() {
+    public ErrorMessage() {
     }
 
     /**
      * 
      */
-    protected static final String MONTH_BEFORE = "Mois Précédent";
+    protected String DATA_ERROR = "Données saisies erronées";
 
     /**
      * 
      */
-    protected static final String ADD_ACTIVITY = "Ajouter une Activité";
+    protected String BDD_CONNECT_ERROR = "Erreur de connexion à la BDD";
 
     /**
      * 
      */
-    protected static final String NEXT_MONTH = "Mois Suivant";
+    public String BDD_TIMEOUT_RECORD = "Durée de connexion à la BDD dépassée";
 
     /**
      * 
      */
-    protected String EXIT_PROGRAM = "Quitter Application";
+    public FormErrorPanel compose;
 
 
 }

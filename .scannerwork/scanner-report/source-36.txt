@@ -3,27 +3,32 @@ package fr.cnam.pdatabase;
 import java.util.*;
 
 /**
- * @author Yannis Guéguen
+ * 
  */
-public class MysqlConnexion implements MysqlConnexionInterface {
+public interface DaoInterface<T> {
 
     /**
-     * Default constructor
-     */
-    public MysqlConnexion() {
-    }
-
-
-
-
-
-
-    /**
+     * @param obj 
      * @return
      */
-    public boolean getMysqlConnexionInstance() {
-        // TODO implement here
-        return false;
-    }
+    public boolean create(T obj);
+
+    /**
+     * @param obj 
+     * @return
+     */
+    public boolean update(T obj);
+
+    /**
+     * @param obj 
+     * @return
+     */
+    public boolean delete(T obj);
+
+    /**
+     * @param id 
+     * @return
+     */
+    public T find(int id);
 
 }

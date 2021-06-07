@@ -1,34 +1,22 @@
-package fr.cnam.pbuttons;
+package fr.cnam.pcalendarpanel;
 
-import javax.swing.*;
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ControlButton {
+public class CalendarSide implements CalendarSideInterface {
 
     /**
      * Default constructor
      */
-    public ControlButton() {
+    public CalendarSide() {
     }
 
     /**
      * 
      */
-    public JButton controlButton;
-
-    /**
-     * 
-     */
-    private String controlBtnValue;
-
-    /**
-     * 
-     */
-    public ImageIcon controlBtnIcon;
-
+    protected int weekYearNumber;
 
 
 
@@ -36,16 +24,7 @@ public class ControlButton {
     /**
      * @return
      */
-    public String getControlBtnValue() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param controlValue 
-     * @return
-     */
-    public void setControlBtnValue(String controlValue) {
+    public void displayCalendarSide() {
         // TODO implement here
         return;
     }

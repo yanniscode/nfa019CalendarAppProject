@@ -1,49 +1,33 @@
 package fr.cnam.pcalendarpanel;
 
-import fr.cnam.pactivity.DateActivityItem;
-
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class DateButton implements DateButtonInterface {
+public class CalendarHeader implements CalendarHeaderInterface {
 
     /**
      * Default constructor
      */
-    public DateButton() {
+    public CalendarHeader() {
     }
 
     /**
      * 
      */
-    public String dateButtonValue;
+    protected String monthName;
 
-
+    /**
+     * 
+     */
+    protected Set<String> WeekDaysList;
 
 
     /**
      * @return
      */
-    public String getDateBtnValue() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param dateActivityItem 
-     * @return
-     */
-    public void setDateBtnValue(DateActivityItem dateActivityItem) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
-     */
-    public void displayDateButton() {
+    public void displayCalendarHeader() {
         // TODO implement here
         return;
     }
