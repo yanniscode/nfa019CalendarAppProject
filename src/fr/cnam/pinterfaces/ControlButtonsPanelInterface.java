@@ -1,9 +1,8 @@
 package fr.cnam.pinterfaces;
 
-import java.util.*;
 
 /**
- * 
+ * @author Yannis Guéguen
  */
 public interface ControlButtonsPanelInterface {
 

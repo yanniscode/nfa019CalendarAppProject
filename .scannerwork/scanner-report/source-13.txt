@@ -1,6 +1,5 @@
 package fr.cnam.pcalendarpanel;
 
-import java.util.*;
 
 /**
  * @author Yannis Guéguen
@@ -20,9 +19,9 @@ public class CalendarSide implements CalendarSideInterface {
 
 
 
-
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayCalendarSide() {
         // TODO implement here

@@ -1,7 +1,5 @@
 package fr.cnam.pdatabase;
 
-import java.util.*;
-
 /**
  * @author Yannis Guéguen
  */
@@ -44,7 +42,7 @@ public abstract class DAO<T> implements DaoInterface<T> {
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean create(T obj) {
         // TODO implement here
@@ -53,7 +51,7 @@ public abstract class DAO<T> implements DaoInterface<T> {
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean update(T obj) {
         // TODO implement here
@@ -62,7 +60,7 @@ public abstract class DAO<T> implements DaoInterface<T> {
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean delete(T obj) {
         // TODO implement here
@@ -71,7 +69,7 @@ public abstract class DAO<T> implements DaoInterface<T> {
 
     /**
      * @param id 
-     * @return
+     * @return T
      */
     public T find(int id) {
         // TODO implement here

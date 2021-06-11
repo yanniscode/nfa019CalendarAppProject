@@ -2,11 +2,15 @@ package fr.cnam.pbuttons;
 
 import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 import fr.cnam.pmain.MainPanel;
+<<<<<<< HEAD
+import javax.swing.*;
+=======
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 
 import javax.swing.*;
 

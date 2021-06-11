@@ -1,1 +1,1 @@
- 2javaX.hr,src/fr/cnam/pcalendarapp/RunCalendarApp.java
+ 2javaXMhr,src/fr/cnam/pcalendarapp/RunCalendarApp.java

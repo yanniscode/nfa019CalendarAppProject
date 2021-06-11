@@ -6,6 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+<<<<<<< HEAD
+
+/**
+ * @author Yannis Guéguen
+ */
+=======
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 public class ReformatDate {
 
     /**

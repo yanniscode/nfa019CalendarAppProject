@@ -3,7 +3,6 @@ package fr.cnam.pactivity;
 import fr.cnam.pbuttons.FormControlButton;
 import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 
-import java.util.*;
 
 /**
  * @author Yannis Guéguen

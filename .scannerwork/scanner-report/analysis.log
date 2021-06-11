@@ -16,7 +16,7 @@ SonarQube plugins:
   - VB.NET Code Quality and Security 8.22.0.31243 (vbnet)
 Global server settings:
   - sonar.core.id=BF41A1F2-AXlakBFSU0lpk-n_bRwF
-  - sonar.core.startTime=2021-06-06T05:53:54+0000
+  - sonar.core.startTime=2021-06-11T15:30:07+0000
   - sonar.forceAuthentication=true
   - sonar.scm.disabled=false
 Project server settings:
@@ -28,8 +28,8 @@ Project scanner properties:
   - sonar.jdbc.username=sonar
   - sonar.login=******
   - sonar.modules=javaPart
-  - sonar.projectBaseDir=/home/yannis/nfa019CalendarAppProject-V0.0
-  - sonar.projectKey=my:calendar
+  - sonar.projectBaseDir=/home/yannis/nfa019CalendarAppProject-V0.3-test
+  - sonar.projectKey=:calendarApp
   - sonar.projectName=My Calendar
   - sonar.projectVersion=1.0
   - sonar.scanner.app=ScannerCLI
@@ -37,10 +37,10 @@ Project scanner properties:
   - sonar.sourceEncoding=UTF-8
   - sonar.sources=.
   - sonar.verbose=true
-  - sonar.working.directory=/home/yannis/nfa019CalendarAppProject-V0.0/.scannerwork
-Scanner properties of module: my:calendar:javaPart
+  - sonar.working.directory=/home/yannis/nfa019CalendarAppProject-V0.3-test/.scannerwork
+Scanner properties of module: :calendarApp:javaPart
   - sonar.inclusions=src
   - sonar.language=java
-  - sonar.moduleKey=my:calendar:javaPart
-  - sonar.projectKey=my:calendar:javaPart
+  - sonar.moduleKey=:calendarApp:javaPart
+  - sonar.projectKey=:calendarApp:javaPart
   - sonar.projectName=javaPart

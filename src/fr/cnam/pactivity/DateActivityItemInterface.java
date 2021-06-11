@@ -1,7 +1,5 @@
 package fr.cnam.pactivity;
 
-import java.util.*;
-
 /**
  * 
  */

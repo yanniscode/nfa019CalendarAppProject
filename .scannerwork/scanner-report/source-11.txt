@@ -1,14 +1,12 @@
 package fr.cnam.pcalendarpanel;
 
-import java.util.*;
-
 /**
- * 
+ * @author Yannis Guéguen
  */
 public interface CalendarPanelInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayCalendar();
 

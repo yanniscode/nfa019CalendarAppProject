@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import static java.awt.FlowLayout.CENTER;
 
+
 /**
  * @author Yannis Guéguen
  */
@@ -31,6 +32,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
         this.mainLabel = new JLabel(calendarMainTitle);
         this.mainLabel.setFont(new Font("Serif", 0, 20));
         add(this.mainLabel);
+<<<<<<< HEAD
 
         this.controlBtnPanel = new ControlButtonsPanel(this);
         setSize(300, 200);
@@ -42,6 +44,19 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
 
         this.setSize(1600, 900  );
 
+=======
+
+        this.controlBtnPanel = new ControlButtonsPanel(this);
+        setSize(300, 200);
+
+        add(this.controlBtnPanel);
+
+        this.calendarPanel = new CalendarPanel();
+//        System.out.println(this.calendarPanel.hashCode());
+
+        this.setSize(1600, 900  );
+
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
         add(this.calendarPanel);
     }
 
@@ -49,6 +64,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
      * Logger - infos
      */
 //    private static Logger logger = Logger.getLogger(TestLog4j1.class);
+<<<<<<< HEAD
 
     /**
      * String - Titre principal
@@ -56,6 +72,15 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
     private JLabel mainLabel;
 
     /**
+=======
+
+    /**
+     * String - Titre principal
+     */
+    private JLabel mainLabel;
+
+    /**
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
      * Container - container du Calendrier
      */
     private Container calendarContainer;
@@ -92,6 +117,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
      */
     public ControlButtonsPanel getControlBtnPanel() {
         return this.controlBtnPanel;
+<<<<<<< HEAD
     }
 
     /**
@@ -104,6 +130,20 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
     }
 
     /**
+=======
+    }
+
+    /**
+     *
+     * @param controlBtnPanel
+     */
+    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
+        this.controlBtnPanel = controlBtnPanel;
+        return;
+    }
+
+    /**
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
      * @return CalendarPanel
      */
     public CalendarPanel getCalendarPanel() {
@@ -129,9 +169,23 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
      */
     public String getCalendarMainTitle() {
         return this.calendarMainTitle;
+<<<<<<< HEAD
+=======
     }
 
     /**
+     * @param calendarMainTitle
+     */
+    public void setCalendarMainTitle(String calendarMainTitle) {
+        this.calendarMainTitle = calendarMainTitle;
+        return;
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
+    }
+
+
+    @Override
+    /**
+<<<<<<< HEAD
      * @param calendarMainTitle
      */
     public void setCalendarMainTitle(String calendarMainTitle) {
@@ -142,6 +196,8 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
 
     @Override
     /**
+=======
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
      * @return void - check du Composant - à utiliser ??
      */
     public void displayMainPanel() {

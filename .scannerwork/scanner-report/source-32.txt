@@ -14,13 +14,14 @@ public class ReturnButton implements FormControlButtonInterface {
     }
 
     /**
-     * 
+     * String - valeur du bouton de sortie du formulaire sans modification apportée
      */
     protected String returnButtonValue = "Retour";
 
 
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayFormControlBtn() {
         // TODO implement here

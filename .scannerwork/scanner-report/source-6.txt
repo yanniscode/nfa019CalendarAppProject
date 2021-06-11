@@ -24,8 +24,9 @@ public class CalendarHeader implements CalendarHeaderInterface {
     protected Set<String> WeekDaysList;
 
 
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayCalendarHeader() {
         // TODO implement here

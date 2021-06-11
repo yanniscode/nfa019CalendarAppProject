@@ -1,8 +1,7 @@
-œ
-javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2 6
-javaS3626Remove this redundant jump. 2## S
-javaS1069Replace this use of System.out or System.err by a logger. 2!! K
-javaS11352Complete the task associated to this TODO comment. 2"" 6
-javaS3626Remove this redundant jump. 2++ K
-javaS11352Complete the task associated to this TODO comment. 2** H
-javaS1068-Remove this unused "mainPanel" private field. 2 
+U
+javaS1161:Add the "@Override" annotation above this method signature 2 %7
+javaS1116Remove this empty statement. 2 6
+javaS3626Remove this redundant jump. 2CC S
+javaS1069Replace this use of System.out or System.err by a logger. 2)) V
+javaS125<This block of commented-out lines of code should be removed. 2..
+ 6

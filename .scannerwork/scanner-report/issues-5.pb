@@ -1,11 +1,21 @@
-œ
-javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2 K
-javaS11352Complete the task associated to this TODO comment. 2)) K
-javaS11352Complete the task associated to this TODO comment. 211 T
-javaS34009Remove this method and declare a constant for this value. 2:: K
-javaS11352Complete the task associated to this TODO comment. 299 6
-javaS3626Remove this redundant jump. 2BB K
-javaS11352Complete the task associated to this TODO comment. 2AA P
-javaS10685Remove this unused "calendarMainTitle" private field. 2 $L
-javaS10681Remove this unused "calendarPanel" private field. 2 'N
-javaS10683Remove this unused "controlBtnPanel" private field. 2    /
+X
+javaS1128?Remove this unused import 'fr.cnam.pactivity.DateActivityItem'. 2 *V
+javaS125<This block of commented-out lines of code should be removed. 2))
+ <V
+javaS125<This block of commented-out lines of code should be removed. 233 H˜
+javaS125<This block of commented-out lines of code should be removed. 2TT
+ -:
+UU )Code:
+VV Code:
+WW
+ Code6
+javaS3626Remove this redundant jump. 2gg 6
+javaS3626Remove this redundant jump. 2|| V
+javaS125<This block of commented-out lines of code should be removed. 2yy
+ "K
+javaS11352Complete the task associated to this TODO comment. 2{{ 8
+javaS3626Remove this redundant jump. 2
+‹‹ 8
+javaS3626Remove this redundant jump. 2
+”” P
+javaS10685Remove this unused "calendarContainer" private field. 2== '

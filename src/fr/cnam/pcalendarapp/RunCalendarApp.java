@@ -1,6 +1,5 @@
 package fr.cnam.pcalendarapp;
 
-import fr.cnam.pactivity.DateActivityItem;
 import fr.cnam.pmain.MainPanel;
 
 import javax.swing.*;
@@ -63,7 +62,7 @@ public class RunCalendarApp extends JFrame {
         runAppFrame.setTitle(calendarTitle);
         runAppFrame.setVisible(true);
 
-        runAppFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        runAppFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         return;
     }

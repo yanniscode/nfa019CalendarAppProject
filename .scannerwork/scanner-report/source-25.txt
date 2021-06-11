@@ -34,22 +34,22 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
     private Date yearSelect;
 
     /**
-     * 
+     * Date
      */
     private Date newAggregatedDate;
 
     /**
-     * 
+     * String
      */
     private String newActivityDescription;
 
     /**
-     * 
+     * String
      */
     private String newActivityStatus;
 
     /**
-     * 
+     * int - utilisé pour gérer le temps de connexion au formulaire de saisie
      */
     private int timeOut;
 
@@ -60,50 +60,50 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
 
 
     /**
-     * @return
+     * @return DatePart
      */
-    public Date getNewDay() {
+    public DatePart getNewDay() {
         // TODO implement here
         return null;
     }
 
     /**
      * @param selectedDay 
-     * @return
+     * @return void
      */
-    public void setNewDay(Date selectedDay) {
+    public void setNewDay(DatePart selectedDay) {
         // TODO implement here
         return;
     }
 
     /**
-     * @return
+     * @return DatePart
      */
-    public Date getNewMonth() {
+    public DatePart getNewMonth() {
         // TODO implement here
         return null;
     }
 
     /**
      * @param selectedMonth 
-     * @return
+     * @return void
      */
-    public void setNewMonth(Date selectedMonth) {
+    public void setNewMonth(DatePart selectedMonth) {
         // TODO implement here
         return;
     }
 
     /**
-     * @return
+     * @return DatePart
      */
-    public Date getNewYear() {
+    public DatePart getNewYear() {
         // TODO implement here
         return null;
     }
 
     /**
      * @param selectedYear 
-     * @return
+     * @return void
      */
     public void setNewYear(Date selectedYear) {
         // TODO implement here
@@ -111,7 +111,7 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
     }
 
     /**
-     * @return
+     * @return String
      */
     public String getNewActivityDescription() {
         // TODO implement here
@@ -120,7 +120,7 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
 
     /**
      * @param newActivityText 
-     * @return
+     * @return void
      */
     public void setNewActivityDescription(String newActivityText) {
         // TODO implement here
@@ -129,7 +129,7 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
 
     /**
      * @param selectedStatus 
-     * @return
+     * @return void
      */
     public void setNewActivityStatus(String selectedStatus) {
         // TODO implement here
@@ -137,7 +137,7 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
     }
 
     /**
-     * @return
+     * @return String
      */
     public String getNewActivityStatus() {
         // TODO implement here
@@ -145,18 +145,10 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
     }
 
     /**
-     * @return
-     */
-    public DateActivityItem getDateActivityItem() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
      * @param newAggregatedDate 
      * @param newActivityDescription 
      * @param newActivityStatus 
-     * @return
+     * @return void
      */
     public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
         // TODO implement here
@@ -165,7 +157,7 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
 
     /**
      * @param timeOut 
-     * @return
+     * @return void
      */
     public void setTimeOut(int timeOut) {
         // TODO implement here
@@ -173,15 +165,16 @@ public class ActivityFormPanel implements ActivityFormPanelInterface {
     }
 
     /**
-     * @return
+     * @return int - utilisé pour reset du timeout (gestion du temps de connexion au formulaire de saisie
      */
     public int resetTimeOut() {
         // TODO implement here
         return -1;
     }
 
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayActivityPanel() {
         // TODO implement here

@@ -1,14 +1,18 @@
 package fr.cnam.pcalendarpanel;
 
+<<<<<<< HEAD
+=======
 import fr.cnam.pactivity.DateActivityItem;
 import fr.cnam.pactivity.DatePart;
 import fr.cnam.pbuttons.ControlButton;
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.logging.Logger;
+
 
 
 /**
@@ -134,10 +138,13 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
      */
     public void setNewMonthLabel(Date newMonth) {
 
+<<<<<<< HEAD
+=======
         if(this.calendarLabel != null) {
             this.calendarLabel.setText("");
         }
 
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
         this.newMonth = newMonth;
 
         System.out.println("newMonth: setNewMonth() - "+ this.newMonth);
@@ -195,6 +202,7 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         }
 
         return;
+<<<<<<< HEAD
     }
 
 
@@ -221,6 +229,34 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
      * Ajout des jours au CalendarPanel:
      * @return void
      */
+=======
+    }
+
+
+//    public void addDayToList(DateButton dateItem) {
+//        this.daysList.add(dateItem);
+//
+//        return;
+//    }
+
+
+
+    /**
+     * @return ArrayList<DateButton>
+     */
+    public ArrayList<DateButton> getDaysList() {
+
+        return this.daysList;
+
+    }
+
+
+
+    /**
+     * Ajout des jours au CalendarPanel:
+     * @return void
+     */
+>>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
     public void buildDaysList(ArrayList<DateButton> daysList) {
 
         this.daysList = daysList;

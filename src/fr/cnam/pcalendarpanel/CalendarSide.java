@@ -1,6 +1,5 @@
 package fr.cnam.pcalendarpanel;
 
-import java.util.*;
 
 /**
  * @author Yannis Guéguen

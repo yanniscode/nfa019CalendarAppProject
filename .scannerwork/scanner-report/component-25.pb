@@ -1,1 +1,1 @@
- 2javaX¿hr,src/fr/cnam/pactivity/ActivityFormPanel.java
+ 2javaX¸hr,src/fr/cnam/pactivity/ActivityFormPanel.java
