@@ -67,5 +67,3 @@ $src/fr/cnam/putils/ReformatDate.java,a/b/aba3ecad867fb0e717ebdd5017354c9b22b7d
 -src/fr/cnam/pcalendarpanel/CalendarPanel.java,f/e/fe6c3cdeb78ac70f734d4f4fcf5ea33135815033
 ]
 -src/fr/cnam/pbuttons/ControlButtonsPanel.java,f/7/f7f08abf91e27ff695f4e93e1dfbb03e00c55bbe
-\
-,src/fr/cnam/pcalendarapp/RunCalendarApp.java,1/b/1bc24afc59cfb072fccda63810633c0181e70479

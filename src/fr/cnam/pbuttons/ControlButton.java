@@ -7,6 +7,7 @@ import fr.cnam.pcalendarpanel.CalendarPanel;
 import fr.cnam.pcalendarpanel.DateButton;
 import fr.cnam.pmain.MainPanel;
 //import fr.cnam.putils.IncrementClass;
+import fr.cnam.putils.MonthPageIncrement;
 import fr.cnam.putils.ReformatDate;
 import org.joda.time.DateTime;  // import manuel : localisation sur ordi: bureau/
 
@@ -44,7 +45,7 @@ public class ControlButton extends JPanel implements ActionListener {
         System.out.println(this.monthIndex);
         //  System.out.println("CONSTRUCTEUR INDEX MONTH "+ this.monthIndex);
 
-//        mainPanel = mainPanel;
+        this.mainPanel = mainPanel;
 
         this.controlButton = new JButton(controlBtnValue);
 //        this.controlBtnValue = controlBtnValue;
@@ -93,7 +94,7 @@ public class ControlButton extends JPanel implements ActionListener {
     /**
      * Date - nouveau jour de référence (utilisé pour rendre inactif les boutons d'une page ne correspondant pas au mois
      */
-    private static Date newReferenceDay;
+    private Date newReferenceDay;
 
 
 
@@ -132,9 +133,20 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
     /**
+     * MonthPageIncrement - renvoie un int (static) pour incrémenter ou décrémenter le mois affiché
+     */
+    private MonthPageIncrement monthPageIncrement = new MonthPageIncrement();
+
+
+    /**
+     * int
+     */
+    private int indexMonth;
+
+    /**
      * @param calendarPanel - applique l'intitulé du mois suivant
      */
-    public static void setNextMonthTitle(CalendarPanel calendarPanel) {
+    public void setNextMonthTitle(CalendarPanel calendarPanel) {
 
         mainPanel.getCalendarPanel().removeAllFromDaysList();
 
@@ -147,12 +159,16 @@ public class ControlButton extends JPanel implements ActionListener {
 
 //        System.out.println(this.monthIndex);
 //        System.out.println(">");
-        monthIndex += 1;
+        this.monthPageIncrement.setIncrementValue(1);
+
+        this.indexMonth = this.monthPageIncrement.getIncrementValue();
+
+//        monthIndex += 1;
 //        System.out.println(this.monthIndex);
 
 
         // *** ON RETROUVE LE JOUR DE RÉFÉRENCE DU MOIS PRÉCÉDENT: (UN MOIS AVANT DATE ACTUELLE)
-        newReferenceDay = newDatePart.oneMonthInterval(monthIndex);
+        newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
 //        System.out.println("NWRefDAY: "+ newFirstMonday);
 
         // ******** Ajout  du titre du mois précédent au CalendarPanel (string):
@@ -179,12 +195,12 @@ public class ControlButton extends JPanel implements ActionListener {
         for(int i = 0; i < 41; i++) {
 
             // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
-            newFirstDay = newDatePart.getByFirstMondayOfMonthPage(monthIndex, i);
+            newFirstDay = newDatePart.getByFirstMondayOfMonthPage(this.indexMonth, i);
 
             DateButton newDateButton = new DateButton(newFirstDay);
 
             // *** méthode pour griser les jours qui ne sont pas du mois:
-            newDateButton.setButtonToGray(newFirstDay, this.monthIndex);
+            newDateButton.setButtonToGray(newFirstDay, this.indexMonth);
 
 
             newDatesList.add(newDateButton);
@@ -215,11 +231,16 @@ public class ControlButton extends JPanel implements ActionListener {
         DatePart newDatePart;
         newDatePart= new DatePart();
 
-        this.monthIndex -= 1;
-        System.out.println(this.monthIndex);
+        this.monthPageIncrement.setIncrementValue(-1);
+
+        this.indexMonth = this.monthPageIncrement.getIncrementValue();
+
+
+//        this.monthIndex -= 1;
+//        System.out.println(this.monthIndex);
 
         // *** ON RETROUVE UN JOUR DE RÉFÉRENCE DU MOIS PRÉCÉDENT: (UN MOIS AVANT AUJOURD'HUI)
-        this.newReferenceDay = newDatePart.oneMonthInterval(this.monthIndex);
+        this.newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
 
         // ******** AJOUT DU MOIS AU CALENDAR PANEL (STRING)
         calendarPanel.setNewMonthLabel(this.newReferenceDay);
@@ -244,13 +265,13 @@ public class ControlButton extends JPanel implements ActionListener {
 
         for(int i = 0; i < 41; i++) {
 
-            newFirstDay = newDatePart.getByFirstMondayOfMonthPage(monthIndex, i);
+            newFirstDay = newDatePart.getByFirstMondayOfMonthPage(this.indexMonth, i);
 
             System.out.println("newFirstDay ########################## "+ newFirstDay);
             DateButton newDateButton = new DateButton(newFirstDay);
 
             // *** méthode pour griser les jours qui ne sont pas du mois:
-            newDateButton.setButtonToGray(newFirstDay, monthIndex);
+            newDateButton.setButtonToGray(newFirstDay, this.indexMonth);
 
             newDatesList.add(newDateButton);
 

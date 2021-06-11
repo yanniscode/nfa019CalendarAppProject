@@ -1,2 +1,2 @@
-My Calendar :% %#&$
-!'(	"R:calendarApp
+My Calendar :& %#&($
+!')	"R:calendarApp

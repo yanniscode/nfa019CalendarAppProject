@@ -1,52 +1,33 @@
 package fr.cnam.putils;
 
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class ReformatDate {
+public class MonthPageIncrement {
 
     /**
-     * Constructeur:
+     * Constructeur
      */
-    public ReformatDate() {
-        // *** type deformatage de date choisi = français
-        this.dfsFR = new DateFormatSymbols((Locale.FRENCH));
+    public MonthPageIncrement() {
+        monthIndex = 0;
     }
 
     /**
-     * DateFormatSymbols - formatage selon le pays souhaité
+     * int - index (static) pour retrouver le mois suivant ou précédent, relatif à la date du jour
      */
-    private DateFormatSymbols dfsFR;
+    private static int monthIndex;
 
     /**
-     * DateFormat - import java.text.DateFormat
+     * @return int
      */
-    private DateFormat dateFormat;
-
-
-    /**
-     *
-     * @param newDate
-     * @return String - permet le passage d'une date (complète) au format mois (en toutes lettres)
-     */
-    public String formatMonthToString(Date newDate) {
-
-        this.dateFormat = new SimpleDateFormat("MMM", dfsFR);
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
-
-        String formatedDate = this.dateFormat.format(newDate);
-
-        return formatedDate;
+    public static int getIncrementValue() {
+        return monthIndex;
     }
 
 
     /**
+     * @param incrementIndex
      * @return void
      */
-    public void displayReformatDate() {
+    public static void setIncrementValue(int incrementIndex) {
+        monthIndex += incrementIndex;
         return;
     }
 
