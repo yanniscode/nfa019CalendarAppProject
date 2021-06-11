@@ -8,7 +8,7 @@ import java.util.*;
 public interface CalendarHeaderInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayCalendarHeader();
 

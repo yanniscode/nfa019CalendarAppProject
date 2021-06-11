@@ -8,7 +8,7 @@ import java.util.*;
 public interface ControlButtonsPanelInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayControlButtons();
 

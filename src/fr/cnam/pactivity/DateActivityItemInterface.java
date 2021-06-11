@@ -8,7 +8,7 @@ import java.util.*;
 public interface DateActivityItemInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayActivity();
 

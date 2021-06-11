@@ -8,7 +8,7 @@ import java.util.*;
 public interface FormErrorPanelInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayErrorPanel();
 

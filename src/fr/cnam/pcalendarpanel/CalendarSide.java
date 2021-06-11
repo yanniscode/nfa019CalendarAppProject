@@ -20,9 +20,9 @@ public class CalendarSide implements CalendarSideInterface {
 
 
 
-
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayCalendarSide() {
         // TODO implement here

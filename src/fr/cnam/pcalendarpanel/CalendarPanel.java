@@ -1,157 +1,258 @@
 package fr.cnam.pcalendarpanel;
 
 import fr.cnam.pactivity.DateActivityItem;
+import fr.cnam.pactivity.DatePart;
 import fr.cnam.pbuttons.ControlButton;
+import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
+
 
 /**
  * @author Yannis Guéguen
  */
 public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
+
     /**
-     * Default constructor
+     * Default constructor: création du calendrier (= liste de DateButtons)
      */
     public CalendarPanel() {
 
         super();
 
-//        System.out.println("test calendar panel");
+        this.calendarLabel = new JLabel("", SwingConstants.CENTER);
+        this.calendarLabel.setFont(new Font("Serif", 0, 25));
+        this.setNewMonthLabel(new Date());
 
-        // pour obtenir une date type mois: 'Juin' (String à partir de Date)
-        Date newDateTest = new Date();
-        System.out.println(newDateTest);
+        // *** création d'une liste de jours (mois actuel)
+        this.daysList = this.setNewDaysList();
+        this.buildDaysList(this.daysList);    // *** création de la liste de boutons avec les dates du mois actuel
 
-        DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
-
-
-        DateFormat dateFormat = new SimpleDateFormat("MMM", dfsFR);
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
-        String formatedDate = dateFormat.format(newDateTest);
-
-        JLabel calendarlabel = new JLabel(formatedDate, SwingConstants.CENTER);
-        calendarlabel.setFont(new Font("Serif", 0, 25));
-//        System.out.println(calendarlabel.getHorizontalAlignment());
-        add(calendarlabel);
+//        this.setDaysList(this.daysList);
 
 
-//        JFrame calendarFrame = new JFrame();
-//        Container calendarContainer = new CalendarPanel();
-
-        GridLayout gl = new GridLayout(0, 7, 10, 10);   // cols définit en priorité à 7
+        GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
         setLayout(gl);
 
-//        for(int i = 1; i < 35; i ++) {
-//            System.out.println("i: "+ i);
-//            nextDay = datePart.getIndexedDay();
-//            System.out.println("day ++"+ nextDay);
-//
-//            formatedDate = dateFormat.format(nextDay);
-//
-//            dateItemButton = new JButton(formatedDate);
-//
-//            super.add(dateItemButton);
-//            dateItemButton.setPreferredSize(new Dimension(120,100));
-//        }
+//        DateActivityItem newDateActivityItem;
 
-          DateActivityItem newDateActivityItem;
-        for(int i = 0; i < 35; i++) {
+//        this.daysList = new ArrayList<DateActivityItem>();
 
-//           super.add(new JButton());
-            newDateActivityItem = new DateActivityItem();
+//        this.setDaysList();    // création de la liste de boutons avec les dates du mois actuel
 
-            newDateActivityItem.setAggregatedDate(i);
+        super.setSize(800, 300);
 
-            super.add(newDateActivityItem);
+
+    }
+
+
+    /**
+     * Date - nouveau mois
+     */
+    private Date newMonth;
+
+    /**
+     * Calendar - Calendrier
+     */
+    private Calendar calendar;
+
+    /**
+     * JLabel - titre du Calendrier (Container)
+     */
+    private JLabel calendarLabel;
+
+//     *************
+
+
+    /**
+     *
+     * @return Date
+     */
+    public Date getNewMonth() {
+        return newMonth;
+    }
+
+    /**
+     *
+     * @param newMonth
+     */
+    public void setNewDate(Date newMonth) {
+        this.newMonth = newMonth;
+    }
+
+    /**
+     * @return void
+     */
+    private Set<DateButton> yearList;
+
+    /**
+     * @return void
+     */
+    private Set<DateButton> monthList;
+
+    /**
+     * ArrayList<DateButton> - liste des boutons (item d'un jour)
+     */
+    private ArrayList<DateButton> daysList;
+
+
+    /**
+     * @return ArrayList<DateButton>
+     */
+    public ArrayList<DateButton> getDatsList() {
+        return this.daysList;
+    }
+
+
+    /**
+     * Création des boutons = liste des jours (pas encore ajoutée au CalendarPanel)
+     *
+     */
+    public ArrayList<DateButton> setNewDaysList() {
+        this.daysList = new ArrayList<DateButton>();
+
+        for(int i = 0; i < 41; i ++) {
+            DateButton newDateButton = new DateButton(i);
+            this.daysList.add(newDateButton);
         }
-//            JButton b2 = new JButton();
-//            JButton b3 = new JButton();
-//
-//            JButton b4 = new JButton();
-//            JButton b5 = new JButton();
-//            JButton b6 = new JButton();
-//            JButton b7 = new JButton();
-//            JButton b8 = new JButton();
-//    //        JButton b9 = new JButton();
 
-
-//            super.add(b1);
-//            super.add(b2);
-//            super. add(b3);
-//            super.add(b4);
-//            super.add(b5);
-//            super.add(b6);
-//            super.add(b7);
-//            super.add(b8);
-
-        super.setSize(800, 400);
-
-
-//        calendarContainer.add(b9);
-
-//        calendarContainer.add(calendarFrame);
+        return this.daysList;
     }
 
-    /**
-     * 
-     */
-    private Set<DateActivityItem> yearList;
+
+
+
+    // ******** Ajout du titre du mois précédent au CalendarPanel (string):
 
     /**
-     * 
+     *
+     * @param newMonth
      */
-    private Set<DateActivityItem> monthList;
+    public void setNewMonthLabel(Date newMonth) {
 
-    /**
-     * 
-     */
-    private Set<DateActivityItem> daysList;
+        if(this.calendarLabel != null) {
+            this.calendarLabel.setText("");
+        }
 
+        this.newMonth = newMonth;
 
+        System.out.println("newMonth: setNewMonth() - "+ this.newMonth);
 
-    /**
-     * @return
-     */
-    public Set<DateActivityItem> getLastMonth() {
-        // TODO implement here
-        return null;
-    }
+        ReformatDate reformatDate = new ReformatDate();
 
-    /**
-     * @return
-     */
-    public Set<DateActivityItem> getNextMonth() {
-        // TODO implement here
-        return null;
-    }
+        String formatedDate = reformatDate.formatMonthToString(this.newMonth);
+        System.out.println(formatedDate);
+        System.out.println(formatedDate);
+        //      this.calendarLabel = new JLabel(formatedDate, SwingConstants.CENTER);
 
-    /**
-     * @return
-     */
-    public Set<DateActivityItem> getDaysList() {
-        // TODO implement here
-        return null;
-    }
+        System.out.println(this.calendarLabel);
+        this.calendarLabel.setText(formatedDate);
+        this.calendarLabel.setFont(new Font("Serif", 0, 45));
 
-    /**
-     * @param controlBtn 
-     * @return
-     */
-    public void setDaysList(ControlButton controlBtn) {
-        // TODO implement here
+        // create a line border with the specified color and width
+        // CF: https://examples.javacodegeeks.com/desktop-java/swing/jlabel/create-jlabel-with-border/
+//        Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
+//        this.calendarLabel.setBorder(border);
+//        System.out.println(calendarlabel.getHorizontalAlignment());
+
+        super.add(this.calendarLabel);
+        System.out.println(this.calendarLabel);
+
         return;
     }
 
+
+//    /**
+//     *
+//     * @return ArrayList<DateButton>
+//     */
+//    public ArrayList<DateButton> getLastMonth() {
+//        // TODO implement here
+//        return null;
+//    }
+
+//    /**
+//     * @return
+//     */
+//    public Set<DateButton> getNextMonth() {
+//        // TODO implement here
+//        return null;
+//    }
+
+
+    /**
+     * @return void - vide la liste de DateButtons
+     */
+    public void removeAllFromDaysList() {
+
+        for(int i = 0; i < 41; i ++) {
+            DateButton newDateButton = this.daysList.get(i);
+                remove(newDateButton);
+        }
+
+        return;
+    }
+
+
+//    public void addDayToList(DateButton dateItem) {
+//        this.daysList.add(dateItem);
+//
+//        return;
+//    }
+
+
+
+    /**
+     * @return ArrayList<DateButton>
+     */
+    public ArrayList<DateButton> getDaysList() {
+
+        return this.daysList;
+
+    }
+
+
+
+    /**
+     * Ajout des jours au CalendarPanel:
+     * @return void
+     */
+    public void buildDaysList(ArrayList<DateButton> daysList) {
+
+        this.daysList = daysList;
+        Iterator iter = this.daysList.iterator();
+
+        for(int i = 0; i < 41; i ++) {
+
+            DateButton newDateButton = this.daysList.get(i);
+            add(newDateButton);
+        }
+//        System.out.println("eeeeeeeeeeeeeeeee       ddddddddddddddddddday dddddddddddddddddddddddddddddd "+ this.daysList.size());
+
+
+        return;
+    }
+
+
+//    /**
+//     * @param controlBtn
+//     * @return
+//     */
+//    public void setDaysList(ControlButton controlBtn) {
+//        // TODO implement here
+//        return;
+//    }
+
+    @Override
     /**
      * @return
      */
     public void displayCalendar() {
+        System.out.println(this);
         // TODO implement here
         return;
     }

@@ -6,7 +6,6 @@ import fr.cnam.pmain.MainPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 /**
  * @author Yannis Guéguen
@@ -18,7 +17,7 @@ public class RunCalendarApp extends JFrame {
      */
     public RunCalendarApp() {
 
-        super("My Calendar App");
+        super();
 
         WindowListener l = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -31,15 +30,9 @@ public class RunCalendarApp extends JFrame {
         setVisible(true);
     }
 
-    /**
-     * 
-     */
+
+
     private static MainPanel mainPanel;
-
-
-
-
-
 
     /**
      * @param args 
@@ -50,23 +43,21 @@ public class RunCalendarApp extends JFrame {
 
         mainPanel = new MainPanel();
 
-        // Option 1:
+        // *** Option 1:
 //        JFrame calendarFrame = new RunCalendarApp();
 
-        // Option 2: (cf: nfa-035):
+        // *** Option 2: (cf: nfa-035):
         JFrame runAppFrame = new JFrame();
 
         Container runAppContainer = runAppFrame.getContentPane();
         JLabel runAppLabel = new JLabel();
 
-        String calendarTitle = "Calendar App";
+        String calendarTitle = "Le Calendrier des Lunaires";
 
         runAppContainer.add(mainPanel);
 
-        // ******************
         runAppLabel.setForeground(Color.lightGray);
 
-        //
         runAppFrame.setSize(1920, 1080);
         runAppFrame.setLocation(0,0);
         runAppFrame.setTitle(calendarTitle);
@@ -74,16 +65,14 @@ public class RunCalendarApp extends JFrame {
 
         runAppFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // TODO implement here
         return;
     }
 
     /**
-     * @return
+     * @return MainPanel
      */
-    public void getMainPanel() {
-        // TODO implement here
-        return;
+    public static MainPanel getMainPanel() {
+        return mainPanel;
     }
 
 }

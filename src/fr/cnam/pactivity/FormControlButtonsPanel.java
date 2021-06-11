@@ -29,9 +29,9 @@ public class FormControlButtonsPanel implements ControlButtonsPanelInterface {
 
 
 
-
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayControlButtons() {
         // TODO implement here

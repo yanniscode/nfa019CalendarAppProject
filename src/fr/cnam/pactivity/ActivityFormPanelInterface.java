@@ -8,7 +8,7 @@ import java.util.*;
 public interface ActivityFormPanelInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayActivityPanel();
 

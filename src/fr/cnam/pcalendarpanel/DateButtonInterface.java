@@ -8,7 +8,7 @@ import java.util.*;
 public interface DateButtonInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayDateButton();
 

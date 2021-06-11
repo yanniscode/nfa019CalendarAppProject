@@ -15,24 +15,24 @@ public class ActivityColor {
     }
 
     /**
-     * 
+     * Color - Couleur d'un DateBouton
      */
-    protected static final Color ORANGE = Color.ORANGE;
+    protected final Color ORANGE = Color.ORANGE;
 
     /**
-     * 
+     * Color - Couleur d'un DateBouton
      */
-    protected static final Color BLUE = Color.BLUE;
+    protected final Color BLUE = Color.BLUE;
 
     /**
-     * 
+     * Color - Couleur d'un DateBouton
      */
-    protected static final Color RED = Color.RED;
+    protected final Color RED = Color.RED;
 
     /**
-     * 
+     * Color - Couleur d'un DateBouton
      */
-    protected static final Color GREEN = Color.GREEN;
+    protected final Color GREEN = Color.GREEN;
 
 
 }

@@ -14,12 +14,12 @@ public class FormControlAction {
     }
 
     /**
-     * 
+     * String - valeur de bouton du formulaire
      */
     protected String VALIDATION = "Validation";
 
     /**
-     * 
+     * String - valeur de bouton du formulaire
      */
     protected String ANNULATION = "Annulation";
 

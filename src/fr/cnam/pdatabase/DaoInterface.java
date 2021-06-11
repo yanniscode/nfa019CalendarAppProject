@@ -9,25 +9,25 @@ public interface DaoInterface<T> {
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean create(T obj);
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean update(T obj);
 
     /**
      * @param obj 
-     * @return
+     * @return boolean
      */
     public boolean delete(T obj);
 
     /**
      * @param id 
-     * @return
+     * @return boolean
      */
     public T find(int id);
 

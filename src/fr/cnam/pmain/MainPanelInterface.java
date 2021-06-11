@@ -9,7 +9,7 @@ import java.util.*;
 public interface MainPanelInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayMainPanel();
 

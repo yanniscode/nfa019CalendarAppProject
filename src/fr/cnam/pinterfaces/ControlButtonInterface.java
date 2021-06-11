@@ -9,7 +9,7 @@ public interface ControlButtonInterface {
 
 
     /**
-     * @return
+     * @return void
      */
     public void displayButton();
 

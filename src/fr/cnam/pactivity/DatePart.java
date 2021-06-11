@@ -1,7 +1,5 @@
 package fr.cnam.pactivity;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.text.DateFormatSymbols;
 import java.util.*;
 
@@ -16,305 +14,185 @@ public class DatePart {
      * Default constructor
      */
     public DatePart() {
-
-//        this.today = new Date();
-//        System.out.println(this.today);
-//
-//        this.cacheCalendar = Calendar.getInstance();  // pas ici sinon irrégularités !!!
-//
-//        this.cacheCalendar.setTime(this.today);
-
-//        this.cal = Calendar.getInstance();  // date du jour instanciée
+        this.cacheCalendar = Calendar.getInstance();
     }
 
-    /**
-     * 
-     */
-    private Date dateValue;
-
-    // ajout:
-//    public static Date getToday() {
-//        Date today = new Date();
-//
-//        return today;
-//    }
 
 
     // AJOUTS:
 
-    private Calendar cal;
+    /**
+     * Calendar - nouvelle instance du calendrier
+     */
+    private Calendar newCalendar;
 
+
+
+    /**
+     * Date - valeur de la date (représentée par la classe DatePart) - actuellement, date = non découpée mais devrait être, au choix: le jour, le mois ou l'année
+     */
+    private Date dateValue;
+
+    /**
+     * Calendar
+     */
     private Calendar cacheCalendar;
-//    private Calendar cacheCalendar = Calendar.getInstance();
 
-    private Date today;
-    private Date newDayRef;
+    /**
+     * Date - nouveau mois de référence
+     */
     private Date newMonthRef;
 
-    private Calendar newCalendarRef;
-
-    // *** add indexes because of date reinitialisation at every methods call:
+    /**
+     * int - Ajout d'un index à cause de sa réinitialisation à chaque appel de méthode
+     */
     private int incr = 1;
 
+    /**
+     * int - index du mois en cours - 0 = mois actuel
+     */
     private int monthIndex = 0;
 
-    private void resetMonthIndex(){
-        this.monthIndex = 0;
-    }
 
+    /**
+     *
+     * @param dayIndex
+     * @param newCalendar
+     * @return Date - Pour la ré-init du Calendar: renvoie le jour selon le mois choisi et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
+     */
+    public Date getIndexedDay(int dayIndex, Calendar newCalendar) {
 
-//    private int daysIndex = 0;
+        this.cacheCalendar = newCalendar;
+//        System.out.println(this.cacheCalendar.getTime());
+//        System.out.println("i i i i î "+ dayIndex);
 
-//    public void resetDaysIndex(){
-//        this.daysIndex = 0;
-//    }
-
-    public Date getIndexedDay(int dayIndex) {
-
-
-        this.cacheCalendar = Calendar.getInstance();
-//        this.cacheCalendar.set(Calendar.DAY_OF_MONTH, 1);
-//        System.out.println("||||"+this.cacheCalendar.getTime());
-
-        this.cacheCalendar.set(Calendar.DATE, dayIndex);   // si 1:
-        System.out.println("||||"+this.cacheCalendar.getTime());
+        this.cacheCalendar.set(cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
 
 //        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
 //        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
 
-        System.out.println("daysIndex: "+ dayIndex);
-        dayIndex += incr;
+        this.dateValue = this.cacheCalendar.getTime();
 
-        this.newDayRef = this.cacheCalendar.getTime();
-
-        return this.newDayRef;
-
-//        return this.cacheCalendar.getTime();
-    }
-
-//    public Date getNextDay() {
-//        daysIndex += incr;
-//
-//        this.cacheCalendar = Calendar.getInstance();
-//        this.cacheCalendar.add(Calendar.DATE, daysIndex);
-//
-//        return this.cacheCalendar.getTime();
-//    }
-
-
-// ajout:
-    public Date getFirstMondayOfNextMonthPage() {
-
-        this.cacheCalendar = Calendar.getInstance();
-
-
-        System.out.println("standardIncr ++ "+monthIndex);
-        monthIndex += incr;
-
-//        System.out.println(this.cacheCalendar.getTime());
-//    public int getFirstMonday(int year, int month) {
-//        System.out.println(Calendar.DAY_OF_WEEK);
-//        System.out.println( MONDAY);
-
-        System.out.println("standardIncr ++ "+monthIndex);
-
-        this.cacheCalendar.add(Calendar.MONTH, monthIndex);   // PASSAGE AU MOIS SUIVANT : 1
-
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK, MONDAY);
-        this.cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 0);
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
-//        cacheCalendar.set(Calendar.MONTH, month);
-//        cacheCalendar.set(Calendar.YEAR, 2021);
-//        cacheCalendar.set(Calendar.YEAR, year);
-
-//        this.newCalendarRef = this.cacheCalendar;
-//        System.out.println(this.newCalendarRef);
-
-//        this.newCalendarRef.getTime();
-
-//        this.cacheCalendar.setTime(this.newDateRef);
-
-
-        System.out.println("standardIncr ++ "+monthIndex);
-
-        this.newMonthRef = this.cacheCalendar.getTime();
-        return  this.newMonthRef;
-//        return this.newCalendarRef.getTime();
-    }
-
-
-    // TEST: PREMIER LUNDI DU MOIS (CF: https://stackoverflow.com/questions/23971439/get-the-first-monday-of-a-month)
-
-
-    public Date getFirstMondayOfActualMonthPage() {
-
-        this.cacheCalendar = Calendar.getInstance();
-
-
-//        this.cacheCalendar = Calendar.getInstance();
-
-//    public int getFirstMonday(int year, int month) {
-//        System.out.println(Calendar.DAY_OF_WEEK);
-//        System.out.println( MONDAY);
-//        cacheCalendar.set(Calendar.MONTH, 1);   // PASSAGE AU MOIS SUIVANT
-
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK, MONDAY);
-        this.cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 0);
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
-//        cacheCalendar.set(Calendar.MONTH, month);
-//        cacheCalendar.set(Calendar.YEAR, 2021);
-//        cacheCalendar.set(Calendar.YEAR, year);
-
-//        this.newDateRef = this.cacheCalendar.getTime();
-//        System.out.println(this.newDateRef);
-
-//        this.cacheCalendar.setTime(this.newDateRef);
-
-
-          this.newMonthRef = this.cacheCalendar.getTime();
-
-          return  this.newMonthRef;
-//        return this.cacheCalendar.getTime();
-//        return this.newDateRef;
-//        return cacheCalendar.get(Calendar.DATE);
-    }
-
-    public Date getFirstMondayOfLastMonthPage() {
-
-        this.cacheCalendar = Calendar.getInstance();
-
-
-        System.out.println("standardIncr -- "+monthIndex);
-        monthIndex -= incr;
-//        System.out.println("standardIncr -- "+standardIncr);
-
-
-        System.out.println(this.cacheCalendar.getTime());
-
-//    public int getFirstMonday(int year, int month) {
-//        System.out.println(Calendar.DAY_OF_WEEK);
-//        System.out.println( MONDAY);
-        this.cacheCalendar.add(Calendar.MONTH, monthIndex);   // PASSAGE AU MOIS PRÉCÉDENT: -1
-
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK, MONDAY);
-        this.cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 0);
-//        cacheCalendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
-//        cacheCalendar.set(Calendar.MONTH, month);
-//        cacheCalendar.set(Calendar.YEAR, 2021);
-//        cacheCalendar.set(Calendar.YEAR, year);
-
-
-
-//        this.newDateRef = this.cacheCalendar.getTime();
-//        System.out.println(this.newDateRef);
-//
-//        this.cacheCalendar.setTime(this.newDateRef);
-
-
-        System.out.println("standardIncr -- "+monthIndex);
-
-        this.newMonthRef = this.cacheCalendar.getTime();
-
-        return  this.newMonthRef;
-
-//        return this.cacheCalendar.getTime();
-//        return this.newDateRef;
+        return this.dateValue;
     }
 
 
 
-//    public Date getFirstDayOfMonth() {
-//
-//    //    public static Date getpremierJourMois(Date date) {
-//
-////        Date today = this.getToday(); // pas nécessaire, mais à voir...
-//
-//        Calendar cal = Calendar.getInstance();  // date du jour instanciée
-////        cal.setTime(today);
-//
-//        cal.add(Calendar.MONTH, 0); // si mois ACTUEL
-//
-////        System.out.println(cal.getTime());
-////        System.out.println(cal.getActualMinimum(Calendar.DAY_OF_WEEK_IN_MONTH));
-//
-//        System.out.println(cal.getFirstDayOfWeek());    // ex: 2 si un mardi, 1 si lundi
-//
-////        int decrementDay = 2 - cal.getFirstDayOfWeek();    // si lundi:
-////        System.out.println(decrementDay);
-//        cal.set(Calendar.DAY_OF_MONTH, 0); // *** ??? Renvoie le premier lundi du mois - EX: 31/05/2021 si c'est le lundi (1 = RÉFÉRENCE du premier jour du mois)
-//
-//        Date firstDayOfMonth = cal.getTime();
-////        System.out.println(firstDayOfMonth);
-//
-//        return firstDayOfMonth;
-//    }
+    /**
+     *
+     * @param dayIndex
+     * @return Date - Pour l'init du Calendar: renvoie le jour selon le mois actuel et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
+     */
+    public Date getIndexedDay(int dayIndex) {
+
+//        System.out.println("i i i i î "+ dayIndex);
+        this.cacheCalendar.set(this.cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
+
+//        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
+//        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
+
+        this.dateValue = this.cacheCalendar.getTime();
+        System.out.println("## ## |||| : "+this.dateValue);
+
+        return this.dateValue;
+    }
 
 
 
 
+    // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
+
+    /**
+     * @link - https://coderanch.com/t/382459/java/day-week-month -> MERCI !
+     * @param idMonth
+     * @param idDayAdd
+     * @return Date - algorithme pour retrouver le premier lundi d'une page d'un mois (peut être le dernier lundi du mois précédent !)
+     */
+    public Date getByFirstMondayOfMonthPage(int idMonth, int idDayAdd) {
+
+        Calendar mainCalendar = Calendar.getInstance();
+
+        // ***pour modifier le mois:
+        mainCalendar.add(Calendar.MONTH, idMonth);
+
+        // *** initialisation des dates = séparée, car Calendrier Gregorien utilisé...
+        int iMonth = mainCalendar.get(Calendar.MONTH);
+        int iYear = mainCalendar.get(Calendar.YEAR);
+
+        // *** Samedi = ref, sinon, décalage non souhaité des jours - ex: le lundi devient le dimanche
+        int iFirstDayOfWeek = Calendar.SATURDAY;
+
+        // définit l'index premier jour de la première semaine:
+        int indexDay = 1;
+
+        // *** Définit le lundi comme premier jour de semaine:
+        Calendar cacheCalendar = new GregorianCalendar(iYear,iMonth,7);
+
+        cacheCalendar.setFirstDayOfWeek(iFirstDayOfWeek);
+
+        // ** un mois avant = 0
+        cacheCalendar.add(Calendar.MONTH, 0);
+
+        // *** jour actuel en 'int':
+        int iCurrentDay = cacheCalendar.get(Calendar.DAY_OF_WEEK);
+//        System.out.println(iCurrentDay);
+
+        // *** retrait d'un jour à la position actuelle: ?? pour calculer: indexDay - absolue(offset)
+        int offset = iCurrentDay - 1;
+
+        if(iCurrentDay < Calendar.MONDAY) {
+            // *** si le jour actuel (int) est avant lundi (dimanche = 1...)
+            offset = iCurrentDay - 8;
+        }
+
+        // *** sinon, si le jour actuel (int) est égal ou après lundi...
+        indexDay = indexDay - Math.abs(offset);
+//        System.out.println(indexDay);
+
+        // *** positionne le jour du mois:
+        if(cacheCalendar.getFirstDayOfWeek() == Calendar.MONDAY) {
+            indexDay = indexDay + 1;
+        }
+
+        cacheCalendar.set(Calendar.DATE , indexDay);
+        // *** si 0, pas de modif de la place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY > ok !!!
+
+        // ajoute le premier lundi du mois au Calendar = 0
+        cacheCalendar.add(Calendar.DATE, idDayAdd);
+//        System.out.println(cacheCalendar.getTime());
+        // ou: (test String)
+        System.out.println(cacheCalendar.get(Calendar.DATE)+"/"+(cacheCalendar.get(Calendar.MONTH)+1)+"/"+cacheCalendar.get(Calendar.YEAR));
+
+        return cacheCalendar.getTime();
+
+    }
 
 
 
 
-    // PAS UTILE:
-//    public Date getFirstMonday() {
-//
-//        Date firstMonday = null;
-//        Date firstDayOfMonth = this.getFirstDayOfMonth();
-//
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(firstDayOfMonth);  // marche pas avec: date.getTime() : erreur de passage de type 'long' -> 'date' ("The method setTime(Date) in the type Calendar is not applicable for the arguments (long)Java(67108979)")
-//        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-//
-//        cal.add(Calendar.DAY_OF_MONTH, 0);  // TEST: ajout d'un jour au premier jour
-//        System.out.println("### ### "+ cal.getTime());
-//
-//        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
-////        System.out.println(cal.get(Calendar.DAY_OF_MONTH));
-//
-//        int dayNumberInWeek = cal.get(Calendar.DAY_OF_WEEK);
-//
-//        if(dayNumberInWeek == 2) {  // 1 = dimanche, lundi = 2
-//            firstMonday = cal.getTime();
-//            System.out.println("### ### "+ cal.getTime());
-//            System.out.println("#### ok - this is monday !");
-//        }
-//        else {
-//            for(int i = 0; i <= 6; i++){
-//                cal.add(Calendar.DAY_OF_MONTH, 1);  // TEST: ajout d'un jour au premier jour
-//                System.out.println("### "+ cal.getTime());
-//                System.out.println("### "+ cal.get(Calendar.DAY_OF_WEEK));
-//
-//                dayNumberInWeek = cal.get(Calendar.DAY_OF_WEEK);
-//
-//                if(dayNumberInWeek == 2) {
-//                    firstMonday = cal.getTime();
-//                    System.out.println("### ### "+ cal.getTime());
-//                    System.out.println("#### ok - this is monday !");
-//                    break;
-//                }
-//            }
-//        }
+    // *** on retrouve un jour de ref du mois précédeent (selon le nombre de mois avant aujourd'hui)
 
-//        DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
+    /**
+     *
+     * @param monthIndex
+     * @return Date - passage au mois suivant = 1, ou  précédent = -1
+     */
+    public Date oneMonthInterval(int monthIndex) {
 
+        this.newCalendar = Calendar.getInstance();
 
-//        String[] joursSemaineFR = dfsFR.getWeekdays();
-//
-//        String firstMonday = "";
-//
-//        for (int i = 1; i < joursSemaineFR.length; i++) {
-//
-//            if(joursSemaineFR[i].equals("lundi")){
-//                firstMonday = joursSemaineFR[i];
-//                break;
-//            }
-//        }
-//        System.out.println(firstMonday);
+        this.newCalendar.add(Calendar.MONTH, monthIndex);
 
-//        return firstMonday;
-//    }
+        this.newMonthRef = newCalendar.getTime();
 
+        return this.newMonthRef;
+
+    }
+
+    /**
+     *
+     * @return StringBuffer - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
+     */
     public static StringBuffer getWeekDays() {
 
         DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
@@ -331,6 +209,40 @@ public class DatePart {
         System.out.println(joursListeFR);
 
         return joursListeFR;
+    }
+
+
+    /**
+     *
+     * @return Calendar
+     */
+    public Calendar getCalendarValue() {
+        return this.cacheCalendar;
+    }
+
+    public void setCalendarValue(Calendar cacheCalendar) {
+        this.cacheCalendar = cacheCalendar;
+
+        return;
+    }
+
+
+    /**
+     *
+     * @return Date
+     */
+    public Date getDateValue() {
+        return this.dateValue;
+    }
+
+    /**
+     * @param dateValue
+     * @return void
+     */
+    public void setDateValue(Date dateValue) {
+        this.dateValue = dateValue;
+
+        return;
     }
 
 

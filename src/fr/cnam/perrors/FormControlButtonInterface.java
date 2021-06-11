@@ -8,7 +8,7 @@ import java.util.*;
 public interface FormControlButtonInterface {
 
     /**
-     * @return
+     * @return void
      */
     public void displayFormControlBtn();
 

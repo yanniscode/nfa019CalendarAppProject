@@ -15,220 +15,139 @@ import java.util.*;
 public class DateActivityItem extends JPanel implements DateActivityItemInterface {
 
 
-    DatePart datePart;
+    private DatePart datePart;
 
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
     //        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
-    String formatedDate;
+    private String formatedDate;
 
-    JButton dateItemButton;
+    private JButton dateItemButton;
+
+    private int dayIndex;
+
+    private Calendar newCalendar;
+
+
+    /**
+     * Constructor 3
+     * @param dayIndex
+     * @param newCalendar
+     */
+    public DateActivityItem(int dayIndex, Calendar newCalendar) {
+
+        super();
+
+    }
+
+
+    /**
+     *  Constructor 2
+     * @param DateBefore
+     */
+    public DateActivityItem(Date DateBefore) {
+
+        super();
+
+    }
 
 
     /**
      * Default constructor
      */
-    public DateActivityItem() {
+    public DateActivityItem(int dayIndex) {
 
         super();
 
-//        dateItemButton = new JButton();
-//        super.add(dateItemButton);
-
-        datePart = new DatePart();
-
-
-//        System.out.println("~~~~ "+datePart.getFirstMonday(2021, Calendar.JANUARY));
-
-        // changement de mois: test PREMIER LUNDI DE LA PAGE DU CALENDAR:
-//        System.out.println("+++ "+ datePart.getFirstMondayOfNextMonthPage());
-//        System.out.println("~~~~ "+datePart.getFirstMondayOfActualMonthPage());
-//        System.out.println("--- "+ datePart.getFirstMondayOfLastMonthPage());
-
-
-//        datePart.resetDaysIndex();  // reset incr (day)
-
-//        Date nextDay;
-////        Date nextDay = datePart.getNextDay();
-////        System.out.println("day ++"+ nextDay);
-//
-//        nextDay = datePart.getIndexedDay();
-
-//        for(int i = 1; i < 35; i ++){
-//            System.out.println("i: "+ i);
-//            nextDay = datePart.getIndexedDay();
-//            System.out.println("day ++"+ nextDay);
-//
-//        }
-
-                // ***************
-//        Date daySelectTest;
-
-//        daySelectTest = datePart.getFirstMondayOfActualMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-//
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~~~ "+daySelectTest);
-
-//        daySelectTest = datePart.getFirstMondayOfLastMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-
-//        daySelectTest = datePart.getFirstMondayOfLastMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-//
-//        daySelectTest = datePart.getFirstMondayOfLastMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-
-//        daySelectTest = datePart.getFirstMondayOfLastMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-//////
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-//
-//        daySelectTest = datePart.getFirstMondayOfActualMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-
-//
-//////
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-////
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-//
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-
-//
-//        daySelectTest = datePart.getFirstMondayOfNextMonthPage();
-//        System.out.println("~~ "+daySelectTest);
-
-//        System.out.println("~~~~ "+datePart.getFirstDayOfMonth());
-
-//        super.setSize(150,50);
-
-
-        // pour obtenir une date type mois: 'Juin' (String à partir de Date)
-//        System.out.println(daySelectTest);
-
-//        DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
-
-
-
-//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-////        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
-//        String formatedDate;
-//
-//        JButton dateItemButton;
-
-
-////        for(int i = 1; i < 35; i ++) {
-////            System.out.println("i: "+ i);
-////            nextDay = datePart.getIndexedDay();
-//            System.out.println("day ++"+ nextDay);
-////
-//            formatedDate = dateFormat.format(nextDay);
-//
-//            dateItemButton = new JButton(formatedDate);
-//
-////            super.add(dateItemButton);
-//            dateItemButton.setPreferredSize(new Dimension(120,100));
-////        }
-
-//        super.add(dateItemButton);
-
-//        dateItemButton.setPreferredSize(new Dimension(120,100));
     }
 
+
+
+    // ajouts:
+
     /**
-     * 
+     * Date
+     */
+    private Date nextDay;
+
+
+    /**
+     * Date - date agrégée
      */
     private Date aggregatedDate = null;
 
     /**
-     * 
+     * String
      */
     private String activityDescription = null;
 
     /**
-     * 
+     * String
      */
     private final String activityStatus = null;
 
     /**
-     * 
+     * ActivityColor
      */
     private final ActivityColor activityColor = null;
 
     /**
-     * 
+     * DatePart
      */
     private DatePart yearSelect = null;
 
     /**
-     * 
+     * DatePart
      */
     private DatePart monthSelect = null;
 
     /**
-     * 
+     * DatePart
      */
     private DatePart daySelect = null;
 
 
+    /**
+     * @return JButton
+     */
+    public JButton getDateItemButton(){
+        return this.dateItemButton;
+    };
+
+    public void setDateItemButton(JButton dateItemButton){
+        this.dateItemButton = dateItemButton;
+        return;
+    }
+
+
+
+
+    // **************************************
 
 
 
 
     /**
-     * @return
+     * @return Date
      */
     public Date getAggregatedDate() {
         // TODO implement here
         return null;
     }
 
-
-    // AJOUT:
-
-            Date nextDay;
-
     /**
-     *
-     * @return
+     * @param yearSelect
+     * @param MonthSelect
+     * @param DaySelect
+     * @return void
      */
-    public void setAggregatedDate(int dayIndex) {
-
-        this.nextDay = this.datePart.getIndexedDay(dayIndex);
-
-//        Date daySelectTest;
-//        daySelectTest = datePart.getFirstMondayOfActualMonthPage();
-
-        System.out.println("day ++"+ this.nextDay);
-
-        this.formatedDate = this.dateFormat.format(this.nextDay);
-
-        this.dateItemButton = new JButton(this.formatedDate);
-
-        this.dateItemButton.setPreferredSize(new Dimension(120,100));
-
-        super.add(this.dateItemButton);
-
-        return;
-    }
-
-    /**
-     * @param yearSelect 
-     * @param MonthSelect 
-     * @param DaySelect 
-     * @return
-     */
-public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePart DaySelect) {
+    public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePart DaySelect) {
         // TODO implement here
         return;
     }
 
     /**
-     * @return
+     * @return DatePart
      */
     public DatePart getYearSelect() {
         // TODO implement here
@@ -236,8 +155,8 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @param yearSelect 
-     * @return
+     * @param yearSelect
+     * @return void
      */
     public void setYearSelect(DatePart yearSelect) {
         // TODO implement here
@@ -247,13 +166,13 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     /**
      * @return
      */
-    public void getMonthSelect() {
+    public DatePart getMonthSelect() {
         // TODO implement here
-        return;
+        return null;
     }
 
     /**
-     * @param monthSelect 
+     * @param monthSelect
      * @return
      */
     public void setMonthSelect(DatePart monthSelect) {
@@ -262,7 +181,7 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @return
+     * @return DatePart
      */
     public DatePart getDaySelect() {
         // TODO implement here
@@ -270,16 +189,18 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @param daySelect 
-     * @return
+     * @param daySelect
+     * @return void
      */
     public void setDaySelect(DatePart daySelect) {
+
+        this.daySelect = daySelect;
         // TODO implement here
         return;
     }
 
     /**
-     * @return
+     * @return String
      */
     public String getActivityDescription() {
         // TODO implement here
@@ -287,8 +208,8 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @param activityDescription 
-     * @return
+     * @param activityDescription
+     * @return void
      */
     public void setActivityDescription(String activityDescription) {
         // TODO implement here
@@ -296,7 +217,7 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @return
+     * @return String
      */
     public String getActivityStatus() {
         // TODO implement here
@@ -304,8 +225,8 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @param activityStatus 
-     * @return
+     * @param activityStatus
+     * @return void
      */
     public void setActivityStatus(String activityStatus) {
         // TODO implement here
@@ -313,7 +234,7 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @return
+     * @return ActivityColor
      */
     public ActivityColor getActivityColor() {
         // TODO implement here
@@ -321,16 +242,17 @@ public void setAggregatedDate(DatePart yearSelect, DatePart MonthSelect, DatePar
     }
 
     /**
-     * @param activityColor 
-     * @return
+     * @param activityColor
+     * @return void
      */
     public void setActivityColor(ActivityColor activityColor) {
         // TODO implement here
         return;
     }
 
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayActivity() {
         // TODO implement here

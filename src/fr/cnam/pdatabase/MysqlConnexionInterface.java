@@ -8,7 +8,7 @@ import java.util.*;
 public interface MysqlConnexionInterface {
 
     /**
-     * @return
+     * @return boolean
      */
     public boolean getMysqlConnexionInstance();
 

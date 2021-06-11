@@ -30,7 +30,7 @@ public class FormErrorPanel implements FormErrorPanelInterface {
 
 
     /**
-     * @return
+     * @return String
      */
     public String getErrorMessage() {
         // TODO implement here
@@ -39,15 +39,16 @@ public class FormErrorPanel implements FormErrorPanelInterface {
 
     /**
      * @param errorMessage 
-     * @return
+     * @return void
      */
     public void setErrorMessage(String errorMessage) {
         // TODO implement here
         return;
     }
 
+    @Override
     /**
-     * @return
+     * @return void
      */
     public void displayErrorPanel() {
         // TODO implement here
