@@ -1,1 +1,1 @@
- 2javaX(hr2src/fr/cnam/pactivity/FormControlButtonsPanel.java
+ 2javaX)hr2src/fr/cnam/pactivity/FormControlButtonsPanel.java

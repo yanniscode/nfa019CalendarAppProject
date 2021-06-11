@@ -1,10 +1,14 @@
 package fr.cnam.pcalendarpanel;
 
+import fr.cnam.pactivity.DateActivityItem;
+import fr.cnam.pactivity.DatePart;
+import fr.cnam.pbuttons.ControlButton;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.logging.Logger;
 
 
 /**
@@ -142,7 +146,10 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         //      this.calendarLabel = new JLabel(formatedDate, SwingConstants.CENTER);
 
         System.out.println(this.calendarLabel);
+
         this.calendarLabel.setText(formatedDate);
+
+
         this.calendarLabel.setFont(new Font("Serif", 0, 45));
 
         // create a line border with the specified color and width

@@ -1,5 +1,7 @@
 package fr.cnam.pdatabase;
 
+import java.util.*;
+
 /**
  * @author Yannis Guéguen
  */

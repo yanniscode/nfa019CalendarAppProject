@@ -1,5 +1,6 @@
 package fr.cnam.penums;
 
+import java.util.*;
 
 /**
  * @author Yannis Guéguen

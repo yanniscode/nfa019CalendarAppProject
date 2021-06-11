@@ -1,5 +1,8 @@
 package fr.cnam.penums;
 
+import fr.cnam.perrors.FormErrorPanel;
+
+import java.util.*;
 
 /**
  * @author Yannis Guéguen

@@ -6,9 +6,9 @@ import fr.cnam.pcalendarpanel.CalendarPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Logger;
 
 import static java.awt.FlowLayout.CENTER;
-
 
 /**
  * @author Yannis Guéguen

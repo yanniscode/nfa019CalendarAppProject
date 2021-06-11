@@ -1,20 +1,14 @@
 package fr.cnam.pcalendarpanel;
 
 import fr.cnam.pactivity.DatePart;
-<<<<<<< HEAD
-=======
 import fr.cnam.pcalendarpanel.DateButtonInterface;
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 import fr.cnam.penums.ActivityColor;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.DateFormat;
-<<<<<<< HEAD
-=======
 import java.text.DateFormatSymbols;
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 import java.text.SimpleDateFormat;
 import java.util.*;
 

@@ -1,67 +1,69 @@
-I
-javaS1121.Extract the assignment out of this expression. 2ss I
-javaS1121.Extract the assignment out of this expression. 2{{% &K
+S
+javaS1128:Remove this unused import 'java.awt.event.ActionListener'. 2 %I
+javaS1121.Extract the assignment out of this expression. 2yy K
 javaS1121.Extract the assignment out of this expression. 2
-…… V
-javaS125<This block of commented-out lines of code should be removed. 2
+% &K
+javaS1121.Extract the assignment out of this expression. 2
+‹‹ V
+javaS125<This block of commented-out lines of code should be removed. 2
  $†
-javaS125<This block of commented-out lines of code should be removed. 2)) $:
-++
- Code:
---
- CCode:
-.. KCode:
-//
- DCode:
+javaS125<This block of commented-out lines of code should be removed. 2// $:
 11
- "Code:
-22 -Code:
+ Code:
 33
+ CCode:
+44 KCode:
+55
+ DCode:
+77
+ "Code:
+88 -Code:
+99
  #Code:
-44 Code²
-javaS125<This block of commented-out lines of code should be removed. 2QQ
+:: Code²
+javaS125<This block of commented-out lines of code should be removed. 2WW
  ):
-RR
- %Code:
-SS
- ZCode:
-TT *Code:
-UU
- !Code:
-VV
- SCode:
-WW
- *Code:
 XX
- &Code:
+ %Code:
 YY
- [Code:
-ZZ +Code:
+ ZCode:
+ZZ *Code:
 [[
+ !Code:
+\\
+ SCode:
+]]
+ *Code:
+^^
+ &Code:
+__
+ [Code:
+`` +Code:
+aa
  "Code‚
-javaS125<This block of commented-out lines of code should be removed. 2`` &:
-aa	 $Code:
-bb Code¯
-javaS125<This block of commented-out lines of code should be removed. 2dd 9:
-ee
+javaS125<This block of commented-out lines of code should be removed. 2ff &:
+gg	 $Code:
+hh Code¯
+javaS125<This block of commented-out lines of code should be removed. 2jj 9:
+kk
  /Code:
-	ff
+	ll
  ‚Code:
-hh
+nn
  Code:
-ii Code8
+oo Code8
 javaS3626Remove this redundant jump. 2
-ŽŽ M
-javaS11352Complete the task associated to this TODO comment. 2 ¸
+”” M
+javaS11352Complete the task associated to this TODO comment. 2““ ¸
 javaS125<This block of commented-out lines of code should be removed. 2
-‘‘ :
+—— :
 
-”” 3Code:
+šš 3Code:
 
-•• :Code:
+›› :Code:
 
-––
+œœ
  HCode:
 
-—— CodeL
-javaS10681Remove this unused "activedButton" private field. 2  
+ CodeL
+javaS10681Remove this unused "activedButton" private field. 2  

@@ -1,5 +1,6 @@
 package fr.cnam.pcalendarapp;
 
+import fr.cnam.pactivity.DateActivityItem;
 import fr.cnam.pmain.MainPanel;
 
 import javax.swing.*;
@@ -29,19 +30,21 @@ public class RunCalendarApp extends JFrame {
         setVisible(true);
     }
 
-
-
-    private static MainPanel mainPanel;
+//    private static MainPanel mainPanel;
 
     /**
      * @param args 
      * @return
      */
     public static void main (String[] args) {
+
+        MainPanel mainPanel = new MainPanel();
+
+
         System.out.println("Hello Great Calendar Of The World !");
-
-        mainPanel = new MainPanel();
-
+        System.out.println(mainPanel);
+//        setMainPanel(mainPanel);
+//        System.out.println(getMainPanel());
         // *** Option 1:
 //        JFrame calendarFrame = new RunCalendarApp();
 
@@ -62,16 +65,25 @@ public class RunCalendarApp extends JFrame {
         runAppFrame.setTitle(calendarTitle);
         runAppFrame.setVisible(true);
 
-        runAppFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        runAppFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         return;
     }
 
-    /**
-     * @return MainPanel
-     */
-    public static MainPanel getMainPanel() {
-        return mainPanel;
-    }
+//    /**
+//     * @return MainPanel
+//     */
+//    public MainPanel getMainPanel() {
+//        return this.mainPanel;
+//    }
+//
+//    /**
+//     * @param NewMainPanel
+//     * @return void
+//     */
+//    public  void setMainPanel(MainPanel NewMainPanel) {
+//        this.mainPanel = NewMainPanel;
+//        return;
+//    }
 
 }

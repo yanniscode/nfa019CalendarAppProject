@@ -3,6 +3,8 @@ package fr.cnam.pactivity;
 import java.text.DateFormatSymbols;
 import java.util.*;
 
+import static java.util.Calendar.MONDAY;
+
 /**
  * @author Yannis Guéguen
  */
@@ -74,13 +76,8 @@ public class DatePart {
         return this.dateValue;
     }
 
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
     /**
      *
      * @param dayIndex
@@ -170,23 +167,9 @@ public class DatePart {
 
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 
 
-    // *** on retrouve un jour de ref du mois précédeent (selon le nombre de mois avant aujourd'hui)
 
-<<<<<<< HEAD
-    /**
-     *
-     * @param monthIndex
-     * @return Date - passage au mois suivant = 1, ou  précédent = -1
-     */
-    public Date oneMonthInterval(int monthIndex) {
-
-=======
     // *** on retrouve un jour de ref du mois précédeent (selon le nombre de mois avant aujourd'hui)
 
     /**
@@ -196,7 +179,6 @@ public class DatePart {
      */
     public Date oneMonthInterval(int monthIndex) {
 
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
         this.newCalendar = Calendar.getInstance();
 
         this.newCalendar.add(Calendar.MONTH, monthIndex);
@@ -209,22 +191,16 @@ public class DatePart {
 
     /**
      *
-<<<<<<< HEAD
-     * @return StringBuilder - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
-     */
-    public static StringBuilder getWeekDays() {
-=======
      * @return StringBuffer - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
      */
     public static StringBuffer getWeekDays() {
->>>>>>> da73c17c4b89f8dd508c2c33a5f1591aeed88bf9
 
         DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
 
 
         String[] joursSemaineFR = dfsFR.getWeekdays();
 
-        StringBuilder joursListeFR = new StringBuilder("En-Tête - Jours FR ");
+        StringBuffer joursListeFR = new StringBuffer("En-Tête - Jours FR ");
 
         for (int i = 1; i < joursSemaineFR.length; i++) {
             joursListeFR.append(" : ");
