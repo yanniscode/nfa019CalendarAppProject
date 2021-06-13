@@ -30,7 +30,7 @@ public class RunCalendarApp extends JFrame {
         setVisible(true);
     }
 
-//    private static MainPanel mainPanel;
+    private static MainPanel mainPanel;
 
     /**
      * @param args 
@@ -38,7 +38,7 @@ public class RunCalendarApp extends JFrame {
      */
     public static void main (String[] args) {
 
-        MainPanel mainPanel = new MainPanel();
+        mainPanel = new MainPanel();
 
 
         System.out.println("Hello Great Calendar Of The World !");

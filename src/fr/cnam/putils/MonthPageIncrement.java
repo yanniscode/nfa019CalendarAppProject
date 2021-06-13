@@ -21,7 +21,6 @@ public class MonthPageIncrement {
         return monthIndex;
     }
 
-
     /**
      * @param incrementIndex
      * @return void

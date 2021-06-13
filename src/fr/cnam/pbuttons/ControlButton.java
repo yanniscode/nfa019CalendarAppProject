@@ -1,22 +1,16 @@
 package fr.cnam.pbuttons;
 
-//import fr.cnam.pactivity.DateActivityItem;
 import fr.cnam.pactivity.DatePart;
-import fr.cnam.pcalendarapp.RunCalendarApp;
 import fr.cnam.pcalendarpanel.CalendarPanel;
 import fr.cnam.pcalendarpanel.DateButton;
 import fr.cnam.pmain.MainPanel;
-//import fr.cnam.putils.IncrementClass;
 import fr.cnam.putils.MonthPageIncrement;
-import fr.cnam.putils.ReformatDate;
 import org.joda.time.DateTime;  // import manuel : localisation sur ordi: bureau/
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.spi.CalendarNameProvider;
 
 
 /**
@@ -24,16 +18,10 @@ import java.util.spi.CalendarNameProvider;
  */
 public class ControlButton extends JPanel implements ActionListener {
 
-    /**
-     * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
-     */
-    private static MainPanel mainPanel;
-
 
     /**
      *  constructor 2: utilisé par ControlButtons de changement de mois (<, >)
      */
-//    public ControlButton(String controlBtnValue, int incrementIndex) {
     public ControlButton(String controlBtnValue, MainPanel mainPanel, int incrementIndex) {
 
         super();
@@ -42,7 +30,7 @@ public class ControlButton extends JPanel implements ActionListener {
 //        System.out.println(RunCalendarApp.mainPanel);
 
         // ****** pour changer de mois (incrémentation de l'index de base (ControlButtonPanel) à chaque clic sur un des deux boutons
-        System.out.println(this.monthIndex);
+        System.out.println(monthIndex);
         //  System.out.println("CONSTRUCTEUR INDEX MONTH "+ this.monthIndex);
 
         this.mainPanel = mainPanel;
@@ -71,6 +59,11 @@ public class ControlButton extends JPanel implements ActionListener {
     // ajouts:
 
     /**
+     * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
+     */
+    private static MainPanel mainPanel;
+
+    /**
      * String - valeur du bouton activé
      */
     private String activedButton;
@@ -79,7 +72,7 @@ public class ControlButton extends JPanel implements ActionListener {
     /**
      * Date - nouveau mois de référence
      */
-    private Date newMonthRef;
+    private static Date newMonthRef;
 
     /**
      * Calendar - nouveau calendrier
@@ -94,7 +87,7 @@ public class ControlButton extends JPanel implements ActionListener {
     /**
      * Date - nouveau jour de référence (utilisé pour rendre inactif les boutons d'une page ne correspondant pas au mois
      */
-    private Date newReferenceDay;
+    private static Date newReferenceDay;
 
 
 
@@ -107,9 +100,9 @@ public class ControlButton extends JPanel implements ActionListener {
     {
         this.activedButton = ev.getActionCommand();
 
-        System.out.println(mainPanel);
+        System.out.println(this.mainPanel);
 
-        CalendarPanel calendarPanel = mainPanel.getCalendarPanel();
+        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
 
         if(this.activedButton.equals("<")) {
 
@@ -135,27 +128,27 @@ public class ControlButton extends JPanel implements ActionListener {
     /**
      * MonthPageIncrement - renvoie un int (static) pour incrémenter ou décrémenter le mois affiché
      */
-    private MonthPageIncrement monthPageIncrement = new MonthPageIncrement();
+    private static MonthPageIncrement monthPageIncrement = new MonthPageIncrement();
 
 
     /**
      * int
      */
-    private int indexMonth;
+    private static int indexMonth;
 
     /**
      * @param calendarPanel - applique l'intitulé du mois suivant
      */
     public void setNextMonthTitle(CalendarPanel calendarPanel) {
 
-        mainPanel.getCalendarPanel().removeAllFromDaysList();
+        this.mainPanel.getCalendarPanel().removeAllFromDaysList();
 
 //        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
         calendarPanel.setVisible(false);  // NÉCESSAIRE
-        mainPanel.remove(calendarPanel); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
+        this.mainPanel.remove(calendarPanel); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
 
         DatePart newDatePart;
-        newDatePart= new DatePart();
+        newDatePart = new DatePart();
 
 //        System.out.println(this.monthIndex);
 //        System.out.println(">");
@@ -168,13 +161,13 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
         // *** ON RETROUVE LE JOUR DE RÉFÉRENCE DU MOIS PRÉCÉDENT: (UN MOIS AVANT DATE ACTUELLE)
-        newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
+        this.newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
 //        System.out.println("NWRefDAY: "+ newFirstMonday);
 
         // ******** Ajout  du titre du mois précédent au CalendarPanel (string):
-        calendarPanel.setNewMonthLabel(newReferenceDay);
+        calendarPanel.setNewMonthLabel(this.newReferenceDay);
 
-        mainPanel.add(calendarPanel);
+        this.mainPanel.add(calendarPanel);
 
         return;
     }

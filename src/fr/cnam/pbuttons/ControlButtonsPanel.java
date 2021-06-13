@@ -15,8 +15,6 @@ import javax.swing.*;
  */
 public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelInterface {
 
-    private String activedButton;
-    private MainPanel mainPanel;
 
     /**
      * Default constructor
@@ -57,32 +55,42 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 //        super.add(this.rightBtn);
 //    }
 
+    /**
+     * String
+     */
+    private String activedButton;
 
     /**
-     * 
+     * MainPanel
      */
-    protected ControlButton leftBtn;
+    private static MainPanel mainPanel;
+
 
     /**
-     * 
+     * ControlButton
      */
-    protected ControlButton enterActivityBtn;
+    protected static ControlButton leftBtn;
 
     /**
-     * 
+     * ControlButton
      */
-    protected ControlButton rightBtn;
+    protected static ControlButton enterActivityBtn;
 
     /**
-     * 
+     * ControlButton
      */
-    protected ControlButton exitAppButton;
+    protected static ControlButton rightBtn;
+
+    /**
+     * ControlButton
+     */
+    protected static ControlButton exitAppButton;
 
 
 
     // *********** AJOUTS:
 
-    public void incrOnClickEvent() {
+//    public void incrOnClickEvent() {
 
 //        this.leftBtn.setVisible(false);
 //        this.remove( this.leftBtn);
@@ -96,7 +104,7 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 ////        this.rightBtn.setVisible(true);
 //        this.add(this.rightBtn);
 
-    }
+//    }
 
 
 //    public int getIncrementIndex() {

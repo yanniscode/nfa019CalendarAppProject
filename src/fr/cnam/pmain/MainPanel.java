@@ -28,7 +28,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
 
         this.calendarMainTitle = "Le Calendrier des Lunaires\n";
 
-        this.mainLabel = new JLabel(calendarMainTitle);
+        this.mainLabel = new JLabel(this.calendarMainTitle);
         this.mainLabel.setFont(new Font("Serif", 0, 20));
         add(this.mainLabel);
 
@@ -53,27 +53,27 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
     /**
      * String - Titre principal
      */
-    private JLabel mainLabel;
+    private static JLabel mainLabel;
 
     /**
      * Container - container du Calendrier
      */
-    private Container calendarContainer;
+    private static Container calendarContainer;
 
     /**
      * String - Titre principal
      */
-    private String calendarMainTitle;
+    private static String calendarMainTitle;
 
     /**
      * CalendarPanel - Container du Calendrier (= liste de DateButtons)
      */
-    private CalendarPanel calendarPanel;
+    private static CalendarPanel calendarPanel;
 
     /**
      * ControlButtonsPanel - Container du Panneau de ControlButton
      */
-    private ControlButtonsPanel controlBtnPanel;
+    private static ControlButtonsPanel controlBtnPanel;
 
 
 
@@ -90,54 +90,54 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
     /**
      * @return ControlButtonsPanel
      */
-    public ControlButtonsPanel getControlBtnPanel() {
-        return this.controlBtnPanel;
+    public static ControlButtonsPanel getControlBtnPanel() {
+        return controlBtnPanel;
     }
 
-    /**
-     *
-     * @param controlBtnPanel
-     */
-    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
-        this.controlBtnPanel = controlBtnPanel;
-        return;
-    }
+//    /**
+//     *
+//     * @param controlBtnPanel
+//     */
+//    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
+//        controlBtnPanel = controlBtnPanel;
+//        return;
+//    }
 
     /**
      * @return CalendarPanel
      */
-    public CalendarPanel getCalendarPanel() {
-        return this.calendarPanel;
+    public static CalendarPanel getCalendarPanel() {
+        return calendarPanel;
     }
 
 
-    /**
-     *
-     * @param calendarPanel
-     */
-    public void setCalendarPanel(CalendarPanel calendarPanel) {
-
-        this.calendarPanel = calendarPanel;
-    //    add(this.calendarPanel);
-
-        // TODO implement here
-        return;
-    }
+//    /**
+//     *
+//     * @param calendarPanel
+//     */
+//    public void setCalendarPanel(CalendarPanel calendarPanel) {
+//
+//        calendarPanel = calendarPanel;
+//    //    add(this.calendarPanel);
+//
+//        // TODO implement here
+//        return;
+//    }
 
     /**
      * @return String - Calendar Main Title
      */
-    public String getCalendarMainTitle() {
-        return this.calendarMainTitle;
+    public static String getCalendarMainTitle() {
+        return calendarMainTitle;
     }
 
-    /**
-     * @param calendarMainTitle
-     */
-    public void setCalendarMainTitle(String calendarMainTitle) {
-        this.calendarMainTitle = calendarMainTitle;
-        return;
-    }
+//    /**
+//     * @param calendarMainTitle
+//     */
+//    public void setCalendarMainTitle(String calendarMainTitle) {
+//        calendarMainTitle = calendarMainTitle;
+//        return;
+//    }
 
 
     @Override

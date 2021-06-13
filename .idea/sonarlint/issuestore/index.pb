@@ -3,16 +3,10 @@
 ,src/fr/cnam/pactivity/ActivityFormPanel.java,e/a/ea2cf8adf2a20c637e535d134c8f3cf046c43ada
 e
 5src/fr/cnam/pactivity/ActivityFormPanelInterface.java,c/6/c6c024337cd17512cc66a3c8f4dbdb4b07e225f4
-Z
-*src/fr/cnam/pactivity/DateActivityDAO.java,a/a/aa544c88d77349e226001e98e4522582b3110fb1
 b
 2src/fr/cnam/pactivity/FormControlButtonsPanel.java,2/6/2696239fa1c3969803fbfad627e683f3869c9ba3
-S
-#src/fr/cnam/pactivity/DatePart.java,e/f/efec80d1e66186134ffa6e1df358ecec2f5a91be
 d
 4src/fr/cnam/pactivity/DateActivityItemInterface.java,3/7/37b5b0b7f2a2ce87372c8524f2c775f02f037bc5
-[
-+src/fr/cnam/pactivity/DateActivityItem.java,d/1/d16d3274ca1f19ea52c89f7976c2756c9d9649d7
 [
 +src/fr/cnam/pbuttons/FormControlButton.java,5/4/54b785a6a87347e0cf86f4ccd6e3c0f7ba213cd2
 ^
@@ -61,9 +55,3 @@ i
 9src/fr/cnam/pinterfaces/ControlButtonsPanelInterface.java,1/a/1abce8ff0612956b3f61dfdf947ad9edce3e6f71
 Y
 )src/fr/cnam/pmain/MainPanelInterface.java,a/7/a7394e4276b1f23544cc040baeeca46687d0275d
-T
-$src/fr/cnam/putils/ReformatDate.java,a/b/aba3ecad867fb0e717ebdd5017354c9b22b7dbb9
-]
--src/fr/cnam/pcalendarpanel/CalendarPanel.java,f/e/fe6c3cdeb78ac70f734d4f4fcf5ea33135815033
-]
--src/fr/cnam/pbuttons/ControlButtonsPanel.java,f/7/f7f08abf91e27ff695f4e93e1dfbb03e00c55bbe

@@ -223,7 +223,7 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     public void buildDaysList(ArrayList<DateButton> daysList) {
 
         this.daysList = daysList;
-        Iterator iter = this.daysList.iterator();
+//        Iterator iter = this.daysList.iterator();
 
         for(int i = 0; i < 41; i ++) {
 
@@ -231,7 +231,6 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
             add(newDateButton);
         }
 //        System.out.println("eeeeeeeeeeeeeeeee       ddddddddddddddddddday dddddddddddddddddddddddddddddd "+ this.daysList.size());
-
 
         return;
     }

@@ -54,27 +54,27 @@ public class DatePart {
     private int monthIndex = 0;
 
 
-    /**
-     *
-     * @param dayIndex
-     * @param newCalendar
-     * @return Date - Pour la ré-init du Calendar: renvoie le jour selon le mois choisi et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
-     */
-    public Date getIndexedDay(int dayIndex, Calendar newCalendar) {
-
-        this.cacheCalendar = newCalendar;
-//        System.out.println(this.cacheCalendar.getTime());
-//        System.out.println("i i i i î "+ dayIndex);
-
-        this.cacheCalendar.set(cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
-
-//        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
-//        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
-
-        this.dateValue = this.cacheCalendar.getTime();
-
-        return this.dateValue;
-    }
+//    /**
+//     *
+//     * @param dayIndex
+//     * @param newCalendar
+//     * @return Date - Pour la ré-init du Calendar: renvoie le jour selon le mois choisi et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
+//     */
+//    public Date getIndexedDay(int dayIndex, Calendar newCalendar) {
+//
+//        this.cacheCalendar = newCalendar;
+////        System.out.println(this.cacheCalendar.getTime());
+////        System.out.println("i i i i î "+ dayIndex);
+//
+//        this.cacheCalendar.set(cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
+//
+////        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
+////        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
+//
+//        this.dateValue = this.cacheCalendar.getTime();
+//
+//        return this.dateValue;
+//    }
 
 
 
@@ -220,6 +220,12 @@ public class DatePart {
         return this.cacheCalendar;
     }
 
+
+    /**
+     *
+     * @param cacheCalendar
+     *@return void
+     */
     public void setCalendarValue(Calendar cacheCalendar) {
         this.cacheCalendar = cacheCalendar;
 
