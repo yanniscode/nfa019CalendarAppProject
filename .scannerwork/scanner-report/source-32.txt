@@ -1,29 +1,39 @@
-package fr.cnam.perrors;
+package fr.cnam.pactivity;
+
+import fr.cnam.pbuttons.FormControlButton;
+import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ReturnButton implements FormControlButtonInterface {
+public class FormControlButtonsPanel implements ControlButtonsPanelInterface {
 
     /**
      * Default constructor
      */
-    public ReturnButton() {
+    public FormControlButtonsPanel() {
     }
 
     /**
-     * String - valeur du bouton de sortie du formulaire sans modification apportée
+     * 
      */
-    protected String returnButtonValue = "Retour";
+    protected FormControlButton validationBtn;
+
+    /**
+     * 
+     */
+    protected FormControlButton annulationBtn;
+
+
 
 
     @Override
     /**
      * @return void
      */
-    public void displayFormControlBtn() {
+    public void displayControlButtons() {
         // TODO implement here
         return;
     }

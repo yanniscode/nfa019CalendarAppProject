@@ -3,11 +3,6 @@ package fr.cnam.pbuttons;
 import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 import fr.cnam.pmain.MainPanel;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-
 import javax.swing.*;
 
 /**
@@ -26,16 +21,25 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 //        this.setIncrementIndex(0);
 
         this.mainPanel = mainPanel;
+//        System.out.println("this.mainPanel ################################# : "+ mainPanel);
 
-        this.leftBtn = new ControlButton("<", this.mainPanel, -1);
-        this.enterActivityBtn = new ControlButton("Nouvelle Activité");
-        this.rightBtn = new ControlButton(">", this.mainPanel, 1);
+        // *** note: le MainPanel est passé en paramètre aux ControlButtons directionnels car c'est par lui qu'on accède aux propriétés de 'CalendarPanel()' sur lequel agissent les ControlButtons:
+        this.leftBtn = new ControlButton("<", this.mainPanel);
+        this.enterActivityBtn = new ControlButton("Nouvelle Activité", this.mainPanel);
+        this.rightBtn = new ControlButton(">", this.mainPanel);
 
         add(this.leftBtn);
         add(this.enterActivityBtn);
         add(this.rightBtn);
 
     }
+
+//    /**
+//     * Default Constructor
+//     */
+//    public ControlButtonsPanel() {
+//        super();
+//    }
 
 
 
@@ -69,22 +73,22 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
     /**
      * ControlButton
      */
-    protected static ControlButton leftBtn;
+    private static ControlButton leftBtn;
 
     /**
      * ControlButton
      */
-    protected static ControlButton enterActivityBtn;
+    private static ControlButton enterActivityBtn;
 
     /**
      * ControlButton
      */
-    protected static ControlButton rightBtn;
+    private static ControlButton rightBtn;
 
     /**
      * ControlButton
      */
-    protected static ControlButton exitAppButton;
+    private static ControlButton exitAppButton;
 
 
 
@@ -121,13 +125,18 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 
     // *****************
 
-    public ControlButton getLeftBtn(){
-        return this.leftBtn;
+    private ControlButton button;
+
+    // *** pour les tests:
+    public ControlButton getBtn(){
+        return this.button;
     }
 
-    public ControlButton setLeftBtn(ControlButton leftBtn){
-        return this.leftBtn = leftBtn;
+    public ControlButton setBtn(ControlButton button){
+        return this.button = button;
     }
+
+    // ****************
 
     public ControlButton getEnterActivityBtn(){
         return this.enterActivityBtn;
@@ -136,8 +145,6 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
     public ControlButton setEnterActivityBtn(ControlButton enterActivityBtn){
         return this.enterActivityBtn = enterActivityBtn;
     }
-
-
 
     public ControlButton getRightBtn(){
         return this.rightBtn;
@@ -163,4 +170,5 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 ////        activeButton = this.leftBtn.actionPerformed();
 //        System.out.println("#|#| "+this.leftBtn.getControlBtnValue());
 //    }
+
 }

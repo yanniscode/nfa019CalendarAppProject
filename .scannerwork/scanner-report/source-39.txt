@@ -1,15 +1,15 @@
-package fr.cnam.pinterfaces;
+package fr.cnam.perrors;
 
 import java.util.*;
 
 /**
  * 
  */
-public interface ControlButtonsPanelInterface {
+public interface FormErrorPanelInterface {
 
     /**
      * @return void
      */
-    public void displayControlButtons();
+    public void displayErrorPanel();
 
 }

@@ -18,24 +18,27 @@ import java.util.*;
 public class DateButton extends JPanel implements DateButtonInterface {
 
     /**
-     * constructor 2: pour création des boutons des pages précédentes ou suivantes (date = mois précédent ou suivant)
+     * constructor 2: pour création des boutons des pages précédentes ou suivantes (par le param Date = du mois précédent ou suivant)
      * @param newDate
      */
     public DateButton(Date newDate) {
 
         super();
 
+//        this.datePart = new DatePart();
+
 //        System.out.println("i i i i"+ dayIndex);
 //        System.out.println("day ++" + DateBefore);
 
-        this.formatedDate = this.dateFormat.format(newDate);
-//
+        // *** récupération de la date (String) au format "dd/MM/yyyy"
+        ReformatDate reformatDate = new ReformatDate();
+        this.formatedDate = reformatDate.formatDateToString(newDate);
+
         this.dateButton = new JButton(this.formatedDate);
 //
         this.dateButton.setPreferredSize(new Dimension(120, 100));
 
-        super.add(this.dateButton);
-
+        this.add(this.dateButton);
     }
 
 
@@ -47,24 +50,23 @@ public class DateButton extends JPanel implements DateButtonInterface {
 
         super();
 
-//        System.out.println("DateButton Constr 1 - i i i i" + dayIndex);
-
+        // *** ref de jour, ici = dans le mois actuel:
         this.datePart = new DatePart();
 
-        // *** ref de jour ici = dans le mois actuel:
-        this.nextDay = this.datePart.getIndexedDay(dayIndex);
-//        System.out.println("~~~~~~~~~~~~ ##################################" + this.nextDay);
+        this.dateValue = this.datePart.getIndexedDay(dayIndex);
+        System.out.println("~~~~~~~~~~~~ ##################################" + this.dateValue);
+        this.datePart.setDateValue(this.dateValue);
 
 
-        this.formatedDate = this.dateFormat.format(this.nextDay);
-
-
+        // *** récupération de la date (String) au format "dd/MM/yyyy"
+        ReformatDate reformatDate = new ReformatDate();
+        this.formatedDate = reformatDate.formatDateToString(this.dateValue);
 
         this.dateButton = new JButton(this.formatedDate);
 
         this.dateButton.setPreferredSize(new Dimension(120, 100));
 
-        this.setButtonToGray(this.nextDay, 0);  // 0 = today
+        this.setButtonToGray(this.datePart, 0);  // 0 = today
 
         super.add(this.dateButton);
 
@@ -80,13 +82,30 @@ public class DateButton extends JPanel implements DateButtonInterface {
     /**
      * Date - nouvelle date sélectionnée
      */
-    Date nextDay;
+    private Date dateValue;
+
+
+    /**
+     * @return Date
+     */
+    public Date getDateValue() {
+        return this.dateValue;
+    }
+
+    /**
+     * @param dateValue
+     * return void
+     */
+    public void setDateValue(Date dateValue) {
+        this.dateValue = dateValue;
+        return;
+    }
 
 
     /**
      * DateFormat - pour le formatage d"une date
      */
-    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private DateFormat dateFormat;
 
     //        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
 
@@ -159,7 +178,7 @@ public class DateButton extends JPanel implements DateButtonInterface {
      *      * @param dateButton
      *      return void
      */
-    public void setDateItemButton(JButton dateButton) {
+    public void setDateButton(JButton dateButton) {
         this.dateButton = dateButton;
         return;
     }
@@ -171,16 +190,20 @@ public class DateButton extends JPanel implements DateButtonInterface {
      * @param newFirstDay
      * @param monthIndex
      */
-    public void setButtonToGray(Date newFirstDay, int monthIndex) {
-        this.datePart = new DatePart();
-//        System.out.println(this.datePart);
+    public void setButtonToGray(DatePart newFirstDay, int monthIndex) {
+        this.datePart = newFirstDay;
+//        this.datePart = new DatePart();
 
-        Date dateToCompare = this.datePart.oneMonthInterval(monthIndex);
-//        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ dateToCompare);
+        System.out.println(newFirstDay.getDateValue());
+        Date newFirstDayTemp = newFirstDay.getDateValue();
+
+        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ newFirstDayTemp);
+        Date dateToCompare = this.datePart.getOneMonthInterval(monthIndex);
+        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ dateToCompare);
 
         ReformatDate reformatDate = new ReformatDate();
         String formatedReferenceDate = reformatDate.formatMonthToString(dateToCompare);
-        String formatedSelectedDate = reformatDate.formatMonthToString(newFirstDay);
+        String formatedSelectedDate = reformatDate.formatMonthToString(newFirstDayTemp);
 
 //        System.out.println(formatedReferenceDate +" ------------- "+ formatedSelectedDate);
         if(!formatedReferenceDate.equals(formatedSelectedDate)) {

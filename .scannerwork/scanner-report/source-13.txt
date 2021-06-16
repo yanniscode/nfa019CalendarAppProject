@@ -1,32 +1,16 @@
-package fr.cnam.pcalendarpanel;
+package fr.cnam.pmain;
 
+import javax.swing.*;
 import java.util.*;
 
 /**
- * @author Yannis Guéguen
+ * 
  */
-public class CalendarSide implements CalendarSideInterface {
+public interface MainPanelInterface {
 
-    /**
-     * Default constructor
-     */
-    public CalendarSide() {
-    }
-
-    /**
-     * 
-     */
-    protected int weekYearNumber;
-
-
-
-    @Override
     /**
      * @return void
      */
-    public void displayCalendarSide() {
-        // TODO implement here
-        return;
-    }
+    public void displayMainPanel();
 
 }

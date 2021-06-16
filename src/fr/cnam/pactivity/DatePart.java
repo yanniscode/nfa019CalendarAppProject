@@ -14,17 +14,19 @@ public class DatePart {
      * Default constructor
      */
     public DatePart() {
-        this.cacheCalendar = Calendar.getInstance();
+//        this.cacheCalendar = Calendar.getInstance();
+        this.mainCalendar = Calendar.getInstance();
+
     }
 
 
 
     // AJOUTS:
 
-    /**
-     * Calendar - nouvelle instance du calendrier
-     */
-    private Calendar newCalendar;
+//    /**
+//     * Calendar - nouvelle instance du calendrier
+//     */
+//    private Calendar newCalendar;
 
 
 
@@ -33,10 +35,10 @@ public class DatePart {
      */
     private Date dateValue;
 
-    /**
-     * Calendar
-     */
-    private Calendar cacheCalendar;
+//    /**
+//     * Calendar
+//     */
+//    private Calendar cacheCalendar;
 
     /**
      * Date - nouveau mois de référence
@@ -85,20 +87,22 @@ public class DatePart {
      */
     public Date getIndexedDay(int dayIndex) {
 
-//        System.out.println("i i i i î "+ dayIndex);
-        this.cacheCalendar.set(this.cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
+        System.out.println("i i i i î "+ dayIndex);
+        this.mainCalendar.set(this.mainCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
 
 //        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
 //        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
 
-        this.dateValue = this.cacheCalendar.getTime();
+        this.dateValue = this.mainCalendar.getTime();
         System.out.println("## ## |||| : "+this.dateValue);
 
         return this.dateValue;
     }
 
-
-
+    /**
+     * Calendar - nouvelle instance du calendrier
+     */
+    private Calendar mainCalendar;
 
     // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
 
@@ -110,22 +114,21 @@ public class DatePart {
      */
     public Date getByFirstMondayOfMonthPage(int idMonth, int idDayAdd) {
 
-        Calendar mainCalendar = Calendar.getInstance();
+        this.mainCalendar = Calendar.getInstance();
 
         // ***pour modifier le mois:
-        mainCalendar.add(Calendar.MONTH, idMonth);
+        this.mainCalendar.add(Calendar.MONTH, idMonth);
 
         // *** initialisation des dates = séparée, car Calendrier Gregorien utilisé...
-        int iMonth = mainCalendar.get(Calendar.MONTH);
-        int iYear = mainCalendar.get(Calendar.YEAR);
-
+        int iMonth = this.mainCalendar.get(Calendar.MONTH);
+        int iYear = this.mainCalendar.get(Calendar.YEAR);
         // *** Samedi = ref, sinon, décalage non souhaité des jours - ex: le lundi devient le dimanche
         int iFirstDayOfWeek = Calendar.SATURDAY;
 
         // définit l'index premier jour de la première semaine:
         int indexDay = 1;
 
-        // *** Définit le lundi comme premier jour de semaine:
+        // *** Définit un calendrier 'grégorien' local avec le lundi comme premier jour de semaine:
         Calendar cacheCalendar = new GregorianCalendar(iYear,iMonth,7);
 
         cacheCalendar.setFirstDayOfWeek(iFirstDayOfWeek);
@@ -177,30 +180,30 @@ public class DatePart {
      * @param monthIndex
      * @return Date - passage au mois suivant = 1, ou  précédent = -1
      */
-    public Date oneMonthInterval(int monthIndex) {
+    public Date getOneMonthInterval(int monthIndex) {
 
-        this.newCalendar = Calendar.getInstance();
+        this.mainCalendar = Calendar.getInstance();
 
-        this.newCalendar.add(Calendar.MONTH, monthIndex);
+        this.mainCalendar.add(Calendar.MONTH, monthIndex);
 
-        this.newMonthRef = newCalendar.getTime();
+        this.newMonthRef = mainCalendar.getTime();
 
         return this.newMonthRef;
-
     }
 
     /**
      *
      * @return StringBuffer - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
      */
-    public static StringBuffer getWeekDays() {
+    public static StringBuilder getWeekDays() {
 
         DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
 
 
         String[] joursSemaineFR = dfsFR.getWeekdays();
 
-        StringBuffer joursListeFR = new StringBuffer("En-Tête - Jours FR ");
+        // *** StringBuilder = seulement pour test, ici:
+        StringBuilder joursListeFR = new StringBuilder("En-Tête - Jours FR ");
 
         for (int i = 1; i < joursSemaineFR.length; i++) {
             joursListeFR.append(" : ");
@@ -217,17 +220,17 @@ public class DatePart {
      * @return Calendar
      */
     public Calendar getCalendarValue() {
-        return this.cacheCalendar;
+        return this.mainCalendar;
     }
 
 
     /**
      *
-     * @param cacheCalendar
+     * @param mainCalendar
      *@return void
      */
-    public void setCalendarValue(Calendar cacheCalendar) {
-        this.cacheCalendar = cacheCalendar;
+    public void setCalendarValue(Calendar mainCalendar) {
+        this.mainCalendar = mainCalendar;
 
         return;
     }
@@ -247,7 +250,6 @@ public class DatePart {
      */
     public void setDateValue(Date dateValue) {
         this.dateValue = dateValue;
-
         return;
     }
 

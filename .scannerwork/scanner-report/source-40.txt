@@ -1,33 +1,57 @@
-package fr.cnam.putils;
+package fr.cnam.perrors;
 
-public class MonthPageIncrement {
+import java.util.*;
+
+/**
+ * @author Yannis Guéguen
+ */
+public class FormErrorPanel implements FormErrorPanelInterface {
 
     /**
-     * Constructeur
+     * Default constructor
      */
-    public MonthPageIncrement() {
-        monthIndex = 0;
+    public FormErrorPanel() {
     }
 
     /**
-     * int - index (static) pour retrouver le mois suivant ou précédent, relatif à la date du jour
+     * 
      */
-    private static int monthIndex;
+    private String errorMessage;
 
     /**
-     * @return int
+     * 
      */
-    public static int getIncrementValue() {
-        return monthIndex;
+    protected ReturnButton returnButton;
+
+
+
+
+
+
+
+    /**
+     * @return String
+     */
+    public String getErrorMessage() {
+        // TODO implement here
+        return "";
     }
 
-
     /**
-     * @param incrementIndex
+     * @param errorMessage 
      * @return void
      */
-    public static void setIncrementValue(int incrementIndex) {
-        monthIndex += incrementIndex;
+    public void setErrorMessage(String errorMessage) {
+        // TODO implement here
+        return;
+    }
+
+    @Override
+    /**
+     * @return void
+     */
+    public void displayErrorPanel() {
+        // TODO implement here
         return;
     }
 

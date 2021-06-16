@@ -1,29 +1,19 @@
-package fr.cnam.pdatabase;
+package fr.cnam.pactivity;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class MysqlConnexion implements MysqlConnexionInterface {
+public class DateActivityDAO {
 
     /**
      * Default constructor
      */
-    public MysqlConnexion() {
+    public DateActivityDAO() {
     }
 
 
 
-
-
-
-    /**
-     * @return
-     */
-    public boolean getMysqlConnexionInstance() {
-        // TODO implement here
-        return false;
-    }
 
 }

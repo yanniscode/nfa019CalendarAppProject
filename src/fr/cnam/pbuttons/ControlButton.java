@@ -20,9 +20,9 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
     /**
-     *  constructor 2: utilisé par ControlButtons de changement de mois (<, >)
+     *  constructor 2: utilisé par ControlButtonsPanel pour le changement de mois (<, >)
      */
-    public ControlButton(String controlBtnValue, MainPanel mainPanel, int incrementIndex) {
+    public ControlButton(String controlBtnValue, MainPanel mainPanel) {
 
         super();
 
@@ -34,26 +34,28 @@ public class ControlButton extends JPanel implements ActionListener {
         //  System.out.println("CONSTRUCTEUR INDEX MONTH "+ this.monthIndex);
 
         this.mainPanel = mainPanel;
+        System.out.println(this.mainPanel);
+        System.out.println("################################## "+this.mainPanel.getCalendarPanel());
 
         this.controlButton = new JButton(controlBtnValue);
+        this.controlButton.addActionListener(this);
 //        this.controlBtnValue = controlBtnValue;
         this.add(this.controlButton);
 
-        this.controlButton.addActionListener(this);
     }
 
-    /**
-     * Default constructor: utilisé par ControlButton 'EnterActivity'
-     */
-    public ControlButton(String controlBtnValue) {
-        super();
-
-        this.controlButton = new JButton(controlBtnValue);
-//        this.controlBtnValue = controlBtnValue;
-        this.add(this.controlButton);
-
-        this.controlButton.addActionListener(this);
-    }
+//    /**
+//     * Default constructor: utilisé par ControlButton 'EnterActivity'
+//     */
+//    public ControlButton(String controlBtnValue) {
+//        super();
+//
+//        this.controlButton = new JButton(controlBtnValue);
+////        this.controlBtnValue = controlBtnValue;
+//        this.add(this.controlButton);
+//
+//        this.controlButton.addActionListener(this);
+//    }
 
 
     // ajouts:
@@ -91,23 +93,24 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
 
-
+    // ********************
 
     /**
      * @param ev - méthode de déclenchement des évènements liés aux ControlButtons
      */
     public void actionPerformed(ActionEvent ev)
     {
+        System.out.println("ev ############################### "+ ev);
         this.activedButton = ev.getActionCommand();
 
         System.out.println(this.mainPanel);
 
-        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
+//        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
 
         if(this.activedButton.equals("<")) {
 
-                this.setLastMonthTitle(calendarPanel);
-                this.setLastMonthControl(calendarPanel);
+                this.setLastMonthTitle();
+                this.setLastMonthControl();
 
         }
         else if(this.activedButton.equals("Nouvelle Activité")) {
@@ -118,10 +121,11 @@ public class ControlButton extends JPanel implements ActionListener {
 //            System.out.println(">");
 //            System.out.println("++ MONTH INDEX: "+ this.monthIndex);
 
-            this.setNextMonthTitle(calendarPanel);
-            this.setNextMonthControl(calendarPanel);
+            this.setNextMonthTitle();
+            this.setNextMonthControl();
         }
 
+        return;
     }
 
 
@@ -137,22 +141,23 @@ public class ControlButton extends JPanel implements ActionListener {
     private static int indexMonth;
 
     /**
-     * @param calendarPanel - applique l'intitulé du mois suivant
+     * applique l'intitulé du mois suivant
      */
-    public void setNextMonthTitle(CalendarPanel calendarPanel) {
+    public void setNextMonthTitle() {
 
+        System.out.println("################################## "+this.mainPanel.getCalendarPanel());
+        this.mainPanel.getCalendarPanel().removeAllDaysFromCalendarPanel();
         this.mainPanel.getCalendarPanel().removeAllFromDaysList();
-
 //        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
-        calendarPanel.setVisible(false);  // NÉCESSAIRE
-        this.mainPanel.remove(calendarPanel); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
+//        this.mainPanel.getCalendarPanel().setVisible(false);  // NÉCESSAIRE
+//        this.mainPanel.remove(this.mainPanel.getCalendarPanel()); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
 
         DatePart newDatePart;
         newDatePart = new DatePart();
 
 //        System.out.println(this.monthIndex);
 //        System.out.println(">");
-        this.monthPageIncrement.setIncrementValue(1);
+        this.monthPageIncrement.pushIncrementValue(1);
 
         this.indexMonth = this.monthPageIncrement.getIncrementValue();
 
@@ -161,22 +166,22 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
         // *** ON RETROUVE LE JOUR DE RÉFÉRENCE DU MOIS PRÉCÉDENT: (UN MOIS AVANT DATE ACTUELLE)
-        this.newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
+        this.newReferenceDay = newDatePart.getOneMonthInterval(this.indexMonth);
 //        System.out.println("NWRefDAY: "+ newFirstMonday);
 
         // ******** Ajout  du titre du mois précédent au CalendarPanel (string):
-        calendarPanel.setNewMonthLabel(this.newReferenceDay);
+        this.mainPanel.getCalendarPanel().setNewMonthLabel(this.newReferenceDay);
 
-        this.mainPanel.add(calendarPanel);
+        this.mainPanel.add(this.mainPanel.getCalendarPanel());
 
         return;
     }
 
 
     /**
-     * @param calendarPanel - applique les DateButtons du mois suivant
+     * applique les DateButtons du mois suivant
      */
-    public void setNextMonthControl(CalendarPanel calendarPanel) {
+    public void setNextMonthControl() {
 
         DatePart newDatePart = new DatePart();
 
@@ -189,11 +194,12 @@ public class ControlButton extends JPanel implements ActionListener {
 
             // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
             newFirstDay = newDatePart.getByFirstMondayOfMonthPage(this.indexMonth, i);
+            newDatePart.setDateValue(newFirstDay);
 
             DateButton newDateButton = new DateButton(newFirstDay);
 
             // *** méthode pour griser les jours qui ne sont pas du mois:
-            newDateButton.setButtonToGray(newFirstDay, this.indexMonth);
+            newDateButton.setButtonToGray(newDatePart, this.indexMonth);
 
 
             newDatesList.add(newDateButton);
@@ -203,28 +209,29 @@ public class ControlButton extends JPanel implements ActionListener {
 
         this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);    // création de la liste de boutons avec les dates du mois actuel
 
-        calendarPanel.setVisible(true); // NÉCESSAIRE
+//        this.mainPanel.getCalendarPanel().setVisible(true); // NÉCESSAIRE
 
-        this.mainPanel.add(calendarPanel);
+        this.mainPanel.add(this.mainPanel.getCalendarPanel());
 
         return;
     }
 
 
     /**
-     * @param calendarPanel - applique l'intitulé du mois dernier
+     * applique l'intitulé du mois dernier
      */
-    public void setLastMonthTitle(CalendarPanel calendarPanel) {
+    public void setLastMonthTitle() {
 
+        this.mainPanel.getCalendarPanel().removeAllDaysFromCalendarPanel();
         this.mainPanel.getCalendarPanel().removeAllFromDaysList();
 
-        calendarPanel.setVisible(false);  // NÉCESSAIRE
-        this.mainPanel.remove(calendarPanel); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
+//        this.mainPanel.getCalendarPanel().setVisible(false);  // NÉCESSAIRE
+//        this.mainPanel.remove(this.mainPanel.getCalendarPanel()); // LE CALENDARPANEL EST ENLEVÉ MAIS L'OBJET NON SUPPRIMÉ !
 
         DatePart newDatePart;
         newDatePart= new DatePart();
 
-        this.monthPageIncrement.setIncrementValue(-1);
+        this.monthPageIncrement.pushIncrementValue(-1);
 
         this.indexMonth = this.monthPageIncrement.getIncrementValue();
 
@@ -233,22 +240,22 @@ public class ControlButton extends JPanel implements ActionListener {
 //        System.out.println(this.monthIndex);
 
         // *** ON RETROUVE UN JOUR DE RÉFÉRENCE DU MOIS PRÉCÉDENT: (UN MOIS AVANT AUJOURD'HUI)
-        this.newReferenceDay = newDatePart.oneMonthInterval(this.indexMonth);
+        this.newReferenceDay = newDatePart.getOneMonthInterval(this.indexMonth);
 
         // ******** AJOUT DU MOIS AU CALENDAR PANEL (STRING)
-        calendarPanel.setNewMonthLabel(this.newReferenceDay);
+        this.mainPanel.getCalendarPanel().setNewMonthLabel(this.newReferenceDay);
 
-        this.mainPanel.add(calendarPanel);
+        this.mainPanel.add(this.mainPanel.getCalendarPanel());
 
         return;
     }
 
 
     /**
-     * @param calendarPanel - applique les DateButtons du mois dernier
+     * applique les DateButtons du mois dernier
      */
 //        public void setLastMonthControl() throws InterruptedException {
-    public void setLastMonthControl(CalendarPanel calendarPanel) {
+    public void setLastMonthControl() {
 
         DatePart newDatePart = new DatePart();
 
@@ -259,12 +266,12 @@ public class ControlButton extends JPanel implements ActionListener {
         for(int i = 0; i < 41; i++) {
 
             newFirstDay = newDatePart.getByFirstMondayOfMonthPage(this.indexMonth, i);
-
             System.out.println("newFirstDay ########################## "+ newFirstDay);
+            newDatePart.setDateValue(newFirstDay);
             DateButton newDateButton = new DateButton(newFirstDay);
 
             // *** méthode pour griser les jours qui ne sont pas du mois:
-            newDateButton.setButtonToGray(newFirstDay, this.indexMonth);
+            newDateButton.setButtonToGray(newDatePart, this.indexMonth);
 
             newDatesList.add(newDateButton);
 
@@ -273,9 +280,9 @@ public class ControlButton extends JPanel implements ActionListener {
         // *** Création de la liste de boutons avec les dates du mois actuel:
         this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);
 
-        calendarPanel.setVisible(true); // NÉCESSAIRE
+//        this.mainPanel.getCalendarPanel().setVisible(true); // NÉCESSAIRE
 
-        this.mainPanel.add(calendarPanel);
+        this.mainPanel.add(this.mainPanel.getCalendarPanel());
 
         return;
     }
@@ -303,22 +310,36 @@ public class ControlButton extends JPanel implements ActionListener {
 
 
 
+    /**
+     * @return JButton - bouton déclenché
+     */
+    public JButton getControlButton() {
+        return this.controlButton;
+    }
+
+    /**
+     * @param controlButton
+     * @return void
+     */
+    public void setControlButton(JButton controlButton) {
+        this.controlButton = controlButton;
+        return;
+    }
 
 
     /**
      * @return String - valeur du bouton déclenché
      */
     public String getControlBtnValue() {
-        // TODO implement here
         return this.controlBtnValue;
     }
 
     /**
-     * @param controlValue 
+     * @param controlBtnValue
      * @return void
      */
-    public void setControlBtnValue(String controlValue) {
-        // TODO implement here
+    public void setControlBtnValue(String controlBtnValue) {
+        this.controlBtnValue =controlBtnValue;
         return;
     }
 

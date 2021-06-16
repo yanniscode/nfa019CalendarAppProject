@@ -1,81 +1,184 @@
-package fr.cnam.pdatabase;
+package fr.cnam.pactivity;
 
 import java.util.*;
 
 /**
  * @author Yannis Guéguen
  */
-public abstract class DAO<T> implements DaoInterface<T> {
+public class ActivityFormPanel implements ActivityFormPanelInterface {
 
     /**
      * Default constructor
      */
-    public DAO() {
+    public ActivityFormPanel() {
     }
 
     /**
      * 
      */
-    private MysqlConnexion mysqlConnexion = null;
-
-//    /**
-//     * @param obj
-//     * @return
-//     */
-//    public abstract boolean create(T obj);
-//
-//    /**
-//     * @param obj
-//     * @return
-//     */
-//    public abstract boolean update(T obj);
-//
-//    /**
-//     * @param obj
-//     * @return
-//     */
-//    public abstract boolean delete(T obj);
-//
-//    /**
-//     * @param id
-//     * @return
-//     */
-//    public abstract T find(int id);
+    private String activityPanelTitle;
 
     /**
-     * @param obj 
-     * @return boolean
+     * Date de format: dd
      */
-    public boolean create(T obj) {
-        // TODO implement here
-        return false;
-    }
+    private Date daySelect;
 
     /**
-     * @param obj 
-     * @return boolean
+     * Date de format: MM
      */
-    public boolean update(T obj) {
-        // TODO implement here
-        return false;
-    }
+    private Date monthSelect;
 
     /**
-     * @param obj 
-     * @return boolean
+     * Date de format: yyyy
      */
-    public boolean delete(T obj) {
-        // TODO implement here
-        return false;
-    }
+    private Date yearSelect;
 
     /**
-     * @param id 
-     * @return T
+     * Date
      */
-    public T find(int id) {
+    private Date newAggregatedDate;
+
+    /**
+     * String
+     */
+    private String newActivityDescription;
+
+    /**
+     * String
+     */
+    private String newActivityStatus;
+
+    /**
+     * int - utilisé pour gérer le temps de connexion au formulaire de saisie
+     */
+    private int timeOut;
+
+
+
+
+
+
+
+    /**
+     * @return DatePart
+     */
+    public DatePart getNewDay() {
         // TODO implement here
         return null;
+    }
+
+    /**
+     * @param selectedDay 
+     * @return void
+     */
+    public void setNewDay(DatePart selectedDay) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return DatePart
+     */
+    public DatePart getNewMonth() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param selectedMonth 
+     * @return void
+     */
+    public void setNewMonth(DatePart selectedMonth) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return DatePart
+     */
+    public DatePart getNewYear() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param selectedYear 
+     * @return void
+     */
+    public void setNewYear(Date selectedYear) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return String
+     */
+    public String getNewActivityDescription() {
+        // TODO implement here
+        return "";
+    }
+
+    /**
+     * @param newActivityText 
+     * @return void
+     */
+    public void setNewActivityDescription(String newActivityText) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @param selectedStatus 
+     * @return void
+     */
+    public void setNewActivityStatus(String selectedStatus) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return String
+     */
+    public String getNewActivityStatus() {
+        // TODO implement here
+        return "";
+    }
+
+    /**
+     * @param newAggregatedDate 
+     * @param newActivityDescription 
+     * @param newActivityStatus 
+     * @return void
+     */
+    public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @param timeOut 
+     * @return void
+     */
+    public void setTimeOut(int timeOut) {
+        // TODO implement here
+        return;
+    }
+
+    /**
+     * @return int - utilisé pour reset du timeout (gestion du temps de connexion au formulaire de saisie
+     */
+    public int resetTimeOut() {
+        // TODO implement here
+        return -1;
+    }
+
+    @Override
+    /**
+     * @return void
+     */
+    public void displayActivityPanel() {
+        // TODO implement here
+        return;
     }
 
 }

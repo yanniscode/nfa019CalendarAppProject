@@ -1,38 +1,15 @@
-package fr.cnam.penums;
+package fr.cnam.pcalendarpanel;
 
-import java.awt.*;
 import java.util.*;
 
 /**
- * @author Yannis Guéguen
+ * 
  */
-public class ActivityColor {
+public interface CalendarPanelInterface {
 
     /**
-     * Default constructor
+     * @return void
      */
-    public ActivityColor() {
-    }
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    protected final Color ORANGE = Color.ORANGE;
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    protected final Color BLUE = Color.BLUE;
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    protected final Color RED = Color.RED;
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    protected final Color GREEN = Color.GREEN;
-
+    public void displayCalendar();
 
 }

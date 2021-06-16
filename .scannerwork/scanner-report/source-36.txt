@@ -1,34 +1,15 @@
-package fr.cnam.pdatabase;
-
-import java.util.*;
-
-/**
- * 
- */
-public interface DaoInterface<T> {
-
-    /**
-     * @param obj 
-     * @return boolean
-     */
-    public boolean create(T obj);
-
-    /**
-     * @param obj 
-     * @return boolean
-     */
-    public boolean update(T obj);
-
-    /**
-     * @param obj 
-     * @return boolean
-     */
-    public boolean delete(T obj);
-
-    /**
-     * @param id 
-     * @return boolean
-     */
-    public T find(int id);
-
-}
+//package fr.cnam.pactivity;
+//
+//import java.util.*;
+//
+///**
+// *
+// */
+//public interface DateActivityItemInterface {
+//
+//    /**
+//     * @return void
+//     */
+//    public void displayActivity();
+//
+//}

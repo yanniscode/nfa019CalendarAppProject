@@ -1,52 +1,30 @@
-package fr.cnam.putils;
+package fr.cnam.perrors;
 
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
-public class ReformatDate {
+/**
+ * @author Yannis Guéguen
+ */
+public class ReturnButton implements FormControlButtonInterface {
 
     /**
-     * Constructeur:
+     * Default constructor
      */
-    public ReformatDate() {
-        // *** type deformatage de date choisi = français
-        this.dfsFR = new DateFormatSymbols((Locale.FRENCH));
+    public ReturnButton() {
     }
 
     /**
-     * DateFormatSymbols - formatage selon le pays souhaité
+     * String - valeur du bouton de sortie du formulaire sans modification apportée
      */
-    private DateFormatSymbols dfsFR;
-
-    /**
-     * DateFormat - import java.text.DateFormat
-     */
-    private DateFormat dateFormat;
+    protected String returnButtonValue = "Retour";
 
 
-    /**
-     *
-     * @param newDate
-     * @return String - permet le passage d'une date (complète) au format mois (en toutes lettres)
-     */
-    public String formatMonthToString(Date newDate) {
-
-        this.dateFormat = new SimpleDateFormat("MMM", dfsFR);
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", dfsFR);
-
-        String formatedDate = this.dateFormat.format(newDate);
-
-        return formatedDate;
-    }
-
-
+    @Override
     /**
      * @return void
      */
-    public void displayReformatDate() {
+    public void displayFormControlBtn() {
+        // TODO implement here
         return;
     }
 

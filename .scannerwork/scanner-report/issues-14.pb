@@ -1,98 +1,49 @@
-9
-javaS1700Rename field "controlButton" 2
-´´ !w
-javaS1104ZMake controlBtnIcon a static final constant or non-public and provide accessors if needed. 2
-µµ #Q
-javaS11288Remove this unused import 'fr.cnam.putils.ReformatDate'. 2 #X
-javaS1128?Remove this unused import 'java.util.spi.CalendarNameProvider'. 2 *L
-javaS11283Remove this unused import 'org.joda.time.DateTime'. 2 M
-javaS11284Remove this unused import 'java.time.LocalDateTime'. 2 V
-javaS125<This block of commented-out lines of code should be removed. 2 ,V
-javaS125<This block of commented-out lines of code should be removed. 2		 'w
-javaS1450\Remove the "activedButton" field and declare it as a local variable in the relevant methods. 2LL  l
-javaS3010&Remove this assignment of "mainPanel". 200 :)
-' 'Static field declaration.ñ
-javaS11725Remove this unused method parameter "incrementIndex". 2%%J X:D
-B%%J X4Remove this unused method parameter incrementIndex".V
-javaS125<This block of commented-out lines of code should be removed. 2$$ HS
-javaS1069Replace this use of System.out or System.err by a logger. 2-- l
-javaS125<This block of commented-out lines of code should be removed. 2))
- 4:
-**
- 7CodeP
-javaS22095Change this instance-reference to a static reference. 2-- *P
-javaS22095Change this instance-reference to a static reference. 200 V
-javaS125<This block of commented-out lines of code should be removed. 2.. MV
-javaS125<This block of commented-out lines of code should be removed. 233
- 1V
-javaS125<This block of commented-out lines of code should be removed. 2@@
- 1S
-javaS1069Replace this use of System.out or System.err by a logger. 2nn S
-javaS1069Replace this use of System.out or System.err by a logger. 2yy l
-javaS125<This block of commented-out lines of code should be removed. 2}} &:
-~~ FCode8
+V
+javaS125<This block of commented-out lines of code should be removed. 2 ,t
+javaS3010.Remove this assignment of "calendarMainTitle". 2 :)
+'<< ,Static field declaration.l
+javaS3010&Remove this assignment of "mainLabel". 2 :)
+'22 $Static field declaration.r
+javaS3010,Remove this assignment of "controlBtnPanel". 2"" :)
+'FF 7Static field declaration.p
+javaS3010*Remove this assignment of "calendarPanel". 2## :)
+'AA /Static field declaration.P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2$ :P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2"" P
+javaS22095Change this instance-reference to a static reference. 2## P
+javaS22095Change this instance-reference to a static reference. 2&&  P
+javaS22095Change this instance-reference to a static reference. 2'' V
+javaS125<This block of commented-out lines of code should be removed. 2-- Hò
+javaS125<This block of commented-out lines of code should be removed. 2NN
+ -:
+OO )Code:
+PP Code:
+QQ
+ Code6
+javaS3626Remove this redundant jump. 2aa Q
+javaS26966Make the enclosing method "static" or remove this set. 2`` P
+javaS22095Change this instance-reference to a static reference. 2`` 6
+javaS3626Remove this redundant jump. 2tt Q
+javaS26966Make the enclosing method "static" or remove this set. 2rr P
+javaS22095Change this instance-reference to a static reference. 2rr V
+javaS125<This block of commented-out lines of code should be removed. 2ss
+ "8
 javaS3626Remove this redundant jump. 2
-≥≥ X
-javaS125<This block of commented-out lines of code should be removed. 2
-ôô
- Jp
-javaS125<This block of commented-out lines of code should be removed. 2
-††
- .:
-
-°°
- "Codep
-javaS125<This block of commented-out lines of code should be removed. 2
-¶¶
- :
-
-ßß
- .CodeX
-javaS125<This block of commented-out lines of code should be removed. 2
-¨¨
- ;8
+ÉÉ S
+javaS26966Make the enclosing method "static" or remove this set. 2
+ÇÇ R
+javaS22095Change this instance-reference to a static reference. 2
+ÇÇ 8
 javaS3626Remove this redundant jump. 2
-ŸŸ ´
-javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 2
-¿¿9 ER
+íí S
+javaS26966Make the enclosing method "static" or remove this set. 2
+ëë R
 javaS22095Change this instance-reference to a static reference. 2
-”” R
-javaS22095Change this instance-reference to a static reference. 2
-◊◊ 8
+ëë 8
 javaS3626Remove this redundant jump. 2
-˙˙ R
-javaS22095Change this instance-reference to a static reference. 2
-‚‚ R
-javaS22095Change this instance-reference to a static reference. 2
-ÂÂ p
-javaS125<This block of commented-out lines of code should be removed. 2
-ÔÔ
- :
-
-
- .CodeR
-javaS22095Change this instance-reference to a static reference. 2
-¯¯ 8
-javaS3626Remove this redundant jump. 2
-üü X
-javaS125<This block of commented-out lines of code should be removed. 2
-ÅÅ
- I´
-javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 2
-àà9 EU
-javaS1069Replace this use of System.out or System.err by a logger. 2
-éé R
-javaS22095Change this instance-reference to a static reference. 2
-ôô R
-javaS22095Change this instance-reference to a static reference. 2
-ùù M
-javaS11352Complete the task associated to this TODO comment. 2øø 8
-javaS3626Remove this redundant jump. 2
-…… ñ
-javaS11723Remove this unused method parameter "controlValue". 2
-««* 6:D
-B
-««* 62Remove this unused method parameter controlValue".M
-javaS11352Complete the task associated to this TODO comment. 2»» J
-javaS1068/Remove this unused "newMonthRef" private field. 2RR J
-javaS1068/Remove this unused "newCalendar" private field. 2WW  
+õõ P
+javaS10685Remove this unused "calendarContainer" private field. 277 .

@@ -1,20 +1,18 @@
 package fr.cnam.pmain;
 
-import fr.cnam.pactivity.DateActivityItem;
+//import fr.cnam.pactivity.DateActivityItem;
 import fr.cnam.pbuttons.ControlButtonsPanel;
 import fr.cnam.pcalendarpanel.CalendarPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.logging.Logger;
 
 import static java.awt.FlowLayout.CENTER;
 
 /**
  * @author Yannis Guéguen
  */
-public class MainPanel  extends JPanel implements MainPanelInterface {
-
+public class MainPanel extends Container implements MainPanelInterface {
 
     /**
      * Default constructor
@@ -24,7 +22,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
         super();
 
         FlowLayout glMain = new FlowLayout(CENTER, 1000, 50);
-        setLayout(glMain);
+        this.setLayout(glMain);
 
         this.calendarMainTitle = "Le Calendrier des Lunaires\n";
 
@@ -32,16 +30,12 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
         this.mainLabel.setFont(new Font("Serif", 0, 20));
         add(this.mainLabel);
 
+        // *** note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
         this.controlBtnPanel = new ControlButtonsPanel(this);
-        setSize(300, 200);
+        this.calendarPanel = new CalendarPanel();
+
 
         add(this.controlBtnPanel);
-
-        this.calendarPanel = new CalendarPanel();
-//        System.out.println(this.calendarPanel.hashCode());
-
-        this.setSize(1600, 900  );
-
         add(this.calendarPanel);
     }
 
@@ -51,7 +45,7 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
 //    private static Logger logger = Logger.getLogger(TestLog4j1.class);
 
     /**
-     * String - Titre principal
+     * JLabel - Container du Titre principal
      */
     private static JLabel mainLabel;
 
@@ -94,14 +88,14 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
         return controlBtnPanel;
     }
 
-//    /**
-//     *
-//     * @param controlBtnPanel
-//     */
-//    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
-//        controlBtnPanel = controlBtnPanel;
-//        return;
-//    }
+    /**
+     *
+     * @param controlBtnPanel
+     */
+    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
+        this.controlBtnPanel = controlBtnPanel;
+        return;
+    }
 
     /**
      * @return CalendarPanel
@@ -111,18 +105,31 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
     }
 
 
-//    /**
-//     *
-//     * @param calendarPanel
-//     */
-//    public void setCalendarPanel(CalendarPanel calendarPanel) {
-//
-//        calendarPanel = calendarPanel;
-//    //    add(this.calendarPanel);
-//
-//        // TODO implement here
-//        return;
-//    }
+    /**
+     *
+     * @param calendarPanel
+     */
+    public void setCalendarPanel(CalendarPanel calendarPanel) {
+
+        this.calendarPanel = calendarPanel;
+    //    add(this.calendarPanel);
+        return;
+    }
+
+    /**
+     * @return String - Calendar Main Label
+     */
+    public static JLabel getMainLabel() {
+        return mainLabel;
+    }
+
+    /**
+     * @param mainLabel
+     */
+    public void setMainLabel(JLabel mainLabel) {
+        this.mainLabel = mainLabel;
+        return;
+    }
 
     /**
      * @return String - Calendar Main Title
@@ -131,13 +138,13 @@ public class MainPanel  extends JPanel implements MainPanelInterface {
         return calendarMainTitle;
     }
 
-//    /**
-//     * @param calendarMainTitle
-//     */
-//    public void setCalendarMainTitle(String calendarMainTitle) {
-//        calendarMainTitle = calendarMainTitle;
-//        return;
-//    }
+    /**
+     * @param calendarMainTitle
+     */
+    public void setCalendarMainTitle(String calendarMainTitle) {
+        this.calendarMainTitle = calendarMainTitle;
+        return;
+    }
 
 
     @Override

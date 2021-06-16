@@ -1,184 +1,174 @@
-package fr.cnam.pactivity;
+package fr.cnam.pbuttons;
 
-import java.util.*;
+import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
+import fr.cnam.pmain.MainPanel;
+
+import javax.swing.*;
 
 /**
  * @author Yannis Guéguen
  */
-public class ActivityFormPanel implements ActivityFormPanelInterface {
+public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelInterface {
+
 
     /**
      * Default constructor
      */
-    public ActivityFormPanel() {
+    public ControlButtonsPanel(MainPanel mainPanel) {
+
+        super();
+        
+//        this.setIncrementIndex(0);
+
+        this.mainPanel = mainPanel;
+//        System.out.println("this.mainPanel ################################# : "+ mainPanel);
+
+        // *** note: le MainPanel est passé en paramètre aux ControlButtons directionnels car c'est par lui qu'on accède aux propriétés de 'CalendarPanel()' sur lequel agissent les ControlButtons:
+        this.leftBtn = new ControlButton("<", this.mainPanel);
+        this.enterActivityBtn = new ControlButton("Nouvelle Activité", this.mainPanel);
+        this.rightBtn = new ControlButton(">", this.mainPanel);
+
+        add(this.leftBtn);
+        add(this.enterActivityBtn);
+        add(this.rightBtn);
+
     }
 
-    /**
-     * 
-     */
-    private String activityPanelTitle;
+//    /**
+//     * Default Constructor
+//     */
+//    public ControlButtonsPanel() {
+//        super();
+//    }
 
-    /**
-     * Date de format: dd
-     */
-    private Date daySelect;
 
-    /**
-     * Date de format: MM
-     */
-    private Date monthSelect;
 
-    /**
-     * Date de format: yyyy
-     */
-    private Date yearSelect;
-
-    /**
-     * Date
-     */
-    private Date newAggregatedDate;
+//    /**
+//     * Default constructor
+//     */
+//    public ControlButtonsPanel() {
+//
+//        super();
+//
+//        this.leftBtn = new ControlButton("<", this.mainPanel, 0);
+////        this.enterActivityBtn = new ControlButton("Nouvelle Activité");
+//        this.rightBtn = new ControlButton(">", this.mainPanel, 0);
+//
+//        super.add(this.leftBtn);
+////        super.add(this.enterActivityBtn);
+//        super.add(this.rightBtn);
+//    }
 
     /**
      * String
      */
-    private String newActivityDescription;
+    private String activedButton;
 
     /**
-     * String
+     * MainPanel
      */
-    private String newActivityStatus;
-
-    /**
-     * int - utilisé pour gérer le temps de connexion au formulaire de saisie
-     */
-    private int timeOut;
-
-
-
-
-
+    private static MainPanel mainPanel;
 
 
     /**
-     * @return DatePart
+     * ControlButton
      */
-    public DatePart getNewDay() {
-        // TODO implement here
-        return null;
+    private static ControlButton leftBtn;
+
+    /**
+     * ControlButton
+     */
+    private static ControlButton enterActivityBtn;
+
+    /**
+     * ControlButton
+     */
+    private static ControlButton rightBtn;
+
+    /**
+     * ControlButton
+     */
+    private static ControlButton exitAppButton;
+
+
+
+    // *********** AJOUTS:
+
+//    public void incrOnClickEvent() {
+
+//        this.leftBtn.setVisible(false);
+//        this.remove( this.leftBtn);
+//        this.leftBtn = new ControlButton("<", this.mainPanel, this.getIncrementIndex());
+////        this.leftBtn.setVisible(true);
+//        this.add(this.leftBtn);
+//        //        this.enterActivityBtn = new ControlButton("Nouvelle Activité");
+//        this.rightBtn.setVisible(false);
+//        this.remove( this.rightBtn);
+//        this.rightBtn = new ControlButton(">", this.mainPanel, this.getIncrementIndex());
+////        this.rightBtn.setVisible(true);
+//        this.add(this.rightBtn);
+
+//    }
+
+
+//    public int getIncrementIndex() {
+//       return this.incrementIndex;
+//    }
+
+//    public void setIncrementIndex(int incrementIndex) {
+//        this.incrementIndex = incrementIndex;
+//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&& &&&&&&&&&&&&&&&&&&&&&&&&&&&& this.incrementindex = "+ this.incrementIndex);
+//
+//        return;
+//    }
+
+
+    // *****************
+
+    private ControlButton button;
+
+    // *** pour les tests:
+    public ControlButton getBtn(){
+        return this.button;
     }
 
-    /**
-     * @param selectedDay 
-     * @return void
-     */
-    public void setNewDay(DatePart selectedDay) {
-        // TODO implement here
-        return;
+    public ControlButton setBtn(ControlButton button){
+        return this.button = button;
     }
 
-    /**
-     * @return DatePart
-     */
-    public DatePart getNewMonth() {
-        // TODO implement here
-        return null;
+    // ****************
+
+    public ControlButton getEnterActivityBtn(){
+        return this.enterActivityBtn;
     }
 
-    /**
-     * @param selectedMonth 
-     * @return void
-     */
-    public void setNewMonth(DatePart selectedMonth) {
-        // TODO implement here
-        return;
+    public ControlButton setEnterActivityBtn(ControlButton enterActivityBtn){
+        return this.enterActivityBtn = enterActivityBtn;
     }
 
-    /**
-     * @return DatePart
-     */
-    public DatePart getNewYear() {
-        // TODO implement here
-        return null;
+    public ControlButton getRightBtn(){
+        return this.rightBtn;
     }
 
-    /**
-     * @param selectedYear 
-     * @return void
-     */
-    public void setNewYear(Date selectedYear) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return String
-     */
-    public String getNewActivityDescription() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param newActivityText 
-     * @return void
-     */
-    public void setNewActivityDescription(String newActivityText) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @param selectedStatus 
-     * @return void
-     */
-    public void setNewActivityStatus(String selectedStatus) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return String
-     */
-    public String getNewActivityStatus() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param newAggregatedDate 
-     * @param newActivityDescription 
-     * @param newActivityStatus 
-     * @return void
-     */
-    public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @param timeOut 
-     * @return void
-     */
-    public void setTimeOut(int timeOut) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return int - utilisé pour reset du timeout (gestion du temps de connexion au formulaire de saisie
-     */
-    public int resetTimeOut() {
-        // TODO implement here
-        return -1;
+    public ControlButton setRightBtn(ControlButton rightBtn){
+        return this.rightBtn = rightBtn;
     }
 
     @Override
     /**
      * @return void
      */
-    public void displayActivityPanel() {
+    public void displayControlButtons() {
         // TODO implement here
         return;
     }
+
+//    String activeButton;
+//
+//    @Override
+//    public void actionPerformed(ActionEvent ev) {
+////        activeButton = this.leftBtn.actionPerformed();
+//        System.out.println("#|#| "+this.leftBtn.getControlBtnValue());
+//    }
 
 }

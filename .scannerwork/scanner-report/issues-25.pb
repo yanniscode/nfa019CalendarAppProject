@@ -1,63 +1,108 @@
-ú
-javaS1186ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2 K
-javaS11352Complete the task associated to this TODO comment. 2BB 6
-javaS3626Remove this redundant jump. 2LL ê
-javaS11722Remove this unused method parameter "selectedDay". 2JJ# .:A
-?JJ# .1Remove this unused method parameter selectedDay".K
-javaS11352Complete the task associated to this TODO comment. 2KK K
-javaS11352Complete the task associated to this TODO comment. 2SS 6
-javaS3626Remove this redundant jump. 2]] î
-javaS11724Remove this unused method parameter "selectedMonth". 2[[% 2:C
-A[[% 23Remove this unused method parameter selectedMonth".K
-javaS11352Complete the task associated to this TODO comment. 2\\ K
-javaS11352Complete the task associated to this TODO comment. 2dd 6
-javaS3626Remove this redundant jump. 2nn í
-javaS11723Remove this unused method parameter "selectedYear". 2ll  ,:B
-@ll  ,2Remove this unused method parameter selectedYear".K
-javaS11352Complete the task associated to this TODO comment. 2mm T
-javaS34009Remove this method and declare a constant for this value. 2vv K
-javaS11352Complete the task associated to this TODO comment. 2uu 6
-javaS3626Remove this redundant jump. 2 ò
-javaS11726Remove this unused method parameter "newActivityText". 2}}1 @:E
-C}}1 @5Remove this unused method parameter newActivityText".K
-javaS11352Complete the task associated to this TODO comment. 2~~ 8
+K
+javaS1121.Extract the assignment out of this expression. 2
+àà K
+javaS1121.Extract the assignment out of this expression. 2
+íí% &K
+javaS1121.Extract the assignment out of this expression. 2
+öö l
+javaS3010&Remove this assignment of "mainPanel". 2 :)
+'FF 'Static field declaration.j
+javaS3010$Remove this assignment of "leftBtn". 2 :)
+'LL )Static field declaration.s
+javaS3010-Remove this assignment of "enterActivityBtn". 2 :)
+'QQ 2Static field declaration.k
+javaS3010%Remove this assignment of "rightBtn". 2 :)
+'VV *Static field declaration.P
+javaS22095Change this instance-reference to a static reference. 2 V
+javaS125<This block of commented-out lines of code should be removed. 2
+ $P
+javaS22095Change this instance-reference to a static reference. 2 V
+javaS125<This block of commented-out lines of code should be removed. 2
+ _P
+javaS22095Change this instance-reference to a static reference. 2. <P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2G UP
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2/ =P
+javaS22095Change this instance-reference to a static reference. 2 P
+javaS22095Change this instance-reference to a static reference. 2   !P
+javaS22095Change this instance-reference to a static reference. 2!! Ç
+javaS125<This block of commented-out lines of code should be removed. 2(( $:
+))
+ Code:
+** CodeÜ
+javaS125<This block of commented-out lines of code should be removed. 211 $:
+33
+ Code:
+55
+ CCode:
+66 KCode:
+77
+ DCode:
+99
+ "Code:
+:: -Code:
+;;
+ #Code:
+<< CodeV
+javaS125<This block of commented-out lines of code should be removed. 2aa &≤
+javaS125<This block of commented-out lines of code should be removed. 2cc
+ ):
+dd
+ %Code:
+ee
+ ZCode:
+ff *Code:
+gg
+ !Code:
+hh
+ SCode:
+ii
+ *Code:
+jj
+ &Code:
+kk
+ [Code:
+ll +Code:
+mm
+ "CodeV
+javaS125<This block of commented-out lines of code should be removed. 2oo Ç
+javaS125<This block of commented-out lines of code should be removed. 2rr &:
+ss	 $Code:
+tt CodeØ
+javaS125<This block of commented-out lines of code should be removed. 2vv 9:
+ww
+ /Code:
+	xx
+ ÇCode:
+zz
+ Code:
+{{ CodeR
+javaS22095Change this instance-reference to a static reference. 2
+éé $S
+javaS26966Make the enclosing method "static" or remove this set. 2
+íí $R
+javaS22095Change this instance-reference to a static reference. 2
+íí $R
+javaS22095Change this instance-reference to a static reference. 2
+ññ S
+javaS26966Make the enclosing method "static" or remove this set. 2
+öö R
+javaS22095Change this instance-reference to a static reference. 2
+öö 8
 javaS3626Remove this redundant jump. 2
-àà ö
-javaS11725Remove this unused method parameter "selectedStatus". 2
-ÜÜ, ::F
-D
-ÜÜ, :4Remove this unused method parameter selectedStatus".M
-javaS11352Complete the task associated to this TODO comment. 2áá V
-javaS34009Remove this method and declare a constant for this value. 2
-êê M
-javaS11352Complete the task associated to this TODO comment. 2èè 8
-javaS3626Remove this redundant jump. 2
-õõ ©
-javaS1172&Remove these unused method parameters. 2
-ôô) ::I
-G
-ôô) :7Remove this unused method parameter newAggregatedDate".:N
-L
-ôôC Y<Remove this unused method parameter newActivityDescription".:I
-G
-ôôb s7Remove this unused method parameter newActivityStatus".M
-javaS11352Complete the task associated to this TODO comment. 2öö 8
-javaS3626Remove this redundant jump. 2
-§§ å
-javaS1172.Remove this unused method parameter "timeOut". 2
-¢¢ &:?
-=
-¢¢ &-Remove this unused method parameter timeOut".M
-javaS11352Complete the task associated to this TODO comment. 2££ M
-javaS11352Complete the task associated to this TODO comment. 2´´ 8
-javaS3626Remove this redundant jump. 2
-µµ M
-javaS11352Complete the task associated to this TODO comment. 2¥¥ Q
-javaS10686Remove this unused "activityPanelTitle" private field. 2 %H
-javaS1068-Remove this unused "daySelect" private field. 2 J
-javaS1068/Remove this unused "monthSelect" private field. 2 I
-javaS1068.Remove this unused "yearSelect" private field. 2"" P
-javaS10685Remove this unused "newAggregatedDate" private field. 2'' "U
-javaS1068:Remove this unused "newActivityDescription" private field. 2,, )P
-javaS10685Remove this unused "newActivityStatus" private field. 211 $F
-javaS1068+Remove this unused "timeOut" private field. 266 
+££ M
+javaS11352Complete the task associated to this TODO comment. 2¢¢ ∏
+javaS125<This block of commented-out lines of code should be removed. 2
+¶¶ :
+
+©© 3Code:
+
+™™ :Code:
+
+´´
+ HCode:
+
+¨¨ CodeL
+javaS10681Remove this unused "activedButton" private field. 2AA  L
+javaS10681Remove this unused "exitAppButton" private field. 2[[! .

@@ -1,15 +1,15 @@
-package fr.cnam.perrors;
+package fr.cnam.pactivity;
 
 import java.util.*;
 
 /**
  * 
  */
-public interface FormControlButtonInterface {
+public interface ActivityFormPanelInterface {
 
     /**
      * @return void
      */
-    public void displayFormControlBtn();
+    public void displayActivityPanel();
 
 }

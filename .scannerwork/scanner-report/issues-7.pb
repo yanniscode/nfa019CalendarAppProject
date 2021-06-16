@@ -1,125 +1,85 @@
-m
-javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
-éé@ Km
-javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
-ééV _4
-javaS1700Rename field "dateButton" 2ee m
-javaS1128TRemove this unnecessary import: same package classes are always implicitly imported. 2 2Q
-javaS11288Remove this unused import 'java.text.DateFormatSymbols'. 2 #<
-javaS1170!Make this final field static too. 2}} '>
-javaS1170!Make this final field static too. 2
-‚‚  -l
-javaS125<This block of commented-out lines of code should be removed. 2
- 2:
-
- 4CodeV
-javaS125<This block of commented-out lines of code should be removed. 222
- IV
-javaS125<This block of commented-out lines of code should be removed. 288
- _V
-javaS125<This block of commented-out lines of code should be removed. 2[[ Y8
-javaS3626Remove this redundant jump. 2
-¤¤ 8
-javaS3626Remove this redundant jump. 2
-¾¾ X
+b
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2
+ˆˆ" +J
+javaS3740/Provide the parametrized type for this generic. 2   7
+javaS1128Remove this duplicated import. 2 "P
+javaS11287Remove this unused import 'fr.cnam.pactivity.DatePart'. 2 "S
+javaS1128:Remove this unused import 'java.awt.event.ActionListener'. 2 %W
+javaS1128>Remove this unused import 'fr.cnam.pcalendarpanel.DateButton'. 2 )ž
+javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2
+ˆˆ s
+javaS1450XRemove the "mainPanel" field and declare it as a local variable in the relevant methods. 2[[ &S
+javaS38788Remove this array creation and simply pass the elements. 2!+ 	V
+javaS125<This block of commented-out lines of code should be removed. 2"" l
+javaS125<This block of commented-out lines of code should be removed. 2(( :
+** CodeV
+javaS125<This block of commented-out lines of code should be removed. 244
+ :V
+javaS125<This block of commented-out lines of code should be removed. 266
+ FW
+javaS125<This block of commented-out lines of code should be removed. 2	?? »V
+javaS125<This block of commented-out lines of code should be removed. 2LL +V
+javaS125<This block of commented-out lines of code should be removed. 2VV %Q
+javaS26966Make the enclosing method "static" or remove this set. 2zz P
+javaS22095Change this instance-reference to a static reference. 2zz P
+javaS22095Change this instance-reference to a static reference. 2{{; IP
+javaS22095Change this instance-reference to a static reference. 2}}G Up
 javaS125<This block of commented-out lines of code should be removed. 2
-°°
- ,X
+
+ B:
+
+‚‚
+ HCodeX
 javaS125<This block of commented-out lines of code should be removed. 2
-³³
- lX
+„„
+ Aq
+javaS125<This block of commented-out lines of code should be removed. 2’’
+ ‰:
+
+““
+ ^Codep
 javaS125<This block of commented-out lines of code should be removed. 2
-¹¹
- ]8
-javaS3626Remove this redundant jump. 2
-ëë 
-javaS1172&Remove these unused method parameters. 2
-éé+ 5:B
-@
-éé+ 50Remove this unused method parameter yearSelect".:C
-A
-éé@ K1Remove this unused method parameter MonthSelect".:A
-?
-ééV _/Remove this unused method parameter DaySelect".˜
+™™
+ f:
+
+šš
+ ^Codep
 javaS125<This block of commented-out lines of code should be removed. 2
-ÑÑ 3:
+¢¢
+ Y:
 
-ÓÓ
- ?Code:
+££
+ ?Code˜
+javaS125<This block of commented-out lines of code should be removed. 2
+§§ ):
 
-ÕÕ
- 6Code:
+¨¨
+ 3Code:
 
-××
- CCode:
+©© Code:
 
-ÙÙ
- ;Code:
+¬¬ 'Code:
 
-ÛÛ
- DCode:
+­­
+ 1Code:
 
-ÝÝ
- %Code:
+®® Code:
 
-ßß
- Code:
+±± )Code:
 
-àà CodeM
-javaS11352Complete the task associated to this TODO comment. 2êê 8
-javaS3626Remove this redundant jump. 2
-ûû ’
-javaS11721Remove this unused method parameter "yearSelect". 2
-ùù' 1:B
-@
-ùù' 10Remove this unused method parameter yearSelect".M
-javaS11352Complete the task associated to this TODO comment. 2úú 8
-javaS3626Remove this redundant jump. 2
-‹‹ ”
-javaS11722Remove this unused method parameter "monthSelect". 2
-‰‰( 3:C
-A
-‰‰( 31Remove this unused method parameter monthSelect".M
-javaS11352Complete the task associated to this TODO comment. 2ŠŠ 8
-javaS3626Remove this redundant jump. 2
-œœ 8
-javaS3626Remove this redundant jump. 2
-®® V
-javaS34009Remove this method and declare a constant for this value. 2
-¸¸ M
-javaS11352Complete the task associated to this TODO comment. 2·· 8
-javaS3626Remove this redundant jump. 2
-ÁÁ ¤
-javaS1172:Remove this unused method parameter "activityDescription". 2
-¿¿. A:K
-I
-¿¿. A9Remove this unused method parameter activityDescription".M
-javaS11352Complete the task associated to this TODO comment. 2ÀÀ V
-javaS34009Remove this method and declare a constant for this value. 2
-ÉÉ M
-javaS11352Complete the task associated to this TODO comment. 2ÈÈ 8
-javaS3626Remove this redundant jump. 2
-ÒÒ š
-javaS11725Remove this unused method parameter "activityStatus". 2
-ÐÐ) 7:F
-D
-ÐÐ) 74Remove this unused method parameter activityStatus".M
-javaS11352Complete the task associated to this TODO comment. 2ÑÑ M
-javaS11352Complete the task associated to this TODO comment. 2ÙÙ 8
-javaS3626Remove this redundant jump. 2
-ãã ˜
-javaS11724Remove this unused method parameter "activityColor". 2
-áá/ <:E
-C
-áá/ <3Remove this unused method parameter activityColor".M
-javaS11352Complete the task associated to this TODO comment. 2ââ 8
-javaS3626Remove this redundant jump. 2
-ëë M
-javaS11352Complete the task associated to this TODO comment. 2êê 8
-javaS3626Remove this redundant jump. 2
-õõ M
-javaS11352Complete the task associated to this TODO comment. 2ôô R
-javaS10687Remove this unused "activityDescription" private field. 2xx &M
-javaS10682Remove this unused "activityStatus" private field. 2}} 'N
-javaS10681Remove this unused "activityColor" private field. 2
-‚‚  -
+²²
+ 3Code:
+
+³³ Codep
+javaS125<This block of commented-out lines of code should be removed. 2
+¿¿
+ Z:
+
+ÀÀ
+ 6Codew
+javaS1858Z"activedBtnValueExpected" is already a string, there's no need to call "toString()" on it. 2
+ÑÑ 1J
+javaS1068/Remove this unused "newMonthRef" private field. 2ff #J
+javaS1068/Remove this unused "newCalendar" private field. 2kk  I
+javaS1068.Remove this unused "monthIndex" private field. 2pp !N
+javaS10683Remove this unused "newReferenceDay" private field. 2uu '

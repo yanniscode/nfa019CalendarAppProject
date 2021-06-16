@@ -1,15 +1,28 @@
-package fr.cnam.perrors;
+package fr.cnam.penums;
 
 import java.util.*;
 
 /**
- * 
+ * @author Yannis Guéguen
  */
-public interface FormErrorPanelInterface {
+public class FormControlAction {
 
     /**
-     * @return void
+     * Default constructor
      */
-    public void displayErrorPanel();
+    public FormControlAction() {
+    }
+
+    /**
+     * String - valeur de bouton du formulaire
+     */
+    protected String VALIDATION = "Validation";
+
+    /**
+     * String - valeur de bouton du formulaire
+     */
+    protected String ANNULATION = "Annulation";
+
+
 
 }

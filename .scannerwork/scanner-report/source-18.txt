@@ -1,37 +1,15 @@
-package fr.cnam.penums;
+package fr.cnam.pcalendarpanel;
 
 import java.util.*;
 
 /**
- * @author Yannis Guéguen
+ * 
  */
-public class ControlAction {
+public interface DateButtonInterface {
 
     /**
-     * Default constructor
+     * @return void
      */
-    public ControlAction() {
-    }
-
-    /**
-     * String - valeur de ControlButton
-     */
-    protected final String MONTH_BEFORE = "Mois Précédent";
-
-    /**
-     * String - valeur de ControlButton
-     */
-    protected final String ADD_ACTIVITY = "Ajouter une Activité";
-
-    /**
-     * String - valeur de ControlButton
-     */
-    protected final String NEXT_MONTH = "Mois Suivant";
-
-    /**
-     * String - valeur de ControlButton
-     */
-    protected String EXIT_PROGRAM = "Quitter Application";
-
+    public void displayDateButton();
 
 }
