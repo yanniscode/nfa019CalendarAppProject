@@ -1,132 +1,182 @@
 m
 javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
-€€@ Km
+öö .m
 javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
-€€V _4
-javaS1700Rename field "dateButton" 2xx m
-javaS1128TRemove this unnecessary import: same package classes are always implicitly imported. 2 2Q
-javaS11288Remove this unused import 'java.text.DateFormatSymbols'. 2 #>
+ìì@ Km
+javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
+ììV _6
+javaS1700Rename field "dateButton" 2
+›› >
 javaS1170!Make this final field static too. 2
- '>
-javaS1170!Make this final field static too. 2
-••  -V
-javaS125<This block of commented-out lines of code should be removed. 2
- )l
-javaS125<This block of commented-out lines of code should be removed. 2
+³³ 'V
+javaS125<This block of commented-out lines of code should be removed. 2""
+ #l
+javaS125<This block of commented-out lines of code should be removed. 2''
  2:
-
- 4CodeS
-javaS1069Replace this use of System.out or System.err by a logger. 299 6
-javaS3626Remove this redundant jump. 2ee V
-javaS125<This block of commented-out lines of code should be removed. 2nn Y8
+((
+ 4CodeV
+javaS125<This block of commented-out lines of code should be removed. 2OO
+ cl
+javaS125<This block of commented-out lines of code should be removed. 2SS
+ ;:
+UU
+ PCode8
 javaS3626Remove this redundant jump. 2
-·· 8
+ˆˆ X
+javaS125<This block of commented-out lines of code should be removed. 2
+‘‘ YU
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÚÚ  
+javaS125<This block of commented-out lines of code should be removed. 2
+ÞÞ
+ Y:
+
+ßß
+ >Code:
+
+àà DCode:
+
+áá
+ Codep
+javaS125<This block of commented-out lines of code should be removed. 2
+åå
+ B:
+
+ææ
+ JCodeX
+javaS125<This block of commented-out lines of code should be removed. 2
+éé
+ /X
+javaS125<This block of commented-out lines of code should be removed. 2
+ìì
+ PY
+javaS125<This block of commented-out lines of code should be removed. 2ðð ŽX
+javaS125<This block of commented-out lines of code should be removed. 2
+òò
+ +X
+javaS125<This block of commented-out lines of code should be removed. 2
+ôô ue
+javaS1117HRename "activityDescription" which hides the field declared at line 174. 2
+ÿÿ &X
+javaS125<This block of commented-out lines of code should be removed. 2
+ýý hX
+javaS125<This block of commented-out lines of code should be removed. 2
+€€ OX
+javaS125<This block of commented-out lines of code should be removed. 2
+„„ s8
 javaS3626Remove this redundant jump. 2
-ÕÕ U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ÅÅ X
+   8
+javaS3626Remove this redundant jump. 2
+ÁÁ X
 javaS125<This block of commented-out lines of code should be removed. 2
-ÃÃ
- )U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ÈÈ U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ÊÊ X
+¬¬
+ *X
 javaS125<This block of commented-out lines of code should be removed. 2
-ÐÐ
+®®
+ )X
+javaS125<This block of commented-out lines of code should be removed. 2
+°°
+ 9X
+javaS125<This block of commented-out lines of code should be removed. 2
+³³
+ nX
+javaS125<This block of commented-out lines of code should be removed. 2
+µµ
+ lX
+javaS125<This block of commented-out lines of code should be removed. 2
+»»
  ]8
 javaS3626Remove this redundant jump. 2
-‚‚ 
+îî 
 javaS1172&Remove these unused method parameters. 2
-€€+ 5:B
+ìì+ 5:B
 @
-€€+ 50Remove this unused method parameter yearSelect".:C
+ìì+ 50Remove this unused method parameter yearSelect".:C
 A
-€€@ K1Remove this unused method parameter MonthSelect".:A
+ìì@ K1Remove this unused method parameter MonthSelect".:A
 ?
-€€V _/Remove this unused method parameter DaySelect".˜
+ììV _/Remove this unused method parameter DaySelect".˜
 javaS125<This block of commented-out lines of code should be removed. 2
-èè 3:
+ÔÔ 3:
 
-êê
+ÖÖ
  ?Code:
 
-ìì
+ØØ
  6Code:
 
-îî
+ÚÚ
  CCode:
 
-ðð
+ÜÜ
  ;Code:
 
-òò
+ÞÞ
  DCode:
 
-ôô
+àà
  %Code:
 
-öö
+ââ
  Code:
 
-÷÷ CodeM
-javaS11352Complete the task associated to this TODO comment. 2 8
+ãã CodeM
+javaS11352Complete the task associated to this TODO comment. 2íí 8
 javaS3626Remove this redundant jump. 2
-’’ ’
+þþ ’
 javaS11721Remove this unused method parameter "yearSelect". 2
-' 1:B
+üü' 1:B
 @
-' 10Remove this unused method parameter yearSelect".M
-javaS11352Complete the task associated to this TODO comment. 2‘‘ 8
+üü' 10Remove this unused method parameter yearSelect".M
+javaS11352Complete the task associated to this TODO comment. 2ýý 8
 javaS3626Remove this redundant jump. 2
-¢¢ ”
+ŽŽ ”
 javaS11722Remove this unused method parameter "monthSelect". 2
-  ( 3:C
+ŒŒ( 3:C
 A
-  ( 31Remove this unused method parameter monthSelect".M
-javaS11352Complete the task associated to this TODO comment. 2¡¡ 8
+ŒŒ( 31Remove this unused method parameter monthSelect".M
+javaS11352Complete the task associated to this TODO comment. 2 8
 javaS3626Remove this redundant jump. 2
-³³ 8
+ŸŸ 8
 javaS3626Remove this redundant jump. 2
-ÅÅ V
+±± V
 javaS34009Remove this method and declare a constant for this value. 2
-ÏÏ M
-javaS11352Complete the task associated to this TODO comment. 2ÎÎ 8
+»» M
+javaS11352Complete the task associated to this TODO comment. 2ºº 8
 javaS3626Remove this redundant jump. 2
-ØØ ¤
+ÄÄ ¤
 javaS1172:Remove this unused method parameter "activityDescription". 2
-ÖÖ. A:K
+ÂÂ. A:K
 I
-ÖÖ. A9Remove this unused method parameter activityDescription".M
-javaS11352Complete the task associated to this TODO comment. 2×× V
+ÂÂ. A9Remove this unused method parameter activityDescription".M
+javaS11352Complete the task associated to this TODO comment. 2ÃÃ V
 javaS34009Remove this method and declare a constant for this value. 2
-àà M
-javaS11352Complete the task associated to this TODO comment. 2ßß 8
+ÌÌ M
+javaS11352Complete the task associated to this TODO comment. 2ËË 8
 javaS3626Remove this redundant jump. 2
-éé š
+ÕÕ š
 javaS11725Remove this unused method parameter "activityStatus". 2
-çç) 7:F
+ÓÓ) 7:F
 D
-çç) 74Remove this unused method parameter activityStatus".M
-javaS11352Complete the task associated to this TODO comment. 2èè M
-javaS11352Complete the task associated to this TODO comment. 2ðð 8
+ÓÓ) 74Remove this unused method parameter activityStatus".M
+javaS11352Complete the task associated to this TODO comment. 2ÔÔ M
+javaS11352Complete the task associated to this TODO comment. 2ÜÜ 8
 javaS3626Remove this redundant jump. 2
-úú ˜
+ææ ˜
 javaS11724Remove this unused method parameter "activityColor". 2
-øø/ <:E
+ää/ <:E
 C
-øø/ <3Remove this unused method parameter activityColor".M
-javaS11352Complete the task associated to this TODO comment. 2ùù 8
+ää/ <3Remove this unused method parameter activityColor".M
+javaS11352Complete the task associated to this TODO comment. 2åå 8
 javaS3626Remove this redundant jump. 2
-‚‚ M
-javaS11352Complete the task associated to this TODO comment. 2 8
+îî M
+javaS11352Complete the task associated to this TODO comment. 2íí 8
 javaS3626Remove this redundant jump. 2
-ŒŒ M
-javaS11352Complete the task associated to this TODO comment. 2‹‹ I
-javaS1068.Remove this unused "dateFormat" private field. 2ll !T
+øø M
+javaS11352Complete the task associated to this TODO comment. 2÷÷ K
+javaS1068.Remove this unused "dateFormat" private field. 2
+ !T
 javaS10687Remove this unused "activityDescription" private field. 2
-‹‹ &O
+®® &O
 javaS10682Remove this unused "activityStatus" private field. 2
- 'N
-javaS10681Remove this unused "activityColor" private field. 2
-••  -
+³³ '

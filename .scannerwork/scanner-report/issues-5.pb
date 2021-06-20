@@ -1,150 +1,188 @@
-`
-javaS112FDefine and throw a dedicated exception instead of using a generic one. 2HH" +J
-javaS3740/Provide the parametrized type for this generic. 2)) œ
-javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2HH S
-javaS38788Remove this array creation and simply pass the elements. 2*1 	V
-javaS125<This block of commented-out lines of code should be removed. 2++ ®
-javaS125<This block of commented-out lines of code should be removed. 2::
- 4:
-;;
+3
+javaS1220"Move this file to a named package. Æ
+javaS125<This block of commented-out lines of code should be removed. 2 4:
+ &Code:
+ Code:
+ Code:
+ Code:
+ "Code:
+		 )Code:
+
+
+ #Code:
+ Code:
+ #Code:
+ Code:
+  Code:
+ Code:
+ %Code:
+ Code:
+ $Code:
+ %Code:
+ $Code:
+ $Code:
+ %Code:
+   #Code:
+!! +Code:
+"" &Code:
+## ,Code:
+)) +Code:
+**
+ /Code:
+++ Code:
+.. Code:
+11
+ Code:
+22 Code:
+44 jCode:
+55
+ Code:
+66
+ )Code:
+77
+ 5Code:
+88
+ #Code:
+99
  'Code:
-<<
- 3Code:
-==
- 'Code:
->>
- 3Code‚
-javaS125<This block of commented-out lines of code should be removed. 2LL ":
-MM
- (Code:
-NN Codel
-javaS125<This block of commented-out lines of code should be removed. 2SS
- ):
-TT
- =Code‚
-javaS125<This block of commented-out lines of code should be removed. 2YY +:
-[[
- hCode:
-\\ CodeV
-javaS125<This block of commented-out lines of code should be removed. 2bb
- =˜
-javaS125<This block of commented-out lines of code should be removed. 2pp 1:
-qq
- :Code:
-rr
- fCode:
-ss Code®
-javaS125<This block of commented-out lines of code should be removed. 2vv ):
-ww
- !Code:
-xx Code:
-{{ #Code:
-|| Codep
-javaS125<This block of commented-out lines of code should be removed. 2
- %:
+:: 6Code:
+;; )Code:
+<< 5Code:
+== )Code:
+>> 5Code:
+?? Code:
+CC  Code:
+DD /Code:
+EE Code:
+HH /Code:
+II Code:
+LL $Code:
+MM *Code:
+NN 	Code:
+QQ )Code:
+SS +Code:
+TT ?Code:
+UU
+ 8Code:
+VV Code:
+YY -Code:
+[[ jCode:
+\\ 	Code:
+__ -Code:
+aa
+ 9Code:
+bb ?Code:
+cc
+ OCode:
+dd Code:
+gg $Code:
+hh
+ 7Code:
+ii
+ JCode:
+kk
+ KCode:
+ll Code:
+pp 3Code:
+qq <Code:
+rr hCode:
+ss 	Code:
+vv +Code:
+ww #Code:
+xx 	Code:
+{{ %Code:
+|| 	Code:
 
-‚‚ Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
-‡‡ ':
+ 'Code:
 
-ˆˆ
- %Code:
+‚‚ 	Code:
 
-‰‰ Code:
+‡‡ )Code:
 
-ŒŒ 'Code:
+ˆˆ 'Code:
 
- Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
- ':
+‰‰ 	Code:
 
-‘‘
- !Code:
+ŒŒ )Code:
 
-’’ Code:
+ 	Code:
 
-•• #Code:
+ )Code:
 
-–– Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
-™™ (:
+‘‘ #Code:
 
-šš
- "Code:
+’’ 	Code:
 
-›› Code:
+•• %Code:
 
-žž $Code:
+–– 	Code:
 
-ŸŸ Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
-¢¢ &:
+™™ *Code:
 
-££
-  Code:
+šš $Code:
 
-¤¤ Code:
+›› 	Code:
 
-§§ "Code:
+žž &Code:
 
-¨¨ Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
-«« (:
+ŸŸ 	Code:
 
-¬¬
- Code:
+¢¢ (Code:
 
-­­ Code:
+££ "Code:
 
-°° $Code:
+¤¤ 	Code:
 
-±± Code¸
-javaS125<This block of commented-out lines of code should be removed. 2
-´´ .:
+§§ $Code:
 
-µµ
- /Code:
+¨¨ 	Code:
 
-¶¶ Code:
+«« *Code:
 
-¹¹ ,Code:
+¬¬ Code:
 
-ºº Code€
-javaS125<This block of commented-out lines of code should be removed. 2
-½½ ):
+­­ 	Code:
 
-¾¾
- %Code:
+°° &Code:
 
-¿¿ Code:
+±± 	Code:
 
-ÂÂ 'Code:
+´´ 0Code:
 
-ÃÃ Code:
+µµ 1Code:
 
-ÆÆ /Code:
+¶¶ 	Code:
 
-ÇÇ
- $Code:
+¹¹ .Code:
 
-ÈÈ CodeÐ
-javaS125<This block of commented-out lines of code should be removed. 2
-ËË &:
+ºº 	Code:
 
-ÌÌ Code:
+½½ +Code:
 
-ÏÏ %Code:
+¾¾ 'Code:
 
-ÐÐ Code:
+¿¿ 	Code:
 
-ÓÓ 'Code:
+ÂÂ )Code:
 
-ÔÔ CodeL
-javaS10681Remove this unused "newCalendarIn" private field. 2 "O
-javaS10684Remove this unused "aggregatedDateIn" private field. 2 !K
-javaS10680Remove this unused "yearSelectIn" private field. 2 !L
-javaS10681Remove this unused "monthSelectIn" private field. 2 "J
-javaS1068/Remove this unused "daySelectIn" private field. 2    T
-javaS10689Remove this unused "activityDescriptionIn" private field. 2!! (O
-javaS10684Remove this unused "activityStatusIn" private field. 2"" #N
-javaS10683Remove this unused "activityColorIn" private field. 2## )
+ÃÃ 	Code:
+
+ÆÆ 1Code:
+
+ÇÇ &Code:
+
+ÈÈ 	Code:
+
+ËË (Code:
+
+ÌÌ 	Code:
+
+ÏÏ 'Code:
+
+ÐÐ 	Code:
+
+ÓÓ )Code:
+
+ÔÔ 	Code:
+
+ÕÕ Code

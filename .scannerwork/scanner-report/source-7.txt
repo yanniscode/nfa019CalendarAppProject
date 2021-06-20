@@ -1,23 +1,16 @@
 package fr.cnam.pbuttons;
 
-import fr.cnam.pactivity.DatePart;
-import fr.cnam.pcalendarpanel.DateButton;
 import fr.cnam.pmain.MainPanel;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
 
 
 import static org.junit.Assert.*;
@@ -117,7 +110,7 @@ public class ControlButtonTest extends JPanel{
     private static Date newReferenceDay;
 
     @Before
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
 
         this.mainPanel = new MainPanel();
         this.controlButtonsPanel = new ControlButtonsPanel(this.mainPanel);

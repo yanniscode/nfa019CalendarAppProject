@@ -1,11 +1,11 @@
-package fr.cnam.pdatabase;
+package fr.cnam.pdatabase.managment.dao;
 
 import java.util.*;
 
 /**
  * 
  */
-public interface DaoInterface<T> {
+public interface DAOInterface<T> {
 
     /**
      * @param obj 

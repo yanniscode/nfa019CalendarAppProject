@@ -1,1 +1,1 @@
- 2javaXéhr%test/fr/cnam/pmain/MainPanelTest.java
+ 2javaXéhr%test/fr/cnam/pmain/MainPanelTest.java

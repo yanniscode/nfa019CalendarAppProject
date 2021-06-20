@@ -1,39 +1,60 @@
-Ï
-javaS1598³This file "RunCalendarAppTest.java" should be located in "fr/cnam/pcalendarapptest" directory, not in "/home/yannis/nfa019CalendarAppProject-V0.4-clean/test/fr/cnam/pcalendarapp". 2  M
-javaS11284Remove this unused import 'fr.cnam.pmain.MainPanel'. 2 l
-javaS125<This block of commented-out lines of code should be removed. 2
+3
+javaS1220"Move this file to a named package.  
+javaS125<This block of commented-out lines of code should be removed. 2 !:
+	 Code:
+	 #Code:
+			 #Code:
+	
 
- !:
-	 3CodeV
-javaS125<This block of commented-out lines of code should be removed. 2
- 5Q
-javaS26966Make the enclosing method "static" or remove this set. 2 P
-javaS22095Change this instance-reference to a static reference. 2 l
-javaS125<This block of commented-out lines of code should be removed. 2   :
-	!! CodeP
-javaS22095Change this instance-reference to a static reference. 2%% )l
-javaS125<This block of commented-out lines of code should be removed. 2&&
- :
-	''
- %CodeR
-javaS22095Change this instance-reference to a static reference. 2
-,,“ ¦S
-javaS1069Replace this use of System.out or System.err by a logger. 211 P
-javaS22095Change this instance-reference to a static reference. 211 .P
-javaS22095Change this instance-reference to a static reference. 222# 6Q
-javaS26966Make the enclosing method "static" or remove this set. 277 P
-javaS22095Change this instance-reference to a static reference. 277 R
-javaS22095Change this instance-reference to a static reference. 2
-88“ ¦Q
-javaS26966Make the enclosing method "static" or remove this set. 2== P
-javaS22095Change this instance-reference to a static reference. 2== P
-javaS22095Change this instance-reference to a static reference. 2>># 6S
-javaS1069Replace this use of System.out or System.err by a logger. 2CC V
-javaS125<This block of commented-out lines of code should be removed. 2DD
- ;˜
-javaS125<This block of commented-out lines of code should be removed. 2GG  :
-	HH
- ICode:
-	II
- (Code:
-	JJ Code
+ 5Code:
+	 #Code:
+	 #Code:
+	
+ Code:
+	 7Code:
+	 Code:
+	 3Code:
+	  Code:
+	
+ 5Code:
+	 Code:
+	 Code:
+	   	Code:
+	## ,Code:
+	$$
+ -Code:
+	%% Code:
+	&& 'Code:
+	'' Code:
+	** +Code:
+		++
+ µCode:
+	,, Code:
+	// .Code:
+	00
+ =Code:
+	11
+ ECode:
+	22 Code:
+	55  Code:
+	66
+ 5Code:
+		77
+ µCode:
+	88 Code:
+	;; "Code:
+	<<
+ 5Code:
+	==
+ ECode:
+	>> Code:
+	AA Code:
+	BB
+ 9Code:
+	CC =Code:
+	DD Code:
+	FF "Code:
+	GG KCode:
+	HH *Code:
+	II 	Code:
+	KK Code

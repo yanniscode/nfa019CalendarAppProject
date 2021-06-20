@@ -1,1 +1,1 @@
- 2javaXlhr)test/fr/cnam/putils/ReformatDateTest.java
+ 2javaXhhr)test/fr/cnam/putils/ReformatDateTest.java

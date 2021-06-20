@@ -1,5 +1,7 @@
 package fr.cnam.pactivity;
 
+import fr.cnam.pdatabase.managment.model.DatePart;
+
 import java.util.*;
 
 /**

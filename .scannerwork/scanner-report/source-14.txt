@@ -1,11 +1,12 @@
 package fr.cnam.pmain;
 
-//import fr.cnam.pactivity.DateActivityItem;
+//import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
 import fr.cnam.pbuttons.ControlButtonsPanel;
 import fr.cnam.pcalendarpanel.CalendarPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 import static java.awt.FlowLayout.CENTER;
 
@@ -17,7 +18,7 @@ public class MainPanel extends Container implements MainPanelInterface {
     /**
      * Default constructor
      */
-    public MainPanel() {
+    public MainPanel() throws SQLException, ClassNotFoundException {
 
         super();
 

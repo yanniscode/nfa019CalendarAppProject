@@ -1,10 +1,16 @@
 package fr.cnam.pcalendarapp;
 
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
+import fr.cnam.pdatabase.managment.model.DateActivityItem;
+import fr.cnam.pdatabase.managment.model.DatePart;
 import fr.cnam.pmain.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @author Yannis Guéguen
@@ -14,7 +20,7 @@ public class RunCalendarApp extends JFrame {
     /**
      * Default constructor
      */
-    public RunCalendarApp() {
+    public RunCalendarApp() throws SQLException, ClassNotFoundException {
 
         super();
 
@@ -54,7 +60,7 @@ public class RunCalendarApp extends JFrame {
      * @param args 
      * @return
      */
-    public static void main (String[] args) {
+    public static void main (String[] args) throws SQLException, ClassNotFoundException {
 
         runCalendarApp = new RunCalendarApp();
 

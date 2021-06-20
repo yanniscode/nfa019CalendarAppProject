@@ -1,14 +1,18 @@
 package fr.cnam.pcalendarpanel;
 
-//import fr.cnam.pactivity.DateActivityItem;
-import fr.cnam.pactivity.DatePart;
-import fr.cnam.pbuttons.ControlButton;
+//import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Set;
+//import java.util.*;
 
 
 /**
@@ -16,17 +20,22 @@ import java.util.logging.Logger;
  */
 public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
+    Connection connection;
 
     /**
      * Default constructor: création du calendrier (= liste de DateButtons)
      */
-    public CalendarPanel() {
+    public CalendarPanel() throws SQLException, ClassNotFoundException {
 
         super();
 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
+        System.out.println("***** CAL CONNECTION *************** : ");
+
         this.calendarLabel = new JLabel("", SwingConstants.CENTER);
         this.calendarLabel.setFont(new Font("Serif", 0, 25));
-        this.setNewMonthLabel(new Date());
+        this.setNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
 
         // *** création d'une liste de jours (mois actuel)
         this.daysList = new ArrayList<DateButton>();
@@ -36,6 +45,9 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
         // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
         this.buildDaysList(this.daysList);
+
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // PAS RÉUSSI ENCORE
+        this.buildActivitiesList(this.daysList, 0);
 
         GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
         this.setLayout(gl);
@@ -111,11 +123,11 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
      * Création des boutons = liste des jours (pas encore ajoutée au CalendarPanel)
      * @return ArrayList<DateButton>
      */
-    public ArrayList<DateButton> setNewDatesInList(ArrayList<DateButton> daysList) {
+    public ArrayList<DateButton> setNewDatesInList(ArrayList<DateButton> daysList) throws SQLException, ClassNotFoundException {
         this.daysList = daysList;
 
         for(int i = 0; i < 41; i ++) {
-            this.dateButton = new DateButton(i);
+            this.dateButton = new DateButton(i, this.connection);
             this.daysList.add(this.dateButton);
         }
 
@@ -141,6 +153,35 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
         return;
     }
+
+    /**
+     * Ajout des jours au CalendarPanel:
+     * @return void
+     */
+    public void buildActivitiesList(ArrayList<DateButton> daysList, int indexMonth) throws ClassNotFoundException, SQLException {
+
+        //  ************************** GET DATE DAO
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
+        System.out.println("***** CAL CONNECTION *************** : ");
+
+        this.daysList = daysList;
+
+        for(int i = 0; i < 41; i ++) {
+
+            this.dateButton = this.daysList.get(i);
+            System.out.println("this.datebutton #### "+ this.dateButton);
+            JButton updateButton = this.dateButton.getActivityDatas(this.connection, indexMonth, i);
+            // *** ajout à l'affichage (au CalendarPanel)
+            this.dateButton.setDateButton(updateButton);
+
+            this.add(this.dateButton);
+        }
+//        System.out.println("eeeeeeeeeeeeeeeee       ddddddddddddddddddday dddddddddddddddddddddddddddddd "+ this.daysList.size());
+
+        return;
+    }
+
 
     // ******** Ajout du titre du mois précédent au CalendarPanel (string):
     /**
@@ -204,6 +245,18 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 //
 //        return;
 //    }
+
+    /**
+     *
+     * @return Connection
+     */
+    public Connection getConnection() {
+        return this.connection;
+    }
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+        return;
+    }
 
 
     // ***********************

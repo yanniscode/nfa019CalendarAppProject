@@ -1,41 +1,58 @@
 package fr.cnam.pcalendarpanel;
 
-import fr.cnam.pactivity.DatePart;
-import fr.cnam.pcalendarpanel.DateButtonInterface;
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
+import fr.cnam.pdatabase.managment.model.DateActivityItem;
+import fr.cnam.pdatabase.managment.model.DatePart;
 import fr.cnam.penums.ActivityColor;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
 import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+
 
 /**
  * @author Yannis Guéguen
  */
 public class DateButton extends JPanel implements DateButtonInterface {
 
+
     /**
      * constructor 2: pour création des boutons des pages précédentes ou suivantes (par le param Date = du mois précédent ou suivant)
-     * @param newDate
+     * @param monthIndex, dayIndex, connection
      */
-    public DateButton(Date newDate) {
+    public DateButton(int monthIndex, int dayIndex, Connection connection) throws ClassNotFoundException, SQLException {
 
         super();
 
-//        this.datePart = new DatePart();
+        this.activityColor = new ActivityColor();
+
+        this.datePart = new DatePart();
+
+//        this.dateValue = newDate;
+
+        this.dateValue = this.datePart.getByFirstMondayOfMonthPage(monthIndex, dayIndex);    // idMonth = 0 (mois actuel pour l'initialisation du calendrier)
+        this.datePart.setDateValue(this.dateValue);
 
 //        System.out.println("i i i i"+ dayIndex);
 //        System.out.println("day ++" + DateBefore);
 
-        // *** récupération de la date (String) au format "dd/MM/yyyy"
+        // *** conversion de la date (String) au format "dd/MM/yyyy"
         ReformatDate reformatDate = new ReformatDate();
-        this.formatedDate = reformatDate.formatDateToString(newDate);
+        this.formatedDate = reformatDate.formatDateToString(this.dateValue);
 
         this.dateButton = new JButton(this.formatedDate);
-//
+
+        // *** si le bouton ne correspond pas au mois de la page, il est désactivé
+        this.setButtonToGray(this.datePart, monthIndex);  // 0 = today
+
+        //  *** get Date (DAO)
+
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page
+        this.dateButton = this.getActivityDatas(connection, monthIndex, dayIndex);
+
         this.dateButton.setPreferredSize(new Dimension(120, 100));
 
         this.add(this.dateButton);
@@ -44,18 +61,29 @@ public class DateButton extends JPanel implements DateButtonInterface {
 
     /**
      * Constructor 1: pour création des boutons de base (date = actuelle)
-     * @param dayIndex
+     * @param dayIndex, connection
      */
-    public DateButton(int dayIndex) {
+    public DateButton(int dayIndex, Connection connection) throws ClassNotFoundException, SQLException {
 
         super();
+
+        this.activityColor = new ActivityColor();
+
+
+        // ********************* GET DATE D'UN JOUR DU MOIS ACTUEL SANS DAO:
 
         // *** ref de jour, ici = dans le mois actuel:
         this.datePart = new DatePart();
 
-        this.dateValue = this.datePart.getIndexedDay(dayIndex);
-        System.out.println("~~~~~~~~~~~~ ##################################" + this.dateValue);
+        this.dateValue = this.datePart.getByFirstMondayOfMonthPage(0, dayIndex);    // *** idMonth = 0 (= mois actuel pour l'initialisation du calendrier)
+//        System.out.println("~~~~~~~~~~~~ ##################################  " + this.dateValue);
         this.datePart.setDateValue(this.dateValue);
+
+        // *** TEST DATE LONG
+//        long converDateToLong = this.dateValue.getTime();
+//        System.out.println("Converted Date du jour to Long : "+ converDateToLong); // 1622449832100L
+//        java.sql.Date ConvertedDateJour = new java.sql.Date(converDateToLong);
+//        System.out.println("Converted Date du jour from Long : "+ ConvertedDateJour);   // date actuelle - ex: '2021-05-31' = premier jour de la page de juin
 
 
         // *** récupération de la date (String) au format "dd/MM/yyyy"
@@ -64,12 +92,17 @@ public class DateButton extends JPanel implements DateButtonInterface {
 
         this.dateButton = new JButton(this.formatedDate);
 
-        this.dateButton.setPreferredSize(new Dimension(120, 100));
-
         this.setButtonToGray(this.datePart, 0);  // 0 = today
 
-        super.add(this.dateButton);
 
+        //  *** get Date (DAO)
+
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page
+        this.dateButton = this.getActivityDatas(connection, 0, dayIndex);
+
+        this.dateButton.setPreferredSize(new Dimension(120, 100));
+
+        this.add(this.dateButton);
     }
 
     // AJOUTS:
@@ -84,6 +117,8 @@ public class DateButton extends JPanel implements DateButtonInterface {
      */
     private Date dateValue;
 
+
+    // *******************
 
     /**
      * @return Date
@@ -146,7 +181,7 @@ public class DateButton extends JPanel implements DateButtonInterface {
     /**
      * ActivityColor - (enum) couleur du DateButton (selon le status de l'activité: à faire, en cours, en test, réalisée)
      */
-    private final ActivityColor activityColor = null;
+    private final ActivityColor activityColor;
 
     /**
      * DatePart - partie Année d'une date
@@ -163,6 +198,9 @@ public class DateButton extends JPanel implements DateButtonInterface {
      */
     private DatePart daySelect = null;
 
+
+    // **************
+
     /**
      *
      * @return JButton
@@ -172,6 +210,73 @@ public class DateButton extends JPanel implements DateButtonInterface {
     }
 
 
+    public JButton getActivityDatas(Connection connection, int indexMonth, int dayIndex) {
+
+        this.dateValue = this.datePart.getByFirstMondayOfMonthPage(indexMonth, dayIndex);
+
+
+        System.out.println(connection);
+        DatePart searchDatePart = new DatePart();
+        DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
+
+//        DateActivityItem insertDateActivityItem = new DateActivityItem(searchDatePart);
+//        if(dateActivityDAO.create(insertDateActivityItem)) {
+//            System.out.println("insert dateActivityItem success");
+//        }
+
+        DateActivityItem dateActivityItem;
+
+//        System.out.println("this.dateValue = "+ this.dateValue);
+//        System.out.println("######### ACTIVITY DAO: "+ dateActivityDAO);
+        dateActivityItem = dateActivityDAO.findByDate(this.dateValue, connection);   // REMPLACER L'INDEX PAR: RECHERCHE PAR DATE -> CRÉER: findByDate() dans DateActivityDAO
+//        dateActivityItem = dateActivityDAO.find(150);   // REMPLACER L'INDEX PAR: RECHERCHE PAR DATE -> CRÉER: findByDate() dans DateActivityDAO
+//        System.out.println(dateActivityItem);
+
+        Long resLongDateFromBdd = dateActivityItem.getDatePart().getDatePartValue();
+//        System.out.println(dateActivityItem.getDatePart().getDatePartValue());
+//        System.out.println("###### bdd date = " + resLongDateFromBdd); // date: format long - ex: 11111111111L
+
+
+        // *** si la bdd envoie une dateActivityItem correspondante au jour passé, ET si le bouton est actif (correspond bien au mois affiché)
+        if(resLongDateFromBdd != null && !this.dateButton.getBackground().toString().equals("java.awt.Color[r=192,g=192,b=192]")) {
+//        if (resLongDateFromBdd != null) {
+
+//            System.out.println("STATUS ~~~~~~~~~~~~~~~~~~~~~~~~~~~ = " + dateActivityItem.getDateActivityStatus());
+
+            java.sql.Date ConvertedDateFromBDD = new java.sql.Date(resLongDateFromBdd);
+
+            searchDatePart.setDateValue(ConvertedDateFromBDD);
+
+            // *** conversion de la date (String) au format "dd/MM/yyyy"
+            ReformatDate reformatDate = new ReformatDate();
+            this.formatedDate = reformatDate.formatDateToString(ConvertedDateFromBDD);
+//            System.out.println("~~~~~~~~~~~~ ##################################" + this.formatedDate);
+
+            String activityDescription = dateActivityItem.getDateActivityDescription();
+//            String activityStatus = dateActivityItem.getDateActivityStatus();
+
+            StringBuilder newActivityButtonData = new StringBuilder();
+            newActivityButtonData.append(activityDescription);
+//            newActivityButtonData.append(activityStatus +" ** "+ this.formatedDate +" ** "+ activityDescription);
+
+            this.dateButton = new JButton(String.valueOf(newActivityButtonData));
+
+            if (dateActivityItem.getDateActivityStatus().equals("\"En définition\"")) {
+                this.dateButton.setBackground(this.activityColor.ORANGE);
+            } else if (dateActivityItem.getDateActivityStatus().equals("\"En cours\"")) {
+                this.dateButton.setBackground(this.activityColor.BLUE);
+            } else if (dateActivityItem.getDateActivityStatus().equals("\"En test\"")) {
+                this.dateButton.setBackground(this.activityColor.RED);
+            } else if (dateActivityItem.getDateActivityStatus().equals("\"Terminée\"")) {
+                this.dateButton.setBackground(this.activityColor.GREEN);
+            }
+
+        }
+
+        return this.dateButton;
+    }
+
+    // **************
 
     /**
      *
@@ -191,15 +296,17 @@ public class DateButton extends JPanel implements DateButtonInterface {
      * @param monthIndex
      */
     public void setButtonToGray(DatePart newFirstDay, int monthIndex) {
+
+//        System.out.println(newFirstDay);
         this.datePart = newFirstDay;
 //        this.datePart = new DatePart();
 
-        System.out.println(newFirstDay.getDateValue());
+//        System.out.println(newFirstDay.getDateValue());
         Date newFirstDayTemp = newFirstDay.getDateValue();
 
-        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ newFirstDayTemp);
+//        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ newFirstDayTemp);
         Date dateToCompare = this.datePart.getOneMonthInterval(monthIndex);
-        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ dateToCompare);
+//        System.out.println("{{{{{{{{{{{{{{{{{{ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ dateToCompare);
 
         ReformatDate reformatDate = new ReformatDate();
         String formatedReferenceDate = reformatDate.formatMonthToString(dateToCompare);
@@ -210,6 +317,7 @@ public class DateButton extends JPanel implements DateButtonInterface {
             this.dateButton.setBackground(Color.LIGHT_GRAY);
             this.dateButton.setEnabled(false);
         }
+
         return;
     }
 

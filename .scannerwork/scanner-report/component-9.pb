@@ -1,1 +1,1 @@
-	 2javaXLhr1test/fr/cnam/pcalendarapp/RunCalendarAppTest.java
+	 2javaXKhr1test/fr/cnam/pcalendarapp/RunCalendarAppTest.java

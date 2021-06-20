@@ -1,100 +1,234 @@
-`
-javaS112FDefine and throw a dedicated exception instead of using a generic one. 2LL" +J
-javaS3740/Provide the parametrized type for this generic. 2 W
-javaS1128>Remove this unused import 'fr.cnam.pcalendarpanel.DateButton'. 2 )‚
-javaS125<This block of commented-out lines of code should be removed. 2 :
+3
+javaS1220"Move this file to a named package. ¬
+javaS125<This block of commented-out lines of code should be removed. 2 +:
 
- Code:
+ Code:
 
- Codeœ
-javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2LL S
-javaS38788Remove this array creation and simply pass the elements. 2( 	V
-javaS125<This block of commented-out lines of code should be removed. 2 V
-javaS125<This block of commented-out lines of code should be removed. 2--
- #Ä
-javaS125<This block of commented-out lines of code should be removed. 222
- ':
+ Code:
 
-33
- 4Code:
+ Code:
 
-44
+ Code:
+
+ "Code:
+
+		 )Code:
+
+ Code:
+
+ Code:
+
+ Code:
+
+ Code:
+
+ #Code:
+
+ Code:
+
+ +Code:
+
+
+ /Code:
+
+ Code:
+
+ Code:
+
+"" Code:
+
+%% Code:
+
+'' Code:
+
+((
+ Code:
+
+)) Code:
+
+++ gCode:
+
+,,
+ Code:
+
+-- %Code:
+
+..
+ )Code:
+
+//
+ 5Code:
+
+00
+ +Code:
+
+11
  'Code:
 
-55
+22 )Code:
+
+33 6Code:
+
+44 )Code:
+
+55 5Code:
+
+66 )Code:
+
+77 5Code:
+
+88 Code:
+
+;;  Code:
+
+<< Code:
+
+== %Code:
+
+>> Code:
+
+?? Code:
+
+AA $Code:
+
+BB *Code:
+
+GG  Code:
+
+HH
+ )Code:
+
+II Code:
+
+LL /Code:
+
+MM Code:
+
+PP 'Code:
+
+RR
+ 7Code:
+
+TT
+ cCode:
+
+UU Code:
+
+YY .Code:
+
+[[ 9Code:
+
+]]
+ 'Code:
+
+^^ Code:
+
+aa %Code:
+
+cc 9Code:
+
+ee
  3Code:
 
-66
- 'Code:
+ff Code:
 
-77
- 3Codel
-javaS125<This block of commented-out lines of code should be removed. 2AA ":
+ii ,Code:
 
-BB (CodeV
-javaS125<This block of commented-out lines of code should be removed. 2[[
- 7V
-javaS125<This block of commented-out lines of code should be removed. 2cc
- 7S
-javaS1069Replace this use of System.out or System.err by a logger. 2zz X
-javaS125<This block of commented-out lines of code should be removed. 2
-€€
- 9Ð
-javaS125<This block of commented-out lines of code should be removed. 2
-‚‚
- 5:
+kk
+ 7Code:
+
+mm
+ MCode:
+
+nn Code:
+
+qq (Code:
+
+rr QCode:
+
+ss 1Code:
+
+tt Code:
+
+ww 8Code:
+
+yy
+ qCode:
+
+zz
+ 5Code:
+
+{{
+ 0Code:
+
+|| Code:
+
+ /Code:
 
 
-ƒƒ
- ?Code:
+€€ ;Code:
 
 
-„„
- ]Code:
+
+ XCode:
 
 
-……
- ,Code:
+‚‚ 7Code:
 
 
-††
- 5Code:
+ƒƒ ACode:
 
 
-‡‡
- BCodeÈ
-javaS125<This block of commented-out lines of code should be removed. 2
-ŒŒ ':
+„„ _Code:
 
 
-ŽŽ
- LCode:
+…… .Code:
 
 
-
- 3Code:
+†† 7Code:
 
 
-
- .Code:
+‡‡ DCode:
 
 
-‘‘ Code:
+ˆˆ
+ 0Code:
 
 
-”” !Code:
+‰‰ Code:
 
 
-•• Code:
+ŒŒ )Code:
 
 
-˜˜ &Code:
+ŽŽ NCode:
 
 
-™™ Code:
+ 5Code:
 
 
-œœ &Code:
+ 0Code:
 
 
- Code
+‘‘ 	Code:
+
+
+”” #Code:
+
+
+•• 	Code:
+
+
+˜˜ (Code:
+
+
+™™ 	Code:
+
+
+œœ (Code:
+
+
+ 	Code:
+
+
+ŸŸ Code

@@ -17,22 +17,23 @@ public class ActivityColor {
     /**
      * Color - Couleur d'un DateBouton
      */
-    protected final Color ORANGE = Color.ORANGE;
+    public final Color ORANGE = Color.ORANGE;
+//    public final Color ORANGE = Color.HSBtoRGB(); // à tester pour modifier la couleur
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    protected final Color BLUE = Color.BLUE;
+    public final Color BLUE = Color.BLUE;
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    protected final Color RED = Color.RED;
+    public final Color RED = Color.RED;
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    protected final Color GREEN = Color.GREEN;
+    public final Color GREEN = Color.GREEN;
 
 
 }

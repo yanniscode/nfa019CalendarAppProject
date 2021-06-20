@@ -1,18 +1,14 @@
 package fr.cnam.putils;
 
-import fr.cnam.pactivity.DatePart;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.text.DateFormat;
-import java.text.DateFormatSymbols;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Locale;
 
 import static org.junit.Assert.*;
 
