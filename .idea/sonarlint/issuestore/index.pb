@@ -19,10 +19,6 @@ e
 5src/fr/cnam/pcalendarpanel/CalendarSideInterface.java,2/3/2356e5a7f01daf9fa9d871296ef90942f0d11478
 c
 3src/fr/cnam/pcalendarpanel/DateButtonInterface.java,a/c/ac0a0c94db44b17c353cd76f1bc18fdda5f8d510
-Y
-)src/fr/cnam/pdatabase/MysqlConnexion.java,c/d/cd0e0d16a66c4ec503f18867f908a52cb5924307
-b
-2src/fr/cnam/pdatabase/MysqlConnexionInterface.java,6/a/6abe190576346f1d5ba12d67658bdbd09cc88cfb
 V
 &src/fr/cnam/penums/ActivityStatus.java,3/1/3136eede3cee1bb89dbfb646d30bf09b746b6463
 U

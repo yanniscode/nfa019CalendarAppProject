@@ -1,6 +1,7 @@
 package fr.cnam.pcalendarpanel;
 
 //import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
+import fr.cnam.pdatabase.MysqlConnexion;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ import java.util.Set;
  */
 public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
+    MysqlConnexion mysqlConnection;
     Connection connection;
 
     /**
@@ -29,30 +31,45 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
         super();
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
-        System.out.println("***** CAL CONNECTION *************** : ");
+        MysqlConnexion mysqlConnection = new MysqlConnexion();
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+        // *** ouverture de la connection:
 
-        this.calendarLabel = new JLabel("", SwingConstants.CENTER);
-        this.calendarLabel.setFont(new Font("Serif", 0, 25));
-        this.setNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
+        boolean connectResponse = mysqlConnection.connection();
 
-        // *** création d'une liste de jours (mois actuel)
-        this.daysList = new ArrayList<DateButton>();
+        if(connectResponse == true) {
 
-        // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
-        this.setNewDatesInList(this.daysList);
+            System.out.println("connexion ok!");
 
-        // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
-        this.buildDaysList(this.daysList);
+            this.connection = mysqlConnection.getConnection();
 
-        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // PAS RÉUSSI ENCORE
-        this.buildActivitiesList(this.daysList, 0);
+//        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
+            System.out.println("***** CAL CONNECTION *************** : ");
 
-        GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
-        this.setLayout(gl);
+            this.calendarLabel = new JLabel("", SwingConstants.CENTER);
+            this.calendarLabel.setFont(new Font("Serif", 0, 25));
+            this.setNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
 
-        this.setSize(800, 300);
+            // *** création d'une liste de jours (mois actuel)
+            this.daysList = new ArrayList<DateButton>();
+
+            // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
+            this.setNewDatesInList(this.daysList);
+
+            // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
+            this.buildDaysList(this.daysList);
+
+            // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // PAS RÉUSSI ENCORE
+            this.buildActivitiesList(this.daysList, 0);
+
+            GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
+            this.setLayout(gl);
+
+            this.setSize(800, 300);
+
+        } else {
+            System.out.println("erreur de connexion...");
+        }
     }
 
 

@@ -1,6 +1,5 @@
 package fr.cnam.pmain;
 
-//import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
 import fr.cnam.pbuttons.ControlButtonsPanel;
 import fr.cnam.pcalendarpanel.CalendarPanel;
 
