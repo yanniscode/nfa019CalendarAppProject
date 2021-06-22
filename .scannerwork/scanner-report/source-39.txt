@@ -1,65 +1,30 @@
-package fr.cnam.pdatabase.managment.model;
+package fr.cnam.perrors;
 
-import fr.cnam.pdatabase.managment.model.DatePart;
+import java.util.*;
 
-public class DateActivityItem {
-
-    private DatePart datePart;
-    private int dateActivityId;
-    private String datePartDescription;
-    private String datePartStatus;
-
-    /**
-     *  constructor 2
-     */
-    public DateActivityItem(DatePart datePart) {
-        super();
-        this.datePart = datePart;
-    }
+/**
+ * @author Yannis Guéguen
+ */
+public class ReturnButton implements FormControlButtonInterface {
 
     /**
      * Default constructor
      */
-    public DateActivityItem() {
-        super();
+    public ReturnButton() {
     }
 
-    // **********
+    /**
+     * String - valeur du bouton de sortie du formulaire sans modification apportée
+     */
+    protected String returnButtonValue = "Retour";
 
-    public DatePart getDatePart() {
-        return this.datePart;
-    }
 
-    public void setDatePart(DatePart datePart) {
-        System.out.println(datePart);
-        this.datePart = datePart;
-        return;
-    }
-
-    // ***********
-
-    public int getDateActivityId() {
-        return this.dateActivityId;
-    }
-    public void setDateActivityId(int dateActivityId) {
-        this.dateActivityId = dateActivityId;
-        return;
-    }
-
-    public String getDateActivityDescription() {
-        return this.datePartDescription;
-    }
-
-    public void setDateActivityDescription(String datePartDescription) {
-        this.datePartDescription = datePartDescription;
-    }
-
-    public String getDateActivityStatus() {
-        return this.datePartStatus;
-    }
-
-    public void setDateActivityStatus(String datePartStatus) {
-        this.datePartStatus = datePartStatus;
+    @Override
+    /**
+     * @return void
+     */
+    public void displayFormControlBtn() {
+        // TODO implement here
         return;
     }
 

@@ -7,13 +7,13 @@ import java.sql.DriverManager;
 /**
  * @author Yannis Guéguen
  */
-public class MysqlConnexion implements MysqlConnexionInterface {
+public class MysqlConnection implements MysqlConnectionInterface {
 
 
     /**
      * Default constructor
      */
-    public MysqlConnexion() throws ClassNotFoundException {
+    public MysqlConnection() throws ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
     }
 

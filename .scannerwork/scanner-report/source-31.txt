@@ -26,31 +26,36 @@ public class RunCalendarApp extends JFrame {
 
         System.out.println("Hello, Great Calendar Of The World !");
 
-        this.mainPanel = new MainPanel();
-        System.out.println(this.mainPanel);
-
         JFrame runAppFrame = new JFrame();
+
         runAppFrame.setSize(1920, 1080);
         runAppFrame.setLocation(0,0);
         String calendarTitle = "Le Calendrier des Lunaires";
         runAppFrame.setTitle(calendarTitle);
-        runAppFrame.setVisible(true);
-        runAppFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        this.mainPanel = new MainPanel();
+//        System.out.println(this.mainPanel);
 
         Container runAppContainer = runAppFrame.getContentPane();
-        runAppContainer.add(mainPanel);
+        runAppContainer.add(this.mainPanel);
 
 //        JLabel runAppLabel = new JLabel();
 //        runAppLabel.setForeground(Color.lightGray);
 //        runAppContainer.add(runAppLabel);
 
         WindowListener l = new WindowAdapter() {
+
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             };
         };
-        addWindowListener(l);
 
+        this.addWindowListener(l);
+
+        runAppFrame.setVisible(true);
+
+        // *** fermeture effective du programme si on le quitte
+        runAppFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private static MainPanel mainPanel;

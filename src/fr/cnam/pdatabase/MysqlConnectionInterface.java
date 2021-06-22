@@ -5,7 +5,7 @@ import java.util.*;
 /**
  *
  */
-public interface MysqlConnexionInterface {
+public interface MysqlConnectionInterface {
 
     /**
      * @return boolean

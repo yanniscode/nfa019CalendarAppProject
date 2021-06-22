@@ -1,15 +1,15 @@
-//package fr.cnam.pactivity;
-//
-//import java.util.*;
-//
-///**
-// *
-// */
-//public interface DateActivityItemInterface {
-//
-//    /**
-//     * @return void
-//     */
-//    public void displayActivity();
-//
-//}
+package fr.cnam.perrors;
+
+import java.util.*;
+
+/**
+ * 
+ */
+public interface FormControlButtonInterface {
+
+    /**
+     * @return void
+     */
+    public void displayFormControlBtn();
+
+}

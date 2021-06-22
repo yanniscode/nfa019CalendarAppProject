@@ -3,7 +3,7 @@ t
 '<< ,Static field declaration.l
 javaS3010&Remove this assignment of "mainLabel". 2 :)
 '22 $Static field declaration.r
-javaS3010,Remove this assignment of "controlBtnPanel". 2"" :)
+javaS3010,Remove this assignment of "controlBtnPanel". 2!! :)
 'FF 7Static field declaration.p
 javaS3010*Remove this assignment of "calendarPanel". 2## :)
 'AA /Static field declaration.P
@@ -11,11 +11,11 @@ t
 javaS22095Change this instance-reference to a static reference. 2 P
 javaS22095Change this instance-reference to a static reference. 2$ :P
 javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2"" P
+javaS22095Change this instance-reference to a static reference. 2!! P
 javaS22095Change this instance-reference to a static reference. 2## P
-javaS22095Change this instance-reference to a static reference. 2&&  P
-javaS22095Change this instance-reference to a static reference. 2'' V
+javaS22095Change this instance-reference to a static reference. 2%% P
+javaS22095Change this instance-reference to a static reference. 2&& %P
+javaS22095Change this instance-reference to a static reference. 2'' #V
 javaS125<This block of commented-out lines of code should be removed. 2-- H˜
 javaS125<This block of commented-out lines of code should be removed. 2NN
  -:

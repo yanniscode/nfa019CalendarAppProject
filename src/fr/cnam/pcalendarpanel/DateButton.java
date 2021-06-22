@@ -31,8 +31,6 @@ public class DateButton extends JPanel implements DateButtonInterface {
 
         this.datePart = new DatePart();
 
-//        this.dateValue = newDate;
-
         this.dateValue = this.datePart.getByFirstMondayOfMonthPage(monthIndex, dayIndex);    // idMonth = 0 (mois actuel pour l'initialisation du calendrier)
         this.datePart.setDateValue(this.dateValue);
 
@@ -233,7 +231,6 @@ public class DateButton extends JPanel implements DateButtonInterface {
 //        System.out.println(dateActivityItem);
 
         Long resLongDateFromBdd = dateActivityItem.getDatePart().getDatePartValue();
-//        System.out.println(dateActivityItem.getDatePart().getDatePartValue());
 //        System.out.println("###### bdd date = " + resLongDateFromBdd); // date: format long - ex: 11111111111L
 
 

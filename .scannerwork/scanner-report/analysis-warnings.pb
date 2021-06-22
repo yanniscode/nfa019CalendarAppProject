@@ -1,3 +1,3 @@
 È
-¾Dependencies/libraries were not provided for analysis of SOURCE files. The 'sonar.java.libraries' property is empty. Verify your configuration, as you might end up with less precise results.áÐþÑ¢/ì
-âMissing blame information for 3 files. This may lead to some features not working correctly. Please check the analysis logs and refer to <a href="/documentation/analysis/scm-integration/" target="_blank">the documentation</a>.ÕÒþÑ¢/
+¾Dependencies/libraries were not provided for analysis of SOURCE files. The 'sonar.java.libraries' property is empty. Verify your configuration, as you might end up with less precise results.þÛ–™£/í
+ãMissing blame information for 15 files. This may lead to some features not working correctly. Please check the analysis logs and refer to <a href="/documentation/analysis/scm-integration/" target="_blank">the documentation</a>.ÁÝ–™£/

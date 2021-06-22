@@ -1,14 +1,13 @@
 package fr.cnam.pcalendarpanel;
 
 //import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
-import fr.cnam.pdatabase.MysqlConnexion;
+import fr.cnam.pdatabase.MysqlConnection;
 import fr.cnam.putils.ReformatDate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,7 +20,7 @@ import java.util.Set;
  */
 public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
-    MysqlConnexion mysqlConnection;
+    MysqlConnection mysqlConnection;
     Connection connection;
 
     /**
@@ -31,7 +30,7 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
         super();
 
-        MysqlConnexion mysqlConnection = new MysqlConnexion();
+        MysqlConnection mysqlConnection = new MysqlConnection();
 //        Class.forName("com.mysql.cj.jdbc.Driver");
         // *** ouverture de la connection:
 

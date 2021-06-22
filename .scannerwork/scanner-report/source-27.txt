@@ -16,22 +16,22 @@ public class ControlAction {
     /**
      * String - valeur de ControlButton
      */
-    protected final String MONTH_BEFORE = "Mois Précédent";
+    public static final String LAST_MONTH = "Mois Précédent";
 
     /**
      * String - valeur de ControlButton
      */
-    protected final String ADD_ACTIVITY = "Ajouter une Activité";
+    public static final String ADD_ACTIVITY = "Ajouter une Activité";
 
     /**
      * String - valeur de ControlButton
      */
-    protected final String NEXT_MONTH = "Mois Suivant";
+    public static final String NEXT_MONTH = "Mois Suivant";
 
     /**
      * String - valeur de ControlButton
      */
-    protected String EXIT_PROGRAM = "Quitter Application";
+    public static String EXIT_PROGRAM = "Quitter Application";
 
 
 }

@@ -18,11 +18,17 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
 
     // *****************************
 
+    /**
+     *
+     * @param dateValue
+     * @param connection
+     * @return DateActivityItem
+     */
     public DateActivityItem findByDate(Date dateValue, Connection connection) {  // datePartId passée ici... (= recherche sur la date)
 
         this.connection = connection;
 
-        System.out.println(dateValue);
+//        System.out.println(dateValue);
 
         // **** convertion du format 'Date' -> 'Long' pour la BDD:
         Long convertedDateToLong = dateValue.getTime();
@@ -33,9 +39,9 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
         DatePart datePart = new DatePart();
         DateActivityItem dateActivityItem = new DateActivityItem();
         dateActivityItem.setDatePart(datePart);
-        System.out.println(dateActivityItem);
-        System.out.println("getDatePart : "+ dateActivityItem.getDatePart());
-        System.out.println(this.connection);
+//        System.out.println(dateActivityItem);
+//        System.out.println("getDatePart : "+ dateActivityItem.getDatePart());
+//        System.out.println(this.connection);
 
         String sql = "SELECT DISTINCT d.DATEPART_ID, d.DATEPART_VALUE, da.DATE_ACTIVITY_ID, da.DATE_ACTIVITY_DESCRIPTION, da.DATE_ACTIVITY_STATUS "+
                 "FROM DATEPART d INNER JOIN DATE_ACTIVITY da "+
@@ -75,6 +81,11 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
 
     // *****************************
 
+    /**
+     *
+     * @param dateActivityItem
+     * @return boolean
+     */
     @Override
     public boolean create(DateActivityItem dateActivityItem) {
 
@@ -84,10 +95,11 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
         String sql =  "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(?); "+
                 "INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) "+
                 "VALUES (LAST_INSERT_ID(), ?, ?)";
-        // *** en dur:
-//            String sql =  "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(?); "+
+//            String sql = "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(?); "+
 //                    "INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) "+
-//                    "VALUES (LAST_INSERT_ID(), 'my new activity description', '\"En Définition\"')";
+//                    "VALUES (LAST_INSERT_ID(), 'my activity description', '\"En Définition\"')";
+        // *** en dur:
+//        INSERT INTO DATEPART (DATEPART_VALUE) VALUES(1622412000000); INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) VALUES (LAST_INSERT_ID(), 'my activity description', '\"En Définition\"')
 
         try (PreparedStatement insertSQL = connection.prepareStatement(sql)) {
             // l'enum par le num - ex: 'En définition' = 1 (de 1 à 4)
@@ -116,11 +128,15 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
     }
 
 
-
+    /**
+     *
+     * @param dateActivityItem
+     * @return boolean
+     */
     @Override
     public boolean delete(DateActivityItem dateActivityItem) {
 
-        System.out.println("######### "+ dateActivityItem.getDatePart().getDatePartId());
+//        System.out.println("######### "+ dateActivityItem.getDatePart().getDatePartId());
 
         boolean response;
 
@@ -146,7 +162,10 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
     }
 
 
-
+    /**
+     * @param dateActivityItem
+     * @return boolean
+     */
     @Override
     public boolean update(DateActivityItem dateActivityItem) {
         boolean response = false;
@@ -176,14 +195,18 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
     }
 
 
+    /**
+     * @param datePartId
+     * @return DateActivityItem
+     */
     @Override
     public DateActivityItem find(int datePartId) {  // datePartId passée ici... (= recherche sur la date)
-        System.out.println(datePartId);
+//        System.out.println(datePartId);
         DatePart datePart = new DatePart();
         DateActivityItem dateActivityItem = new DateActivityItem();
         dateActivityItem.setDatePart(datePart);
-        System.out.println(dateActivityItem);
-        System.out.println("getDatePart : "+ dateActivityItem.getDatePart());
+//        System.out.println(dateActivityItem);
+//        System.out.println("getDatePart : "+ dateActivityItem.getDatePart());
 
 
         String sql = "SELECT d.DATEPART_ID, d.DATEPART_VALUE, da.DATE_ACTIVITY_ID, da.DATE_ACTIVITY_DESCRIPTION, da.DATE_ACTIVITY_STATUS "+

@@ -1,59 +1,66 @@
-package fr.cnam.pdatabase.managment.dao;
+package fr.cnam.pdatabase.managment.model;
 
-import java.sql.Connection;
+import fr.cnam.pdatabase.managment.model.DatePart;
 
-/**
- * @author Yannis Guéguen
- */
-public abstract class DAO<T> implements DAOInterface<T> {
+public class DateActivityItem {
 
+    private DatePart datePart;
+    private int dateActivityId;
+    private String datePartDescription;
+    private String datePartStatus;
 
     /**
-     * Constructeur 2
-     * @param connection
+     *  constructor 2
      */
-    public DAO(Connection connection) {
-        this.connection = connection;
+    public DateActivityItem(DatePart datePart) {
+        super();
+        this.datePart = datePart;
     }
 
     /**
      * Default constructor
      */
-    public DAO() {
+    public DateActivityItem() {
+        super();
     }
 
-    /**
-     * Connection
-     */
-    private Connection connection = null;
+    // **********
 
-    /**
-     * MysqlConnexion
-     */
-//    private MysqlConnexion mysqlConnexion = null;
+    public DatePart getDatePart() {
+        return this.datePart;
+    }
 
-    /**
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean create(T obj);
+    public void setDatePart(DatePart datePart) {
+        System.out.println(datePart);
+        this.datePart = datePart;
+        return;
+    }
 
-    /**
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean update(T obj);
+    // ***********
 
-    /**
-     * @param obj
-     * @return boolean
-     */
-    public abstract boolean delete(T obj);
+    public int getDateActivityId() {
+        return this.dateActivityId;
+    }
+    public void setDateActivityId(int dateActivityId) {
+        this.dateActivityId = dateActivityId;
+        return;
+    }
 
-    /**
-     * @param id
-     * @return boolean
-     */
-    public abstract T find(int id);
+    public String getDateActivityDescription() {
+        return this.datePartDescription;
+    }
+
+    public void setDateActivityDescription(String datePartDescription) {
+        this.datePartDescription = datePartDescription;
+    }
+
+    public String getDateActivityStatus() {
+        return this.datePartStatus;
+    }
+
+    public void setDateActivityStatus(String datePartStatus) {
+        this.datePartStatus = datePartStatus;
+        return;
+    }
 
 }

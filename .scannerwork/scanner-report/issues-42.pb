@@ -1,9 +1,6 @@
-
-javaS59939Change the visibility of this constructor to "protected". 2 
-:)
-'* This class is "abstract".
-javaS59939Change the visibility of this constructor to "protected". 2 
-:)
-'* This class is "abstract".V
-javaS125<This block of commented-out lines of code should be removed. 2!! 3I
-javaS1068.Remove this unused "connection" private field. 2 !
+m
+javaS1128TRemove this unnecessary import: same package classes are always implicitly imported. 2 26
+javaS3626Remove this redundant jump. 2$$ S
+javaS1069Replace this use of System.out or System.err by a logger. 2"" 6
+javaS3626Remove this redundant jump. 2.. 6
+javaS3626Remove this redundant jump. 2?? 

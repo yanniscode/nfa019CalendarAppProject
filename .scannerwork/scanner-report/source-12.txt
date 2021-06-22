@@ -25,7 +25,7 @@ public class ReformatDateTest {
 //                    null, "Juin"
 //                },
                 {
-                        new Date(), "juin", "16/06/2021"
+                        new Date(), "juin", "20/06/2021"
                 },
         });
     }

@@ -21,22 +21,22 @@ public class MainPanel extends Container implements MainPanelInterface {
 
         super();
 
-        FlowLayout glMain = new FlowLayout(CENTER, 1000, 50);
+        FlowLayout glMain = new FlowLayout(FlowLayout.CENTER, 1000, 50);
         this.setLayout(glMain);
 
-        this.calendarMainTitle = "Le Calendrier des Lunaires\n";
+        this.calendarMainTitle = "Le Calendrier des Lunaires";
 
         this.mainLabel = new JLabel(this.calendarMainTitle);
         this.mainLabel.setFont(new Font("Serif", 0, 20));
-        add(this.mainLabel);
 
-        // *** note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
+        // *** composant des boutons de contrôle du calendrier - note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
         this.controlBtnPanel = new ControlButtonsPanel(this);
+        // *** composant du calendrier
         this.calendarPanel = new CalendarPanel();
 
-
-        add(this.controlBtnPanel);
-        add(this.calendarPanel);
+        this.add(this.mainLabel);
+        this.add(this.controlBtnPanel);
+        this.add(this.calendarPanel);
     }
 
     /**

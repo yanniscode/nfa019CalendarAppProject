@@ -1,15 +1,326 @@
-package fr.cnam.perrors;
-
-import java.util.*;
-
-/**
- * 
- */
-public interface FormErrorPanelInterface {
-
-    /**
-     * @return void
-     */
-    public void displayErrorPanel();
-
-}
+//package fr.cnam.pactivity;
+//
+//import fr.cnam.pdatabase.managment.model.DatePart;
+//
+//import javax.swing.*;
+//import java.awt.*;
+//import java.awt.event.WindowAdapter;
+//import java.awt.event.WindowEvent;
+//import java.awt.event.WindowListener;
+//import java.util.*;
+//
+///**
+// * @author Yannis Guéguen
+// */
+//public class ActivityMainFormPanel extends JFrame implements ActivityMainFormPanelInterface {
+//
+//
+//    private JFrame activityFormDialog;
+//
+//    private ActivityForm activityForm;
+//
+//    /**
+//     * Default constructor
+//     */
+//    public ActivityMainFormPanel() {
+//
+//        this.activityFormDialog = new JFrame();
+//
+////        GridLayout glActivityForm = new GridLayout(2, 3);
+////        this.activityFormDialog.setLayout(glActivityForm);
+//        FlowLayout glActivityMainFormPanel = new FlowLayout(FlowLayout.CENTER,1000,50);
+////        FlowLayout glActivityForm = new FlowLayout(CENTER, 1000, 50);
+//        this.activityFormDialog.setLayout(glActivityMainFormPanel);
+//
+//        this.activityFormDialog.setSize(960, 540);
+//        this.activityFormDialog.setLocation(480,270);
+//        String activityFormTitle = "Ajout d'une Activité";
+//        this.activityFormDialog.setTitle(activityFormTitle);
+//
+//        this.activityPanelTitle = "Ajout d'une Activité";
+//        this.activityPanelLabel = new JLabel(this.activityPanelTitle);
+//        this.activityPanelLabel.setFont(new Font("Serif", 0, 20));
+//        this.activityPanelLabel.setBackground(Color.BLUE);
+////        this.activityPanelLabel.setHorizontalTextPosition(JLabel.CENTER);
+//
+//        this.activityFormDialog.add(this.activityPanelLabel);
+//
+//        this.activityForm = new ActivityForm();
+//
+//        this.activityFormDialog.add(activityForm);
+//
+////        JLabel dateChoiceLabel = new JLabel("Choisir une date: ");
+////        this.activityFormDialog.add(dateChoiceLabel);
+//
+//
+////        Container activityFormContainer = this.getContentPane();
+//
+////        Container activityFormTitleContainer = new Container();
+////        activityFormTitleContainer.setBackground(Color.BLUE);
+////        activityFormTitleContainer.add(this.activityFormDialog);
+////        activityFormTitleContainer.setVisible(true);
+//
+//
+//        WindowListener l = new WindowAdapter() {
+//
+//
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//
+//                System.exit(1);
+//            };
+//        };
+//
+//        this.addWindowListener(l);
+//
+//
+//
+////        this.activityFormDialog.setVisible(true);
+//        this.activityFormDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//
+//    }
+//
+//
+//
+//    private static volatile boolean sliderActivated = false;
+//
+//    public static void setSliderActivated(boolean sliderActivated) {
+//        ActivityMainFormPanel.sliderActivated = sliderActivated;
+//    }
+//
+//
+//    public void windowStateChanged(WindowEvent e) {
+//        if (e.getNewState() == WindowEvent.WINDOW_CLOSED) {
+//            this.setSliderActivated(false);
+//        } else if (e.getNewState() == WindowEvent.WINDOW_OPENED) {
+//            setSliderActivated(true);
+//        }
+//    }
+//
+//    // ******************************************
+//
+//    /**
+//     * JLabel
+//     */
+//    private JLabel activityPanelLabel = new JLabel();
+//
+//
+//
+//    // *+*****************************************
+//
+//    /**
+//     *
+//     */
+//    private String activityPanelTitle;
+//
+//    /**
+//     * Date de format: dd
+//     */
+//    private Date daySelect;
+//
+//    /**
+//     * Date de format: MM
+//     */
+//    private Date monthSelect;
+//
+//    /**
+//     * Date de format: yyyy
+//     */
+//    private Date yearSelect;
+//
+//    /**
+//     * Date
+//     */
+//    private Date newAggregatedDate;
+//
+//    /**
+//     * String
+//     */
+//    private String newActivityDescription;
+//
+//    /**
+//     * String
+//     */
+//    private String newActivityStatus;
+//
+//    /**
+//     * int - utilisé pour gérer le temps de connexion au formulaire de saisie
+//     */
+//    private int timeOut;
+//
+//
+//    // ***********************
+//
+////    public JDialog getActivityFormDialog() {
+////        return this.activityFormDialog;
+////    }
+////    public void setActivityFormDialog(JDialog activityFormDialog) {
+////        this.activityFormDialog = activityFormDialog;
+////        return;
+////    }
+//
+//    // **********************
+//
+//    public ActivityForm getActivityForm() {
+//        return this.activityForm;
+//    }
+//
+//    public void setActivityFormFrame(ActivityForm activityForm) {
+//        this.activityForm = activityForm;
+//        return;
+//    }
+//
+//    /**
+//     * @return JLabel
+//     */
+//    public JLabel getActivityPanelLabel() {
+//        return this.activityPanelLabel;
+//    }
+//
+//    /**
+//     * @param activityPanelLabel
+//     * @return void
+//     */
+//    public void setActivityPanelLabel(JLabel activityPanelLabel) {
+//        this.activityPanelLabel = activityPanelLabel;
+//        return;
+//    }
+//
+//    // *******************
+//
+//
+//    public JFrame getActivityFormFrame() {
+//        return this.activityFormDialog;
+//    }
+//
+//    public void setActivityFormFrame(JFrame activityFormFrame) {
+//        this.activityFormDialog = activityFormFrame;
+//        return;
+//    }
+//
+//
+//    // ***********************
+//
+//    /**
+//     * @return DatePart
+//     */
+//    public DatePart getNewDay() {
+//        // TODO implement here
+//        return null;
+//    }
+//
+//    /**
+//     * @param selectedDay
+//     * @return void
+//     */
+//    public void setNewDay(DatePart selectedDay) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @return DatePart
+//     */
+//    public DatePart getNewMonth() {
+//        // TODO implement here
+//        return null;
+//    }
+//
+//    /**
+//     * @param selectedMonth
+//     * @return void
+//     */
+//    public void setNewMonth(DatePart selectedMonth) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @return DatePart
+//     */
+//    public DatePart getNewYear() {
+//        // TODO implement here
+//        return null;
+//    }
+//
+//    /**
+//     * @param selectedYear
+//     * @return void
+//     */
+//    public void setNewYear(Date selectedYear) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @return String
+//     */
+//    public String getNewActivityDescription() {
+//        // TODO implement here
+//        return "";
+//    }
+//
+//    /**
+//     * @param newActivityText
+//     * @return void
+//     */
+//    public void setNewActivityDescription(String newActivityText) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @param selectedStatus
+//     * @return void
+//     */
+//    public void setNewActivityStatus(String selectedStatus) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @return String
+//     */
+//    public String getNewActivityStatus() {
+//        // TODO implement here
+//        return "";
+//    }
+//
+//    /**
+//     * @param newAggregatedDate
+//     * @param newActivityDescription
+//     * @param newActivityStatus
+//     * @return void
+//     */
+//    public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @param timeOut
+//     * @return void
+//     */
+//    public void setTimeOut(int timeOut) {
+//        // TODO implement here
+//        return;
+//    }
+//
+//    /**
+//     * @return int - utilisé pour reset du timeout (gestion du temps de connexion au formulaire de saisie
+//     */
+//    public int resetTimeOut() {
+//        // TODO implement here
+//        return -1;
+//    }
+//
+//    @Override
+//    /**
+//     * @return void
+//     */
+//    public void displayActivityMainFormPanel() {
+//        // TODO implement here
+//        return;
+//    }
+//
+//}

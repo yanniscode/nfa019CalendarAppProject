@@ -1,11 +1,16 @@
 package fr.cnam.pbuttons;
 
+import fr.cnam.pactivity.ActivityFormPanel;
+//import fr.cnam.pactivity.ActivityMainFormPanel;
 import fr.cnam.pdatabase.managment.model.DatePart;
 import fr.cnam.pcalendarpanel.DateButton;
+import fr.cnam.penums.ControlAction;
+import fr.cnam.penums.FormControlAction;
 import fr.cnam.pmain.MainPanel;
 import fr.cnam.putils.MonthPageIncrement;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -22,14 +27,15 @@ import java.util.Calendar;
 public class ControlButton extends JPanel implements ActionListener {
 
 
-    Connection connection;
-
     /**
      *  constructor 2: utilisé par ControlButtonsPanel pour le changement de mois (<, >)
      */
     public ControlButton(String controlBtnValue, MainPanel mainPanel) {
 
         super();
+
+        this.activityForm = new ActivityFormPanel();
+//        this.activityMainFormPanel = new ActivityMainFormPanel(); // si ici, une seule instance créée
 
 //        mainPanel = RunCalendarApp.getMainPanel();
 //        System.out.println(RunCalendarApp.mainPanel);
@@ -43,27 +49,48 @@ public class ControlButton extends JPanel implements ActionListener {
         System.out.println("################################## "+this.mainPanel.getCalendarPanel());
 
         this.controlButton = new JButton(controlBtnValue);
+        this.controlButton.setPreferredSize(new Dimension(120, 60));
+
         this.controlButton.addActionListener(this);
 //        this.controlBtnValue = controlBtnValue;
         this.add(this.controlButton);
 
     }
 
-//    /**
-//     * Default constructor: (A FAIRE) utilisé par ControlButton 'EnterActivity' ??
-//     */
+    /**
+     * constructor 1: (A FAIRE) utilisé par ControlButton 'EnterActivity' ??
+     */
     public ControlButton(String controlBtnValue) {
+
         super();
 
+//        this.activityMainFormPanel = new ActivityMainFormPanel(); // si ici, une seule instance créée
+
         this.controlButton = new JButton(controlBtnValue);
+        this.controlButton.setPreferredSize(new Dimension(120, 60));
+
 //        this.controlBtnValue = controlBtnValue;
-        this.add(this.controlButton);
 
         this.controlButton.addActionListener(this);
+
+        this.add(this.controlButton);
     }
 
 
     // ajouts:
+
+    /**
+     * Connection - variable de connexion à MySql
+     */
+    private Connection connection;
+
+
+    private static ActivityFormPanel activityForm =  new ActivityFormPanel();
+
+    /**
+     * ActivityMainFormPanel - note: initialisé en dehors du constructeur
+     */
+//    private static ActivityMainFormPanel activityMainFormPanel =  new ActivityMainFormPanel();
 
     /**
      * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
@@ -105,6 +132,8 @@ public class ControlButton extends JPanel implements ActionListener {
      */
     public void actionPerformed(ActionEvent ev)
     {
+        String formControlAction = FormControlAction.VALIDATION;
+
         System.out.println("ev ############################### "+ ev);
         this.activedButton = ev.getActionCommand();
 
@@ -112,9 +141,12 @@ public class ControlButton extends JPanel implements ActionListener {
 
 //        CalendarPanel calendarPanel = this.mainPanel.getCalendarPanel();
 
-        if(this.activedButton.equals("<")) {
+        if(this.activedButton.equals(ControlAction.LAST_MONTH)) {
 
-                this.setLastMonthTitle();
+            System.out.println("Click mois dernier Activité");
+
+            this.setLastMonthTitle();
+
             try {
                 this.setLastMonthControl();
             } catch (SQLException e) {
@@ -124,15 +156,27 @@ public class ControlButton extends JPanel implements ActionListener {
             }
 
         }
-        else if(this.activedButton.equals("Nouvelle Activité")) {
-            System.out.println("Nouvelle Activité");
+        else if(this.activedButton.equals(ControlAction.ADD_ACTIVITY)) {
+
+            System.out.println("Click Nouvelle Activité");
+
+            try {
+                this.enterActivityMainFormPanel();
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+
         }
-        else if(this.activedButton.equals(">")) {
+        else if(this.activedButton.equals(ControlAction.NEXT_MONTH)) {
+
+            System.out.println("Click mois suivant");
 
 //            System.out.println(">");
 //            System.out.println("++ MONTH INDEX: "+ this.monthIndex);
 
             this.setNextMonthTitle();
+
             try {
                 this.setNextMonthControl();
             } catch (SQLException e) {
@@ -140,6 +184,9 @@ public class ControlButton extends JPanel implements ActionListener {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+        else if(this.activedButton.equals(FormControlAction.VALIDATION)) {
+            System.out.println(FormControlAction.VALIDATION);
         }
 
         return;
@@ -156,6 +203,64 @@ public class ControlButton extends JPanel implements ActionListener {
      * int
      */
     private static int indexMonth;
+
+
+    // *********************
+
+
+    /**
+     *
+     */
+    boolean activityFormOpened = false;
+
+    public boolean getActivityFormOpened() {
+        return this.activityFormOpened;
+    }
+    public void setActivityFormOpened(boolean activityFormOpened) {
+        this.activityFormOpened = activityFormOpened;
+        return;
+    }
+
+    public void enterActivityMainFormPanel() {
+
+//            this.activityMainFormPanel.getActivityForm().setDayAsDate(new java.sql.Date(System.currentTimeMillis()));
+
+//            ActivityFormPanel activityFormPanel;
+//            this.activityMainFormPanel = new ActivityMainFormPanel(); // si ici, nouvelle instance crée à chaque fois
+
+        // *** si une fenêtre 'activityFormPanel' est déjà visible, on ne peut en créer une nouvelle (la première est initialisée dans le constructeur)
+
+        System.out.println(this.activityForm);
+
+//        if(this.activityFormOpened == false) {
+//        if(this.activityMainFormPanel == null) {
+
+//        this.activityMainFormPanel = new ActivityMainFormPanel(); // si ici, une seule instance créée
+//        System.out.println(this.activityMainFormPanel.getComponents().length);
+
+//            if(!this.activityMainFormPanel.getActivityFormFrame().isShowing()) {
+
+
+                System.out.println("DATE TEXT FIELD: " + this.activityForm.getDateTextField().getText());
+                this.activityForm.initFormFields();
+
+//                System.out.println(this.activityMainFormPanel.getActivityFormFrame());
+                this.activityForm.setVisible(true);
+
+//            System.out.println(this.activityMainFormPanel.getActivityFormFrame().isShowing());
+//            System.out.println(this.activityMainFormPanel.getActivityFormFrame().isVisible());
+
+//            }
+
+//        }
+//        else {
+//            System.out.println("erreur: fenêtre déjà ouverte..."+ this.activityFormOpened);
+//        }
+
+//        this.activityFormOpened = true;
+
+    }
+
 
     /**
      * applique l'intitulé du mois suivant

@@ -1,5 +1,6 @@
 package fr.cnam.pbuttons;
 
+import fr.cnam.penums.ControlAction;
 import fr.cnam.pinterfaces.ControlButtonsPanelInterface;
 import fr.cnam.pmain.MainPanel;
 
@@ -24,9 +25,9 @@ public class ControlButtonsPanel extends JPanel implements ControlButtonsPanelIn
 //        System.out.println("this.mainPanel ################################# : "+ mainPanel);
 
         // *** note: le MainPanel est passé en paramètre aux ControlButtons directionnels car c'est par lui qu'on accède aux propriétés de 'CalendarPanel()' sur lequel agissent les ControlButtons:
-        this.leftBtn = new ControlButton("<", this.mainPanel);
-        this.enterActivityBtn = new ControlButton("Nouvelle Activité", this.mainPanel);
-        this.rightBtn = new ControlButton(">", this.mainPanel);
+        this.leftBtn = new ControlButton(ControlAction.LAST_MONTH, this.mainPanel);
+        this.enterActivityBtn = new ControlButton(ControlAction.ADD_ACTIVITY);
+        this.rightBtn = new ControlButton(ControlAction.NEXT_MONTH, this.mainPanel);
 
         add(this.leftBtn);
         add(this.enterActivityBtn);
