@@ -32,7 +32,7 @@ public class MonthPageIncrement {
 
     /**
      * @param incrementIndex
-     * @return void
+     * @return void - modification de la valeur de l'incrément (+1 ou -1)
      */
     public static void pushIncrementValue(int incrementIndex) {
         monthIndex += incrementIndex;

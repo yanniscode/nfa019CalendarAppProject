@@ -1,1 +1,1 @@
- 2javaX'hr%src/fr/cnam/penums/ActivityColor.java
+ 2javaXxhr,src/fr/cnam/pcalendarapp/RunCalendarApp.java

@@ -1,8 +1,10 @@
-q
-javaS2068V'password' detected in this expression, review this potentially hard-coded credential. 2(( m
-javaS125<This block of commented-out lines of code should be removed. 2	** ‘:
-0++ 5Code;
-javaS2068 Remove this hard-coded password. 200F NS
-javaS1069Replace this use of System.out or System.err by a logger. 211 S
-javaS1069Replace this use of System.out or System.err by a logger. 255 K
-javaS11352Complete the task associated to this TODO comment. 2PP 
+œ
+javaS1186€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation. 2 k
+javaS116QRename this field "ORANGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2 i
+javaS116ORename this field "BLUE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2 h
+javaS116NRename this field "RED" to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2 j
+javaS116PRename this field "GREEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2## <
+javaS1170!Make this final field static too. 2 <
+javaS1170!Make this final field static too. 2 <
+javaS1170!Make this final field static too. 2 <
+javaS1170!Make this final field static too. 2## 

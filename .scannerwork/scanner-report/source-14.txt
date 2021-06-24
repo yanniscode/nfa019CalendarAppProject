@@ -1,13 +1,11 @@
 package fr.cnam.pmain;
 
-import fr.cnam.pbuttons.ControlButtonsPanel;
+import fr.cnam.pbuttons.CalendarControlButtonsPanel;
 import fr.cnam.pcalendarpanel.CalendarPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-
-import static java.awt.FlowLayout.CENTER;
 
 /**
  * @author Yannis Guéguen
@@ -30,7 +28,7 @@ public class MainPanel extends Container implements MainPanelInterface {
         this.mainLabel.setFont(new Font("Serif", 0, 20));
 
         // *** composant des boutons de contrôle du calendrier - note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
-        this.controlBtnPanel = new ControlButtonsPanel(this);
+        this.controlBtnPanel = new CalendarControlButtonsPanel(this);
         // *** composant du calendrier
         this.calendarPanel = new CalendarPanel();
 
@@ -67,7 +65,7 @@ public class MainPanel extends Container implements MainPanelInterface {
     /**
      * ControlButtonsPanel - Container du Panneau de ControlButton
      */
-    private static ControlButtonsPanel controlBtnPanel;
+    private static CalendarControlButtonsPanel controlBtnPanel;
 
 
 
@@ -84,7 +82,7 @@ public class MainPanel extends Container implements MainPanelInterface {
     /**
      * @return ControlButtonsPanel
      */
-    public static ControlButtonsPanel getControlBtnPanel() {
+    public static CalendarControlButtonsPanel getControlBtnPanel() {
         return controlBtnPanel;
     }
 
@@ -92,7 +90,7 @@ public class MainPanel extends Container implements MainPanelInterface {
      *
      * @param controlBtnPanel
      */
-    public void setControlBtnPanel(ControlButtonsPanel controlBtnPanel) {
+    public void setControlBtnPanel(CalendarControlButtonsPanel controlBtnPanel) {
         this.controlBtnPanel = controlBtnPanel;
         return;
     }

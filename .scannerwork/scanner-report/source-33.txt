@@ -1,15 +1,15 @@
-package fr.cnam.pactivity;
+package fr.cnam.perrors;
 
 import java.util.*;
 
 /**
- *
+ * 
  */
-public interface ActivityFormPanelInterface {
+public interface FormErrorPanelInterface {
 
     /**
      * @return void
      */
-    public void displayActivityForm();
+    public void displayErrorPanel();
 
 }

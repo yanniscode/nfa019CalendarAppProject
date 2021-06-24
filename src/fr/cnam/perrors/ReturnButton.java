@@ -1,6 +1,6 @@
 package fr.cnam.perrors;
 
-import java.util.*;
+import fr.cnam.pbuttons.FormControlButtonInterface;
 
 /**
  * @author Yannis Guéguen
