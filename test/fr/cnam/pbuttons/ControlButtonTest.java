@@ -55,7 +55,7 @@ public class ControlButtonTest extends JPanel{
     // MARCHE PAS:
 //    ActionEvent evIn = java.awt.event.ActionEvent[ACTION_PERFORMED,cmd=<,when=1623836628830,modifiers=Button1] on javax.swing.JButton[,5,5,44x25,alignmentX=0.0,alignmentY=0.5,border=javax.swing.plaf.BorderUIResource$CompoundBorderUIResource@3dc06754,flags=296,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,disabledSelectedIcon=,margin=javax.swing.plaf.InsetsUIResource[top=2,left=14,bottom=2,right=14],paintBorder=true,paintFocus=true,pressedIcon=,rolloverEnabled=true,rolloverIcon=,rolloverSelectedIcon=,selectedIcon=,text=<,defaultCapable=true];
 
-    private ControlButtonsPanel controlButtonsPanel;
+    private CalendarControlButtonsPanel controlButtonsPanel;
 
     /**
      * JButton
@@ -71,7 +71,7 @@ public class ControlButtonTest extends JPanel{
     /**
      * ControlButton
      */
-    private ControlButton controlButton;
+    private CalendarControlButton controlButton;
 
     /**
      * String
@@ -113,9 +113,9 @@ public class ControlButtonTest extends JPanel{
     public void initialize() throws SQLException, ClassNotFoundException {
 
         this.mainPanel = new MainPanel();
-        this.controlButtonsPanel = new ControlButtonsPanel(this.mainPanel);
+        this.controlButtonsPanel = new CalendarControlButtonsPanel(this.mainPanel);
         // *** instanciation de la classe liée pour les tests:
-        this.controlButton = new ControlButton(this.activedBtnValueIn, this.mainPanel);
+        this.controlButton = new CalendarControlButton(this.activedBtnValueIn, this.mainPanel);
 
         this.controlButtonsPanel.setBtn(this.controlButton);
 

@@ -5,7 +5,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-//import java.util.*;
+
 
 /**
  * @author Yannis Guéguen
@@ -17,11 +17,8 @@ public class DatePart {
      * Default constructor
      */
     public DatePart() {
-//        this.cacheCalendar = Calendar.getInstance();
         this.mainCalendar = Calendar.getInstance();
-
     }
-
 
 
     // AJOUTS:
@@ -33,6 +30,7 @@ public class DatePart {
 
 
     // *** var pour DAO:
+
     /**
      * int - id de l'objet créé à partir des données de la BDD
      */
@@ -96,7 +94,7 @@ public class DatePart {
 
     // **************************************
 
-    // méthodes du DAO:
+    // méthodes liées au DAO:
 
     /**
      * @return int
@@ -216,6 +214,7 @@ public class DatePart {
         // ajoute le premier lundi du mois au Calendar = 0
         cacheCalendar.add(Calendar.DATE, idDayAdd);
 //        System.out.println(cacheCalendar.getTime());
+
         // ou: (test String)
         System.out.println(cacheCalendar.get(Calendar.DATE)+"/"+(cacheCalendar.get(Calendar.MONTH)+1)+"/"+cacheCalendar.get(Calendar.YEAR));
         System.out.println(cacheCalendar.getTime());
@@ -227,8 +226,7 @@ public class DatePart {
 
 
 
-    // *** on retrouve un jour de ref du mois précédeent (selon le nombre de mois avant aujourd'hui)
-
+    // *** on retrouve un jour de ref du mois précédent (selon le nombre de mois avant aujourd'hui)
     /**
      *
      * @param monthIndex
@@ -246,8 +244,8 @@ public class DatePart {
     }
 
 
+
     /**
-     *
      * @return StringBuilder - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
      */
     public static StringBuilder getWeekDays() {

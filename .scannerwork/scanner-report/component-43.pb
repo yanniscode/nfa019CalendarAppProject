@@ -1,1 +1,1 @@
-+ 2javaXhrDsrc/fr/cnam/pdatabase/managment/model/DateActivityItemInterface.java
++ 2javaXThr*src/fr/cnam/pdatabase/MysqlConnection.java

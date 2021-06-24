@@ -1,1 +1,1 @@
-* 2javaXChr;src/fr/cnam/pdatabase/managment/model/DateActivityItem.java
+* 2javaXùhr8src/fr/cnam/pdatabase/managment/dao/DateActivityDAO.java

@@ -1,289 +1,229 @@
-9
-javaS1700Rename field "controlButton" 2
-¥¥ !w
-javaS1104ZMake controlBtnIcon a static final constant or non-public and provide accessors if needed. 2
-ææ #V
-javaS125<This block of commented-out lines of code should be removed. 2 1G
-javaS1948,Make "connection" transient or serializable. 2UU !w
-javaS1450\Remove the "activedButton" field and declare it as a local variable in the relevant methods. 2gg  V
-javaS125<This block of commented-out lines of code should be removed. 2 o
-javaS3010)Remove this assignment of "activityForm". 2%% :)
-'XX MStatic field declaration.l
-javaS3010&Remove this assignment of "mainPanel". 2// :)
-'bb 'Static field declaration.P
-javaS22095Change this instance-reference to a static reference. 2%% S
-javaS1069Replace this use of System.out or System.err by a logger. 2,, l
-javaS125<This block of commented-out lines of code should be removed. 2((
- 4:
-))
- 7CodeP
-javaS22095Change this instance-reference to a static reference. 2// V
-javaS125<This block of commented-out lines of code should be removed. 2-- MS
-javaS1069Replace this use of System.out or System.err by a logger. 200 P
-javaS22095Change this instance-reference to a static reference. 200 )S
-javaS1069Replace this use of System.out or System.err by a logger. 211 P
-javaS22095Change this instance-reference to a static reference. 211A OV
-javaS125<This block of commented-out lines of code should be removed. 277
+G
+javaS1948,Make "connection" transient or serializable. 2NN !w
+javaS1450\Remove the "activedButton" field and declare it as a local variable in the relevant methods. 2aa  l
+javaS3010&Remove this assignment of "mainPanel". 2)) :)
+'\\ 'Static field declaration.P
+javaS22095Change this instance-reference to a static reference. 2)) V
+javaS125<This block of commented-out lines of code should be removed. 2'' Ml
+javaS125<This block of commented-out lines of code should be removed. 2**
+ -:
+++
+ fCodeV
+javaS125<This block of commented-out lines of code should be removed. 211
  1V
-javaS125<This block of commented-out lines of code should be removed. 2HH
- 1V
-javaS125<This block of commented-out lines of code should be removed. 2]] `b
-javaS1854ERemove this useless assignment to local variable "formControlAction". 2
-áá! ?8
+javaS125<This block of commented-out lines of code should be removed. 2RR VV
+javaS125<This block of commented-out lines of code should be removed. 2WW `8
 javaS3626Remove this redundant jump. 2
-¿¿ U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ââ U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-åå R
-javaS22095Change this instance-reference to a static reference. 2
-åå )X
+ªª p
 javaS125<This block of commented-out lines of code should be removed. 2
-éé
- JU
+ÇÇ
+ B:
+
+ÉÉ
+ HCodep
+javaS125<This block of commented-out lines of code should be removed. 2
+áá
+ -:
+
+àà
+ JCodeU
 javaS1069Replace this use of System.out or System.err by a logger. 2
-íí ¡
-javaS2147yCombine this catch with the one at line 152, which has the same body. (sonar.java.source not set. Assuming 7 or greater.) 2
-öö -:)
+åå ¡
+javaS2147yCombine this catch with the one at line 146, which has the same body. (sonar.java.source not set. Assuming 7 or greater.) 2
+îî -:)
 '
-òö Combine with this catchr
+íî Combine with this catchr
 javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
-ôô !r
+ìì !r
 javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
-õõ !U
+ïï !U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-°° r
+õõ r
 javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
-ßß !U
+°° !U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-≠≠ p
+ßß X
 javaS125<This block of commented-out lines of code should be removed. 2
-ØØ &:
-
-∞∞ FCode¡
-javaS2147yCombine this catch with the one at line 182, which has the same body. (sonar.java.source not set. Assuming 7 or greater.) 2
-∏∏ -:)
+©© F¡
+javaS2147yCombine this catch with the one at line 177, which has the same body. (sonar.java.source not set. Assuming 7 or greater.) 2
+≥≥ -:)
 '
-∂∏ Combine with this catchr
+±≥ Combine with this catchr
 javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
-∑∑ !r
+≤≤ !r
 javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
-ππ !U
+¥¥ !U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-ΩΩ 8
+∏∏ 8
 javaS3626Remove this redundant jump. 2
-›› U
+ÍÍ Ä
+javaS125<This block of commented-out lines of code should be removed. 2
+—— ):
+
+”” .Code:
+
+‘‘
+ )Code:
+
+’’ Code:
+
+÷÷ ECode:
+
+◊◊
+ 7Code:
+
+ÿÿ
+ Code:
+
+ŸŸ CodeU
 javaS1069Replace this use of System.out or System.err by a logger. 2
-ÈÈ X
+·· X
 javaS125<This block of commented-out lines of code should be removed. 2
-‚‚ wX
+‚‚
+ cX
 javaS125<This block of commented-out lines of code should be removed. 2
-‰‰ 2R
-javaS22095Change this instance-reference to a static reference. 2
-ÈÈ ,U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ÙÙ p
-javaS125<This block of commented-out lines of code should be removed. 2
-ÎÎ
- 0:
-
-ÏÏ
- 2CodeX
-javaS125<This block of commented-out lines of code should be removed. 2
-ÔÔ
- PX
-javaS125<This block of commented-out lines of code should be removed. 2
-ÒÒ RR
-javaS22095Change this instance-reference to a static reference. 2
-ÙÙ9 JR
-javaS22095Change this instance-reference to a static reference. 2
-ıı !R
-javaS22095Change this instance-reference to a static reference. 2
-¯¯ !X
-javaS125<This block of commented-out lines of code should be removed. 2
-˜˜ Xp
-javaS125<This block of commented-out lines of code should be removed. 2
-˙˙ `:
-
-˚˚ `CodeX
-javaS125<This block of commented-out lines of code should be removed. 2
-˝˝ †
-javaS125<This block of commented-out lines of code should be removed. 2
-ˇˇ
- :
-
-ÄÄ
- Code:
-
-ÅÅ ]Code:
-
-ÇÇ
- CodeX
-javaS125<This block of commented-out lines of code should be removed. 2
-ÑÑ
- )8
+ÁÁ
+ P8
 javaS3626Remove this redundant jump. 2
-´´ U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-éé R
+íí R
 javaS22095Change this instance-reference to a static reference. 2
-ééA OR
-javaS22095Change this instance-reference to a static reference. 2
-èè R
-javaS22095Change this instance-reference to a static reference. 2
-êê X
+ÙÙ X
 javaS125<This block of commented-out lines of code should be removed. 2
-ëë
+ÛÛ
+ fR
+javaS22095Change this instance-reference to a static reference. 2
+ıı X
+javaS125<This block of commented-out lines of code should be removed. 2
+ˆˆ
  JR
 javaS22095Change this instance-reference to a static reference. 2
-öö p
+ÅÅ p
 javaS125<This block of commented-out lines of code should be removed. 2
-òò
+ˇˇ
  .:
 
-ôô
+ÄÄ
  "CodeS
 javaS26966Make the enclosing method "static" or remove this set. 2
-úú R
+ÑÑ R
 javaS22095Change this instance-reference to a static reference. 2
-úú R
+ÑÑ R
 javaS22095Change this instance-reference to a static reference. 2
-úú 1S
+ÑÑ 1S
 javaS26966Make the enclosing method "static" or remove this set. 2
-££ R
+ää R
 javaS22095Change this instance-reference to a static reference. 2
-££ p
+ää p
 javaS125<This block of commented-out lines of code should be removed. 2
-ûû
+ÜÜ
  :
 
-üü
+áá
  .CodeR
 javaS22095Change this instance-reference to a static reference. 2
-££? NR
+ää? NR
 javaS22095Change this instance-reference to a static reference. 2
-ßß X
+éé X
 javaS125<This block of commented-out lines of code should be removed. 2
-§§
+ãã
  ;R
 javaS22095Change this instance-reference to a static reference. 2
-ßß; OR
+éé; OR
 javaS22095Change this instance-reference to a static reference. 2
-©© R
+êê R
 javaS22095Change this instance-reference to a static reference. 2
-©© )\
-javaS1854?Remove this useless assignment to local variable "newDatePart". 2
-¥¥ -8
+êê )8
 javaS3626Remove this redundant jump. 2
-÷÷ ´
+ππ ´
 javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 2
-∏∏9 ER
+õõ9 ER
 javaS22095Change this instance-reference to a static reference. 2
-∫∫ (p
+ùù (p
 javaS125<This block of commented-out lines of code should be removed. 2
-¿¿ _:
+££ _:
 
-¡¡ 4CodeR
+§§ 4CodeR
 javaS22095Change this instance-reference to a static reference. 2
-√√6 EX
+¶¶6 EX
 javaS125<This block of commented-out lines of code should be removed. 2
-∆∆ JR
+©© JR
 javaS22095Change this instance-reference to a static reference. 2
-ÕÕ R
+∞∞ R
 javaS22095Change this instance-reference to a static reference. 2
-–– R
+∑∑ X
+javaS125<This block of commented-out lines of code should be removed. 2
+≥≥
+ _R
 javaS22095Change this instance-reference to a static reference. 2
-––L [R
+∑∑ )8
+javaS3626Remove this redundant jump. 2
+÷÷ R
+javaS22095Change this instance-reference to a static reference. 2
+¬¬ R
+javaS22095Change this instance-reference to a static reference. 2
+√√ R
+javaS22095Change this instance-reference to a static reference. 2
+»» S
+javaS26966Make the enclosing method "static" or remove this set. 2
+   R
+javaS22095Change this instance-reference to a static reference. 2
+   R
+javaS22095Change this instance-reference to a static reference. 2
+   1S
+javaS26966Make the enclosing method "static" or remove this set. 2
+œœ R
+javaS22095Change this instance-reference to a static reference. 2
+œœ X
+javaS125<This block of commented-out lines of code should be removed. 2
+ÃÃ
+ .R
+javaS22095Change this instance-reference to a static reference. 2
+œœ? NR
+javaS22095Change this instance-reference to a static reference. 2
+““ R
+javaS22095Change this instance-reference to a static reference. 2
+““; OR
 javaS22095Change this instance-reference to a static reference. 2
 ‘‘ R
 javaS22095Change this instance-reference to a static reference. 2
-‘‘ )8
-javaS3626Remove this redundant jump. 2
-¯¯ R
-javaS22095Change this instance-reference to a static reference. 2
-ﬂﬂ R
-javaS22095Change this instance-reference to a static reference. 2
-‡‡ R
-javaS22095Change this instance-reference to a static reference. 2
-ËË S
-javaS26966Make the enclosing method "static" or remove this set. 2
-ÍÍ R
-javaS22095Change this instance-reference to a static reference. 2
-ÍÍ R
-javaS22095Change this instance-reference to a static reference. 2
-ÍÍ 1S
-javaS26966Make the enclosing method "static" or remove this set. 2
-ÒÒ R
-javaS22095Change this instance-reference to a static reference. 2
-ÒÒ p
-javaS125<This block of commented-out lines of code should be removed. 2
-ÌÌ
- :
-
-ÓÓ
- .CodeR
-javaS22095Change this instance-reference to a static reference. 2
-ÒÒ? NR
-javaS22095Change this instance-reference to a static reference. 2
-ÙÙ R
-javaS22095Change this instance-reference to a static reference. 2
-ÙÙ; OR
-javaS22095Change this instance-reference to a static reference. 2
-ˆˆ R
-javaS22095Change this instance-reference to a static reference. 2
-ˆˆ )\
+‘‘ )\
 javaS1854?Remove this useless assignment to local variable "newDatePart". 2
-ÇÇ -8
+ﬂﬂ -8
 javaS3626Remove this redundant jump. 2
-®® X
-javaS125<This block of commented-out lines of code should be removed. 2
-ˇˇ
- I´
+˛˛ ´
 javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 2
-ÜÜ9 ER
+„„9 ER
 javaS22095Change this instance-reference to a static reference. 2
-àà (à
+ÂÂ (à
 javaS125<This block of commented-out lines of code should be removed. 2
-ãã X:
+ÈÈ ,:
 
-åå YCode:
+ÍÍ OCode:
 
-çç 4Codeà
-javaS125<This block of commented-out lines of code should be removed. 2
-èè ,:
-
-êê OCode:
-
-ëë 2CodeR
+ÎÎ 2CodeR
 javaS22095Change this instance-reference to a static reference. 2
-ìì6 EX
-javaS125<This block of commented-out lines of code should be removed. 2
-ññ JU
+ÌÌ6 EU
 javaS1069Replace this use of System.out or System.err by a logger. 2
-úú R
+ÙÙ R
 javaS22095Change this instance-reference to a static reference. 2
-üü R
+˜˜ R
 javaS22095Change this instance-reference to a static reference. 2
-¢¢ R
+¸¸ X
+javaS125<This block of commented-out lines of code should be removed. 2
+˙˙
+ _R
 javaS22095Change this instance-reference to a static reference. 2
-¢¢L [R
-javaS22095Change this instance-reference to a static reference. 2
-¶¶ R
-javaS22095Change this instance-reference to a static reference. 2
-¶¶ )8
+¸¸ )X
+javaS125<This block of commented-out lines of code should be removed. 2
+îî &8
 javaS3626Remove this redundant jump. 2
-œœ 8
+•• 8
 javaS3626Remove this redundant jump. 2
-‡‡ S
-javaS14816Remove this unused "formControlAction" local variable. 2
-áá  M
+µµ M
 javaS14810Remove this unused "newDatePart" local variable. 2
-¥¥ M
+ﬂﬂ M
 javaS14810Remove this unused "newFirstDay" local variable. 2
-∂∂ M
-javaS14810Remove this unused "newDatePart" local variable. 2
-ÇÇ M
-javaS14810Remove this unused "newFirstDay" local variable. 2
-ÑÑ J
-javaS1068/Remove this unused "newMonthRef" private field. 2mm #J
-javaS1068/Remove this unused "newCalendar" private field. 2rr  
+·· J
+javaS1068/Remove this unused "newMonthRef" private field. 2gg #J
+javaS1068/Remove this unused "newCalendar" private field. 2ll  I
+javaS1068.Remove this unused "monthIndex" private field. 2qq !

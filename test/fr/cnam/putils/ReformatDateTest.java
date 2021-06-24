@@ -5,10 +5,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
+//import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +26,7 @@ public class ReformatDateTest {
 //                    null, "Juin"
 //                },
                 {
-                        new Date(), "juin", "20/06/2021"
+                        new Date(System.currentTimeMillis()), "juin", "23/06/2021"
                 },
         });
     }

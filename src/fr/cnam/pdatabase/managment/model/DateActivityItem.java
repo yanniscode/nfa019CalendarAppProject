@@ -2,12 +2,12 @@ package fr.cnam.pdatabase.managment.model;
 
 import fr.cnam.pdatabase.managment.model.DatePart;
 
-public class DateActivityItem {
+public class DateActivityItem implements DateActivityItemInterface {
 
-    private DatePart datePart;
     private int dateActivityId;
     private String datePartDescription;
     private String datePartStatus;
+    private DatePart datePart;
 
     /**
      *  constructor 2
@@ -63,4 +63,8 @@ public class DateActivityItem {
         return;
     }
 
+    @Override
+    public void displayActivity() {
+        // à voir
+    }
 }

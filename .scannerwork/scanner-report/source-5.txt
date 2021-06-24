@@ -1,7 +1,7 @@
 //package fr.cnam.pcalendarpanel;
 //
 //import fr.cnam.pdatabase.managment.model.DatePart;
-//import fr.cnam.penums.ActivityColor;
+//import fr.cnam.putils.penums.ActivityColor;
 //import org.junit.After;
 //import org.junit.Before;
 //import org.junit.Test;

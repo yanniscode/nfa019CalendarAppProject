@@ -1,1 +1,1 @@
- 2javaXxhr,src/fr/cnam/pcalendarapp/RunCalendarApp.java
+ 2javaXhr5src/fr/cnam/pactivity/ActivityFormPanelInterface.java

@@ -1,15 +1,59 @@
-package fr.cnam.perrors;
+package fr.cnam.pdatabase.managment.dao;
 
-import java.util.*;
+import java.sql.Connection;
 
 /**
- * 
+ * @author Yannis Guéguen
  */
-public interface FormControlButtonInterface {
+public abstract class DAO<T> implements DAOInterface<T> {
+
 
     /**
-     * @return void
+     * Constructeur 2
+     * @param connection
      */
-    public void displayFormControlBtn();
+    public DAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    /**
+     * Default constructor
+     */
+    public DAO() {
+    }
+
+    /**
+     * Connection
+     */
+    private Connection connection = null;
+
+    /**
+     * MysqlConnexion
+     */
+//    private MysqlConnexion mysqlConnexion = null;
+
+    /**
+     * @param obj
+     * @return boolean
+     */
+    public abstract boolean create(T obj);
+
+    /**
+     * @param obj
+     * @return boolean
+     */
+    public abstract boolean update(T obj);
+
+    /**
+     * @param obj
+     * @return boolean
+     */
+    public abstract boolean delete(T obj);
+
+    /**
+     * @param id
+     * @return boolean
+     */
+    public abstract T find(int id);
 
 }

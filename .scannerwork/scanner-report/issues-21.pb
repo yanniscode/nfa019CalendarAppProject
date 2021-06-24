@@ -1,121 +1,194 @@
-ç
-javaS1319pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList". 2
-éé  ê
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2
-éé3 Hê
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2
-ûû 3ê
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2
-±±$ 9ç
-javaS1319pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList". 2
-®®  ê
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2
-∞∞ 1V
-javaS125<This block of commented-out lines of code should be removed. 2 @G
-javaS1948,Make "connection" transient or serializable. 2 V
-javaS125<This block of commented-out lines of code should be removed. 2 ^
-javaS1117CRename "mysqlConnection" which hides the field declared at line 23. 2!! 'V
-javaS125<This block of commented-out lines of code should be removed. 2""
- 4B
-javaS1125'Remove the unnecessary boolean literal. 2'' "S
-javaS1069Replace this use of System.out or System.err by a logger. 2)) S
-javaS1069Replace this use of System.out or System.err by a logger. 2.. W
-javaS125<This block of commented-out lines of code should be removed. 2	--
- í©
-javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 255) 5S
-javaS1069Replace this use of System.out or System.err by a logger. 2FF 8
+m
+javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
+◊◊@ Km
+javaS117QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
+◊◊V _4
+javaS1700Rename field "dateButton" 2mm v
+javaS116ZRename this field "DateButtonValue" to match the regular expression '^[a-z][a-zA-Z0-9]*$'. 2
+©© "{
+javaS1450^Remove the "DateButtonValue" field and declare it as a local variable in the relevant methods. 2
+©© "y
+javaS1450\Remove the "activityColor" field and declare it as a local variable in the relevant methods. 2
+ää 'ô
+javaS1130~Remove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from constructor's body. 2!!R hé
+javaS1130sRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from constructor's body. 2!!j vô
+javaS1130~Remove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from constructor's body. 211B Xé
+javaS1130sRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from constructor's body. 211Z f6
+javaS3626Remove this redundant jump. 2XX V
+javaS125<This block of commented-out lines of code should be removed. 2cc Y8
 javaS3626Remove this redundant jump. 2
-™™ Y
-javaS125<This block of commented-out lines of code should be removed. 2®®
- Ñ8
-javaS3626Remove this redundant jump. 2
-∆∆ U
+¿¿ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-∂∂ q
+ÆÆ r
+javaS4507UMake sure this debug feature is deactivated before delivering the code in production. 2
+µµ †
 javaS125<This block of commented-out lines of code should be removed. 2
-¥¥
- 4:
-µµ
- íCodeU
+∏∏
+ I:
+
+ππ =Code:
+
+ºº 8Code:
+
+ææ
+ CodeX
+javaS125<This block of commented-out lines of code should be removed. 2
+≈≈ VU
 javaS1069Replace this use of System.out or System.err by a logger. 2
-ΩΩ Y
-javaS125<This block of commented-out lines of code should be removed. 2ƒƒ
- Ñ8
-javaS3626Remove this redundant jump. 2
-ÎÎ U
+”” X
+javaS125<This block of commented-out lines of code should be removed. 2
+ÕÕ wX
+javaS125<This block of commented-out lines of code should be removed. 2
+œœ 2U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-““ U
+’’ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-◊◊ U
+÷÷ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
 ÿÿ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-€€ X
-javaS125<This block of commented-out lines of code should be removed. 2
-ŸŸ Uà
-javaS125<This block of commented-out lines of code should be removed. 2
-‰‰
- H:
-
-ÂÂ
- /Code:
-
-ÊÊ
- ECodeU
+ŸŸ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-ÈÈ 8
-javaS3626Remove this redundant jump. 2
-ˆˆ 8
-javaS3626Remove this redundant jump. 2
-ˇˇ U
+ﬂﬂ U
 javaS1069Replace this use of System.out or System.err by a logger. 2
-˛˛ †
+„„ U
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÊÊ U
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÈÈ U
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÎÎ U
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÏÏ X
 javaS125<This block of commented-out lines of code should be removed. 2
-ÉÉ 5:
+ XY
+javaS125<This block of commented-out lines of code should be removed. 2åå
+ í8
+javaS3626Remove this redundant jump. 2
+±± X
+javaS125<This block of commented-out lines of code should be removed. 2
+££
+ cU
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ªª 8
+javaS3626Remove this redundant jump. 2
+˝˝ e
+javaS1117HRename "activityDescription" which hides the field declared at line 128. 2
+ﬁﬁ &X
+javaS125<This block of commented-out lines of code should be removed. 2
+ŒŒ uX
+javaS125<This block of commented-out lines of code should be removed. 2
+–– Y∏
+javaS125<This block of commented-out lines of code should be removed. 2
+‘‘ 9:
 
-ÑÑ
- &Code:
+’’ BCode:
 
-ÜÜ
+ÿÿ =Code:
+
+ŸŸ XCode:
+
+⁄⁄ jCodeX
+javaS125<This block of commented-out lines of code should be removed. 2
+ﬂﬂ OX
+javaS125<This block of commented-out lines of code should be removed. 2
+„„ sU
+javaS1069Replace this use of System.out or System.err by a logger. 2
+ÊÊ 8
+javaS3626Remove this redundant jump. 2
+çç 8
+javaS3626Remove this redundant jump. 2
+¨¨ X
+javaS125<This block of commented-out lines of code should be removed. 2
+òò
+ *X
+javaS125<This block of commented-out lines of code should be removed. 2
+õõ
+ 9X
+javaS125<This block of commented-out lines of code should be removed. 2
+ûû
+ n]
+javaS1117@Rename "reformatDate" which hides the field declared at line 92. 2
+¢¢ !X
+javaS125<This block of commented-out lines of code should be removed. 2
+††
+ lX
+javaS125<This block of commented-out lines of code should be removed. 2
+¶¶
+ ]8
+javaS3626Remove this redundant jump. 2
+ŸŸ è
+javaS1172&Remove these unused method parameters. 2
+◊◊+ 5:B
+@
+◊◊+ 50Remove this unused method parameter yearSelect".:C
+A
+◊◊@ K1Remove this unused method parameter MonthSelect".:A
+?
+◊◊V _/Remove this unused method parameter DaySelect".ò
+javaS125<This block of commented-out lines of code should be removed. 2
+øø 3:
+
+¡¡
+ ?Code:
+
+√√
+ 6Code:
+
+≈≈
+ CCode:
+
+««
+ ;Code:
+
+……
+ DCode:
+
+ÀÀ
+ %Code:
+
+ÕÕ
  Code:
 
-áá Code8
+ŒŒ CodeM
+javaS11352Complete the task associated to this TODO comment. 2ÿÿ 8
 javaS3626Remove this redundant jump. 2
-íí 8
+ÈÈ í
+javaS11721Remove this unused method parameter "yearSelect". 2
+ÁÁ' 1:B
+@
+ÁÁ' 10Remove this unused method parameter yearSelect".M
+javaS11352Complete the task associated to this TODO comment. 2ËË 8
 javaS3626Remove this redundant jump. 2
-¢¢ 8
+˘˘ î
+javaS11722Remove this unused method parameter "monthSelect". 2
+˜˜( 3:C
+A
+˜˜( 31Remove this unused method parameter monthSelect".M
+javaS11352Complete the task associated to this TODO comment. 2¯¯ 8
 javaS3626Remove this redundant jump. 2
-≤≤ 8
+ää 8
 javaS3626Remove this redundant jump. 2
-¬¬ 8
+úú M
+javaS11352Complete the task associated to this TODO comment. 2•• 8
 javaS3626Remove this redundant jump. 2
-ËË à
-javaS125<This block of commented-out lines of code should be removed. 2
-…… 3:
-
-ÀÀ
- Code:
-
-ÃÃ Codeà
-javaS125<This block of commented-out lines of code should be removed. 2
-—— -:
-
-””
- Code:
-
-‘‘ Codeà
-javaS125<This block of commented-out lines of code should be removed. 2
-›› 9:
-
-ﬂﬂ
- Code:
-
-‡‡ CodeM
-javaS11352Complete the task associated to this TODO comment. 2    M
-javaS11352Complete the task associated to this TODO comment. 2““  M
-javaS11352Complete the task associated to this TODO comment. 2ﬁﬁ  U
-javaS1069Replace this use of System.out or System.err by a logger. 2
-ÁÁ G
-javaS1068,Remove this unused "calendar" private field. 2YY G
-javaS1068,Remove this unused "yearList" private field. 2xx $H
-javaS1068-Remove this unused "monthList" private field. 2}} %
+ØØ 8
+javaS3626Remove this redundant jump. 2
+øø M
+javaS11352Complete the task associated to this TODO comment. 2∆∆ 8
+javaS3626Remove this redundant jump. 2
+–– ò
+javaS11724Remove this unused method parameter "activityColor". 2
+ŒŒ/ <:E
+C
+ŒŒ/ <3Remove this unused method parameter activityColor".M
+javaS11352Complete the task associated to this TODO comment. 2œœ 8
+javaS3626Remove this redundant jump. 2
+ÿÿ M
+javaS11352Complete the task associated to this TODO comment. 2◊◊ 8
+javaS3626Remove this redundant jump. 2
+‚‚ M
+javaS11352Complete the task associated to this TODO comment. 2·· I
+javaS1068.Remove this unused "dateFormat" private field. 2aa !P
+javaS10683Remove this unused "DateButtonValue" private field. 2
+©© "

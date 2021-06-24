@@ -44,13 +44,13 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
 //        System.out.println(this.connection);
 
         String sql = "SELECT DISTINCT d.DATEPART_ID, d.DATEPART_VALUE, da.DATE_ACTIVITY_ID, da.DATE_ACTIVITY_DESCRIPTION, da.DATE_ACTIVITY_STATUS "+
-                "FROM DATEPART d INNER JOIN DATE_ACTIVITY da "+
+                "FROM DATEPART d LEFT JOIN DATE_ACTIVITY da "+
                 "ON d.DATEPART_ID = da.DATEPART_ID "+
                 "WHERE d.DATEPART_VALUE = ?;";
+        // REQUÊTE GÉNÉRALE:
+//            SELECT d.DATEPART_ID, DATEPART_VALUE, DATE_ACTIVITY_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS FROM DATEPART d INNER JOIN DATE_ACTIVITY da ON d.DATEPART_ID = da.DATEPART_ID WHERE d.DATEPART_ID = 45;
 
         try (PreparedStatement selectPrepared = connection.prepareStatement(sql)) {
-            // REQUÊTE GÉNÉRALE:
-//            SELECT d.DATEPART_ID, DATEPART_VALUE, DATE_ACTIVITY_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS FROM DATEPART d INNER JOIN DATE_ACTIVITY da ON d.DATEPART_ID = da.DATEPART_ID WHERE d.DATEPART_ID = 45;
 
             selectPrepared.setLong(1, convertedDateToLong);
 //            selectPrepared.setLong(1, convertedDateToLong);
@@ -92,6 +92,7 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
         boolean response = false;
 
         // *** BONNE VERSION :
+        // SELECT DISTINCT DATEPART_ID FROM DATEPART WHERE DATEPART_VALUE = 1624312800000 ORDER BY DATEPART_ID DESC LIMIT 1
         String sql =  "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(?); "+
                 "INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) "+
                 "VALUES (LAST_INSERT_ID(), ?, ?)";
@@ -100,10 +101,12 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
 //                    "VALUES (LAST_INSERT_ID(), 'my activity description', '\"En Définition\"')";
         // *** en dur:
 //        INSERT INTO DATEPART (DATEPART_VALUE) VALUES(1622412000000); INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) VALUES (LAST_INSERT_ID(), 'my activity description', '\"En Définition\"')
+        // l'enum par le num - ex: 'En définition' = 1 (de 1 à 4)
+//            "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(2021-06-19); INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) VALUES (LAST_INSERT_ID(), 'my new activity description', 0);" // l'enum par le num - ex: 'En définition' = 1 (de 1 à 4)
 
         try (PreparedStatement insertSQL = connection.prepareStatement(sql)) {
-            // l'enum par le num - ex: 'En définition' = 1 (de 1 à 4)
-//            "INSERT INTO DATEPART (DATEPART_VALUE) VALUES(2021-06-19); INSERT INTO DATE_ACTIVITY (DATEPART_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS) VALUES (LAST_INSERT_ID(), 'my new activity description', 0);" // l'enum par le num - ex: 'En définition' = 1 (de 1 à 4)
+
+//            System.out.println("######## "+ dateActivityItem.getDateActivityStatus());    ex: "En Définition"
 
             insertSQL.setLong(1, dateActivityItem.getDatePart().getDatePartValue());
             insertSQL.setString(2, dateActivityItem.getDateActivityDescription());
@@ -130,23 +133,26 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
 
     /**
      *
-     * @param dateActivityItem
+     * @param formatedNewDateAsLong
      * @return boolean
      */
-    @Override
-    public boolean delete(DateActivityItem dateActivityItem) {
+//    @Override
+    public boolean delete(Long formatedNewDateAsLong) {
 
 //        System.out.println("######### "+ dateActivityItem.getDatePart().getDatePartId());
 
         boolean response;
 
-        String sql = "DELETE FROM DATE_ACTIVITY WHERE DATEPART_ID = ?; "+
-                "DELETE FROM DATEPART WHERE DATEPART_ID = ?;";
+        // *** première requête sur une seule table, sinon souci...
+//       preSql = "DELETE FROM DATE_ACTIVITY WHERE DATEPART_ID = (SELECT DATEPART_ID FROM DATEPART WHERE DATEPART_VALUE = 1621461600000 ORDER BY DATEPART_ID DESC LIMIT 1);";
+//        String sql = "DELETE FROM DATE_ACTIVITY WHERE DATEPART_ID = (SELECT DATEPART_ID FROM DATEPART WHERE DATEPART_VALUE = ? ORDER BY DATEPART_ID DESC LIMIT 1);";
+        String sql = "DELETE FROM DATE_ACTIVITY WHERE DATEPART_ID = (SELECT DATEPART_ID FROM DATEPART WHERE DATEPART_VALUE = ? LIMIT 1); DELETE FROM DATEPART WHERE DATEPART_VALUE = ?;";
 
         try (PreparedStatement deleteSQL = connection.prepareStatement(sql)) {
 
-            deleteSQL.setInt(1, dateActivityItem.getDatePart().getDatePartId());
-            deleteSQL.setInt(2, dateActivityItem.getDatePart().getDatePartId());
+            deleteSQL.setLong(1, formatedNewDateAsLong);
+            deleteSQL.setLong(2, formatedNewDateAsLong);
+//            deleteSQL.setInt(2, dateActivityItem.getDatePart().getDatePartId());
 
             int nbrUpdate = deleteSQL.executeUpdate();
 
@@ -157,6 +163,25 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
             e.printStackTrace();
             response = false;
         }
+
+//        // *** deuxième requête sur autre table, sinon souci...
+//        String sql2 = "DELETE FROM DATEPART WHERE DATEPART_VALUE = ? ORDER BY DATEPART_ID DESC LIMIT 1;";
+//
+//        try (PreparedStatement deleteSQL = connection.prepareStatement(sql2)) {
+//
+//            deleteSQL.setLong(1, formatedNewDateAsLong);
+////            deleteSQL.setLong(2, formatedNewDateAsLong);
+////            deleteSQL.setInt(2, dateActivityItem.getDatePart().getDatePartId());
+//
+//            int nbrUpdate = deleteSQL.executeUpdate();
+//
+//            response = (nbrUpdate > 0);
+//            deleteSQL.close();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            response = false;
+//        }
 
         return response;
     }
@@ -195,6 +220,12 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
     }
 
 
+    @Override
+    public boolean delete(DateActivityItem obj) {
+        return false;
+    }
+
+
     /**
      * @param datePartId
      * @return DateActivityItem
@@ -213,14 +244,16 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
                 "FROM DATEPART d INNER JOIN DATE_ACTIVITY da "+
                 "ON d.DATEPART_ID = da.DATEPART_ID "+
                 "WHERE d.DATEPART_ID = ?;";
-        try (PreparedStatement selectPrepared = connection.prepareStatement(sql)) {
-            // REQUÊTE GÉNÉRALE:
+
+        // REQUÊTE GÉNÉRALE:
 //            SELECT d.DATEPART_ID, DATEPART_VALUE, DATE_ACTIVITY_ID, DATE_ACTIVITY_DESCRIPTION, DATE_ACTIVITY_STATUS FROM DATEPART d INNER JOIN DATE_ACTIVITY da ON d.DATEPART_ID = da.DATEPART_ID WHERE d.DATEPART_ID = 45;
 
 //            String sql = "SELECT d.DATEPART_ID, d.DATEPART_VALUE, da.DATE_ACTIVITY_ID, da.DATE_ACTIVITY_DESCRIPTION, da.DATE_ACTIVITY_STATUS "+
 //                    "FROM DATEPART d INNER JOIN DATE_ACTIVITY da "+
 //                    "ON d.DATEPART_ID = da.DATEPART_ID "+
 //                    "WHERE d.DATEPART_ID = ?;";
+
+        try (PreparedStatement selectPrepared = connection.prepareStatement(sql)) {
 
 //            PreparedStatement selectPrepared = connection.prepareStatement(sql);
 

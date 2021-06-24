@@ -18,8 +18,8 @@ b
 javaS125<This block of commented-out lines of code should be removed. 2OO %Q
 javaS26966Make the enclosing method "static" or remove this set. 2ss P
 javaS22095Change this instance-reference to a static reference. 2ss P
-javaS22095Change this instance-reference to a static reference. 2tt; IP
-javaS22095Change this instance-reference to a static reference. 2vvG Ul
+javaS22095Change this instance-reference to a static reference. 2ttC QP
+javaS22095Change this instance-reference to a static reference. 2vvO ]l
 javaS125<This block of commented-out lines of code should be removed. 2zz
  B:
 {{
