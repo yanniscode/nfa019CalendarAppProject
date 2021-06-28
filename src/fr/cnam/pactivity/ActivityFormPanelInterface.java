@@ -2,9 +2,7 @@ package fr.cnam.pactivity;
 
 import java.util.*;
 
-/**
- *
- */
+
 public interface ActivityFormPanelInterface {
 
     /**

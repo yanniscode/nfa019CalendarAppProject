@@ -34,8 +34,6 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
 
         super();
 
-//        this.activityMainFormPanel = new ActivityMainFormPanel(); // si ici, une seule instance créée
-
         this.formControlButton = new JButton(controlBtnValue);
         this.formControlButton.setPreferredSize(new Dimension(120, 60));
 
@@ -58,24 +56,19 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
     private JButton formControlButton;
 
 
-    // ************************************
-
     /**
-     * 
+     * String
      */
     private String formControlBtnValue;
 
     /**
-     * 
+     * ImageIcon
      */
     private ImageIcon formControlBtnIcon;
 
-    public static void setMainPanel(MainPanel mainPanel) {
-        FormControlButton.mainPanel = mainPanel;
+    public void setMainPanel(MainPanel mainPanel) {
+        this.mainPanel = mainPanel;
     }
-
-
-    // ************************************
 
 
     /**
@@ -84,17 +77,14 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
     @Override
     public void actionPerformed(ActionEvent ev) {
 
-        System.out.println("ev ############################### "+ ev);
         this.formControlBtnValue = ev.getActionCommand();
 
         if(this.formControlBtnValue.equals(FormControlAction.ANNULATION)) {
-            System.out.println("*** Click sur Annulation");
 
             // *** fermeture de la fenêtre sans modification:
             activityFormFrame.dispose();
         }
         else if(this.formControlBtnValue.equals(FormControlAction.VALIDATION)) {
-            System.out.println("*** Click sur Validation");
 
             try {
                 this.onValidateFunction();
@@ -106,11 +96,12 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
             }
         }
         else if(this.formControlBtnValue.equals(FormControlAction.SUPPRESSION)) {
-            System.out.println("*** Click sur Suppression");
 
             try {
                 this.onSuppressionFunction();
+
                 this.reinitCalendar();
+
             } catch (ClassNotFoundException | SQLException | ParseException e) {
                 e.printStackTrace();
             }
@@ -119,25 +110,16 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
     }
 
 
-
-
-
     /**
-     * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
+     * MainPanel - mainPanel
      */
-    private static MainPanel mainPanel;
+    private MainPanel mainPanel;
 
     /**
      * Connection - variable de connexion à MySql
      */
     private Connection connection;
 
-    /**
-     * int - index du mois à afficher (static)
-     */
-    private static int indexMonth;
-
-    private static Date newReferenceDay;
 
 
     /**
@@ -145,30 +127,27 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
      */
     private void reinitCalendar() throws SQLException, ClassNotFoundException {
 
+        int indexMonth;
+        Date newReferenceDay;
+
         // *** appel du 'getter' de la classe MonthPageIncrement (putils)
         indexMonth = getIncrementValue();
 
         DatePart newDatePart = new DatePart();
 
         // *** suppression des données de la page actuelle pour mise à jour
-
         this.mainPanel.getCalendarPanel().removeAllDaysFromCalendarPanel();
         this.mainPanel.getCalendarPanel().removeAllFromDaysList();
 
         // *** recherche de l'intitulé du mois à afficher (selon la page actuelle)
-
-        System.out.println("THIS.MONTH INDEX = "+ indexMonth);
-
-        this.newReferenceDay = newDatePart.getOneMonthInterval(indexMonth);
-//        System.out.println("NWRefDAY: "+ newFirstMonday);
+        newReferenceDay = newDatePart.getOneMonthInterval(indexMonth);
 
         // ******** Ajout  du titre du mois précédent au CalendarPanel (string):
-        this.mainPanel.getCalendarPanel().setNewMonthLabel(this.newReferenceDay);
+        this.mainPanel.getCalendarPanel().buildNewMonthLabel(newReferenceDay);
 
 
         // **** recherche et ajout des jours avec leurs données éventuelles (JDBC)
-
-        ArrayList<DateButton> newDatesList= new ArrayList<DateButton>();
+        ArrayList<DateButton> newDatesList= new ArrayList<>();
 
         this.connection = this.mainPanel.getCalendarPanel().getConnection();
 
@@ -182,16 +161,8 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
         this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);
 
         // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page
-//        this.mainPanel.getCalendarPanel().buildActivitiesList(newDatesList, this.indexMonth);
-
         this.mainPanel.getCalendarPanel().revalidate(); // nécessaire pour mettre à jour l'affichage
-
-//        this.mainPanel.add(this.mainPanel.getCalendarPanel());
-
-        return;
     }
-
-
 
 
 
@@ -201,41 +172,33 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
      * @throws ParseException
      * @return void
      */
-    public void onSuppressionFunction() throws ClassNotFoundException, SQLException, ParseException {
+    public boolean onSuppressionFunction() throws ClassNotFoundException, SQLException, ParseException {
 
         MysqlConnection mysqlConnection = new MysqlConnection();
 
         // *** ouverture de la connection
         boolean connectResponse = mysqlConnection.connection();
 
-        if(connectResponse == true) {
-
-            Connection connection = mysqlConnection.getConnection();
-            DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
+        Connection connection = mysqlConnection.getConnection();
+        DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
 
 
-            // *** Datas des champs de ActivityFormFrame
+        // *** Datas des champs de ActivityFormFrame
 
-            // *** écouteur du champs date
-            String newDateFromField = activityFormFrame.getDateTextField().getText();
-            ReformatDate reformatDate = new ReformatDate();
-            Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
+        // *** écouteur du champs date
+        String newDateFromField = activityFormFrame.getDateTextField().getText();
+        ReformatDate reformatDate = new ReformatDate();
+        Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
 
-            // *************************
+        // *** insertion en BDD d'une nouvelle activité
+        dateActivityDAO.delete(formatedNewDateToLong);
 
-            // *** insertion en BDD d'une nouvelle activité
-            dateActivityDAO.delete(formatedNewDateToLong);
+        connection.close();
 
-            connection.close();
+        // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
+        activityFormFrame.dispose();
 
-            // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
-            activityFormFrame.dispose();
-
-        }
-        else {
-            System.out.println("erreur de connexion...");
-        }
-
+        return connectResponse;
     }
 
 
@@ -246,103 +209,66 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
      * @throws ParseException
      * @return void - fonction de validation des données du formulaire d'édition d'une Activité
      */
-    public void onValidateFunction() throws ClassNotFoundException, SQLException, ParseException {
+    public boolean onValidateFunction() throws ClassNotFoundException, SQLException, ParseException {
 
         MysqlConnection mysqlConnection = new MysqlConnection();
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-        // *** ouverture de la connection:
 
         boolean connectResponse = mysqlConnection.connection();
 
-        if(connectResponse == true) {
+        Connection connection = mysqlConnection.getConnection();
 
-            Connection connection = mysqlConnection.getConnection();
+        // *** Datas des champs de ActivityFormFrame
 
-            // *** Datas des champs de ActivityFormFrame
+        // *** écouteur du champs date
+        String newDateFromField = activityFormFrame.getDateTextField().getText();
+        ReformatDate reformatDate = new ReformatDate();
+        Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
 
-            // *** écouteur du champs date
-//            System.out.println("~~~~~~~~~~~~ ACTIVITY FRAME FROM CONTROLBUTTON: "+ activityFormFrame.getDateTextField().getText());
-            String newDateFromField = activityFormFrame.getDateTextField().getText();
-            ReformatDate reformatDate = new ReformatDate();
-            Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
-//            System.out.println("date long = "+ formatedNewDateToLong);
+        // *** écouteur du champs Description de l'activité:
+        String newActivityDescription = activityFormFrame.getActivityDescriptionText().getText();
 
-            // *** écouteur du champs Description de l'activité:
-//            System.out.println("~~~~~~~~~~~~ ACTIVITY FRAME FROM CONTROLBUTTON: "+ activityFormFrame.getActivityDescriptionText().getText());
-            String newActivityDescription = activityFormFrame.getActivityDescriptionText().getText();
+        // *** écouteur du champs Status de l'activité:
+        String newActivityStatus = activityFormFrame.getActivityStatusText().getSelectedItem().toString();
 
-            // *** écouteur du champs Status de l'activité:
-//            System.out.println("~~~~~~~~~~~~ ACTIVITY FRAME FROM CONTROLBUTTON: "+ activityFormFrame.getActivityStatusText().getSelectedItem());
-            String newActivityStatus = activityFormFrame.getActivityStatusText().getSelectedItem().toString();
+        DateActivityItem dateActivityItem = new DateActivityItem();
 
-            DateActivityItem dateActivityItem = new DateActivityItem();
+        DatePart newDatePart = new DatePart();
+        newDatePart.setDatePartValue(formatedNewDateToLong);
 
-            DatePart newDatePart = new DatePart();
-            newDatePart.setDatePartValue(formatedNewDateToLong);
+        dateActivityItem.setDatePart(newDatePart);
+        dateActivityItem.setDateActivityDescription(newActivityDescription);
 
-            dateActivityItem.setDatePart(newDatePart);
-            dateActivityItem.setDateActivityDescription(newActivityDescription);
-            // *** ajout de guillemets pour l'Enum
-            dateActivityItem.setDateActivityStatus("\""+ newActivityStatus +"\"");
+        // *** ajout de guillemets pour l'Enum
+        dateActivityItem.setDateActivityStatus("\""+ newActivityStatus +"\"");
 
-            // *************************
-            // *** insertion en BDD d'une nouvelle activité
-            DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
+        // *** insertion en BDD d'une nouvelle activité
+        DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
 
-            dateActivityDAO.create(dateActivityItem);
+        dateActivityDAO.create(dateActivityItem);
 
-            connection.close();
+        connection.close();
 
-            // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
-            activityFormFrame.dispose();
+        // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
+        activityFormFrame.dispose();
 
-        }
-        else {
-            System.out.println("FormControlButton - erreur de connexion...");
-
-            // *** JLabel (à refactoriser  avec class errorPanel ?? // marche pas encore
-//            JLabel errorLabel = new JLabel("Erreur de connexion à la BDD...", SwingConstants.CENTER);
-//            errorLabel.setFont(new Font("Serif", 0, 25));
-//            activityFormFrame.add(errorLabel);
-        }
-
+        return connectResponse;
     }
 
 
-    // ************************************
-
     /**
-     * @return
-     */
-    public String getFormControlBtnValue() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param formControlValue
-     * @return
-     */
-    public void setControlBtnValue(String formControlValue) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return
+     * @return ImageIcon
      */
     public ImageIcon getFormControlBtnIcon() {
-        // TODO implement here
-        return null;
+        // A faire
+        return this.formControlBtnIcon;
     }
 
     /**
-     * @param imageIcon
+     * @param formControlBtnIcon
      * @return void - si ajout d'une icone au bouton (à faire)
      */
-    public void setFormControlBtnIcon(ImageIcon imageIcon) {
-        // TODO implement here
-        return;
+    public void setFormControlBtnIcon(ImageIcon formControlBtnIcon) {
+        this.formControlBtnIcon = formControlBtnIcon;
     }
 
     @Override
@@ -351,7 +277,6 @@ public class FormControlButton extends JPanel implements FormControlButtonInterf
      */
     public void displayFormControlBtn() {
         // TODO implement here
-        return;
     }
 
 }

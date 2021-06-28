@@ -1,38 +1,32 @@
-package fr.cnam.putils.penums;
+package fr.cnam.perrors;
 
-import java.awt.*;
+import fr.cnam.pbuttons.FormControlButtonInterface;
 
 /**
  * @author Yannis Guéguen
  */
-public class ActivityColor {
+public class ReturnButton implements FormControlButtonInterface {
 
     /**
      * Default constructor
      */
-    public ActivityColor() {
+    public ReturnButton() {
+        // TODO implement here
     }
 
     /**
-     * Color - Couleur d'un DateBouton
+     * String - valeur du bouton de sortie du formulaire sans modification apportée
      */
-    public final Color ORANGE = Color.ORANGE;
-//    public final Color ORANGE = Color.HSBtoRGB(); // à tester pour modifier la couleur
+    protected String returnButtonValue = "Retour";
 
+
+    @Override
     /**
-     * Color - Couleur d'un DateBouton
+     * @return void
      */
-    public final Color BLUE = Color.BLUE;
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    public final Color RED = Color.RED;
-
-    /**
-     * Color - Couleur d'un DateBouton
-     */
-    public final Color GREEN = Color.GREEN;
-
+    public void displayFormControlBtn() {
+        // TODO implement here
+        return;
+    }
 
 }

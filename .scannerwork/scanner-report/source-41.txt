@@ -1,34 +1,14 @@
-package fr.cnam.pdatabase.managment.dao;
+package fr.cnam.pbuttons;
 
 import java.util.*;
 
-/**
- * 
- */
-public interface DAOInterface<T> {
+
+public interface CalendarControlButtonInterface {
+
 
     /**
-     * @param obj 
-     * @return boolean
+     * @return void
      */
-    public boolean create(T obj);
-
-    /**
-     * @param obj 
-     * @return boolean
-     */
-    public boolean update(T obj);
-
-    /**
-     * @param obj 
-     * @return boolean
-     */
-    public boolean delete(T obj);
-
-    /**
-     * @param id 
-     * @return boolean
-     */
-    public T find(int id);
+    public void displayCalendarControlButton();
 
 }

@@ -1,1 +1,1 @@
- 2javaXMhr/test/fr/cnam/putils/MonthPageIncrementTest.java
+ 2javaX<hr:test/fr/cnam/pbuttons/CalendarControlButtonsPanelTest.java

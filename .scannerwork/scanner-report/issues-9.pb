@@ -1,60 +1,14 @@
-3
-javaS1220"Move this file to a named package.  
-javaS125<This block of commented-out lines of code should be removed. 2 !:
-	 Code:
-	 #Code:
-			 #Code:
-	
-
- 5Code:
-	 #Code:
-	 #Code:
-	
- Code:
-	 7Code:
-	 Code:
-	 3Code:
-	  Code:
-	
- 5Code:
-	 Code:
-	 Code:
-	   	Code:
-	## ,Code:
-	$$
- -Code:
-	%% Code:
-	&& 'Code:
-	'' Code:
-	** +Code:
-		++
- µCode:
-	,, Code:
-	// .Code:
-	00
- =Code:
-	11
- ECode:
-	22 Code:
-	55  Code:
-	66
- 5Code:
-		77
- µCode:
-	88 Code:
-	;; "Code:
-	<<
- 5Code:
-	==
- ECode:
-	>> Code:
-	AA Code:
-	BB
- 9Code:
-	CC =Code:
-	DD Code:
-	FF "Code:
-	GG KCode:
-	HH *Code:
-	II 	Code:
-	KK Code
+`
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 255$ -`
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2::" +J
+javaS3740/Provide the parametrized type for this generic. 2%% ‰
+javaS1130nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body. 2%%/ ;”
+javaS1130yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body. 2%%= S6
+javaS3878Remove this array creation. 2&' 	K
+javaS11352Complete the task associated to this TODO comment. 266 K
+javaS11352Complete the task associated to this TODO comment. 2;; K
+javaS11352Complete the task associated to this TODO comment. 2@@ K
+javaS11352Complete the task associated to this TODO comment. 2VV K
+javaS11352Complete the task associated to this TODO comment. 2[[ K
+javaS11352Complete the task associated to this TODO comment. 2`` K
+javaS11352Complete the task associated to this TODO comment. 2ff 

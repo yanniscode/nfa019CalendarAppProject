@@ -1,6 +1,5 @@
 package fr.cnam.pcalendarpanel;
 
-//import fr.cnam.pdatabase.managment.dao.model.DateActivityItem;
 import fr.cnam.pbuttons.DateButton;
 import fr.cnam.pdatabase.MysqlConnection;
 import fr.cnam.putils.ReformatDate;
@@ -11,9 +10,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Set;
-//import java.util.*;
 
 
 /**
@@ -21,8 +17,6 @@ import java.util.Set;
  */
 public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
-    MysqlConnection mysqlConnection;
-    Connection connection;
 
     /**
      * Default constructor: création du calendrier (= liste de DateButtons)
@@ -32,133 +26,79 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         super();
 
         MysqlConnection mysqlConnection = new MysqlConnection();
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-        // *** ouverture de la connection:
 
+        // *** ouverture de la connection:
         boolean connectResponse = mysqlConnection.connection();
 
+        this.connection = mysqlConnection.getConnection();
+        this.calendarLabel = new JLabel("", SwingConstants.CENTER);
+        this.calendarLabel.setFont(new Font(TEXTFONT, 0, 25));
 
-        if(connectResponse == true) {
+        this.buildNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
 
-            System.out.println("connexion ok!");
+        // *** création d'une liste de jours (mois actuel)
+        this.daysList = new ArrayList<DateButton>();
 
-            this.connection = mysqlConnection.getConnection();
+        // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
+        this.buildNewDatesInList(this.daysList);
 
-//        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
-            System.out.println("***** CAL CONNECTION *************** : ");
+        // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
+        this.buildDaysList(this.daysList);
 
-            this.calendarLabel = new JLabel("", SwingConstants.CENTER);
-            this.calendarLabel.setFont(new Font("Serif", 0, 25));
-            this.setNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // Utile ici ??
 
-            // *** création d'une liste de jours (mois actuel)
-            this.daysList = new ArrayList<DateButton>();
+        GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
+        this.setLayout(gl);
 
-            // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
-            this.setNewDatesInList(this.daysList);
+        this.setSize(800, 300);
 
-            // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
-            this.buildDaysList(this.daysList);
-
-            // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // Utile ici ??
-//            this.buildActivitiesList(this.daysList, 0);
-
-            GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
-            this.setLayout(gl);
-
-            this.setSize(800, 300);
-
-//            this.connection.close();
-
-        } else {
-            System.out.println("CalendarPanel - erreur de connexion...");
-
-            // *** JLabel (à refactoriser  avec class errorPanel ??
-            JLabel errorLabel = new JLabel("Erreur de connexion à la BDD...", SwingConstants.CENTER);
-//            errorLabel.setBackground(Color.RED); // pas d'effet...
-            errorLabel.setFont(new Font("Serif", 0, 25));
-
-            this.add(errorLabel);
-        }
     }
 
+
+    /**
+     * Connection
+     */
+    Connection connection;
 
     /**
      * DateButton
      */
     private DateButton dateButton;
 
-
-    /**
-     * Date - nouveau mois (pour l'affichage en toutes lettres sur chaque page)
-     */
-    private Date newMonth;
-
-    /**
-     * Calendar - Calendrier
-     */
-    private Calendar calendar;
-
     /**
      * JLabel - titre du Calendrier (Container)
      */
     private JLabel calendarLabel;
-
-
-
-    //     *************
-
-
-    /**
-     *
-     * @return Date
-     */
-    public Date getNewMonth() {
-        return newMonth;
-    }
-
-    /**
-     *
-     * @param newMonth
-     */
-    public void setNewDate(Date newMonth) {
-        this.newMonth = newMonth;
-    }
-
-    /**
-     * @return void
-     */
-    private Set<DateButton> yearList;
-
-    /**
-     * @return void
-     */
-    private Set<DateButton> monthList;
 
     /**
      * ArrayList<DateButton> - liste des boutons (item d'un jour)
      */
     private ArrayList<DateButton> daysList;
 
+    /**
+     * String (static final)
+     */
+    private static final String TEXTFONT = "Serif";
 
-
-    // ************** AJOUTS:
-
+    /**
+     * @return ArrayList<DateButton> - liste de boutons d'activités - jours
+     */
+    public ArrayList<DateButton>getNewDatesInList() {
+        return this.daysList;
+    }
 
 
     /**
-     * Création des boutons = liste des jours (pas encore ajoutée au CalendarPanel)
-     * @return ArrayList<DateButton>
+     * @return void - Création des boutons = liste des boutons d'activités - jours (pas encore ajoutée au CalendarPanel)
      */
-    public ArrayList<DateButton> setNewDatesInList(ArrayList<DateButton> daysList) throws SQLException, ClassNotFoundException {
+    public void buildNewDatesInList(ArrayList<DateButton> daysList) throws SQLException, ClassNotFoundException {
+
         this.daysList = daysList;
 
         for(int i = 0; i < 41; i ++) {
             this.dateButton = new DateButton(i, this.connection);
             this.daysList.add(this.dateButton);
         }
-
-        return this.daysList;
     }
 
 
@@ -173,76 +113,36 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         for(int i = 0; i < 41; i ++) {
 
             this.dateButton = this.daysList.get(i);
+
             // *** ajout à l'affichage (au CalendarPanel)
             this.add(this.dateButton);
         }
-//        System.out.println("eeeeeeeeeeeeeeeee       ddddddddddddddddddday dddddddddddddddddddddddddddddd "+ this.daysList.size());
-
-        return;
     }
 
-//    /**
-//     * Ajout des jours au CalendarPanel:
-//     * @return void
-//     */
-//    public void buildActivitiesList(ArrayList<DateButton> daysList, int indexMonth) throws ClassNotFoundException, SQLException {
-//
-//        //  ************************** GET DATE DAO
-////        Class.forName("com.mysql.cj.jdbc.Driver");
-////        this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
-//        System.out.println("***** CAL CONNECTION *************** : ");
-//
-//        this.daysList = daysList;
-//
-//        for(int i = 0; i < 41; i ++) {
-//
-//            this.dateButton = this.daysList.get(i);
-//            System.out.println("this.datebutton #### "+ this.dateButton);
-//            JButton updateButton = this.dateButton.getActivityDatas(this.connection, indexMonth, i);
-//            // *** ajout à l'affichage (au CalendarPanel)
-//            this.dateButton.setDateButton(updateButton);
-//
-//            this.add(this.dateButton);
-//        }
-////        System.out.println("eeeeeeeeeeeeeeeee       ddddddddddddddddddday dddddddddddddddddddddddddddddd "+ this.daysList.size());
-//
-//        return;
-//    }
+
+    /**
+     * @return JLabel - intitulé du mois (en toutes lettres en en-tête de page)
+     */
+    public JLabel getNewMonthLabel() {
+        return this.calendarLabel;
+    }
 
 
-    // ******** Ajout du titre du mois précédent au CalendarPanel (string):
     /**
      * @param newMonth
+     * @return void - Ajout du titre du mois précédent au CalendarPanel (string)
      */
-    public void setNewMonthLabel(Date newMonth) {
-
-        this.newMonth = newMonth;
-
-        System.out.println("newMonth: setNewMonth() - "+ this.newMonth);
+    public void buildNewMonthLabel(java.sql.Date newMonth) {
 
         ReformatDate reformatDate = new ReformatDate();
 
-        String formatedDate = reformatDate.formatMonthToString(this.newMonth);
-        System.out.println(formatedDate);
-        System.out.println(formatedDate);
-        //      this.calendarLabel = new JLabel(formatedDate, SwingConstants.CENTER);
-
-        System.out.println(this.calendarLabel);
+        String formatedDate = reformatDate.formatMonthToString(newMonth);
 
         this.calendarLabel.setText(formatedDate);
-        this.calendarLabel.setFont(new Font("Serif", 0, 45));
-
-        // create a line border with the specified color and width
-        // CF: https://examples.javacodegeeks.com/desktop-java/swing/jlabel/create-jlabel-with-border/
-//        Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
-//        this.calendarLabel.setBorder(border);
-//        System.out.println(calendarlabel.getHorizontalAlignment());
-
+        this.calendarLabel.setFont(new Font(TEXTFONT, 0, 45));
         this.add(this.calendarLabel);
-        System.out.println(this.calendarLabel);
-
-        return;
     }
+
 
     /**
      * @return void - retire les boutons du CalendarPanelde DateButtons
@@ -252,24 +152,16 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
             this.dateButton = this.daysList.get(i);
             this.remove(this.dateButton);
         }
-        return;
     }
+
 
     /**
      * @return void - vide la liste des DateButtons
      */
     public void removeAllFromDaysList() {
         this.daysList.clear();
-        System.out.println("Size : "+ this.daysList.size());
-        return;
     }
 
-
-//    public void addDayToList(DateButton dateItem) {
-//        this.daysList.add(dateItem);
-//
-//        return;
-//    }
 
     /**
      *
@@ -279,17 +171,14 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         return this.connection;
     }
 
+
     /**
      *
      * @param connection
      */
     public void setConnection(Connection connection) {
         this.connection = connection;
-        return;
     }
-
-
-    // ***********************
 
 
     /**
@@ -299,9 +188,12 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         return this.dateButton;
     }
 
+    /**
+     * @param dateButton
+     * @return void
+     */
     public void setDateButton(DateButton dateButton) {
         this.dateButton = dateButton;
-        return;
     }
 
     /**
@@ -317,61 +209,15 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
      */
     public void setDaysList(ArrayList<DateButton> daysList) {
         this.daysList = daysList;
-        return;
     }
 
-    /**
-     * @return JLabel
-     */
-    public JLabel getCalendarLabel() {
-        return this.calendarLabel;
-    }
-
-    /**
-     * @param calendarLabel
-     * @return void
-     */
-    public void setCalendarLabel(JLabel calendarLabel) {
-        this.calendarLabel = calendarLabel;
-        return;
-    }
-
-//    /**
-//     *
-//     * @return ArrayList<DateButton>
-//     */
-//    public ArrayList<DateButton> getLastMonth() {
-//        // TODO implement here
-//        return null;
-//    }
-
-//    /**
-//     * @return
-//     */
-//    public Set<DateButton> getNextMonth() {
-//        // TODO implement here
-//        return null;
-//    }
-
-
-
-
-//    /**
-//     * @param controlBtn
-//     * @return
-//     */
-//    public void setDaysList(ControlButton controlBtn) {
-//        // TODO implement here
-//        return;
-//    }
 
     @Override
     /**
      * @return
      */
     public void displayCalendar() {
-        System.out.println(this);
-        return;
+        // TODO implement here
     }
 
 }

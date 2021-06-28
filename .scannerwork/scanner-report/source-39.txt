@@ -1,310 +1,282 @@
-package fr.cnam.pdatabase.managment.model;
+package fr.cnam.pbuttons;
 
+import fr.cnam.pdatabase.MysqlConnection;
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
+import fr.cnam.pdatabase.managment.model.DateActivityItem;
+import fr.cnam.pdatabase.managment.model.DatePart;
+import fr.cnam.pmain.MainPanel;
+import fr.cnam.putils.penums.FormControlAction;
+import fr.cnam.putils.ReformatDate;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.Date;
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+
+import static fr.cnam.pactivity.ActivityFormFrame.*;
+import static fr.cnam.putils.MonthPageIncrement.getIncrementValue;
 
 
 /**
  * @author Yannis Guéguen
  */
-public class DatePart {
+public class FormControlButton extends JPanel implements FormControlButtonInterface, ActionListener {
 
+    /**
+     * constructor 1: (A FAIRE) utilisé par ControlButton 'EnterActivity' ??
+     */
+    public FormControlButton(String controlBtnValue) {
+
+        super();
+
+        this.formControlButton = new JButton(controlBtnValue);
+        this.formControlButton.setPreferredSize(new Dimension(120, 60));
+
+        this.formControlButton.addActionListener(this);
+
+        this.add(this.formControlButton);
+    }
 
     /**
      * Default constructor
      */
-    public DatePart() {
-        this.mainCalendar = Calendar.getInstance();
+    public FormControlButton() {
+    }
+
+    // ************************************
+
+    /**
+     * JButton - bouton de Contrôle (<, Enter, >)
+     */
+    private JButton formControlButton;
+
+
+    /**
+     * String
+     */
+    private String formControlBtnValue;
+
+    /**
+     * ImageIcon
+     */
+    private ImageIcon formControlBtnIcon;
+
+    public void setMainPanel(MainPanel mainPanel) {
+        this.mainPanel = mainPanel;
     }
 
 
-    // AJOUTS:
-
-//    /**
-//     * Calendar - nouvelle instance du calendrier
-//     */
-//    private Calendar newCalendar;
-
-
-    // *** var pour DAO:
-
     /**
-     * int - id de l'objet créé à partir des données de la BDD
+     * @param ev - méthode de déclenchement des évènements liés aux ControlButtons
      */
-    private int datePartId;
+    @Override
+    public void actionPerformed(ActionEvent ev) {
 
-    /**
-     * Long - date récupérée en BDD (format Long)
-     */
-    private Long datePartValue;
+        this.formControlBtnValue = ev.getActionCommand();
 
+        if(this.formControlBtnValue.equals(FormControlAction.ANNULATION)) {
 
-    // *******************
+            // *** fermeture de la fenêtre sans modification:
+            activityFormFrame.dispose();
+        }
+        else if(this.formControlBtnValue.equals(FormControlAction.VALIDATION)) {
 
-    /**
-     * Date - valeur de la date (représentée par la classe DatePart) - actuellement, date = non découpée mais devrait être, au choix: le jour, le mois ou l'année
-     */
-    private Date dateValue;
+            try {
+                this.onValidateFunction();
 
-//    /**
-//     * Calendar
-//     */
-//    private Calendar cacheCalendar;
+                this.reinitCalendar();
 
-    /**
-     * Date - nouveau mois de référence
-     */
-    private Date newMonthRef;
+            } catch (ClassNotFoundException | SQLException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(this.formControlBtnValue.equals(FormControlAction.SUPPRESSION)) {
 
-    /**
-     * int - Ajout d'un index à cause de sa réinitialisation à chaque appel de méthode
-     */
-    private int incr = 1;
+            try {
+                this.onSuppressionFunction();
 
-    /**
-     * int - index du mois en cours - 0 = mois actuel
-     */
-    private int monthIndex = 0;
+                this.reinitCalendar();
 
-
-//    /**
-//     *
-//     * @param dayIndex
-//     * @param newCalendar
-//     * @return Date - Pour la ré-init du Calendar: renvoie le jour selon le mois choisi et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
-//     */
-//    public Date getIndexedDay(int dayIndex, Calendar newCalendar) {
-//
-//        this.cacheCalendar = newCalendar;
-////        System.out.println(this.cacheCalendar.getTime());
-////        System.out.println("i i i i î "+ dayIndex);
-//
-//        this.cacheCalendar.set(cacheCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
-//
-////        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
-////        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
-//
-//        this.dateValue = this.cacheCalendar.getTime();
-//
-//        return this.dateValue;
-//    }
-
-    // **************************************
-
-    // méthodes liées au DAO:
-
-    /**
-     * @return int
-     */
-    public int getDatePartId() {
-        return this.datePartId;
-    }
-
-    /**
-     * @param datePartId
-     * @return void
-     */
-    public void setDatePartId(int datePartId) {
-        this.datePartId = datePartId;
-        return;
-    }
-
-    /**
-      * @return Long
-     */
-    public Long getDatePartValue() {
-        return this.datePartValue;
-    }
-
-    /**
-     * @param datePartValue
-     * @return void
-     */
-    public void setDatePartValue(Long datePartValue) {
-        this.datePartValue = datePartValue;
-        return;
-    }
-
-
-    // ***************************************
-
-//    /**
-//     *
-//     * @param dayIndex
-//     * @return Date - Pour l'init du Calendar: renvoie le jour selon le mois actuel et l'index passé avec pour référence 0 le Lundi (pour création de la liste de jours)
-//     */
-//    public Date getIndexedDay(int dayIndex) {
-//
-//        System.out.println("i i i i î "+ dayIndex);
-//        this.mainCalendar.set(this.mainCalendar.get(Calendar.MONDAY), dayIndex);   // SI 0, pas de modif de place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY OK!!!!
-//
-////        this.cacheCalendar.add(Calendar.DATE, daysIndex); // PREMIER JOUR DU MOIS (ex: 'Tue Jun 01...')
-////        this.cacheCalendar.add(Calendar.MONTH, 0); // si mois ACTUEL
-//
-//        this.dateValue = this.mainCalendar.getTime();
-//        System.out.println("## ## |||| : "+this.dateValue);
-//
-//        return this.dateValue;
-//    }
-
-    /**
-     * Calendar - nouvelle instance du calendrier
-     */
-    private Calendar mainCalendar;
-
-    // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
-
-    /**
-     * @link - https://coderanch.com/t/382459/java/day-week-month -> MERCI !
-     * @param idMonth
-     * @param idDayAdd
-     * @return Date - algorithme pour retrouver le premier lundi d'une page d'un mois (peut être le dernier lundi du mois précédent !)
-     */
-    public java.sql.Date getByFirstMondayOfMonthPage(int idMonth, int idDayAdd) {
-
-        this.mainCalendar = Calendar.getInstance();
-
-        // ***pour modifier le mois:
-        this.mainCalendar.add(Calendar.MONTH, idMonth);
-
-        // *** initialisation des dates = séparée, car Calendrier Gregorien utilisé...
-        int iMonth = this.mainCalendar.get(Calendar.MONTH);
-        int iYear = this.mainCalendar.get(Calendar.YEAR);
-        // *** Samedi = ref, sinon, décalage non souhaité des jours - ex: le lundi devient le dimanche
-        int iFirstDayOfWeek = Calendar.SATURDAY;
-
-        // définit l'index premier jour de la première semaine:
-        int indexDay = 1;
-
-        // *** Définit un calendrier 'grégorien' local avec le lundi comme premier jour de semaine:
-        Calendar cacheCalendar = new GregorianCalendar(iYear,iMonth,7);
-
-        cacheCalendar.setFirstDayOfWeek(iFirstDayOfWeek);
-
-        // ** un mois avant = 0
-        cacheCalendar.add(Calendar.MONTH, 0);
-
-        // *** jour actuel en 'int':
-        int iCurrentDay = cacheCalendar.get(Calendar.DAY_OF_WEEK);
-//        System.out.println(iCurrentDay);
-
-        // *** retrait d'un jour à la position actuelle: ?? pour calculer: indexDay - absolue(offset)
-        int offset = iCurrentDay - 1;
-
-        if(iCurrentDay < Calendar.MONDAY) {
-            // *** si le jour actuel (int) est avant lundi (dimanche = 1...)
-            offset = iCurrentDay - 8;
+            } catch (ClassNotFoundException | SQLException | ParseException e) {
+                e.printStackTrace();
+            }
         }
 
-        // *** sinon, si le jour actuel (int) est égal ou après lundi...
-        indexDay = indexDay - Math.abs(offset);
-//        System.out.println(indexDay);
+    }
 
-        // *** positionne le jour du mois:
-        if(cacheCalendar.getFirstDayOfWeek() == Calendar.MONDAY) {
-            indexDay = indexDay + 1;
+
+    /**
+     * MainPanel - mainPanel
+     */
+    private MainPanel mainPanel;
+
+    /**
+     * Connection - variable de connexion à MySql
+     */
+    private Connection connection;
+
+
+
+    /**
+     *
+     */
+    private void reinitCalendar() throws SQLException, ClassNotFoundException {
+
+        int indexMonth;
+        Date newReferenceDay;
+
+        // *** appel du 'getter' de la classe MonthPageIncrement (putils)
+        indexMonth = getIncrementValue();
+
+        DatePart newDatePart = new DatePart();
+
+        // *** suppression des données de la page actuelle pour mise à jour
+        this.mainPanel.getCalendarPanel().removeAllDaysFromCalendarPanel();
+        this.mainPanel.getCalendarPanel().removeAllFromDaysList();
+
+        // *** recherche de l'intitulé du mois à afficher (selon la page actuelle)
+        newReferenceDay = newDatePart.getOneMonthInterval(indexMonth);
+
+        // ******** Ajout  du titre du mois précédent au CalendarPanel (string):
+        this.mainPanel.getCalendarPanel().buildNewMonthLabel(newReferenceDay);
+
+
+        // **** recherche et ajout des jours avec leurs données éventuelles (JDBC)
+        ArrayList<DateButton> newDatesList= new ArrayList<>();
+
+        this.connection = this.mainPanel.getCalendarPanel().getConnection();
+
+
+        for(int i = 0; i < 41; i++) {
+            DateButton newDateButton = new DateButton(indexMonth, i, this.connection);
+            newDatesList.add(newDateButton);
         }
 
-        cacheCalendar.set(Calendar.DATE , indexDay);
-        // *** si 0, pas de modif de la place de MONDAY, SI -1, MONDAY DEVIENT SUNDAY - 31 MAY > ok !!!
+        // *** création de la liste de boutons avec les dates du mois actuel
+        this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);
 
-        // ajoute le premier lundi du mois au Calendar = 0
-        cacheCalendar.add(Calendar.DATE, idDayAdd);
-//        System.out.println(cacheCalendar.getTime());
-
-        // ou: (test String)
-        System.out.println(cacheCalendar.get(Calendar.DATE)+"/"+(cacheCalendar.get(Calendar.MONTH)+1)+"/"+cacheCalendar.get(Calendar.YEAR));
-        System.out.println(cacheCalendar.getTime());
-        java.sql.Date cacheCalToSqlDate = new java.sql.Date(cacheCalendar.getTimeInMillis());
-        return cacheCalToSqlDate;
-
-    }
-
-
-
-
-    // *** on retrouve un jour de ref du mois précédent (selon le nombre de mois avant aujourd'hui)
-    /**
-     *
-     * @param monthIndex
-     * @return Date - passage au mois suivant = 1, ou  précédent = -1
-     */
-    public Date getOneMonthInterval(int monthIndex) {
-
-        this.mainCalendar = Calendar.getInstance();
-
-        this.mainCalendar.add(Calendar.MONTH, monthIndex);
-
-        this.newMonthRef = new java.sql.Date(mainCalendar.getTimeInMillis());
-
-        return this.newMonthRef;
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page
+        this.mainPanel.getCalendarPanel().revalidate(); // nécessaire pour mettre à jour l'affichage
     }
 
 
 
     /**
-     * @return StringBuilder - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
-     */
-    public static StringBuilder getWeekDays() {
-
-        DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
-
-
-        String[] joursSemaineFR = dfsFR.getWeekdays();
-
-        // *** StringBuilder = seulement pour test, ici:
-        StringBuilder joursListeFR = new StringBuilder("En-Tête - Jours FR ");
-
-        for (int i = 1; i < joursSemaineFR.length; i++) {
-            joursListeFR.append(" : ");
-            joursListeFR.append(joursSemaineFR[i]);
-        }
-        System.out.println(joursListeFR);
-
-        return joursListeFR;
-    }
-
-
-    /**
-     *
-     * @return Calendar
-     */
-    public Calendar getCalendarValue() {
-        return this.mainCalendar;
-    }
-
-
-    /**
-     *
-     * @param mainCalendar
-     *@return void
-     */
-    public void setCalendarValue(Calendar mainCalendar) {
-        this.mainCalendar = mainCalendar;
-
-        return;
-    }
-
-
-    /**
-     *
-     * @return Date
-     */
-    public Date getDateValue() {
-        return this.dateValue;
-    }
-
-    /**
-     * @param dateValue
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws ParseException
      * @return void
      */
-    public void setDateValue(Date dateValue) {
-        this.dateValue = dateValue;
-        return;
+    public boolean onSuppressionFunction() throws ClassNotFoundException, SQLException, ParseException {
+
+        MysqlConnection mysqlConnection = new MysqlConnection();
+
+        // *** ouverture de la connection
+        boolean connectResponse = mysqlConnection.connection();
+
+        Connection connection = mysqlConnection.getConnection();
+        DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
+
+
+        // *** Datas des champs de ActivityFormFrame
+
+        // *** écouteur du champs date
+        String newDateFromField = activityFormFrame.getDateTextField().getText();
+        ReformatDate reformatDate = new ReformatDate();
+        Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
+
+        // *** insertion en BDD d'une nouvelle activité
+        dateActivityDAO.delete(formatedNewDateToLong);
+
+        connection.close();
+
+        // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
+        activityFormFrame.dispose();
+
+        return connectResponse;
     }
 
+
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws ParseException
+     * @return void - fonction de validation des données du formulaire d'édition d'une Activité
+     */
+    public boolean onValidateFunction() throws ClassNotFoundException, SQLException, ParseException {
+
+        MysqlConnection mysqlConnection = new MysqlConnection();
+
+        boolean connectResponse = mysqlConnection.connection();
+
+        Connection connection = mysqlConnection.getConnection();
+
+        // *** Datas des champs de ActivityFormFrame
+
+        // *** écouteur du champs date
+        String newDateFromField = activityFormFrame.getDateTextField().getText();
+        ReformatDate reformatDate = new ReformatDate();
+        Long formatedNewDateToLong = reformatDate.formatStringToLong(newDateFromField);
+
+        // *** écouteur du champs Description de l'activité:
+        String newActivityDescription = activityFormFrame.getActivityDescriptionText().getText();
+
+        // *** écouteur du champs Status de l'activité:
+        String newActivityStatus = activityFormFrame.getActivityStatusText().getSelectedItem().toString();
+
+        DateActivityItem dateActivityItem = new DateActivityItem();
+
+        DatePart newDatePart = new DatePart();
+        newDatePart.setDatePartValue(formatedNewDateToLong);
+
+        dateActivityItem.setDatePart(newDatePart);
+        dateActivityItem.setDateActivityDescription(newActivityDescription);
+
+        // *** ajout de guillemets pour l'Enum
+        dateActivityItem.setDateActivityStatus("\""+ newActivityStatus +"\"");
+
+        // *** insertion en BDD d'une nouvelle activité
+        DateActivityDAO dateActivityDAO = new DateActivityDAO(connection);
+
+        dateActivityDAO.create(dateActivityItem);
+
+        connection.close();
+
+        // *** fermeture de la fenêtre lorsque la nouvelle activité a été créée
+        activityFormFrame.dispose();
+
+        return connectResponse;
+    }
+
+
+    /**
+     * @return ImageIcon
+     */
+    public ImageIcon getFormControlBtnIcon() {
+        // A faire
+        return this.formControlBtnIcon;
+    }
+
+    /**
+     * @param formControlBtnIcon
+     * @return void - si ajout d'une icone au bouton (à faire)
+     */
+    public void setFormControlBtnIcon(ImageIcon formControlBtnIcon) {
+        this.formControlBtnIcon = formControlBtnIcon;
+    }
+
+    @Override
+    /**
+     * @return void
+     */
+    public void displayFormControlBtn() {
+        // TODO implement here
+    }
 
 }

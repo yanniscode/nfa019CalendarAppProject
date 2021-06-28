@@ -1,84 +1,67 @@
-package fr.cnam.pdatabase;
+package fr.cnam.pcalendarapp;
 
+import fr.cnam.pmain.MainPanel;
 
-import java.sql.*;
-import java.sql.DriverManager;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.SQLException;
 
 /**
  * @author Yannis Guéguen
  */
-public class MysqlConnection implements MysqlConnectionInterface {
+public class RunCalendarApp extends JFrame {
 
 
     /**
      * Default constructor
      */
-    public MysqlConnection() throws ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+    public RunCalendarApp() throws SQLException, ClassNotFoundException {
+
+        super();
+
+        JFrame runAppFrame = new JFrame();
+
+        runAppFrame.setSize(1920, 1080);
+        runAppFrame.setLocation(0,0);
+        String calendarTitle = "Le Calendrier des Lunaires";
+        runAppFrame.setTitle(calendarTitle);
+
+        mainPanel = new MainPanel();
+
+        Container runAppContainer = runAppFrame.getContentPane();
+        runAppContainer.add(mainPanel);
+
+        WindowListener l = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            };
+        };
+
+        this.addWindowListener(l);
+
+        runAppFrame.setVisible(true);
+
+        // *** fermeture effective du programme si on le quitte
+        runAppFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private Connection connection;
 
     /**
-     *
-     * @return boolean
-     * @throws SQLException
+     * MainPanel
      */
-    public boolean connection() throws SQLException {
+    private static MainPanel mainPanel;
 
-        boolean response = false;
 
-        try {
-
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            String typeBase = "jdbc:mysql";
-            String ip = "127.0.0.1";
-            String port = "3306";
-            String databaseName = "NFA019_CALENDAR_APP";
-            String databaseOption = "?allowMultiQueries=true";
-            String login = "root";
-            String password = "test";
-
-//            String url = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
-//            String url = "jdbc:mysql://127.0.0.1/";
-            String url = typeBase + "://"+ ip +": "+ port +"/"+ databaseName + databaseOption;
-
-            Class.forName(driverName);
-
-            this.connection = DriverManager.getConnection(url, login, password);
-            System.out.println("ok connection !");
-            response = true;
-
-        } catch (Exception e) {
-            System.out.println(e);
-            response = false;
-        }
-
-        return response;
-    }
 
 
     /**
-     * @return Connection
-     */
-    public Connection getConnection() {
-        return this.connection;
-    }
-
-    /**
-     * @param connection
+     * @param args 
      * @return void
      */
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    /**
-     * @return
-     */
-    public boolean getMysqlConnexionInstance() {
-        // TODO implement here
-        return false;
+    public static void main (String[] args) throws SQLException, ClassNotFoundException {
+        RunCalendarApp runCalendarApp = new RunCalendarApp();
     }
 
 }

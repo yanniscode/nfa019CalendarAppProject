@@ -1,1 +1,1 @@
- 2javaXåhr$src/fr/cnam/pbuttons/DateButton.java
+ 2javaX=hr1test/fr/cnam/pdatabase/managment/dao/DAOTest.java

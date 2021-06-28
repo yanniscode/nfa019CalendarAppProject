@@ -1,1 +1,1 @@
- 2javaXhr)src/fr/cnam/pmain/MainPanelInterface.java
+ 2javaX>hr1test/fr/cnam/pcalendarapp/RunCalendarAppTest.java

@@ -1,35 +1,54 @@
-package fr.cnam.putils.penums;
+package fr.cnam.perrors;
+
+
 
 /**
  * @author Yannis Guéguen
  */
-public class ActivityStatus {
+public class FormErrorPanel implements FormErrorPanelInterface {
 
     /**
      * Default constructor
      */
-    public ActivityStatus() {
+    public FormErrorPanel() {
+        // TODO implement here
+    }
+
+
+    /**
+     * String
+     */
+    private String errorMessage;
+
+    /**
+     * ReturnButton
+     */
+    protected ReturnButton returnButton;
+
+
+
+    /**
+     * @return String
+     */
+    public String getErrorMessage() {
+        // TODO implement here
+        return "";
     }
 
     /**
-     * String - status d'une l'activité
+     * @param errorMessage 
+     * @return void
      */
-    public static final String TO_DO = "En définition";
+    public void setErrorMessage(String errorMessage) {
+        // TODO implement here
+    }
 
+    @Override
     /**
-     * String - status d'une l'activité
+     * @return void
      */
-    public static final String RUNNING = "En cours";
-
-    /**
-     * String - status d'une l'activité
-     */
-    public static final String IN_TEST = "En test";
-
-    /**
-     * String - status d'une l'activité
-     */
-    public static final String DONE = "Terminée";
-
+    public void displayErrorPanel() {
+        // TODO implement here
+    }
 
 }

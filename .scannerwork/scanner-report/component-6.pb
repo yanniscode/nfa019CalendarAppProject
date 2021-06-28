@@ -1,1 +1,1 @@
- 2javaX™hr2test/fr/cnam/pcalendarpanel/CalendarPanelTest.java
+ 2javaX2hr3test/fr/cnam/pcalendarpanel/CalendarHeaderTest.java

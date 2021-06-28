@@ -1,234 +1,11 @@
-3
-javaS1220"Move this file to a named package. ¨
-javaS125<This block of commented-out lines of code should be removed. 2 %:
-
- Code:
-
- Code:
-
- Code:
-
- Code:
-
- "Code:
-
-		 )Code:
-
- Code:
-
- Code:
-
- Code:
-
- Code:
-
- #Code:
-
- Code:
-
- +Code:
-
-
- /Code:
-
- Code:
-
- Code:
-
-"" Code:
-
-%% Code:
-
-'' Code:
-
-((
- Code:
-
-)) Code:
-
-++ gCode:
-
-,,
- Code:
-
--- %Code:
-
-..
- )Code:
-
-//
- 5Code:
-
-00
- +Code:
-
-11
- 'Code:
-
-22 )Code:
-
-33 6Code:
-
-44 )Code:
-
-55 5Code:
-
-66 )Code:
-
-77 5Code:
-
-88 Code:
-
-;;  Code:
-
-<< Code:
-
-== %Code:
-
->> Code:
-
-?? Code:
-
-AA $Code:
-
-BB *Code:
-
-GG  Code:
-
-HH
- )Code:
-
-II Code:
-
-LL /Code:
-
-MM Code:
-
-PP 'Code:
-
-RR
- 7Code:
-
-TT
- cCode:
-
-UU Code:
-
-YY .Code:
-
-[[ 9Code:
-
-]]
- 'Code:
-
-^^ Code:
-
-aa %Code:
-
-cc 9Code:
-
-ee
- 3Code:
-
-ff Code:
-
-ii ,Code:
-
-kk
- 7Code:
-
-mm
- MCode:
-
-nn Code:
-
-qq (Code:
-
-rr QCode:
-
-ss 1Code:
-
-tt Code:
-
-ww 8Code:
-
-yy
- qCode:
-
-zz
- 5Code:
-
-{{
- 0Code:
-
-|| Code:
-
- /Code:
-
-
-ÄÄ ;Code:
-
-
-ÅÅ
- XCode:
-
-
-ÇÇ 7Code:
-
-
-ÉÉ ACode:
-
-
-ÑÑ _Code:
-
-
-ÖÖ .Code:
-
-
-ÜÜ 7Code:
-
-
-áá DCode:
-
-
-àà
- 0Code:
-
-
-ââ Code:
-
-
-åå )Code:
-
-
-éé NCode:
-
-
-èè 5Code:
-
-
-êê 0Code:
-
-
-ëë 	Code:
-
-
-îî #Code:
-
-
-ïï 	Code:
-
-
-òò (Code:
-
-
-ôô 	Code:
-
-
-úú (Code:
-
-
-ùù 	Code:
-
-
-üü Code
+`
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2$$ (`
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2))" +J
+javaS3740/Provide the parametrized type for this generic. 2 â
+javaS1130nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body. 2/ ;î
+javaS1130yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body. 2= S6
+javaS3878Remove this array creation. 2 	K
+javaS11352Complete the task associated to this TODO comment. 2 K
+javaS11352Complete the task associated to this TODO comment. 2%% K
+javaS11352Complete the task associated to this TODO comment. 2** K
+javaS11352Complete the task associated to this TODO comment. 2// 

@@ -1,1 +1,1 @@
- 2javaX.hr2test/fr/cnam/pbuttons/ControlButtonsPanelTest.java
+ 2javaX›hr4test/fr/cnam/pbuttons/CalendarControlButtonTest.java

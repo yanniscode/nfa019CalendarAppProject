@@ -1,15 +1,11 @@
-package fr.cnam.pbuttons;
+package fr.cnam.pmain;
 
-import java.util.*;
 
-/**
- * 
- */
-public interface FormControlButtonInterface {
+public interface MainPanelInterface {
 
     /**
      * @return void
      */
-    public void displayFormControlBtn();
+    public void displayMainPanel();
 
 }

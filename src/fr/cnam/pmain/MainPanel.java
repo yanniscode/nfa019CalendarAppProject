@@ -29,6 +29,7 @@ public class MainPanel extends Container implements MainPanelInterface {
 
         // *** composant des boutons de contrôle du calendrier - note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
         this.controlBtnPanel = new CalendarControlButtonsPanel(this);
+
         // *** composant du calendrier
         this.calendarPanel = new CalendarPanel();
 
@@ -37,25 +38,17 @@ public class MainPanel extends Container implements MainPanelInterface {
         this.add(this.calendarPanel);
     }
 
-    /**
-     * Logger - infos
-     */
-//    private static Logger logger = Logger.getLogger(TestLog4j1.class);
+
 
     /**
      * JLabel - Container du Titre principal
      */
-    private static JLabel mainLabel;
-
-    /**
-     * Container - container du Calendrier
-     */
-    private static Container calendarContainer;
+    private JLabel mainLabel;
 
     /**
      * String - Titre principal
      */
-    private static String calendarMainTitle;
+    private String calendarMainTitle;
 
     /**
      * CalendarPanel - Container du Calendrier (= liste de DateButtons)
@@ -65,35 +58,9 @@ public class MainPanel extends Container implements MainPanelInterface {
     /**
      * ControlButtonsPanel - Container du Panneau de ControlButton
      */
-    private static CalendarControlButtonsPanel controlBtnPanel;
+    private CalendarControlButtonsPanel controlBtnPanel;
 
 
-
-
-    // *** AJOUTS:
-
-
-    //    public void removeCalendarPanel() {
-    //        remove(this.calendarPanel);
-    //        return;
-    //    }
-
-
-    /**
-     * @return ControlButtonsPanel
-     */
-    public static CalendarControlButtonsPanel getControlBtnPanel() {
-        return controlBtnPanel;
-    }
-
-    /**
-     *
-     * @param controlBtnPanel
-     */
-    public void setControlBtnPanel(CalendarControlButtonsPanel controlBtnPanel) {
-        this.controlBtnPanel = controlBtnPanel;
-        return;
-    }
 
     /**
      * @return CalendarPanel
@@ -108,40 +75,7 @@ public class MainPanel extends Container implements MainPanelInterface {
      * @param calendarPanel
      */
     public void setCalendarPanel(CalendarPanel calendarPanel) {
-
         this.calendarPanel = calendarPanel;
-    //    add(this.calendarPanel);
-        return;
-    }
-
-    /**
-     * @return String - Calendar Main Label
-     */
-    public static JLabel getMainLabel() {
-        return mainLabel;
-    }
-
-    /**
-     * @param mainLabel
-     */
-    public void setMainLabel(JLabel mainLabel) {
-        this.mainLabel = mainLabel;
-        return;
-    }
-
-    /**
-     * @return String - Calendar Main Title
-     */
-    public static String getCalendarMainTitle() {
-        return calendarMainTitle;
-    }
-
-    /**
-     * @param calendarMainTitle
-     */
-    public void setCalendarMainTitle(String calendarMainTitle) {
-        this.calendarMainTitle = calendarMainTitle;
-        return;
     }
 
 
@@ -150,7 +84,7 @@ public class MainPanel extends Container implements MainPanelInterface {
      * @return void - check du Composant - à utiliser ??
      */
     public void displayMainPanel() {
-        return;
+        // TODO implement here
     }
 
 }

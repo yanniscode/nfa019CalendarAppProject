@@ -1,14 +1,13 @@
 package fr.cnam.pdatabase;
 
-
 import java.sql.*;
 import java.sql.DriverManager;
+
 
 /**
  * @author Yannis Guéguen
  */
 public class MysqlConnection implements MysqlConnectionInterface {
-
 
     /**
      * Default constructor
@@ -17,7 +16,11 @@ public class MysqlConnection implements MysqlConnectionInterface {
         Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
+    /**
+     * Connection
+     */
     private Connection connection;
+
 
     /**
      *
@@ -39,14 +42,11 @@ public class MysqlConnection implements MysqlConnectionInterface {
             String login = "root";
             String password = "test";
 
-//            String url = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/NFA019_CALENDAR_APP?allowMultiQueries=true", "root", "test");
-//            String url = "jdbc:mysql://127.0.0.1/";
             String url = typeBase + "://"+ ip +": "+ port +"/"+ databaseName + databaseOption;
 
             Class.forName(driverName);
 
             this.connection = DriverManager.getConnection(url, login, password);
-            System.out.println("ok connection !");
             response = true;
 
         } catch (Exception e) {
@@ -72,6 +72,7 @@ public class MysqlConnection implements MysqlConnectionInterface {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+
 
     /**
      * @return

@@ -1,618 +1,223 @@
-package fr.cnam.pactivity;
+package fr.cnam.pcalendarpanel;
 
-import fr.cnam.pdatabase.managment.model.DatePart;
+import fr.cnam.pbuttons.DateButton;
+import fr.cnam.pdatabase.MysqlConnection;
 import fr.cnam.putils.ReformatDate;
-import fr.cnam.putils.penums.ActivityStatus;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLOutput;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
  * @author Yannis Guéguen
  */
-public class ActivityFormFrame extends JFrame implements ActivityFormPanelInterface, ActionListener {
+public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
 
     /**
-     * ActivityFormFrame - Frame de Création d'Activité (static)
+     * Default constructor: création du calendrier (= liste de DateButtons)
      */
-    public static ActivityFormFrame activityFormFrame;
+    public CalendarPanel() throws SQLException, ClassNotFoundException {
 
+        super();
 
-    /**
-     * initialisation du la Frame de Création d'Activité (static)
-     */
-    static {
-        activityFormFrame = new ActivityFormFrame();
+        MysqlConnection mysqlConnection = new MysqlConnection();
+
+        // *** ouverture de la connection:
+        boolean connectResponse = mysqlConnection.connection();
+
+        this.connection = mysqlConnection.getConnection();
+        this.calendarLabel = new JLabel("", SwingConstants.CENTER);
+        this.calendarLabel.setFont(new Font(TEXTFONT, 0, 25));
+
+        this.buildNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
+
+        // *** création d'une liste de jours (mois actuel)
+        this.daysList = new ArrayList<DateButton>();
+
+        // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
+        this.buildNewDatesInList(this.daysList);
+
+        // *** ajout de la liste de boutons à l'affichage avec les dates du mois actuel
+        this.buildDaysList(this.daysList);
+
+        // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page   // Utile ici ??
+
+        GridLayout gl = new GridLayout(0, 7, 0, 0);   // cols définit en priorité à 7
+        this.setLayout(gl);
+
+        this.setSize(800, 300);
+
     }
 
-//    protected static ActivityFormFrame activityFormFrame =  new ActivityFormFrame();
-
-//    /**
-//     *
-//     */
-////    private JFrame activityFormDialog;
-//    /**
-//     *
-//     */
-//    private Container activityForm;
 
     /**
-     * JLabel
+     * Connection
      */
-    private JLabel activityPanelLabel = new JLabel();
-    /**
-     * String
-     */
-    private String activityPanelTitle;
-
-
-    //    private JPanel activityForm;
-    /**
-     * JTextField - champs de saisie de la date (JJ/MM/YYYY) - obligatoire
-     */
-    private JTextField dateTextField;
-
-
+    Connection connection;
 
     /**
-     * JTextArea - champs de saisie de la description de l'activité à enregistrer - obligatoire
+     * DateButton
      */
-    private JTextField activityDescriptionText;
+    private DateButton dateButton;
+
+    /**
+     * JLabel - titre du Calendrier (Container)
+     */
+    private JLabel calendarLabel;
+
+    /**
+     * ArrayList<DateButton> - liste des boutons (item d'un jour)
+     */
+    private ArrayList<DateButton> daysList;
+
+    /**
+     * String (static final)
+     */
+    private static final String TEXTFONT = "Serif";
+
+    /**
+     * @return ArrayList<DateButton> - liste de boutons d'activités - jours
+     */
+    public ArrayList<DateButton>getNewDatesInList() {
+        return this.daysList;
+    }
+
+
+    /**
+     * @return void - Création des boutons = liste des boutons d'activités - jours (pas encore ajoutée au CalendarPanel)
+     */
+    public void buildNewDatesInList(ArrayList<DateButton> daysList) throws SQLException, ClassNotFoundException {
+
+        this.daysList = daysList;
+
+        for(int i = 0; i < 41; i ++) {
+            this.dateButton = new DateButton(i, this.connection);
+            this.daysList.add(this.dateButton);
+        }
+    }
+
+
+    /**
+     * Ajout des jours au CalendarPanel:
+     * @return void
+     */
+    public void buildDaysList(ArrayList<DateButton> daysList) {
+
+        this.daysList = daysList;
+
+        for(int i = 0; i < 41; i ++) {
+
+            this.dateButton = this.daysList.get(i);
+
+            // *** ajout à l'affichage (au CalendarPanel)
+            this.add(this.dateButton);
+        }
+    }
+
+
+    /**
+     * @return JLabel - intitulé du mois (en toutes lettres en en-tête de page)
+     */
+    public JLabel getNewMonthLabel() {
+        return this.calendarLabel;
+    }
+
+
+    /**
+     * @param newMonth
+     * @return void - Ajout du titre du mois précédent au CalendarPanel (string)
+     */
+    public void buildNewMonthLabel(java.sql.Date newMonth) {
+
+        ReformatDate reformatDate = new ReformatDate();
+
+        String formatedDate = reformatDate.formatMonthToString(newMonth);
+
+        this.calendarLabel.setText(formatedDate);
+        this.calendarLabel.setFont(new Font(TEXTFONT, 0, 45));
+        this.add(this.calendarLabel);
+    }
+
+
+    /**
+     * @return void - retire les boutons du CalendarPanelde DateButtons
+     */
+    public void removeAllDaysFromCalendarPanel() {
+        for(int i = 0; i < 41; i ++) {
+            this.dateButton = this.daysList.get(i);
+            this.remove(this.dateButton);
+        }
+    }
+
+
+    /**
+     * @return void - vide la liste des DateButtons
+     */
+    public void removeAllFromDaysList() {
+        this.daysList.clear();
+    }
+
 
     /**
      *
-     * @return JTextArea
+     * @return Connection
      */
-    public JTextField getActivityDescriptionText() {
-        return this.activityDescriptionText;
+    public Connection getConnection() {
+        return this.connection;
+    }
+
+
+    /**
+     *
+     * @param connection
+     */
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+
+    /**
+     * @return DateButton
+     */
+    public DateButton getDateButton() {
+        return this.dateButton;
     }
 
     /**
-     * @param activityDescriptionText
+     * @param dateButton
      * @return void
      */
-    public void setActivityDescriptionText(JTextField activityDescriptionText) {
-        this.activityDescriptionText = activityDescriptionText;
-        return;
+    public void setDateButton(DateButton dateButton) {
+        this.dateButton = dateButton;
     }
 
     /**
-     * JComboBox<String> - liste des status possibles pour une activité - obligatoire
+     * @return ArrayList<DateButton>
      */
-    private JComboBox<String> activityStatusText;
-
-    /**
-     * @return JComboBox<String>
-     */
-    public JComboBox<String> getActivityStatusText() {
-        return this.activityStatusText;
+    public ArrayList<DateButton> getDaysList() {
+        return this.daysList;
     }
 
     /**
-     * @param activityStatus
+     * @param daysList
      * @return void
      */
-    public void setActivityStatusText(String activityStatus) {
-
-
-//        String ActivityStatusToCompare = "\""+ activityStatus +"\"";
-//        System.out.println("~~~~ str compare = "+ ActivityStatusToCompare);
-
-        if (activityStatus.equals("\""+ ActivityStatus.TO_DO +"\"")) {
-            this.activityStatusText.setSelectedIndex(0);
-        } else if (activityStatus.equals("\""+ ActivityStatus.RUNNING +"\"")) {
-            this.activityStatusText.setSelectedIndex(1);
-        } else if (activityStatus.equals("\""+ ActivityStatus.IN_TEST +"\"")) {
-            this.activityStatusText.setSelectedIndex(2);
-        } else if (activityStatus.equals("\""+ ActivityStatus.DONE +"\"")) {
-            this.activityStatusText.setSelectedIndex(3);
-        }
-
-//        this.activityStatusText = activityStatusText;
-
-        return;
-    }
-
-
-
-//    private ControlButton validateButton;
-////    public ControlButton getValidateButton() {
-////        return this.validateButton;
-////    }
-////    public void setValidateButton(ControlButton validateButton ) {
-////        this.validateButton = validateButton;
-////        return;
-////    }
-//
-//    private ControlButton suppressButton;
-//    private ControlButton annulateButton;
-
-    /**
-     * Default constructor
-     */
-    public  ActivityFormFrame() {
-
-        GridLayout glActivityMainFormPanel = new GridLayout(0,1, 20, 80);    // *** ligne = 0, sinon, pas de prise en compte des colonnes
-//        FlowLayout glActivityMainFormPanel = new FlowLayout(FlowLayout.CENTER,1000,50);
-        this.setLayout(glActivityMainFormPanel);
-
-        this.setSize(960, 540);
-        this.setLocation(480,270);
-        String activityFormTitle = "Edition d'une Activité";
-        this.setTitle(activityFormTitle);
-
-        // ****************
-
-        Container activityFormTitleContainer = this.buildActivityFormTitle();
-        this.add(activityFormTitleContainer);
-
-        Container activityFormContainer = this.buildActivityForm();
-        this.add(activityFormContainer);
-
-        FormControlButtonsPanel formControlButtonsPanel = new FormControlButtonsPanel();
-//        Container validationContainer = new Container();
-//        validationContainer.add(formControlButtonsPanel);
-        this.add(formControlButtonsPanel);
-
-//        Container validationContainer = this.buildValidationContainer();
-//        this.add(validationContainer);
-
-//        Container activityFormContainer = this.getContentPane();
-
-//        Container activityFormTitleContainer = new Container();
-//        activityFormTitleContainer.setBackground(Color.BLUE);
-//        activityFormTitleContainer.add(this.activityFormDialog);
-//        activityFormTitleContainer.setVisible(true);
-
-
-//        WindowListener l = new WindowAdapter() {
-//            public void windowClosing(WindowEvent e) {
-//                System.exit(0);
-//            };
-//        };
-//
-//        this.addWindowListener(l);
-
-//        activityFormFrame.setVisible(true);
-//        activityFormFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-    }
-
-    // ******************************************
-
-//    /**
-//     * JLabel
-//     */
-//    private JLabel activityPanelLabel = new JLabel();
-
-
-
-    // *+*****************************************
-
-    // pas ici, dans le mainformpanel:
-//    /**
-//     *
-//     */
-//    private String activityPanelTitle;
-
-    /**
-     * Date de format: dd
-     */
-    private Date daySelect;
-
-    /**
-     * Date de format: MM
-     */
-    private Date monthSelect;
-
-    /**
-     * Date de format: yyyy
-     */
-    private Date yearSelect;
-
-    /**
-     * Date
-     */
-    private Date newAggregatedDate;
-
-    /**
-     * String
-     */
-    private String newActivityDescription;
-
-    /**
-     * String
-     */
-    private String newActivityStatus;
-
-    /**
-     * int - utilisé pour gérer le temps de connexion au formulaire de saisie
-     */
-    private int timeOut;
-
-
-    // ***********************
-
-//    /**
-//     * @return JLabel
-//     */
-//    public JLabel getActivityPanelLabel() {
-//        return this.activityPanelLabel;
-//    }
-//
-//    /**
-//     * @param activityPanelLabel
-//     * @return void
-//     */
-//    public void setActivityPanelLabel(JLabel activityPanelLabel) {
-//        this.activityPanelLabel = activityPanelLabel;
-//        return;
-//    }
-
-    // *******************
-
-//    public ActivityForm getActivityForm() {
-//        return this.activityForm;
-//    }
-//
-//    public void setActivityFormFrame(ActivityForm activityForm) {
-//        this.activityForm = activityForm;
-//        return;
-//    }
-
-
-//    public JFrame getActivityFormFrame() {
-//        return this.activityFormDialog;
-//    }
-//
-//    public void setActivityFormFrame(JFrame activityFormFrame) {
-//        this.activityFormDialog = activityFormFrame;
-//        return;
-//    }
-
-
-    public Container buildActivityFormTitle() {
-
-        Container activityFormTitle = new Container();
-
-//        GridLayout glActivityFormTitle = new GridLayout(0, 1, 20, 80);
-        FlowLayout glActivityFormTitle = new FlowLayout(FlowLayout.CENTER,1000,50);
-        activityFormTitle.setLayout(glActivityFormTitle);
-
-//        activityFormTitle.setSize(860, 440);
-//        activityFormTitle.setLocation(480,270);
-//        String activityFormTitleString = "Ajout d'une Activité";
-//        activityFormDialog.setTitle(activityFormTitleString);
-
-        this.activityPanelTitle = "Edition d'une Activité";
-        this.activityPanelLabel = new JLabel(this.activityPanelTitle);
-        this.activityPanelLabel.setFont(new Font("Serif", 0, 20));
-        this.activityPanelLabel.setBackground(Color.BLUE);
-//        this.activityPanelLabel.setHorizontalTextPosition(JLabel.CENTER);
-
-        activityFormTitle.add(this.activityPanelLabel);
-
-//        this.activityForm = new ActivityForm();
-//        this.activityFormDialog.add(activityForm);
-        return activityFormTitle;
-    }
-
-
-    // **** POURRAIT ÊTRE UTILISÉ, SI LAYOUT DIFFÉRENT MAIS A OPTIMISER (À VOIR)
-//    public Container buildActivityFormMainContainer() {
-//
-//        Container mainFormContainer = new Container();
-//        GridLayout mainFormLayout = new GridLayout(0,1);    // *** ligne = 0, sinon, pas de prise en compte des colonnes
-//        mainFormContainer.setLayout(mainFormLayout);
-//        mainFormContainer.setSize(860, 440);
-//        mainFormContainer.setLocation(480,270);
-//
-//
-//        // *** ajout des containers (partie titre, partie formulaire et partie boutons de validation) au container principal
-//        Container activityFormTitleContainer = this.buildActivityFormTitle();
-//        mainFormContainer.add(activityFormTitleContainer);
-//
-//        Container activityFormContainer = this.buildActivityForm();
-//        mainFormContainer.add(activityFormContainer);
-//
-//        Container validationContainer = this.buildValidationContainer();
-//        mainFormContainer.add(validationContainer);
-//
-//
-//        return mainFormContainer;
-//
-//    }
-
-
-    public Container buildActivityForm() {
-
-        Container activityFormContainer = new Container();
-        GridLayout glActivityForm = new GridLayout(0,2, 70, 20);    // *** ligne = 0, sinon, pas de prise en compte des colonnes
-//        FlowLayout glActivityForm = new FlowLayout(FlowLayout.CENTER,1000,50);
-//        FlowLayout glActivityForm = new FlowLayout(CENTER, 1000, 50);
-        activityFormContainer.setLayout(glActivityForm);
-
-//        this.activityForm.setSize(760, 340);
-//        this.activityForm.setLocation(380,170);
-
-//        this.activityPanelTitle = "Ajout d'une Activité";
-//        this.activityPanelLabel = new JLabel(this.activityPanelTitle);
-//        this.activityPanelLabel.setFont(new Font("Serif", 0, 20));
-//        this.activityPanelLabel.setBackground(Color.BLUE);
-////        this.activityPanelLabel.setHorizontalTextPosition(JLabel.CENTER);
-//
-//        this.activityFormDialog.add(this.activityPanelLabel);
-
-
-        JLabel dateChoiceLabel = new JLabel("Saisir une date: ");
-        JLabel activityDescriptionLabel = new JLabel("Saisir une activité: ");
-        JLabel activityStatusLabel = new JLabel("Saisir le status de l'activité: ");
-
-        dateChoiceLabel.setFont(new Font("Serif", 0, 20));
-        activityDescriptionLabel.setFont(new Font("Serif", 0, 20));
-        activityStatusLabel.setFont(new Font("Serif", 0, 20));
-
-
-        this.dateTextField = new JTextField();
-        this.activityDescriptionText = new JTextField();
-        // *** tableau de valeurs en dur, pour l'instant (à revoir avec appels à la BDD)
-        String[] statusTab = { ActivityStatus.TO_DO, ActivityStatus.RUNNING, ActivityStatus.IN_TEST, ActivityStatus.DONE };
-        this.activityStatusText = new JComboBox<String>(statusTab);
-
-        // pré-initialisation des données du formulaire
-        this.initFormFields();
-
-        this.dateTextField.setHorizontalAlignment(JTextField.CENTER);
-//        this.dateTextField.addActionListener( this); // utile ici ?? -> plus pour bouton de validation
-
-
-        activityFormContainer.add(dateChoiceLabel);
-        activityFormContainer.add(this.dateTextField);
-
-        activityFormContainer.add(activityDescriptionLabel);
-        activityFormContainer.add(this.activityDescriptionText);
-
-        activityFormContainer.add(activityStatusLabel);
-        activityFormContainer.add(this.activityStatusText);
-
-
-        return activityFormContainer;
-    }
-
-
-//    public Container buildValidationContainer() {
-//
-//        Container validationContainer = new Container();
-//        GridLayout ValidateActivityLayout = new GridLayout(0,3  , 0, 0);    // *** ligne = 0, sinon, pas de prise en compte des colonnes
-//        validationContainer.setLayout(ValidateActivityLayout);
-//
-//        // ****** partie boutons (validation, suppression, annulation)
-//
-////        glActivityForm.setColumns(3);
-//
-//        this.annulateButton = new ControlButton(FormControlAction.ANNULATION);
-//        this.annulateButton.setBackground(Color.LIGHT_GRAY);
-//
-//        // ***********
-//
-//        this.validateButton = new ControlButton(FormControlAction.VALIDATION);
-//        this.validateButton.setBackground(Color.ORANGE);
-//        // ***********
-//
-//        this.suppressButton = new ControlButton(FormControlAction.SUPPRESSION);
-//        this.suppressButton.setBackground(Color.LIGHT_GRAY);
-//
-//
-//        // ***********
-//
-//        validationContainer.add(this.annulateButton);
-//        validationContainer.add(this.validateButton);
-//        validationContainer.add(this.suppressButton);
-//
-//        return validationContainer;
-//    }
-
-
-
-    public void initFormFieldsWithDatas (String dateValue, String activityDescription, String activityStatus) {
-
-        System.out.println(activityStatus);
-//        System.out.println(activityStatus.equals(ActivityStatus.TO_DO));
-//        this.daySelect = new java.sql.Date(dateValue);
-//        ReformatDate reformatDate = new ReformatDate();
-//        String formatedDate = reformatDate.formatDateToString(this.daySelect);
-        this.dateTextField.setText(dateValue);
-        this.activityDescriptionText.setText(activityDescription);
-
-        if(activityStatus != null) {
-
-            this.setActivityStatusText(activityStatus);
-            // *** pré-sélection de l'élément 0 de la liste (JComboBox)
-//            if (activityStatus.equals(ActivityStatus.TO_DO)) {
-//                this.activityStatusText.setSelectedIndex(0);
-//            } else if (activityStatus.equals(ActivityStatus.RUNNING)) {
-//                this.activityStatusText.setSelectedIndex(1);
-//            } else if (activityStatus.equals(ActivityStatus.IN_TEST)) {
-//                this.activityStatusText.setSelectedIndex(2);
-//            } else if (activityStatus.equals(ActivityStatus.DONE)) {
-//                this.activityStatusText.setSelectedIndex(3);
-//            }
-        }
-//        else {
-//            this.initFormFields();
-//        }
-
-        return;
-    }
-
-    /**
-     * @return void - réinitialise les champs du formulaire
-     */
-    public void initFormFields() {
-
-        this.daySelect = new java.sql.Date(System.currentTimeMillis());
-        ReformatDate reformatDate = new ReformatDate();
-        String formatedDate = reformatDate.formatDateToString(this.daySelect);
-        this.dateTextField.setText(formatedDate);
-        this.activityDescriptionText.setText("");
-
-        // *** pré-sélection de l'élément 0 de la liste (JComboBox)
-        this.activityStatusText.setSelectedIndex(0);
-
-        return;
-    }
-
-
-    /**
-     * @return JTextField
-     */
-    public JTextField getDateTextField() {
-        return this.dateTextField;
-    }
-    public void setDateTextField(JTextField dateTextField) {
-        this.dateTextField = dateTextField;
-        return;
-    }
-
-
-    /**
-     * @return Date
-     */
-    public Date getDayAsDate() {
-        return this.daySelect;
-    }
-
-    /**
-     * @param daySelect
-     * @return void
-     */
-    public void setDayAsDate(Date daySelect) {
-        this.daySelect = daySelect;
-        return;
-    }
-
-
-//    public JPanel getActivityForm() {
-//        return this.activityForm;
-//    }
-//
-//    public void setActivityFormFrame(JPanel activityForm) {
-//        this.activityForm = activityForm;
-//        return;
-//    }
-
-
-    // ***********************
-
-    /**
-     * @return DatePart
-     */
-    public DatePart getNewDay() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param selectedDay
-     * @return void
-     */
-    public void setNewDay(DatePart selectedDay) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return DatePart
-     */
-    public DatePart getNewMonth() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param selectedMonth
-     * @return void
-     */
-    public void setNewMonth(DatePart selectedMonth) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return DatePart
-     */
-    public DatePart getNewYear() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param selectedYear
-     * @return void
-     */
-    public void setNewYear(Date selectedYear) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return String
-     */
-    public String getNewActivityDescription() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param newActivityText
-     * @return void
-     */
-    public void setNewActivityDescription(String newActivityText) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @param selectedStatus
-     * @return void
-     */
-    public void setNewActivityStatus(String selectedStatus) {
-        // TODO implement here
-        return;
-    }
-
-    /**
-     * @return String
-     */
-    public String getNewActivityStatus() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param newAggregatedDate
-     * @param newActivityDescription
-     * @param newActivityStatus
-     * @return void
-     */
-    public void setDateActivityItem(Date newAggregatedDate, String newActivityDescription, String newActivityStatus) {
-        // TODO implement here
-        return;
+    public void setDaysList(ArrayList<DateButton> daysList) {
+        this.daysList = daysList;
     }
 
 
     @Override
-    public void displayActivityForm() {
-
+    /**
+     * @return
+     */
+    public void displayCalendar() {
+        // TODO implement here
     }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-
-    }
 }

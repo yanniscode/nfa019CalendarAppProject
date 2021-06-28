@@ -11,15 +11,16 @@ public class CalendarHeader implements CalendarHeaderInterface {
      * Default constructor
      */
     public CalendarHeader() {
+        // TODO implement here
     }
 
     /**
-     * 
+     * String
      */
     protected String monthName;
 
     /**
-     * 
+     * Set<String>
      */
     protected Set<String> WeekDaysList;
 
@@ -30,7 +31,6 @@ public class CalendarHeader implements CalendarHeaderInterface {
      */
     public void displayCalendarHeader() {
         // TODO implement here
-        return;
     }
 
 }

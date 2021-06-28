@@ -1,209 +1,38 @@
-3
-javaS1220"Move this file to a named package. é
-javaS125<This block of commented-out lines of code should be removed. 2 #:
- 6Code:
- 9Code:
- .Code:
-		 .Code:
- Code:
- "Code:
- )Code:
- %Code:
- #Code:
- Code:
- Code:
- Code:
- Code:
- Code:
-   )Code:
-&& (Code:
-'' .Code:
-,, 3Code:
-11 0Code:
-22 6Code:
-88 3Code:
-99 9Code:
->> ;Code:
-?? ACode:
-AA +Code:
-HH +Code:
-II
- /Code:
-JJ Code:
-MM Code:
-PP Code:
-RR Code:
-SS
- Code:
-TT Code:
-YY -Code:
-ZZ 1Code:
-[[ Code:
-^^ Code:
-aa Code:
-cc Code:
-dd Code:
-ee 	Code:
-kk  Code:
-ll
- +Code:
-mm Code:
-	{{ †Code:
-||
- Code:
-}}
- ACode:
-~~
- 5Code:
-
- =Code:
-
-ÄÄ
- 1Code:
-
-ÅÅ
- 5Code:
-
-ÇÇ
- )Code:
-
-ÉÉ
- ECode:
-
-ÑÑ
- 8Code:
-
-ÖÖ Code:
-ää ¢Code:
-
-ãã Code:
-
-åå CCode:
-
-çç 7Code:
-
-éé ?Code:
-
-èè 3Code:
-
-êê 7Code:
-
-ëë +Code:
-
-íí GCode:
-
-ìì ;Code:
-
-îî 	Code:
-
-úú #Code:
-
-ùù ,Code:
-
-ûû Code:
-
-üü /Code:
-
-†† GCode:
-
-°° 	Code:
-
-ßß #Code:
-
-®® 	Code:
-
-¨¨ /Code:
-
-≠≠
- DCode:
-
-ÆÆ
- =Code:
-
-ØØ Code:
-
-≥≥ 3Code:
-
-¥¥
- 5Code:
-
-µµ
- BCode:
-
-∑∑
- DCode:
-
-∏∏
- pCode:
-
-ππ Code:
-
-ºº -Code:
-
-ΩΩ
- @Code:
-
-ææ
- ;Code:
-
-øø Code:
-
-√√ 1Code:
-
-ƒƒ
- @Code:
-
-≈≈
- lCode:
-
-∆∆ Code:
-
-…… )Code:
-
-  
- 8Code:
-
-ÀÀ
- 7Code:
-
-ÃÃ Code:
-
-œœ -Code:
-
-––
- 8Code:
-
-——
- dCode:
-
-““ Code:
-
-’’ 6Code:
-
-÷÷
- HCode:
-
-◊◊
- ?Code:
-
-ÿÿ Code:
-
-€€ :Code:
-
-‹‹
- HCode:
-
-››
- tCode:
-
-ﬂﬂ Code:
-
-‚‚ (Code:
-
-„„ 	Code:
-
-ÊÊ  Code:
-
-ÁÁ 	Code:
-
-ÈÈ Code
+[
+javaS107AConstructor has 8 parameters, which is greater than 7 authorized. 2\\ J
+javaS3740/Provide the parametrized type for this generic. 2HH S
+javaS38788Remove this array creation and simply pass the elements. 2IM 	z
+javaS30104Remove this assignment of "controlBtnPanelExpected". 2^^ $:)
+'AA GStatic field declaration.t
+javaS3010.Remove this assignment of "controlBtnPanelIn". 2__ :)
+'<< AStatic field declaration.x
+javaS30102Remove this assignment of "calendarPanelExpected". 2`` ":)
+'77 7Static field declaration.r
+javaS3010,Remove this assignment of "calendarPanelIn". 2aa :)
+'22 1Static field declaration.t
+javaS3010.Remove this assignment of "mainLabelExpected". 2bb :)
+'## ,Static field declaration.n
+javaS3010(Remove this assignment of "mainLabelIn". 2cc :)
+' &Static field declaration.|
+javaS30106Remove this assignment of "calendarMainTitleExpected". 2dd &:)
+'-- 4Static field declaration.v
+javaS30100Remove this assignment of "calendarMainTitleIn". 2ee  :)
+'(( .Static field declaration.P
+javaS22095Change this instance-reference to a static reference. 2^^ $P
+javaS22095Change this instance-reference to a static reference. 2__ P
+javaS22095Change this instance-reference to a static reference. 2`` "P
+javaS22095Change this instance-reference to a static reference. 2aa P
+javaS22095Change this instance-reference to a static reference. 2bb P
+javaS22095Change this instance-reference to a static reference. 2cc P
+javaS22095Change this instance-reference to a static reference. 2dd &P
+javaS22095Change this instance-reference to a static reference. 2ee  P
+javaS22095Change this instance-reference to a static reference. 2qq( <P
+javaS22095Change this instance-reference to a static reference. 2ww( <P
+javaS22095Change this instance-reference to a static reference. 2xx /K
+javaS11352Complete the task associated to this TODO comment. 2}} J
+javaS1068/Remove this unused "mainLabelIn" private field. 2 %P
+javaS10685Remove this unused "mainLabelExpected" private field. 2## +R
+javaS10687Remove this unused "calendarMainTitleIn" private field. 2(( -X
+javaS1068=Remove this unused "calendarMainTitleExpected" private field. 2-- 3P
+javaS10685Remove this unused "controlBtnPanelIn" private field. 2<</ @V
+javaS1068;Remove this unused "controlBtnPanelExpected" private field. 2AA/ F

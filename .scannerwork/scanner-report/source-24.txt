@@ -1,176 +1,91 @@
-package fr.cnam.pbuttons;
+package fr.cnam.putils;
 
-import fr.cnam.psharedinterfaces.ControlButtonsPanelInterface;
-import fr.cnam.putils.penums.ControlAction;
-import fr.cnam.pmain.MainPanel;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import java.util.Arrays;
+import java.util.Collection;
 
-import javax.swing.*;
+import static org.junit.Assert.*;
 
 
-/**
- * @author Yannis Guéguen
- */
-public class CalendarControlButtonsPanel extends JPanel implements ControlButtonsPanelInterface {
+@RunWith(Parameterized.class)
+public class MonthPageIncrementTest {
 
 
     /**
-     * Default constructor
+     * MonthPageIncrement
      */
-    public CalendarControlButtonsPanel(MainPanel mainPanel) {
+    private MonthPageIncrement monthPageIncrement;
 
-        super();
-        
-//        this.setIncrementIndex(0);
+    /**
+     * int (static)
+     */
+    private static int monthIndexIn;
 
-        this.mainPanel = mainPanel;
-//        System.out.println("this.mainPanel ################################# : "+ mainPanel);
+    /**
+     * int (static)
+     */
+    private static int monthIndexExpected;
 
-        // *** note: le MainPanel est passé en paramètre aux ControlButtons directionnels car c'est par lui qu'on accède aux propriétés de 'CalendarPanel()' sur lequel agissent les ControlButtons:
-        this.leftBtn = new CalendarControlButton(ControlAction.LAST_MONTH, this.mainPanel);
-        this.enterActivityBtn = new CalendarControlButton(ControlAction.ADD_ACTIVITY);
-        this.rightBtn = new CalendarControlButton(ControlAction.NEXT_MONTH, this.mainPanel);
+    /**
+     * int (static)
+     */
+    private int incrementIndexIn;
 
-        add(this.leftBtn);
-        add(this.enterActivityBtn);
-        add(this.rightBtn);
 
+    /**
+     * @return
+     */
+    @Parameterized.Parameters
+    public static Collection variable() {
+        return Arrays.asList(new Object[][] {
+                {
+                        1, 1, 1
+                },
+                {
+                        -1, -1, -1
+                },
+        });
     }
 
-//    /**
-//     * Default Constructor
-//     */
-//    public ControlButtonsPanel() {
-//        super();
-//    }
-
-
-
-//    /**
-//     * Default constructor
-//     */
-//    public ControlButtonsPanel() {
-//
-//        super();
-//
-//        this.leftBtn = new ControlButton("<", this.mainPanel, 0);
-////        this.enterActivityBtn = new ControlButton("Nouvelle Activité");
-//        this.rightBtn = new ControlButton(">", this.mainPanel, 0);
-//
-//        super.add(this.leftBtn);
-////        super.add(this.enterActivityBtn);
-//        super.add(this.rightBtn);
-//    }
-
     /**
-     * String
+     * Constructeur
      */
-    private String activedButton;
-
-    /**
-     * MainPanel
-     */
-    private static MainPanel mainPanel;
-
-
-    /**
-     * ControlButton
-     */
-    private static CalendarControlButton leftBtn;
-
-    /**
-     * ControlButton
-     */
-    private static CalendarControlButton enterActivityBtn;
-
-    /**
-     * ControlButton
-     */
-    private static CalendarControlButton rightBtn;
-
-    /**
-     * ControlButton
-     */
-    private static CalendarControlButton exitAppButton;
-
-
-
-    // *********** AJOUTS:
-
-//    public void incrOnClickEvent() {
-
-//        this.leftBtn.setVisible(false);
-//        this.remove( this.leftBtn);
-//        this.leftBtn = new ControlButton("<", this.mainPanel, this.getIncrementIndex());
-////        this.leftBtn.setVisible(true);
-//        this.add(this.leftBtn);
-//        //        this.enterActivityBtn = new ControlButton("Nouvelle Activité");
-//        this.rightBtn.setVisible(false);
-//        this.remove( this.rightBtn);
-//        this.rightBtn = new ControlButton(">", this.mainPanel, this.getIncrementIndex());
-////        this.rightBtn.setVisible(true);
-//        this.add(this.rightBtn);
-
-//    }
-
-
-//    public int getIncrementIndex() {
-//       return this.incrementIndex;
-//    }
-
-//    public void setIncrementIndex(int incrementIndex) {
-//        this.incrementIndex = incrementIndex;
-//        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&& &&&&&&&&&&&&&&&&&&&&&&&&&&&& this.incrementindex = "+ this.incrementIndex);
-//
-//        return;
-//    }
-
-
-    // *****************
-
-    private CalendarControlButton button;
-
-    // *** pour les tests:
-    public CalendarControlButton getBtn(){
-        return this.button;
+    public MonthPageIncrementTest(int monthIndexIn, int monthIndexExpected, int incrementIndexIn) {
+        this.monthIndexIn = monthIndexIn;
+        this.monthIndexExpected = monthIndexExpected;
+        this.incrementIndexIn = incrementIndexIn;
     }
 
-    public CalendarControlButton setBtn(CalendarControlButton button){
-        return this.button = button;
+
+    @Before
+    public void initialize() {
+        this.monthPageIncrement = new MonthPageIncrement();
     }
 
-    // ****************
-
-    public CalendarControlButton getEnterActivityBtn(){
-        return this.enterActivityBtn;
-    }
-
-    public CalendarControlButton setEnterActivityBtn(CalendarControlButton enterActivityBtn){
-        return this.enterActivityBtn = enterActivityBtn;
-    }
-
-    public CalendarControlButton getRightBtn(){
-        return this.rightBtn;
-    }
-
-    public CalendarControlButton setRightBtn(CalendarControlButton rightBtn){
-        return this.rightBtn = rightBtn;
-    }
-
-    @Override
-    /**
-     * @return void
-     */
-    public void displayControlButtons() {
+    @Test
+    public void getIncrementValue() {
         // TODO implement here
-        return;
     }
 
-//    String activeButton;
-//
-//    @Override
-//    public void actionPerformed(ActionEvent ev) {
-////        activeButton = this.leftBtn.actionPerformed();
-//        System.out.println("#|#| "+this.leftBtn.getControlBtnValue());
-//    }
+    @Test
+    public void setIncrementValue() {
+        // TODO implement here
+    }
+
+    @Test
+    public void pushIncrementValueEquals() {
+        // *** test de modification du monthIndex de base de 1, après un push
+        MonthPageIncrement.pushIncrementValue(this.incrementIndexIn);
+        assertEquals(monthIndexExpected, MonthPageIncrement.getIncrementValue());
+    }
+
+    @Test
+    public void setToGetIncrementValueEquals() {
+        MonthPageIncrement.setIncrementValue(monthIndexIn);
+        assertEquals(monthIndexExpected, MonthPageIncrement.getIncrementValue());
+    }
 
 }

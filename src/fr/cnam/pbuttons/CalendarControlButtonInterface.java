@@ -2,9 +2,7 @@ package fr.cnam.pbuttons;
 
 import java.util.*;
 
-/**
- * 
- */
+
 public interface CalendarControlButtonInterface {
 
 

@@ -1,1 +1,1 @@
- 2javaXhr6src/fr/cnam/pcalendarpanel/CalendarPanelInterface.java
+ 2javaX@hr3test/fr/cnam/perrors/FormConfirmationPanelTest.java

@@ -1,48 +1,23 @@
-t
-javaS3010.Remove this assignment of "calendarMainTitle". 2 :)
-':: ,Static field declaration.l
-javaS3010&Remove this assignment of "mainLabel". 2 :)
-'00 $Static field declaration.r
-javaS3010,Remove this assignment of "controlBtnPanel". 2 :)
-'DD ?Static field declaration.p
-javaS3010*Remove this assignment of "calendarPanel". 2!! :)
-'?? /Static field declaration.P
-javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2$ :P
-javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2 P
-javaS22095Change this instance-reference to a static reference. 2!! P
-javaS22095Change this instance-reference to a static reference. 2## P
-javaS22095Change this instance-reference to a static reference. 2$$ %P
-javaS22095Change this instance-reference to a static reference. 2%% #V
-javaS125<This block of commented-out lines of code should be removed. 2++ H˜
-javaS125<This block of commented-out lines of code should be removed. 2LL
- -:
-MM )Code:
-NN Code:
-OO
- Code6
-javaS3626Remove this redundant jump. 2__ Q
-javaS26966Make the enclosing method "static" or remove this set. 2^^ P
-javaS22095Change this instance-reference to a static reference. 2^^ 6
-javaS3626Remove this redundant jump. 2rr Q
-javaS26966Make the enclosing method "static" or remove this set. 2pp P
-javaS22095Change this instance-reference to a static reference. 2pp V
-javaS125<This block of commented-out lines of code should be removed. 2qq
- "8
-javaS3626Remove this redundant jump. 2
- S
-javaS26966Make the enclosing method "static" or remove this set. 2
-€€ R
-javaS22095Change this instance-reference to a static reference. 2
-€€ 8
-javaS3626Remove this redundant jump. 2
- S
-javaS26966Make the enclosing method "static" or remove this set. 2
- R
-javaS22095Change this instance-reference to a static reference. 2
- 8
-javaS3626Remove this redundant jump. 2
-™™ P
-javaS10685Remove this unused "calendarContainer" private field. 255 .
+[
+javaS107AConstructor has 8 parameters, which is greater than 7 authorized. 2jj  `
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2{{$ -b
+javaS112FDefine and throw a dedicated exception instead of using a generic one. 2
+" +J
+javaS3740/Provide the parametrized type for this generic. 2XX ‰
+javaS1130nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body. 2XX/ ;”
+javaS1130yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body. 2XX= SS
+javaS38788Remove this array creation and simply pass the elements. 2Y] 	t
+javaS3010.Remove this assignment of "activityFormFrame". 2ll :)
+' 7Static field declaration.M
+javaS11352Complete the task associated to this TODO comment. 2‚‚ M
+javaS11352Complete the task associated to this TODO comment. 2ËË M
+javaS11352Complete the task associated to this TODO comment. 2ÐÐ M
+javaS11352Complete the task associated to this TODO comment. 2ÕÕ M
+javaS11352Complete the task associated to this TODO comment. 2ÚÚ M
+javaS11352Complete the task associated to this TODO comment. 2ßß M
+javaS11352Complete the task associated to this TODO comment. 2ää M
+javaS11352Complete the task associated to this TODO comment. 2éé M
+javaS11352Complete the task associated to this TODO comment. 2îî M
+javaS11352Complete the task associated to this TODO comment. 2óó Q
+javaS10686Remove this unused "activityPanelLabel" private field. 2 %P
+javaS10685Remove this unused "daySelectExpected" private field. 288 +

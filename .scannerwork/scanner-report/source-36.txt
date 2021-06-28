@@ -1,15 +1,13 @@
-package fr.cnam.pdatabase;
+package fr.cnam.pbuttons;
 
 import java.util.*;
 
-/**
- *
- */
-public interface MysqlConnectionInterface {
+
+public interface DateButtonInterface {
 
     /**
-     * @return boolean
+     * @return void
      */
-    public boolean getMysqlConnexionInstance();
+    public void displayDateButton();
 
 }

@@ -1,6 +1,6 @@
 package fr.cnam.perrors;
 
-import java.util.*;
+
 
 /**
  * @author Yannis Guéguen
@@ -11,21 +11,19 @@ public class FormErrorPanel implements FormErrorPanelInterface {
      * Default constructor
      */
     public FormErrorPanel() {
+        // TODO implement here
     }
 
+
     /**
-     * 
+     * String
      */
     private String errorMessage;
 
     /**
-     * 
+     * ReturnButton
      */
     protected ReturnButton returnButton;
-
-
-
-
 
 
 
@@ -43,7 +41,6 @@ public class FormErrorPanel implements FormErrorPanelInterface {
      */
     public void setErrorMessage(String errorMessage) {
         // TODO implement here
-        return;
     }
 
     @Override
@@ -52,7 +49,6 @@ public class FormErrorPanel implements FormErrorPanelInterface {
      */
     public void displayErrorPanel() {
         // TODO implement here
-        return;
     }
 
 }

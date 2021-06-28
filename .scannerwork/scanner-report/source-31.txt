@@ -1,15 +1,11 @@
-package fr.cnam.pactivity;
+package fr.cnam.pcalendarpanel;
 
-import java.util.*;
 
-/**
- *
- */
-public interface ActivityFormPanelInterface {
+public interface CalendarPanelInterface {
 
     /**
      * @return void
      */
-    public void displayActivityForm();
+    public void displayCalendar();
 
 }

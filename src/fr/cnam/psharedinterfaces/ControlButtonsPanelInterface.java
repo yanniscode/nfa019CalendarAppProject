@@ -1,8 +1,6 @@
 package fr.cnam.psharedinterfaces;
 
-/**
- * 
- */
+
 public interface ControlButtonsPanelInterface {
 
     /**

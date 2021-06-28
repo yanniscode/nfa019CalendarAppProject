@@ -1,10 +1,6 @@
 package fr.cnam.perrors;
 
-import java.util.*;
 
-/**
- * 
- */
 public interface FormErrorPanelInterface {
 
     /**

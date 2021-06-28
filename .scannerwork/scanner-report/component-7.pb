@@ -1,1 +1,1 @@
- 2javaXÍhr,test/fr/cnam/pbuttons/ControlButtonTest.java
+ 2javaXÒhr2test/fr/cnam/pcalendarpanel/CalendarPanelTest.java

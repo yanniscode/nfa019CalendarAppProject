@@ -11,6 +11,7 @@ public class CalendarSide implements CalendarSideInterface {
      * Default constructor
      */
     public CalendarSide() {
+        // TODO implement here
     }
 
     /**
@@ -26,7 +27,6 @@ public class CalendarSide implements CalendarSideInterface {
      */
     public void displayCalendarSide() {
         // TODO implement here
-        return;
     }
 
 }

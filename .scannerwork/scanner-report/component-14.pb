@@ -1,1 +1,1 @@
- 2javaXœhr src/fr/cnam/pmain/MainPanel.java
+ 2javaXõhr1test/fr/cnam/pactivity/ActivityFormFrameTest.java
