@@ -1,39 +1,30 @@
-package fr.cnam.perrors;
-
-import fr.cnam.pbuttons.FormControlButtonInterface;
+package fr.cnam.pdatabase.managment.dao;
 
 
-/**
- * @author Yannis Guéguen
- */
-public class ConfirmationButton implements FormControlButtonInterface {
+public interface DAOInterface<T> {
 
     /**
-     * Default constructor
+     * @param obj 
+     * @return boolean
      */
-    public ConfirmationButton() {
-        // TODO implement here
-    }
+    public boolean create(T obj);
 
     /**
-     * String - valeur du bouton de sortie du formulaire sans modification apportée
+     * @param obj 
+     * @return boolean
      */
-    protected String returnButtonValue;
-
-
-    /**
-     * Default constructor
-     */
-    public void ReturnButton() {
-        // TODO implement here
-    }
+    public boolean update(T obj);
 
     /**
-     * @return
+     * @param obj 
+     * @return boolean
      */
-    public void displayFormControlBtn() {
-        // TODO implement here
-        return;
-    }
+    public boolean delete(T obj);
+
+    /**
+     * @param id 
+     * @return boolean
+     */
+    public T find(int id);
 
 }

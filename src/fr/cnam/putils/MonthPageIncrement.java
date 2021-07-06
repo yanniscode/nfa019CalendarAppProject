@@ -3,17 +3,17 @@ package fr.cnam.putils;
 public class MonthPageIncrement {
 
     /**
-     * Constructeur
+     * Constructeur ('private', ici...)
      */
-    public MonthPageIncrement() {
-        monthIndex = 0;
+    private MonthPageIncrement() {
+        super();
     }
 
 
     /**
      * int - index (static) pour retrouver le mois suivant ou précédent, relatif à la date du jour
      */
-    private static int monthIndex;
+    private static int monthIndex = 0;
 
     /**
      * @return int

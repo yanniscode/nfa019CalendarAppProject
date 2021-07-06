@@ -1,1 +1,1 @@
- 2javaX=hr1test/fr/cnam/pdatabase/managment/dao/DAOTest.java
+ 2javaX0hr/test/fr/cnam/pinfos/ConfirmationButtonTest.java

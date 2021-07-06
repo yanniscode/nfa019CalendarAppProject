@@ -1,19 +1,0 @@
-`
-javaS112FDefine and throw a dedicated exception instead of using a generic one. 2%% (`
-javaS112FDefine and throw a dedicated exception instead of using a generic one. 2**" +J
-javaS3740/Provide the parametrized type for this generic. 2 ‰
-javaS1130nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body. 2/ ;”
-javaS1130yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body. 2= S6
-javaS3878Remove this array creation. 2 	K
-javaS11352Complete the task associated to this TODO comment. 2   K
-javaS11352Complete the task associated to this TODO comment. 2&& K
-javaS11352Complete the task associated to this TODO comment. 2++ K
-javaS11352Complete the task associated to this TODO comment. 200 K
-javaS11352Complete the task associated to this TODO comment. 255 K
-javaS11352Complete the task associated to this TODO comment. 2:: K
-javaS11352Complete the task associated to this TODO comment. 2?? K
-javaS11352Complete the task associated to this TODO comment. 2DD K
-javaS11352Complete the task associated to this TODO comment. 2II K
-javaS11352Complete the task associated to this TODO comment. 2NN K
-javaS11352Complete the task associated to this TODO comment. 2SS K
-javaS11352Complete the task associated to this TODO comment. 2XX 

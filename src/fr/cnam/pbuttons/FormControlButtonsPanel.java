@@ -1,10 +1,14 @@
 package fr.cnam.pbuttons;
 
+import fr.cnam.pactivity.ActivityFormFrame;
 import fr.cnam.psharedinterfaces.ControlButtonsPanelInterface;
 import fr.cnam.putils.penums.FormControlAction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * @author Yannis Guéguen
@@ -40,6 +44,11 @@ public class FormControlButtonsPanel extends JPanel implements ControlButtonsPan
 
 
     /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
+
+    /**
      * FormControlButton (static)
      */
     private FormControlButton annulationButton;
@@ -59,7 +68,7 @@ public class FormControlButtonsPanel extends JPanel implements ControlButtonsPan
 
     @Override
     public void displayControlButtons() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayControlButtons): "+ this.annulationButton +" - "+ this.validationButton +" - "+ this.suppressionButton);
     }
 
 }

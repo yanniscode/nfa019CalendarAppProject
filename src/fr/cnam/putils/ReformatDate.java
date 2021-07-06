@@ -1,11 +1,14 @@
 package fr.cnam.putils;
 
-import java.sql.Date;
+import fr.cnam.pactivity.ActivityFormFrame;
+
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReformatDate {
 
@@ -17,6 +20,12 @@ public class ReformatDate {
         this.dfsFR = new DateFormatSymbols(Locale.FRENCH);
     }
 
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
+
     /**
      * DateFormatSymbols - formatage selon le pays souhaité
      */
@@ -27,7 +36,9 @@ public class ReformatDate {
      */
     private DateFormat dateFormat;
 
-
+    /**
+     * String (static final)
+     */
     private static final String DATEPATTERN = "dd/MM/yyyy";
 
 
@@ -40,9 +51,7 @@ public class ReformatDate {
 
         this.dateFormat = new SimpleDateFormat("MMM", dfsFR);
 
-        String formatedDate = this.dateFormat.format(newDate);
-
-        return formatedDate;
+        return this.dateFormat.format(newDate);
     }
 
     /**
@@ -51,16 +60,13 @@ public class ReformatDate {
     public String formatDateToString(java.sql.Date newDate) {
         this.dateFormat = new SimpleDateFormat(DATEPATTERN);
 
-        String formatedDate = this.dateFormat.format(newDate);
-
-        return formatedDate;
+        return this.dateFormat.format(newDate);
     }
 
     /**
      * @return Long - Date au format Long en sortie
      */
     public Long formatStringToLong(String newStringDate) throws ParseException {
-        System.out.println(newStringDate);
 
         // *** date en entrée = String au format local ("dd/MM/yyyy")
         this.dateFormat = new SimpleDateFormat(DATEPATTERN);
@@ -69,16 +75,14 @@ public class ReformatDate {
         java.util.Date date = this.dateFormat.parse(newStringDate);
 
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Long longDate = sqlDate.getTime();
 
-        return longDate;
+        return sqlDate.getTime();
     }
 
     /**
      * @return Date - Date au format java.sql.Date en sortie
      */
     public java.sql.Date formatStringToDate(String newStringDate) throws ParseException {
-        System.out.println(newStringDate);
 
         // *** date en entrée = String au format local ("dd/MM/yyyy")
         this.dateFormat = new SimpleDateFormat(DATEPATTERN);
@@ -89,12 +93,11 @@ public class ReformatDate {
         return new java.sql.Date(date.getTime());
     }
 
-
     /**
      * @return void
      */
     public boolean displayReformatDate() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayReformatDate): "+ this.dateFormat);
         return true;
     }
 

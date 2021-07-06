@@ -1,24 +1,22 @@
 package fr.cnam.pbuttons;
 
-import fr.cnam.pbuttons.DateButton;
 import fr.cnam.pdatabase.MysqlConnection;
-import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
 import fr.cnam.pdatabase.managment.model.DateActivityItem;
 import fr.cnam.pdatabase.managment.model.DatePart;
-import fr.cnam.putils.penums.ActivityColor;
+import fr.cnam.putils.ReformatDate;
 import fr.cnam.putils.penums.ActivityStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static fr.cnam.pactivity.ActivityFormFrame.activityFormFrame;
 import static org.junit.Assert.*;
@@ -27,6 +25,11 @@ import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class DateButtonTest {
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
 
     /**
      * DatePart
@@ -63,20 +66,34 @@ public class DateButtonTest {
      */
     private DateActivityItem dateActivityItemIn;
 
+    /**
+     * ReformatDate
+     */
+    private ReformatDate reformatDate;
+
 
     /**
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-                {
-                        new java.sql.Date(System.currentTimeMillis()), new java.sql.Date(System.currentTimeMillis()), new DatePart(), new DateActivityItem(), 0, new DateButton()
-                },
-        });
+    public static Collection<Object[]> variable() throws SQLException, ClassNotFoundException {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new java.sql.Date(System.currentTimeMillis()), new java.sql.Date(System.currentTimeMillis()), new DatePart(), new DateActivityItem(), 0, new DateButton() });
+
+        return params;
     }
 
-
+    /**
+     * Constructeur (tests)
+     * @param dateValueIn
+     * @param dateValueExpected
+     * @param datePart
+     * @param dateActivityItemIn
+     * @param monthIndex
+     * @param dateButton
+     */
     public DateButtonTest(Date dateValueIn, Date dateValueExpected, DatePart datePart, DateActivityItem dateActivityItemIn, int monthIndex, DateButton dateButton) {
 
         super();
@@ -96,15 +113,19 @@ public class DateButtonTest {
         MysqlConnection mysqlConnection = new MysqlConnection();
         mysqlConnection.connection();
         this.connection = mysqlConnection.getConnection();
-        System.out.println("connection ouverte !");
+
+        this.logger.log(Level.INFO, () -> "connection ouverte !"+ this.connection);
+
+        this.reformatDate = new ReformatDate();
     }
 
     // *** fermeture de la connection à la fin de chaque test
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws SQLException {
 
         connection.close();
-        System.out.println("connection fermée !");
+
+        this.logger.log(Level.INFO, () -> "connection fermée ! "+ this.connection);
     }
 
     @Test
@@ -141,12 +162,6 @@ public class DateButtonTest {
     }
 
     @Test
-    public void actionPerformed() {
-        // *** semble pas possible par JUnit
-        // TODO implement here
-    }
-
-    @Test
     public void openActivityDateFormPanelNotNull() {
 
         // *** test en 2 fois: ouverture de 'activityFormFrame'
@@ -154,7 +169,6 @@ public class DateButtonTest {
         this.dateButton.openActivityDateFormPanel();
         assertTrue(activityFormFrame.isVisible());
     }
-
 
     @Test
     public void rebuildActivityDatasNotNull() {
@@ -164,8 +178,12 @@ public class DateButtonTest {
 
     @Test
     public void rebuildActivityDatasEmptyEquals() {
+        java.sql.Date firstMondayOfPage = this.datePart.getByFirstMondayOfMonthPage(0, 0);
+        String firstMondayToString = this.reformatDate.formatDateToString(firstMondayOfPage);
+
         this.dateButton.rebuildActivityDatas(this.connection, 0 , 0);
-        assertEquals("31/05/2021", this.dateButton.getDateButton().getText());
+
+        assertEquals(firstMondayToString, this.dateButton.getDateButton().getText());
     }
 
     @Test
@@ -176,19 +194,19 @@ public class DateButtonTest {
 
     @Test
     public void buildDateButtonEquals() {
+        java.sql.Date firstMondayOfPage = this.datePart.getByFirstMondayOfMonthPage(0, 0);
+        String firstMondayToString = this.reformatDate.formatDateToString(firstMondayOfPage);
+
         this.dateButton.buildDateButton(0, 0);
-        assertEquals("31/05/2021", this.dateButton.getDateButton().getText());
+
+        assertEquals(firstMondayToString, this.dateButton.getDateButton().getText());
     }
 
-
-
-    // searchDatasForButton()
     @Test
     public void searchDatasForButtonNotNull() {
         // *** la méthode searchDatasForButton() renvoie toujours un objet, même lorsqu'il n'y a pas de donnée correspondante en BDD
         assertNotNull(this.dateButton.searchDatasForButton(this.connection));
     }
-
 
     // *** Attention: Test ayant des erreurs si des données sont déjà présentes en BDD (id différente)
     @Test
@@ -200,9 +218,6 @@ public class DateButtonTest {
         assertEquals(this.dateActivityItemIn.getDatePart().getDatePartId(), dateActivityItemExpected.getDatePart().getDatePartId());
     }
 
-
-
-    // rebuildButtonWithDatas()
     @Test
     public void rebuildButtonWithDatasNotNull() {
         this.dateActivityItemIn.setDatePart(this.datePart);
@@ -222,41 +237,6 @@ public class DateButtonTest {
 
         // *** test de l'égalité entre objet 'dateActivityItem' créé et la valeur du bouton (getText())
         assertEquals(this.dateActivityItemIn.getDateActivityDescription(), this.dateButton.getDateButton().getText());
-    }
-
-    @Test
-    public void getDateButton() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDateButton() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getActivityDescription() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setActivityDescription() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getActivityStatus() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setActivityStatus() {
-        // TODO implement here
-    }
-
-    @Test
-    public void displayDateButton() {
-        // TODO implement here
     }
 
 }

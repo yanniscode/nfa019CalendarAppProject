@@ -1,1 +1,1 @@
- 2javaX/hr*test/fr/cnam/perrors/ReturnButtonTest.java
+ 2javaX2hr@test/fr/cnam/pdatabase/managment/model/DateActivityItemTest.java

@@ -1,10 +1,13 @@
 package fr.cnam.pdatabase.managment.model;
 
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
 import java.sql.Date;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -12,14 +15,18 @@ import java.util.Locale;
  */
 public class DatePart {
 
-
     /**
      * Default constructor
      */
     public DatePart() {
+        super();
         this.mainCalendar = Calendar.getInstance();
     }
 
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(DateActivityDAO.class.getSimpleName());
 
     /**
      * Calendar - nouvelle instance du calendrier
@@ -41,12 +48,6 @@ public class DatePart {
      * Date - valeur de la date (représentée par la classe DatePart) - actuellement, date = non découpée mais devrait être, au choix: le jour, le mois ou l'année
      */
     private Date dateValue;
-
-    /**
-     * Date - nouveau mois de référence
-     */
-    private Date newMonthRef;
-
 
 
     // méthodes liées au DAO:
@@ -140,9 +141,7 @@ public class DatePart {
         // ajoute le premier lundi du mois au Calendar = 0
         cacheCalendar.add(Calendar.DATE, idDayAdd);
 
-        java.sql.Date cacheCalToSqlDate = new java.sql.Date(cacheCalendar.getTimeInMillis());
-
-        return cacheCalToSqlDate;
+        return new java.sql.Date(cacheCalendar.getTimeInMillis());
     }
 
 
@@ -158,16 +157,14 @@ public class DatePart {
 
         this.mainCalendar.add(Calendar.MONTH, monthIndex);
 
-        this.newMonthRef = new java.sql.Date(mainCalendar.getTimeInMillis());
-
-        return this.newMonthRef;
+        return new java.sql.Date(mainCalendar.getTimeInMillis());
     }
 
 
     /**
      * @return StringBuilder - test - pour en-têtes (CalendarHeader) = nom des jours - String - à faire
      */
-    public static StringBuilder getWeekDays() {
+    public StringBuilder getWeekDays() {
 
         DateFormatSymbols dfsFR = new DateFormatSymbols(Locale.FRENCH);
 
@@ -181,7 +178,8 @@ public class DatePart {
             joursListeFR.append(" : ");
             joursListeFR.append(joursSemaineFR[i]);
         }
-        System.out.println(joursListeFR);
+
+        this.logger.log(Level.INFO, () -> "Something went wrong: "+ joursListeFR);
 
         return joursListeFR;
     }

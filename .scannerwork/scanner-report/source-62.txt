@@ -1,29 +1,39 @@
 package fr.cnam.putils.penums;
 
+import java.awt.*;
+
 /**
  * @author Yannis Guéguen
  */
-public class ActivityStatus {
+public class ActivityColor {
 
 
     /**
-     * String - status d'une l'activité
+     * Default constructor
      */
-    public static final String TO_DO = "En définition";
+    private ActivityColor() {
+        super();
+    }
+
 
     /**
-     * String - status d'une l'activité
+     * Color - Couleur d'un DateBouton
      */
-    public static final String RUNNING = "En cours";
+    public static final Color ORANGE = Color.ORANGE;
 
     /**
-     * String - status d'une l'activité
+     * Color - Couleur d'un DateBouton
      */
-    public static final String IN_TEST = "En test";
+    public static final Color BLUE = Color.BLUE;
 
     /**
-     * String - status d'une l'activité
+     * Color - Couleur d'un DateBouton
      */
-    public static final String DONE = "Terminée";
+    public static final Color RED = Color.RED;
+
+    /**
+     * Color - Couleur d'un DateBouton
+     */
+    public static final Color GREEN = Color.GREEN;
 
 }

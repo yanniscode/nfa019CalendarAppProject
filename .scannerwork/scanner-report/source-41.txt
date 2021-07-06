@@ -1,14 +1,11 @@
-package fr.cnam.pbuttons;
-
-import java.util.*;
+package fr.cnam.psharedinterfaces;
 
 
-public interface CalendarControlButtonInterface {
-
+public interface ControlButtonsPanelInterface {
 
     /**
      * @return void
      */
-    public void displayCalendarControlButton();
+    public void displayControlButtons();
 
 }

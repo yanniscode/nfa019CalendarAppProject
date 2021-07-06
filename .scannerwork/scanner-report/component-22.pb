@@ -1,1 +1,1 @@
- 2javaX¨hr=test/fr/cnam/pdatabase/managment/dao/DateActivityDAOTest.java
+ 2javaX.hr2test/fr/cnam/pinfos/FormConfirmationPanelTest.java

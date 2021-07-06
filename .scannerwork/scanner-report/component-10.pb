@@ -1,2 +1,2 @@
 
- 2javaX2hr6test/fr/cnam/pbuttons/FormControlButtonsPanelTest.java
+ 2javaX/hr6test/fr/cnam/pbuttons/FormControlButtonsPanelTest.java

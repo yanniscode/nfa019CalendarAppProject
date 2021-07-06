@@ -1,11 +1,17 @@
 package fr.cnam.pmain;
 
+import fr.cnam.pactivity.ActivityFormFrame;
+import fr.cnam.pbuttons.CalendarControlButton;
 import fr.cnam.pbuttons.CalendarControlButtonsPanel;
 import fr.cnam.pcalendarpanel.CalendarPanel;
+import fr.cnam.putils.penums.ErrorMessage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * @author Yannis Guéguen
@@ -30,15 +36,17 @@ public class MainPanel extends Container implements MainPanelInterface {
         // *** composant des boutons de contrôle du calendrier - note: le MainPanel est passé en paramètre au ControlButtonsPanel (this):
         this.controlBtnPanel = new CalendarControlButtonsPanel(this);
 
-        // *** composant du calendrier
-        this.calendarPanel = new CalendarPanel();
-
         this.add(this.mainLabel);
         this.add(this.controlBtnPanel);
-        this.add(this.calendarPanel);
+        this.add(calendarPanel);
+
     }
 
 
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
 
     /**
      * JLabel - Container du Titre principal
@@ -55,6 +63,15 @@ public class MainPanel extends Container implements MainPanelInterface {
      */
     private static CalendarPanel calendarPanel;
 
+    static {
+        try {
+            calendarPanel = new CalendarPanel();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, throwables.getStackTrace());
+        }
+    }
+
     /**
      * ControlButtonsPanel - Container du Panneau de ControlButton
      */
@@ -69,13 +86,8 @@ public class MainPanel extends Container implements MainPanelInterface {
         return calendarPanel;
     }
 
-
-    /**
-     *
-     * @param calendarPanel
-     */
-    public void setCalendarPanel(CalendarPanel calendarPanel) {
-        this.calendarPanel = calendarPanel;
+    public static void setCalendarPanel(CalendarPanel calendarPanelInserted) {
+        calendarPanel = calendarPanelInserted;
     }
 
 
@@ -84,7 +96,7 @@ public class MainPanel extends Container implements MainPanelInterface {
      * @return void - check du Composant - à utiliser ??
      */
     public void displayMainPanel() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayFormControlBtn): "+ this.mainLabel +" - "+ this.controlBtnPanel);
     }
 
 }

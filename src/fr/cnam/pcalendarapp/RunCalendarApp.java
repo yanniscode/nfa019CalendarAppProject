@@ -1,11 +1,15 @@
 package fr.cnam.pcalendarapp;
 
+import fr.cnam.pbuttons.CalendarControlButton;
 import fr.cnam.pmain.MainPanel;
+import fr.cnam.putils.penums.ErrorMessage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Yannis Guéguen
@@ -16,7 +20,7 @@ public class RunCalendarApp extends JFrame {
     /**
      * Default constructor
      */
-    public RunCalendarApp() throws SQLException, ClassNotFoundException {
+    public RunCalendarApp() {
 
         super();
 
@@ -27,8 +31,6 @@ public class RunCalendarApp extends JFrame {
         String calendarTitle = "Le Calendrier des Lunaires";
         runAppFrame.setTitle(calendarTitle);
 
-        mainPanel = new MainPanel();
-
         Container runAppContainer = runAppFrame.getContentPane();
         runAppContainer.add(mainPanel);
 
@@ -36,7 +38,7 @@ public class RunCalendarApp extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
-            };
+            }
         };
 
         this.addWindowListener(l);
@@ -53,15 +55,22 @@ public class RunCalendarApp extends JFrame {
      */
     private static MainPanel mainPanel;
 
-
+    static {
+        try {
+            mainPanel = new MainPanel();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, throwables.getStackTrace());
+        }
+    }
 
 
     /**
      * @param args 
      * @return void
      */
-    public static void main (String[] args) throws SQLException, ClassNotFoundException {
-        RunCalendarApp runCalendarApp = new RunCalendarApp();
+    public static void main (String[] args) {
+        new RunCalendarApp();
     }
 
 }

@@ -1,1 +1,1 @@
-= 2javaXhr,src/fr/cnam/putils/penums/ControlAction.java
+= 2javaX$hr-src/fr/cnam/putils/penums/ActivityStatus.java

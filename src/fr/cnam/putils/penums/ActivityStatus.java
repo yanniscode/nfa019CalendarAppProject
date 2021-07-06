@@ -5,6 +5,13 @@ package fr.cnam.putils.penums;
  */
 public class ActivityStatus {
 
+    /**
+     * Default constructor
+     */
+    private ActivityStatus() {
+        super();
+    }
+
 
     /**
      * String - status d'une l'activité

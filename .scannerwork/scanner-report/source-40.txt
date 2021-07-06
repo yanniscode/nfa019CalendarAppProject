@@ -1,12 +1,12 @@
 package fr.cnam.pbuttons;
 
 
+public interface CalendarControlButtonInterface {
 
-public interface FormControlButtonInterface {
 
     /**
      * @return void
      */
-    public void displayFormControlBtn();
+    public void displayCalendarControlButton();
 
 }

@@ -5,6 +5,8 @@ import fr.cnam.putils.penums.ControlAction;
 import fr.cnam.pmain.MainPanel;
 
 import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -34,10 +36,14 @@ public class CalendarControlButtonsPanel extends JPanel implements ControlButton
 
 
     /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(CalendarControlButtonsPanel.class.getSimpleName());
+
+    /**
      * MainPanel
      */
     private MainPanel mainPanel;
-
 
     /**
      * ControlButton
@@ -54,12 +60,10 @@ public class CalendarControlButtonsPanel extends JPanel implements ControlButton
      */
     private CalendarControlButton rightBtn;
 
-
     /**
      * CalendarControlButton
      */
     private CalendarControlButton button;
-
 
     /**
      *
@@ -83,7 +87,7 @@ public class CalendarControlButtonsPanel extends JPanel implements ControlButton
      * @return void
      */
     public void displayControlButtons() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayControlButtons): "+ this.leftBtn +" "+ this.enterActivityBtn +" "+ this.rightBtn);
     }
 
 }

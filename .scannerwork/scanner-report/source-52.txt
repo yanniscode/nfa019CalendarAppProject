@@ -1,101 +1,96 @@
-package fr.cnam.pdatabase.managment.model;
+package fr.cnam.pdatabase;
+
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
+
+import java.sql.*;
+import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class DateActivityItem implements DateActivityItemInterface {
-
-    private int dateActivityId;
-    private String datePartDescription;
-    private String datePartStatus;
-    private DatePart datePart;
-
-
-    /**
-     *  constructor 2
-     */
-    public DateActivityItem(DatePart datePart) {
-
-        super();
-
-        this.datePart = datePart;
-    }
+/**
+ * @author Yannis Guéguen
+ */
+public class MysqlConnection implements MysqlConnectionInterface {
 
     /**
      * Default constructor
      */
-    public DateActivityItem() {
-        super();
+    public MysqlConnection() throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
 
     /**
-     * @return DatePart
+     * Logger - messages d'erreur ou informatifs
      */
-    public DatePart getDatePart() {
-        return this.datePart;
+    private Logger logger = Logger.getLogger(DateActivityDAO.class.getSimpleName());
+
+    /**
+     * Connection
+     */
+    private Connection connection;
+
+
+    /**
+     *
+     * @return boolean
+     * @throws SQLException
+     */
+    public boolean connection() throws SQLException {
+
+        boolean response = false;
+
+        try {
+
+            String driverName = "com.mysql.cj.jdbc.Driver";
+            String typeBase = "jdbc:mysql";
+            String ip = "127.0.0.1";
+            String port = "3306";
+            String databaseName = "NFA019_CALENDAR_APP";
+            String databaseOption = "?allowMultiQueries=true";
+            String login = "root";
+            // ****** A CONFIGURER (PAS ENCORE TESTÉ COMME ÇA...)
+            String password = System.getProperty("database.password");
+
+            String url = typeBase + "://"+ ip +": "+ port +"/"+ databaseName + databaseOption;
+
+            Class.forName(driverName);
+
+            this.connection = DriverManager.getConnection(url, login, password);
+            response = true;
+
+        } catch (Exception e) {
+            this.logger.log(Level.INFO, () -> "Something went wrong: "+ e);
+            response = false;
+        }
+
+        return response;
     }
 
 
     /**
-     * @param datePart
+     * @return Connection
+     */
+    public Connection getConnection() {
+        return this.connection;
+    }
+
+    /**
+     * @param connection
      * @return void
      */
-    public void setDatePart(DatePart datePart) {
-        this.datePart = datePart;
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
 
     /**
-     * @return int
+     * @return
      */
-    public int getDateActivityId() {
-        return this.dateActivityId;
-    }
-
-
-    /**
-     * @param dateActivityId
-     * @return void
-     */
-    public void setDateActivityId(int dateActivityId) {
-        this.dateActivityId = dateActivityId;
-    }
-
-
-    /**
-     * @return String
-     */
-    public String getDateActivityDescription() {
-        return this.datePartDescription;
-    }
-
-
-    /**
-     * @param datePartDescription
-     * @return void
-     */
-    public void setDateActivityDescription(String datePartDescription) {
-        this.datePartDescription = datePartDescription;
-    }
-
-    /**
-     * @return String
-     */
-    public String getDateActivityStatus() {
-        return this.datePartStatus;
-    }
-
-    /**
-     * @param datePartStatus
-     * @return void
-     */
-    public void setDateActivityStatus(String datePartStatus) {
-        this.datePartStatus = datePartStatus;
-    }
-
-
-    @Override
-    public void displayActivity() {
-        // TODO implement here
+    public boolean getMysqlConnexionInstance() {
+        this.logger.log(Level.INFO, () -> "info (getMysqlConnexionInstance): "+ this.connection);
+        return false;
     }
 
 }

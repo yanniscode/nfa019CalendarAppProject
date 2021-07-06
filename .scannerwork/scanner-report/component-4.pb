@@ -1,1 +1,1 @@
- 2javaX€hr%test/fr/cnam/pmain/MainPanelTest.java
+ 2javaX[hr%test/fr/cnam/pmain/MainPanelTest.java

@@ -1,41 +1,36 @@
-package fr.cnam.putils;
+package fr.cnam.putils.penums;
 
-public class MonthPageIncrement {
+/**
+ * @author Yannis Guéguen
+ */
+public class ErrorMessage {
 
     /**
-     * Constructeur
+     * Default constructor
      */
-    public MonthPageIncrement() {
-        monthIndex = 0;
+    private ErrorMessage() {
+        super();
     }
 
 
     /**
-     * int - index (static) pour retrouver le mois suivant ou précédent, relatif à la date du jour
+     * String - valeur du message d'erreur
      */
-    private static int monthIndex;
+    public static final String BDD_CONNECT_ERROR = "Caught Exception: {0} - Erreur de connexion à la BDD";
 
     /**
-     * @return int
+     * String - valeur du message d'erreur
      */
-    public static int getIncrementValue() {
-        return monthIndex;
-    }
+    public static final String BDD_TIMEOUT_RECORD = "Caught Exception: {1} - Durée de connexion à la BDD dépassée";
 
     /**
-     * @param newMonthIndex
-     * @return void
+     * String - valeur du message d'erreur
      */
-    public static void setIncrementValue(int newMonthIndex) {
-        monthIndex = newMonthIndex;
-    }
+    public static final String DATA_ERROR = "Caught Exception: {2} - Données saisies erronées";
 
     /**
-     * @param incrementIndex
-     * @return void - modification de la valeur de l'incrément (+1 ou -1)
+     * String - valeur du message d'erreur
      */
-    public static void pushIncrementValue(int incrementIndex) {
-        monthIndex += incrementIndex;
-    }
+    public static final String CLICK_ERROR = "Caught Exception: {3} - Données saisies erronées";
 
 }

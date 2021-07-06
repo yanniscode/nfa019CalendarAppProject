@@ -1,57 +1,33 @@
-package fr.cnam.perrors;
-
+package fr.cnam.pdatabase.managment.dao;
 
 
 /**
  * @author Yannis Guéguen
  */
-public class FormConfirmationPanel implements FormErrorPanelInterface {
+public interface DAO<T> extends DAOInterface<T> {
 
     /**
-     * Default constructor
+     * @param obj
+     * @return boolean
      */
-    public FormConfirmationPanel() {
-        // TODO implement here
-    }
-
+    boolean create(T obj);
 
     /**
-     * String
+     * @param obj
+     * @return boolean
      */
-    private String confirmationMessage;
-
+    boolean update(T obj);
 
     /**
-     * @return String
+     * @param obj
+     * @return boolean
      */
-    public String getConfirmationMessage() {
-        // TODO implement here
-        return "";
-    }
-
+    boolean delete(T obj);
 
     /**
-     * @param errorMessage 
-     * @return void
+     * @param id
+     * @return boolean
      */
-    public void setConfirmationMessage(String errorMessage) {
-        // TODO implement here
-    }
-
-
-    /**
-     * @return void
-     */
-    public void displayFormConfirmationPanel() {
-        // TODO implement here
-    }
-
-
-    /**
-     * @return void
-     */
-    public void displayErrorPanel() {
-        // TODO implement here
-    }
+    T find(int id);
 
 }

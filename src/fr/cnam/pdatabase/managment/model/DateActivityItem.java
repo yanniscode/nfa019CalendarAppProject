@@ -1,11 +1,30 @@
 package fr.cnam.pdatabase.managment.model;
 
+import fr.cnam.pactivity.ActivityFormFrame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DateActivityItem implements DateActivityItemInterface {
 
-    private int dateActivityId;
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
+
+    /**
+     * String
+     */
     private String datePartDescription;
+
+    /**
+     * String
+     */
     private String datePartStatus;
+
+    /**
+     * DatePart
+     */
     private DatePart datePart;
 
 
@@ -13,9 +32,7 @@ public class DateActivityItem implements DateActivityItemInterface {
      *  constructor 2
      */
     public DateActivityItem(DatePart datePart) {
-
         super();
-
         this.datePart = datePart;
     }
 
@@ -34,7 +51,6 @@ public class DateActivityItem implements DateActivityItemInterface {
         return this.datePart;
     }
 
-
     /**
      * @param datePart
      * @return void
@@ -43,31 +59,12 @@ public class DateActivityItem implements DateActivityItemInterface {
         this.datePart = datePart;
     }
 
-
-    /**
-     * @return int
-     */
-    public int getDateActivityId() {
-        return this.dateActivityId;
-    }
-
-
-    /**
-     * @param dateActivityId
-     * @return void
-     */
-    public void setDateActivityId(int dateActivityId) {
-        this.dateActivityId = dateActivityId;
-    }
-
-
     /**
      * @return String
      */
     public String getDateActivityDescription() {
         return this.datePartDescription;
     }
-
 
     /**
      * @param datePartDescription
@@ -95,7 +92,7 @@ public class DateActivityItem implements DateActivityItemInterface {
 
     @Override
     public void displayActivity() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayActivity): "+ this.getDatePart().getDateValue()+" - "+ this.datePartDescription +" - "+ this.datePartStatus);
     }
 
 }

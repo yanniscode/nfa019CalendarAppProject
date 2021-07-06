@@ -1,30 +1,42 @@
 package fr.cnam.putils.penums;
 
-import java.awt.*;
-
 /**
  * @author Yannis Guéguen
  */
-public class ActivityColor {
+public class FormControlAction {
+
 
     /**
-     * Color - Couleur d'un DateBouton
+     * Default constructor
      */
-    public final Color ORANGE = Color.ORANGE;
+    private FormControlAction() {
+        super();
+    }
+
 
     /**
-     * Color - Couleur d'un DateBouton
+     * String - valeur de bouton du formulaire
      */
-    public final Color BLUE = Color.BLUE;
+    public static final String SUPPRESSION = "Suppression";
 
     /**
-     * Color - Couleur d'un DateBouton
+     * String - valeur de bouton du formulaire
      */
-    public final Color RED = Color.RED;
+    public static final String VALIDATION = "Validation";
 
     /**
-     * Color - Couleur d'un DateBouton
+     * String - valeur de bouton du formulaire
      */
-    public final Color GREEN = Color.GREEN;
+    public static final String ANNULATION = "Annulation";
+
+    /**
+     * String - valeur de bouton du formulaire
+     */
+    public static final String OUI = "Oui";
+
+    /**
+     * String - valeur de bouton du formulaire
+     */
+    public static final String NON = "Non";
 
 }

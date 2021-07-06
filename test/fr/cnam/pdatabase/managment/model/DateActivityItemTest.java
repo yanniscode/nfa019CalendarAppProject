@@ -1,14 +1,13 @@
 package fr.cnam.pdatabase.managment.model;
 
-import org.junit.After;
-import org.junit.Before;
+import fr.cnam.pbuttons.CalendarControlButton;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @RunWith(Parameterized.class)
@@ -16,12 +15,22 @@ public class DateActivityItemTest {
 
 
     /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+
+
+    /**
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-        });
+    public static Collection<Object[]> variable() {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] {});
+
+        return params;
     }
 
 
@@ -29,63 +38,13 @@ public class DateActivityItemTest {
      * Constructeur (tests)
      */
     public DateActivityItemTest() {
-        // TODO implement here
+        super();
     }
 
-
-    @Before
-    public void setUp() throws Exception {
-        // TODO implement here
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDatePart() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDatePart() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDateActivityId() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDateActivityId() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDateActivityDescription() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDateActivityDescription() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDateActivityStatus() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDateActivityStatus() {
-        // TODO implement here
-    }
 
     @Test
     public void displayActivity() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "displayActivity");
     }
 
 }

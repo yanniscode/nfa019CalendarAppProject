@@ -1,86 +1,41 @@
-package fr.cnam.pdatabase;
+package fr.cnam.putils;
 
-import java.io.Serializable;
-import java.sql.*;
-import java.sql.DriverManager;
-
-
-/**
- * @author Yannis Guéguen
- */
-public class MysqlConnection implements MysqlConnectionInterface {
+public class MonthPageIncrement {
 
     /**
-     * Default constructor
+     * Constructeur ('private', ici...)
      */
-    public MysqlConnection() throws ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-    }
-
-    /**
-     * Connection
-     */
-    private Connection connection;
-
-
-    /**
-     *
-     * @return boolean
-     * @throws SQLException
-     */
-    public boolean connection() throws SQLException {
-
-        boolean response = false;
-
-        try {
-
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            String typeBase = "jdbc:mysql";
-            String ip = "127.0.0.1";
-            String port = "3306";
-            String databaseName = "NFA019_CALENDAR_APP";
-            String databaseOption = "?allowMultiQueries=true";
-            String login = "root";
-            String password = "test";
-
-            String url = typeBase + "://"+ ip +": "+ port +"/"+ databaseName + databaseOption;
-
-            Class.forName(driverName);
-
-            this.connection = DriverManager.getConnection(url, login, password);
-            response = true;
-
-        } catch (Exception e) {
-            System.out.println(e);
-            response = false;
-        }
-
-        return response;
+    private MonthPageIncrement() {
+        super();
     }
 
 
     /**
-     * @return Connection
+     * int - index (static) pour retrouver le mois suivant ou précédent, relatif à la date du jour
      */
-    public Connection getConnection() {
-        return this.connection;
+    private static int monthIndex = 0;
+
+    /**
+     * @return int
+     */
+    public static int getIncrementValue() {
+        return monthIndex;
     }
 
     /**
-     * @param connection
+     * @param newMonthIndex
      * @return void
      */
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public static void setIncrementValue(int newMonthIndex) {
+        monthIndex = newMonthIndex;
     }
 
-
     /**
-     * @return
+     * @param incrementIndex
+     * @return void - modification de la valeur de l'incrément (+1 ou -1)
      */
-    public boolean getMysqlConnexionInstance() {
-        // TODO implement here
-        return false;
+    public static void pushIncrementValue(int incrementIndex) {
+        monthIndex += incrementIndex;
     }
 
 }

@@ -3,27 +3,34 @@ package fr.cnam.putils.penums;
 /**
  * @author Yannis Guéguen
  */
-public class ControlAction {
+public class ActivityStatus {
+
+    /**
+     * Default constructor
+     */
+    private ActivityStatus() {
+        super();
+    }
 
 
     /**
-     * String - valeur de ControlButton
+     * String - status d'une l'activité
      */
-    public static final String LAST_MONTH = "Mois Précédent";
+    public static final String TO_DO = "En définition";
 
     /**
-     * String - valeur de ControlButton
+     * String - status d'une l'activité
      */
-    public static final String ADD_ACTIVITY = "Editer une Activité";
+    public static final String RUNNING = "En cours";
 
     /**
-     * String - valeur de ControlButton
+     * String - status d'une l'activité
      */
-    public static final String NEXT_MONTH = "Mois Suivant";
+    public static final String IN_TEST = "En test";
 
     /**
-     * String - valeur de ControlButton
+     * String - status d'une l'activité
      */
-    public static String EXIT_PROGRAM = "Quitter Application";
+    public static final String DONE = "Terminée";
 
 }

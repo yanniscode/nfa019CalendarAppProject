@@ -1,7 +1,6 @@
 package fr.cnam.pbuttons;
 
 
-
 public interface FormControlButtonInterface {
 
     /**

@@ -1,5 +1,6 @@
 package fr.cnam.pdatabase.managment.dao;
 
+import fr.cnam.pbuttons.CalendarControlButton;
 import fr.cnam.pdatabase.MysqlConnection;
 import fr.cnam.pdatabase.managment.model.DateActivityItem;
 import fr.cnam.pdatabase.managment.model.DatePart;
@@ -9,18 +10,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
 
-
 @RunWith(Parameterized.class)
 public class DateActivityDAOTest {
+
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
 
     /**
      * DateActivityDAO
@@ -33,21 +41,10 @@ public class DateActivityDAOTest {
     private Connection connection;
 
     /**
-     * ReformatDate
-     */
-    private ReformatDate reformatDate;
-
-    /**
      * java.sql.Date - pour tests à la date actuelle
      */
     private java.sql.Date newDayIn;
-    private java.sql.Date newDayExpected;
-    private DatePart newDatePart;
 
-    /**
-     * String - conversion de java.sql.Date en String (pour tests)
-     */
-    private String newDayInToString;
 
     /**
      * Long - conversion de Date (String) en Long (pour tests)
@@ -62,30 +59,29 @@ public class DateActivityDAOTest {
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-                {
-                        new java.sql.Date(System.currentTimeMillis()), new java.sql.Date(System.currentTimeMillis()), new DateActivityItem(), new DateActivityItem()
-                },
-        });
+    public static Collection<Object[]> variable() throws SQLException, ClassNotFoundException {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new java.sql.Date(System.currentTimeMillis()), new DateActivityItem(), new DateActivityItem() });
+
+        return params;
     }
 
 
     /**
      * Constructeur (tests)
      * @param newDayIn
-     * @param newDayExpected
      */
-    public DateActivityDAOTest(java.sql.Date newDayIn, java.sql.Date newDayExpected, DateActivityItem dateActivityItemIn, DateActivityItem dateActivityItemExpected) {
+    public DateActivityDAOTest(java.sql.Date newDayIn, DateActivityItem dateActivityItemIn, DateActivityItem dateActivityItemExpected) {
         this.newDayIn = newDayIn;
-        this.newDayExpected = newDayExpected;
         this.dateActivityItemIn = dateActivityItemIn;
         this.dateActivityItemExpected = dateActivityItemExpected;
     }
 
 
     @Before
-    public void initialize() throws Exception {
+    public void initialize() throws ClassNotFoundException, SQLException, ParseException {
 
         MysqlConnection mysqlConnection = new MysqlConnection();
         mysqlConnection.connection();
@@ -93,32 +89,36 @@ public class DateActivityDAOTest {
 
         this.dateActivityDAO = new DateActivityDAO(this.connection);
 
-        this.reformatDate = new ReformatDate();
+        ReformatDate reformatDate;
+        reformatDate = new ReformatDate();
 
         // convertion de la date en String avec perte des milli-secondes, secondes = souhaité ici
-        this.newDayInToString = this.reformatDate.formatDateToString(this.newDayIn);
+        String newDayInToString;
+        newDayInToString = reformatDate.formatDateToString(this.newDayIn);
         // *** date redéfinie ici pour être adaptée aux valeurs sans les secondes, millisecondes (ex: 1624744800000) entrées en BDD
-        this.newDayIn = this.reformatDate.formatStringToDate(this.newDayInToString);
+        this.newDayIn = reformatDate.formatStringToDate(newDayInToString);
 
         // *** valeur au format Long nécessaire aussi pour l'insert en BDD
-        this.newDayStringToLong = this.reformatDate.formatStringToLong(this.newDayInToString);
+        this.newDayStringToLong = reformatDate.formatStringToLong(newDayInToString);
 
     // *** Création d'un objet 'DateActivityItem' factice
-        this.newDatePart = new DatePart();
-        this.newDatePart.setDateValue(this.newDayIn);
-        this.newDatePart.setDatePartValue(newDayStringToLong);
+        DatePart newDatePart;
+        newDatePart = new DatePart();
+        newDatePart.setDateValue(this.newDayIn);
+        newDatePart.setDatePartValue(newDayStringToLong);
 
-        this.dateActivityItemIn.setDatePart(this.newDatePart);
+        this.dateActivityItemIn.setDatePart(newDatePart);
         this.dateActivityItemIn.setDateActivityDescription("Description Test");
         this.dateActivityItemIn.setDateActivityStatus("\"En test\"");
 
-        System.out.println("connection ouverte, object DAO créé !");
+        this.logger.log(Level.INFO, () -> "connection ouverte, object DAO créé !"+ this.connection);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws SQLException {
         this.connection.close();
-        System.out.println("connection fermée !");
+
+        this.logger.log(Level.INFO, () -> "connection fermée !"+ this.connection);
     }
 
     @Test
@@ -161,8 +161,8 @@ public class DateActivityDAOTest {
 
     @Test
     public void find() {
-        // méthode nécessaire comme cela (implémentation d'interface)
-        // TODO implement here
+        // méthode nécessaire ici (implémentation d'interface)
+        this.logger.log(Level.INFO, () -> "find");
     }
 
 }

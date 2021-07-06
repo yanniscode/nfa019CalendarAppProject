@@ -1,5 +1,6 @@
 package fr.cnam.pcalendarpanel;
 
+import fr.cnam.pactivity.ActivityFormFrame;
 import fr.cnam.pbuttons.DateButton;
 import fr.cnam.pdatabase.MysqlConnection;
 import fr.cnam.putils.ReformatDate;
@@ -7,9 +8,11 @@ import fr.cnam.putils.ReformatDate;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -28,7 +31,7 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         MysqlConnection mysqlConnection = new MysqlConnection();
 
         // *** ouverture de la connection:
-        boolean connectResponse = mysqlConnection.connection();
+        mysqlConnection.connection();
 
         this.connection = mysqlConnection.getConnection();
         this.calendarLabel = new JLabel("", SwingConstants.CENTER);
@@ -37,7 +40,7 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         this.buildNewMonthLabel(new java.sql.Date(System.currentTimeMillis()));
 
         // *** création d'une liste de jours (mois actuel)
-        this.daysList = new ArrayList<DateButton>();
+        this.daysList = new ArrayList<>();
 
         // *** création de la liste de boutons (avant affichage) avec les dates du mois actuel
         this.buildNewDatesInList(this.daysList);
@@ -56,9 +59,14 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
 
 
     /**
-     * Connection
+     * Logger - messages d'erreur ou informatifs
      */
-    Connection connection;
+    private transient Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
+
+    /**
+     * Connection - variable de connexion à MySql (indiquée 'transient' car variable non-sérializable)
+     */
+    private transient Connection connection;
 
     /**
      * DateButton
@@ -73,25 +81,25 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     /**
      * ArrayList<DateButton> - liste des boutons (item d'un jour)
      */
-    private ArrayList<DateButton> daysList;
+    private List<DateButton> daysList;
 
     /**
      * String (static final)
      */
     private static final String TEXTFONT = "Serif";
 
+
     /**
      * @return ArrayList<DateButton> - liste de boutons d'activités - jours
      */
-    public ArrayList<DateButton>getNewDatesInList() {
+    public List<DateButton> getNewDatesInList() {
         return this.daysList;
     }
 
-
     /**
-     * @return void - Création des boutons = liste des boutons d'activités - jours (pas encore ajoutée au CalendarPanel)
+     * @return void - Création des boutons = liste des boutons d'activités / jours (pas encore ajoutée au CalendarPanel)
      */
-    public void buildNewDatesInList(ArrayList<DateButton> daysList) throws SQLException, ClassNotFoundException {
+    public void buildNewDatesInList(List<DateButton> daysList) {
 
         this.daysList = daysList;
 
@@ -99,14 +107,14 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
             this.dateButton = new DateButton(i, this.connection);
             this.daysList.add(this.dateButton);
         }
-    }
 
+    }
 
     /**
      * Ajout des jours au CalendarPanel:
      * @return void
      */
-    public void buildDaysList(ArrayList<DateButton> daysList) {
+    public void buildDaysList(List<DateButton> daysList) {
 
         this.daysList = daysList;
 
@@ -117,8 +125,8 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
             // *** ajout à l'affichage (au CalendarPanel)
             this.add(this.dateButton);
         }
-    }
 
+    }
 
     /**
      * @return JLabel - intitulé du mois (en toutes lettres en en-tête de page)
@@ -126,7 +134,6 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     public JLabel getNewMonthLabel() {
         return this.calendarLabel;
     }
-
 
     /**
      * @param newMonth
@@ -143,17 +150,18 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         this.add(this.calendarLabel);
     }
 
-
     /**
-     * @return void - retire les boutons du CalendarPanelde DateButtons
+     * @return void - retire les boutons du CalendarPanel de DateButtons
      */
     public void removeAllDaysFromCalendarPanel() {
+
         for(int i = 0; i < 41; i ++) {
             this.dateButton = this.daysList.get(i);
             this.remove(this.dateButton);
+            this.validate();
         }
-    }
 
+    }
 
     /**
      * @return void - vide la liste des DateButtons
@@ -161,7 +169,6 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     public void removeAllFromDaysList() {
         this.daysList.clear();
     }
-
 
     /**
      *
@@ -171,7 +178,6 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
         return this.connection;
     }
 
-
     /**
      *
      * @param connection
@@ -179,7 +185,6 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
 
     /**
      * @return DateButton
@@ -197,9 +202,9 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
     }
 
     /**
-     * @return ArrayList<DateButton>
+     * @return HashSet<DateButton>
      */
-    public ArrayList<DateButton> getDaysList() {
+    public List<DateButton> getDaysList() {
         return this.daysList;
     }
 
@@ -207,17 +212,16 @@ public class CalendarPanel extends JPanel implements CalendarPanelInterface {
      * @param daysList
      * @return void
      */
-    public void setDaysList(ArrayList<DateButton> daysList) {
+    public void setDaysList(List<DateButton> daysList) {
         this.daysList = daysList;
     }
-
 
     @Override
     /**
      * @return
      */
     public void displayCalendar() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayCalendar): "+ this.calendarLabel +" - "+ this.daysList);
     }
 
 }

@@ -1,7 +1,11 @@
 package fr.cnam.pdatabase;
 
+import fr.cnam.pdatabase.managment.dao.DateActivityDAO;
+
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -15,6 +19,12 @@ public class MysqlConnection implements MysqlConnectionInterface {
     public MysqlConnection() throws ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
     }
+
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(DateActivityDAO.class.getSimpleName());
 
     /**
      * Connection
@@ -40,7 +50,8 @@ public class MysqlConnection implements MysqlConnectionInterface {
             String databaseName = "NFA019_CALENDAR_APP";
             String databaseOption = "?allowMultiQueries=true";
             String login = "root";
-            String password = "test";
+            // ****** A CONFIGURER (PAS ENCORE TESTÉ COMME ÇA...)
+            String password = System.getProperty("database.password");
 
             String url = typeBase + "://"+ ip +": "+ port +"/"+ databaseName + databaseOption;
 
@@ -50,7 +61,7 @@ public class MysqlConnection implements MysqlConnectionInterface {
             response = true;
 
         } catch (Exception e) {
-            System.out.println(e);
+            this.logger.log(Level.INFO, () -> "Something went wrong: "+ e);
             response = false;
         }
 
@@ -78,7 +89,7 @@ public class MysqlConnection implements MysqlConnectionInterface {
      * @return
      */
     public boolean getMysqlConnexionInstance() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (getMysqlConnexionInstance): "+ this.connection);
         return false;
     }
 

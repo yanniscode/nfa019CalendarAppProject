@@ -5,29 +5,38 @@ package fr.cnam.putils.penums;
  */
 public class FormControlAction {
 
+
     /**
-     * String - valeur de bouton du formulaire
+     * Default constructor
      */
-    public static String SUPPRESSION = "Suppression";
+    private FormControlAction() {
+        super();
+    }
+
 
     /**
      * String - valeur de bouton du formulaire
      */
-    public static String VALIDATION = "Validation";
+    public static final String SUPPRESSION = "Suppression";
 
     /**
      * String - valeur de bouton du formulaire
      */
-    public static String ANNULATION = "Annulation";
+    public static final String VALIDATION = "Validation";
 
     /**
      * String - valeur de bouton du formulaire
      */
-    public static String OUI = "Oui";
+    public static final String ANNULATION = "Annulation";
 
     /**
      * String - valeur de bouton du formulaire
      */
-    public static String NON = "Non";
+    public static final String OUI = "Oui";
+
+    /**
+     * String - valeur de bouton du formulaire
+     */
+    public static final String NON = "Non";
 
 }

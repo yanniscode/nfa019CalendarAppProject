@@ -3,7 +3,7 @@ package fr.cnam.pdatabase.managment.model;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.Date;
 
@@ -44,18 +44,16 @@ public class DatePartTest {
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() {
-        return Arrays.asList(new Object[][] {
-                {
-                        new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), 0, 0
-                },
-                {
-                        new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), -1, 0
-                },
-                {
-                        new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), 1, 0
-                }
-        });
+    public static Collection<Object[]> variable() {
+
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), 0, 0 });
+        params.add(new Object[] { new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), -1, 0 });
+        params.add(new Object[] { new  java.sql.Date(System.currentTimeMillis()), new  java.sql.Date(System.currentTimeMillis()), 1, 0 });
+
+        return params;
     }
 
 
@@ -81,11 +79,6 @@ public class DatePartTest {
     @Before
     public void initialize() {
         this.datePart = new DatePart();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // TODO implement here
     }
 
     @Test
@@ -140,36 +133,6 @@ public class DatePartTest {
         // *** StringBuilder = seulement pour test d'une méthode pas utilisée, ici:
         StringBuilder weekDaysListExpected  = this.datePart.getWeekDays();
         assertEquals("En-Tête - Jours FR  : dimanche : lundi : mardi : mercredi : jeudi : vendredi : samedi", weekDaysListExpected.toString());
-    }
-
-    @Test
-    public void getDatePartId() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDatePartId() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDatePartValue() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDatePartValue() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getCalendarValue() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setCalendarValue() {
-        // TODO implement here
     }
 
 }

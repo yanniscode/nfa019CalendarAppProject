@@ -1,18 +1,18 @@
 package fr.cnam.pmain;
 
-import fr.cnam.pbuttons.CalendarControlButtonsPanel;
+import fr.cnam.pbuttons.CalendarControlButton;
 import fr.cnam.pcalendarpanel.CalendarPanel;
-
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import javax.swing.*;
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 @RunWith(Parameterized.class)
@@ -20,109 +20,72 @@ public class MainPanelTest {
 
 
     /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+
+    /**
      * MainPanel
      */
-    private MainPanel mainPanel;
+    private MainPanel mainPanelIn;
 
     /**
-     * JLabel - Titre principal
+     * MainPanel
      */
-    private static JLabel mainLabelIn;
-
-    /**
-     * JLabel - Titre principal
-     */
-    private static JLabel mainLabelExpected;
-
-    /**
-     * String - Titre principal
-     */
-    private static String calendarMainTitleIn;
-
-    /**
-     * String - Titre principal
-     */
-    private static String calendarMainTitleExpected;
+    private MainPanel mainPanelExpected;
 
     /**
      * CalendarPanel - Container du Calendrier (= liste de DateButtons)
      */
-    private static CalendarPanel calendarPanelIn;
+    private CalendarPanel calendarPanelIn;
 
     /**
      * CalendarPanel - Container du Calendrier (= liste de DateButtons)
      */
-    private static CalendarPanel calendarPanelExpected;
-
-    /**
-     * ControlButtonsPanel - Container du Panneau de ControlButton
-     */
-    private static CalendarControlButtonsPanel controlBtnPanelIn;
-
-    /**
-     * CalendarControlButtonsPanel (static)
-     */
-    private static CalendarControlButtonsPanel controlBtnPanelExpected;
+    private CalendarPanel calendarPanelExpected;
 
 
     /**
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-                {
-                        new CalendarControlButtonsPanel(new MainPanel()), new CalendarControlButtonsPanel(new MainPanel()), new CalendarPanel(),  new CalendarPanel(), new JLabel(), new JLabel(), "Le Calendrier des Lunaires\n", "Le Calendrier des Lunaires\n"
-                },
-        });
+    public static Collection<Object[]> variable() throws SQLException, ClassNotFoundException {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new MainPanel(), new MainPanel(), new CalendarPanel(), new CalendarPanel() });
+
+        return params;
     }
 
 
     /**
      * Constructeur (tests)
-     * @param controlBtnPanelExpected
-     * @param controlBtnPanelIn
-     * @param calendarPanelExpected
-     * @param calendarPanelIn
-     * @param mainLabelExpected
-     * @param mainLabelIn
-     * @param calendarMainTitleExpected
-     * @param calendarMainTitleIn
      */
-    public MainPanelTest(CalendarControlButtonsPanel controlBtnPanelExpected, CalendarControlButtonsPanel controlBtnPanelIn, CalendarPanel calendarPanelExpected, CalendarPanel calendarPanelIn, JLabel mainLabelExpected, JLabel mainLabelIn, String calendarMainTitleExpected, String calendarMainTitleIn) {
+    public MainPanelTest(MainPanel mainPanelIn, MainPanel mainPanelExpected, CalendarPanel calendarPanelIn, CalendarPanel calendarPanelExpected) {
         super();
-        this.controlBtnPanelExpected = controlBtnPanelExpected;
-        this.controlBtnPanelIn = controlBtnPanelIn;
-        this.calendarPanelExpected = calendarPanelExpected;
+        this.mainPanelIn = mainPanelIn;
+        this.mainPanelExpected = mainPanelExpected;
         this.calendarPanelIn = calendarPanelIn;
-        this.mainLabelExpected = mainLabelExpected;
-        this.mainLabelIn = mainLabelIn;
-        this.calendarMainTitleExpected = calendarMainTitleExpected;
-        this.calendarMainTitleIn =calendarMainTitleIn;
-    }
-
-
-    // *** initialisation (ici ou dans le Constructeur)
-    @Before
-    public void initialize() throws SQLException, ClassNotFoundException {
-        mainPanel = new MainPanel();
+        this.calendarPanelExpected = calendarPanelExpected;
     }
 
     @Test
     public void setCalendarPanelNotNull() {
-        this.mainPanel.setCalendarPanel(this.calendarPanelIn);
-        assertNotNull(this.mainPanel.getCalendarPanel());
+        this.mainPanelIn.setCalendarPanel(this.calendarPanelIn);
+        assertNotNull(this.mainPanelIn.getCalendarPanel());
     }
 
     @Test
     public void setToGetCalendarPanelEquals() {
-        this.mainPanel.setCalendarPanel(this.calendarPanelIn);
-        assertEquals(this.calendarPanelExpected.toString(), this.mainPanel.getCalendarPanel().toString());
+        this.mainPanelIn.setCalendarPanel(this.calendarPanelIn);
+        this.mainPanelExpected.setCalendarPanel(this.calendarPanelIn);
+        assertEquals(this.calendarPanelExpected.toString(), this.mainPanelIn.getCalendarPanel().toString());
     }
 
     @Test
     public void displayMainPanel() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "displayErrorPanel");
     }
 
 }

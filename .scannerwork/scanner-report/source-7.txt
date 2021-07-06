@@ -1,16 +1,15 @@
 package fr.cnam.pcalendarpanel;
 
+import fr.cnam.pbuttons.CalendarControlButton;
 import fr.cnam.pbuttons.DateButton;
-import fr.cnam.pdatabase.MysqlConnection;
+import fr.cnam.pmain.MainPanel;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -19,35 +18,33 @@ import static org.junit.Assert.*;
 public class CalendarPanelTest {
 
 
+    private MainPanel mainPanel;
+
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+
     /**
      * CalendarPanel
      */
-    private static CalendarPanel calendarPanel;
+    private CalendarPanel calendarPanel;
 
     /**
      * ArrayList<DateButton> - liste des boutons (item d'un jour)
      */
-    private ArrayList<DateButton> daysListIn;
+    private List<DateButton> daysListIn;
 
     /**
      * ArrayList<DateButton> - liste des boutons (item d'un jour)
      */
-    private ArrayList<DateButton> daysListExpected;
+    private List<DateButton> daysListExpected;
 
     /**
      * java.sql.Date
      */
     private java.sql.Date newMonthIn;
-
-    /**
-     * java.sql.Date
-     */
-    private java.sql.Date newMonthExpected;
-
-    /**
-     * Connection
-     */
-    private Connection connection;
 
     /**
      * DateButton
@@ -59,98 +56,80 @@ public class CalendarPanelTest {
      * @return Collection - static
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-                {
-                        new ArrayList<DateButton>(), new ArrayList<DateButton>(), new java.sql.Date(System.currentTimeMillis()), new java.sql.Date(System.currentTimeMillis()), new DateButton()
-                },
-        });
+    public static Collection<Object[]> variable() throws SQLException, ClassNotFoundException {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new MainPanel(), new CalendarPanel(), new ArrayList<DateButton>(), new ArrayList<>(), new java.sql.Date(System.currentTimeMillis()), new DateButton() });
+
+        return params;
     }
 
 
     /**
      * Constructeur (tests)
+     * @param calendarPanel
      * @param daysListIn
      * @param daysListExpected
      * @param newMonthIn
-     * @param newMonthExpected
+     * @param dateButton
      */
-    public CalendarPanelTest(ArrayList<DateButton> daysListIn, ArrayList<DateButton> daysListExpected, java.sql.Date newMonthIn, java.sql.Date newMonthExpected, DateButton dateButton) throws SQLException, ClassNotFoundException {
+    public CalendarPanelTest(MainPanel mainPanel, CalendarPanel calendarPanel, List<DateButton> daysListIn, List<DateButton> daysListExpected, java.sql.Date newMonthIn, DateButton dateButton) {
 
         super();
 
-        this.calendarPanel = new CalendarPanel();
-
+        this.mainPanel = mainPanel;
+        this.calendarPanel = calendarPanel;
         this.daysListIn = daysListIn;
         this.daysListExpected = daysListExpected;
         this.newMonthIn = newMonthIn;
-        this.newMonthExpected = newMonthExpected;
         this.dateButton = dateButton;
     }
 
 
-
     // *** initialisation d'une connection à chaque test
     @Before
-    public void initialize() throws SQLException, ClassNotFoundException {
-        MysqlConnection mysqlConnection = new MysqlConnection();
-        mysqlConnection.connection();
-        this.connection = mysqlConnection.getConnection();
-
-        System.out.println("connection ouverte !");
-    }
-
-
-    // *** fermeture de la connection à la fin de chaque test
-    @After
-    public void tearDown() throws Exception {
-        this.connection.close();
-
-        System.out.println("connection fermée !");
+    public void initialize() {
+        this.mainPanel.setCalendarPanel(this.calendarPanel);
+        this.mainPanel.getCalendarPanel().buildNewDatesInList(this.daysListIn);
     }
 
     @Test
-    public void setToGetEmptyDaysList() {
+    public void setToGetDaysList() {
         this.calendarPanel.setDaysList(this.daysListIn);
-        assertEquals("[]", this.calendarPanel.getDaysList().toString());
+        assertNotNull(this.calendarPanel.getDaysList().toString());
     }
 
     @Test
-    public void daysListNotNull() {
-
-        // *** Attention: daysList = déjà instanciée dans le Constructeur de CalendarPanel:
-        assertNotNull(this.calendarPanel.getDaysList());
-    }
-
-    @Test
-    public void buildDaysList() {
-        // *** Attention: ré-instanciation de la variable 'daysListIn' = nécessaire par appel de getDaysList())
-
-        this.daysListIn = this.calendarPanel.getDaysList();
+    public void buildDaysList() throws SQLException, ClassNotFoundException {
+        // *** "calendarPanel" = initialisé avec des valeurs (42 éléments)
+        this.calendarPanel = new CalendarPanel();
         this.calendarPanel.buildDaysList(this.daysListIn);
-        assertEquals(42, this.calendarPanel.getComponents().length);
+        assertEquals(83, this.calendarPanel.getComponents().length);
     }
 
     @Test
     public void removeAllFromDaysList() {
-        // *** Attention: daysList = déjà instanciée dans le Constructeur de CalendarPanel:
-
-        this.calendarPanel.removeAllFromDaysList();
+        // *** Attention: daysList = déjà instanciée dans le Constructeur de CalendarPanel
+        this.mainPanel.getCalendarPanel().removeAllFromDaysList();
         assertEquals( "[]", this.calendarPanel.getDaysList().toString());
     }
 
     @Test
     public void removeAllFromCalendarPanel() {
-        // *** Attention: daysList = déjà instanciée dans le Constructeur de CalendarPanel:
-        this.calendarPanel.removeAllDaysFromCalendarPanel();
+        // *** test A: la liste des jours n'est pas vide:
+        assertFalse( this.mainPanel.getCalendarPanel().getDaysList().isEmpty());
 
-        // *** on retrouve le nombre decomposants actuels de 'CalendarPanel': 1, au lieu de 42 = attendu, si les boutons ont bien été supprimé:
-        assertEquals( 1, this.calendarPanel.getComponents().length);
+        this.mainPanel.getCalendarPanel().removeAllFromDaysList();
+
+        // *** test B: la liste des jours doit être vide, à présent:
+        assertTrue( this.mainPanel.getCalendarPanel().getDaysList().isEmpty());
     }
 
     @Test
     public void setToGetCalendarPanelEquals() {
         this.calendarPanel.setDaysList(this.daysListIn);
+        this.daysListExpected = this.daysListIn;
         assertEquals(this.daysListExpected.toString(), this.calendarPanel.getDaysList().toString());
     }
 
@@ -175,19 +154,7 @@ public class CalendarPanelTest {
     @Test
     public void buildToGetNewMonthLabelEquals() {
         this.calendarPanel.buildNewMonthLabel(this.newMonthIn);
-        assertEquals(new StringBuilder().append("javax.swing.JLabel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=CENTER,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=juin,verticalAlignment=CENTER,verticalTextPosition=CENTER]").toString(), this.calendarPanel.getNewMonthLabel().toString());
-    }
-
-    @Test
-    public void setToGetConnectionNotNull() {
-        this.calendarPanel.setConnection(this.connection);
-        assertNotNull(this.calendarPanel.getConnection());
-    }
-
-    @Test
-    public void setToGetConnectionEquals() {
-        this.calendarPanel.setConnection(this.connection);
-        assertEquals(this.connection, this.calendarPanel.getConnection());
+        assertEquals(new StringBuilder().append("javax.swing.JLabel[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,border=,flags=8388608,maximumSize=,minimumSize=,preferredSize=,defaultIcon=,disabledIcon=,horizontalAlignment=CENTER,horizontalTextPosition=TRAILING,iconTextGap=4,labelFor=,text=juil.,verticalAlignment=CENTER,verticalTextPosition=CENTER]").toString(), calendarPanel.getNewMonthLabel().toString());
     }
 
     @Test
@@ -204,7 +171,7 @@ public class CalendarPanelTest {
 
     @Test
     public void displayCalendar() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "displayCalendar");
     }
 
 }

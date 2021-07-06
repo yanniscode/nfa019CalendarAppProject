@@ -1,11 +1,11 @@
 package fr.cnam.pcalendarpanel;
 
 
-public interface CalendarHeaderInterface {
+public interface CalendarSideInterface {
 
     /**
      * @return void
      */
-    public void displayCalendarHeader();
+    public void displayCalendarSide();
 
 }

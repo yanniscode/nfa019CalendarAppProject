@@ -7,24 +7,33 @@ import java.awt.*;
  */
 public class ActivityColor {
 
+
     /**
-     * Color - Couleur d'un DateBouton
+     * Default constructor
      */
-    public final Color ORANGE = Color.ORANGE;
+    private ActivityColor() {
+        super();
+    }
+
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    public final Color BLUE = Color.BLUE;
+    public static final Color ORANGE = Color.ORANGE;
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    public final Color RED = Color.RED;
+    public static final Color BLUE = Color.BLUE;
 
     /**
      * Color - Couleur d'un DateBouton
      */
-    public final Color GREEN = Color.GREEN;
+    public static final Color RED = Color.RED;
+
+    /**
+     * Color - Couleur d'un DateBouton
+     */
+    public static final Color GREEN = Color.GREEN;
 
 }

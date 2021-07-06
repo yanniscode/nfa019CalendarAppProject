@@ -2,28 +2,33 @@ package fr.cnam.pdatabase.managment.dao;
 
 import fr.cnam.pdatabase.managment.model.DateActivityItem;
 import fr.cnam.pdatabase.managment.model.DatePart;
-
+import fr.cnam.putils.penums.ErrorMessage;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class DateActivityDAO extends DAO<DateActivityItem> {
-
+public class DateActivityDAO implements DAO<DateActivityItem> {
 
     /**
      * @param connection
      * Constructeur
      */
     public DateActivityDAO(Connection connection) {
-
-        super(connection);
-
+        super();
         this.connection = connection;
     }
+
+
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(DateActivityDAO.class.getSimpleName());
 
     /**
      * Connection
      */
-    private Connection connection;
+    private transient Connection connection;
 
 
 
@@ -60,7 +65,6 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
                 if(dateActivityItem.getDatePart() != null) {
                     dateActivityItem.getDatePart().setDatePartId(rsSelect.getInt(1));
                     dateActivityItem.getDatePart().setDatePartValue(rsSelect.getLong(2));
-                    dateActivityItem.setDateActivityId(rsSelect.getInt(3));
                     dateActivityItem.setDateActivityDescription(rsSelect.getString(4));
                     dateActivityItem.setDateActivityStatus(rsSelect.getString(5));
                 }
@@ -69,7 +73,7 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
             rsSelect.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
         }
 
         return dateActivityItem;
@@ -101,7 +105,7 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
             response = (nbrCreate > 0);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
             response = false;
         }
         return response;
@@ -130,7 +134,7 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
             response = (nbrUpdate > 0);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
             response = false;
         }
 
@@ -164,12 +168,14 @@ public class DateActivityDAO extends DAO<DateActivityItem> {
             response = (nbrUpdate > 0);
 
         } catch(SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
             response  = false;
         }
 
-        System.out.println(response);
-        return response;
+        boolean finalResponse = response;
+        this.logger.log(Level.INFO, () -> ErrorMessage.BDD_CONNECT_ERROR + finalResponse);
+
+        return finalResponse;
     }
 
 

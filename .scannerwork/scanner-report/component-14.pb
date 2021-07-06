@@ -1,1 +1,1 @@
- 2javaXõhr1test/fr/cnam/pactivity/ActivityFormFrameTest.java
+ 2javaX¬hr1test/fr/cnam/pactivity/ActivityFormFrameTest.java

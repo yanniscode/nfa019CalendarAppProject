@@ -1,1 +1,1 @@
-4 2javaXfhr;src/fr/cnam/pdatabase/managment/model/DateActivityItem.java
+4 2javaX`hr*src/fr/cnam/pdatabase/MysqlConnection.java

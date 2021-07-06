@@ -5,21 +5,17 @@ import fr.cnam.putils.penums.ControlAction;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
 import javax.swing.*;
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
-
 
 import static fr.cnam.pactivity.ActivityFormFrame.activityFormFrame;
 import static org.junit.Assert.*;
 
 
-
 @RunWith(Parameterized.class)
 public class CalendarControlButtonTest extends JPanel {
-
 
     /**
      * CalendarControlButtonsPanel
@@ -42,11 +38,6 @@ public class CalendarControlButtonTest extends JPanel {
     private CalendarControlButton controlButton;
 
     /**
-     * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
-     */
-    private MainPanel mainPanel;
-
-    /**
      * String - valeur du bouton activé
      */
     private String activedBtnValueIn;
@@ -61,14 +52,23 @@ public class CalendarControlButtonTest extends JPanel {
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() {
-        return Arrays.asList(new Object[][] {
-                {
-                        ControlAction.LAST_MONTH, ControlAction.LAST_MONTH, new JButton(), new JButton()
-                },
-        });
+    public static Collection<Object[]> variable() {
+
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { ControlAction.LAST_MONTH, ControlAction.LAST_MONTH, new JButton(), new JButton() });
+
+        return params;
     }
 
+    /**
+     * Constructeur (tests)
+     * @param activedBtnValueIn
+     * @param activedBtnValueExpected
+     * @param controlBtnIn
+     * @param controlBtnExpected
+     */
     public CalendarControlButtonTest(String activedBtnValueIn, String activedBtnValueExpected, JButton controlBtnIn, JButton controlBtnExpected) {
 
         super();
@@ -82,25 +82,16 @@ public class CalendarControlButtonTest extends JPanel {
     @Before
     public void initialize() throws SQLException, ClassNotFoundException {
 
-        this.mainPanel = new MainPanel();
+        MainPanel mainPanel;
 
-        this.controlButtonsPanel = new CalendarControlButtonsPanel(this.mainPanel);
+        mainPanel = new MainPanel();
+
+        this.controlButtonsPanel = new CalendarControlButtonsPanel(mainPanel);
 
         // *** instanciation de la classe liée pour les tests:
-        this.controlButton = new CalendarControlButton(this.activedBtnValueIn, this.mainPanel);
+        this.controlButton = new CalendarControlButton(this.activedBtnValueIn, mainPanel);
 
         this.controlButtonsPanel.setBtn(this.controlButton);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // TODO implement here
-    }
-
-    @Test
-    public void actionPerformedEquals() {
-        // pas réussi à récupérer la valeur (cause : comment récupérer le param, dans 'actionPerformed(ActionEvent ev)' ??)
-        // TODO implement here
     }
 
     @Test
@@ -144,7 +135,7 @@ public class CalendarControlButtonTest extends JPanel {
     public void setToGetControlBtnValueEquals() {
         // **** test 'get' de texte d'un JButton avec 'setter':
         this.controlButton.setControlBtnValue(this.activedBtnValueIn);
-        assertEquals(this.activedBtnValueExpected.toString(), this.controlButton.getControlBtnValue().toString());
+        assertEquals(this.activedBtnValueExpected, this.controlButton.getControlBtnValue());
     }
 
     @Test

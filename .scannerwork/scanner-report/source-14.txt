@@ -1,16 +1,12 @@
 package fr.cnam.pactivity;
 
 import fr.cnam.putils.ReformatDate;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
@@ -23,12 +19,7 @@ public class ActivityFormFrameTest {
     /**
      * ActivityFormFrame - Frame de Création d'Activité (static)
      */
-    private static ActivityFormFrame activityFormFrame;
-
-    /**
-     * JLabel
-     */
-    private JLabel activityPanelLabel = new JLabel();
+    private static ActivityFormFrame activityFormFrame = new ActivityFormFrame();
 
     /**
      * java.sql.Date - pour tests à la date actuelle
@@ -50,10 +41,6 @@ public class ActivityFormFrameTest {
      */
     private String dateValueExpected;
 
-    /**
-     * java.sql.Date - pour tests à la date attendue
-     */
-    private java.sql.Date daySelectExpected;
 
     /**
      * String - description de l'activité
@@ -85,12 +72,14 @@ public class ActivityFormFrameTest {
      * @return Collection - static
      */
     @Parameterized.Parameters
-    public static Collection variable() throws SQLException, ClassNotFoundException {
-        return Arrays.asList(new Object[][] {
-                {
-                        new java.sql.Date(System.currentTimeMillis()), new java.sql.Date(System.currentTimeMillis()), "26/06/2021", "26/06/2021", "", "", "En définition", "En définition"
-                },
-        });
+    public static Collection<Object[]> variable() {
+
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] { new java.sql.Date(System.currentTimeMillis()), "26/06/2021", "26/06/2021", "", "", "En définition", "En définition" });
+
+        return params;
     }
 
 
@@ -103,13 +92,9 @@ public class ActivityFormFrameTest {
      * @param activityStatusIn
      * @param activityStatusExpected
      */
-    public ActivityFormFrameTest(java.sql.Date daySelectIn, java.sql.Date daySelectExpected, String dateValueIn, String dateValueExpected, String activityDescriptionIn, String activityDescriptionExpected, String activityStatusIn, String activityStatusExpected) {
-
-        activityFormFrame = new ActivityFormFrame();
-
+    public ActivityFormFrameTest(java.sql.Date daySelectIn, String dateValueIn, String dateValueExpected, String activityDescriptionIn, String activityDescriptionExpected, String activityStatusIn, String activityStatusExpected) {
 
         this.daySelectIn = daySelectIn;
-        this.daySelectExpected = daySelectExpected;
         this.dateValueIn = dateValueIn;
         this.dateValueExpected = dateValueExpected;
         this.activityDescriptionIn = activityDescriptionIn;
@@ -120,16 +105,9 @@ public class ActivityFormFrameTest {
 
 
     @Before
-    public void initialize() throws Exception {
+    public void initialize() {
         this.reformatDate = new ReformatDate();
     }
-
-
-    @After
-    public void tearDown() throws Exception {
-        // TODO implement here
-    }
-
 
     @Test
     public void buildActivityFormNotNull() {
@@ -139,14 +117,12 @@ public class ActivityFormFrameTest {
         assertNotNull(activityFormFrame.getActivityDescriptionText());
     }
 
-
     @Test
     public void buildActivityFormEquals() {
         this.activityFormContainer = activityFormFrame.buildActivityForm();
 
         assertEquals(new StringBuilder().append("java.awt.Container[,0,0,0x0,invalid,layout=java.awt.GridLayout]").toString(), this.activityFormContainer.toString());
     }
-
 
     @Test
     public void initFormFieldsWithDatasNotNull() {
@@ -155,7 +131,6 @@ public class ActivityFormFrameTest {
         assertNotNull(activityFormFrame.getDateTextField());
         assertNotNull(activityFormFrame.getActivityDescriptionText());
     }
-
 
     @Test
     public void initFormFieldsWithDatasEquals() {
@@ -171,7 +146,6 @@ public class ActivityFormFrameTest {
         assertEquals(this.activityDescriptionExpected, this.activityDescriptionIn);
         assertEquals(this.activityStatusExpected, this.activityStatusIn);
     }
-
 
     @Test
     public void initFormFieldsNotNull() {
@@ -195,51 +169,4 @@ public class ActivityFormFrameTest {
         assertEquals(this.activityStatusExpected, this.activityStatusIn);
     }
 
-
-
-
-    @Test
-    public void getActivityDescriptionText() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setActivityDescriptionText() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getActivityStatusText() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setActivityStatusText() {
-        // TODO implement here
-    }
-
-    @Test
-    public void buildActivityFormTitle() {
-        // TODO implement here
-    }
-
-    @Test
-    public void getDateTextField() {
-        // TODO implement here
-    }
-
-    @Test
-    public void setDateTextField() {
-        // TODO implement here
-    }
-
-    @Test
-    public void displayActivityForm() {
-        // TODO implement here
-    }
-
-    @Test
-    public void actionPerformed() {
-        // TODO implement here
-    }
 }

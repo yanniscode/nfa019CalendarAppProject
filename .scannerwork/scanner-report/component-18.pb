@@ -1,1 +1,1 @@
- 2javaX@hr3test/fr/cnam/perrors/FormConfirmationPanelTest.java
+ 2javaXShr/test/fr/cnam/pdatabase/MysqlConnectionTest.java

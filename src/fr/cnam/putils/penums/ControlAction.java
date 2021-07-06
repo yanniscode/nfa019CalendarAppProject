@@ -7,6 +7,14 @@ public class ControlAction {
 
 
     /**
+     * Default constructor
+     */
+    private ControlAction() {
+        super();
+    }
+
+
+    /**
      * String - valeur de ControlButton
      */
     public static final String LAST_MONTH = "Mois Précédent";
@@ -24,6 +32,6 @@ public class ControlAction {
     /**
      * String - valeur de ControlButton
      */
-    public static String EXIT_PROGRAM = "Quitter Application";
+    public static final String EXIT_PROGRAM = "Quitter Application";
 
 }

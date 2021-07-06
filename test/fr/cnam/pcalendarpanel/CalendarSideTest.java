@@ -1,13 +1,13 @@
 package fr.cnam.pcalendarpanel;
 
-import org.junit.After;
-import org.junit.Before;
+import fr.cnam.pbuttons.CalendarControlButton;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @RunWith(Parameterized.class)
@@ -15,34 +15,35 @@ public class CalendarSideTest {
 
 
     /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
+
+
+    /**
      * @return
      */
     @Parameterized.Parameters
-    public static Collection variable() {
-        return Arrays.asList(new Object[][] {
-        });
+    public static Collection<Object[]> variable() {
+        Collection<Object[]> params = new ArrayList<>();
+        // load the external params here
+        // this is an example
+        params.add(new Object[] {});
+
+        return params;
     }
 
     /**
      * Constructeur (tests)
      */
     public CalendarSideTest() {
-        // TODO implement here
+        super();
     }
 
-
-    @Before
-    public void setUp() throws Exception {
-        // TODO implement here
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // TODO implement here
-    }
 
     @Test
     public void displayCalendarSide() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "displayCalendar");
     }
+
 }

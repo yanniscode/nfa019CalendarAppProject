@@ -5,6 +5,7 @@ import fr.cnam.pdatabase.managment.model.DateActivityItem;
 import fr.cnam.pdatabase.managment.model.DatePart;
 import fr.cnam.putils.penums.ActivityColor;
 import fr.cnam.putils.ReformatDate;
+import fr.cnam.putils.penums.ErrorMessage;
 
 import javax.swing.*;
 import java.awt.Dimension;
@@ -12,6 +13,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static fr.cnam.pactivity.ActivityFormFrame.*;
 
@@ -32,9 +35,9 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
 
         // *** Appel des données (JDBC) des boutons ayant une activité déjà enregistré avant l'affichage de la page
         this.rebuildActivityDatas(connection, monthIndex, dayIndex);
-        this.dateButton.setPreferredSize(new Dimension(120, 100));
+        this.dateJButton.setPreferredSize(new Dimension(120, 100));
 
-        this.add(this.dateButton);
+        this.add(this.dateJButton);
     }
 
 
@@ -48,9 +51,9 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
 
         // *** Appel des données (JDBC) des boutons ayant une activité déjà enregistré avant l'affichage de la page
         this.rebuildActivityDatas(connection, 0, dayIndex);
-        this.dateButton.setPreferredSize(new Dimension(120, 100));
+        this.dateJButton.setPreferredSize(new Dimension(120, 100));
 
-        this.add(this.dateButton);
+        this.add(this.dateJButton);
     }
 
 
@@ -61,13 +64,16 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
 
         super();
 
-        this.dateButton = new JButton("test JUnit");
+        this.dateJButton = new JButton("test JUnit");
 
-        this.add(this.dateButton);
+        this.add(this.dateJButton);
     }
 
 
-
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
 
     /**
      * DatePart - date considérée (au sens générique)
@@ -107,7 +113,7 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
     /**
      * JButton - bouton de date
      */
-    private JButton dateButton;
+    private JButton dateJButton;
 
 
     /**
@@ -126,7 +132,7 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
      * @return JButton
      */
     public JButton getDateButton() {
-        return this.dateButton;
+        return this.dateJButton;
     }
 
 
@@ -138,7 +144,7 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
             this.openActivityDateFormPanel();
         }
         catch(Exception e) {
-            e.printStackTrace();
+            this.logger.log(Level.SEVERE, ErrorMessage.CLICK_ERROR, e.getStackTrace());
         }
     }
 
@@ -186,17 +192,18 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
 
         Long resLongDateFromBdd = dateActivityItem.getDatePart().getDatePartValue();
 
+
         /**
          * si la bdd envoie une dateActivityItem correspondante au jour passé, ET si le bouton est actif (= correspond bien au mois affiché)
          */
-        if(resLongDateFromBdd != null && !this.dateButton.getBackground().toString().equals("java.awt.Color[r=192,g=192,b=192]")) {
+        if(resLongDateFromBdd != null && !this.dateJButton.getBackground().toString().equals("java.awt.Color[r=192,g=192,b=192]")) {
 
             // *** le bouton est reconstruit avec les datas de la BDD:
             this.rebuildButtonWithDatas(dateActivityItem, indexMonth, dayIndex);
 
         }
 
-        this.setDateButton(this.dateButton);
+        this.setDateButton(this.dateJButton);
     }
 
 
@@ -218,14 +225,14 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
         this.reformatDate = new ReformatDate();
         this.formatedDate = reformatDate.formatDateToString(this.dateValue);
 
-        this.dateButton = new JButton(this.formatedDate);
+        this.dateJButton = new JButton(this.formatedDate);
 
-        this.dateButton.addActionListener(this);
+        this.dateJButton.addActionListener(this);
 
         // *** si le JPanel du bouton ne correspond pas au mois de la page, il est désactivé
         this.setButtonToGray(this.datePart, indexMonth);  // 0 = today
 
-        this.setDateButton(this.dateButton);
+        this.setDateButton(this.dateJButton);
     }
 
     /**
@@ -258,20 +265,18 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
             StringBuilder newActivityButtonData = new StringBuilder();
             newActivityButtonData.append(activityDescription);
 
-            this.dateButton = new JButton(String.valueOf(newActivityButtonData));
-            this.dateButton.addActionListener(this);
-
-            ActivityColor activityColor = new ActivityColor();
+            this.dateJButton = new JButton(String.valueOf(newActivityButtonData));
+            this.dateJButton.addActionListener(this);
 
             if(dateActivityItem.getDateActivityStatus() != null) {
                 if (dateActivityItem.getDateActivityStatus().equals("\"En définition\"")) {
-                    this.dateButton.setBackground(activityColor.ORANGE);
+                    this.dateJButton.setBackground(ActivityColor.ORANGE);
                 } else if (dateActivityItem.getDateActivityStatus().equals("\"En cours\"")) {
-                    this.dateButton.setBackground(activityColor.BLUE);
+                    this.dateJButton.setBackground(ActivityColor.BLUE);
                 } else if (dateActivityItem.getDateActivityStatus().equals("\"En test\"")) {
-                    this.dateButton.setBackground(activityColor.RED);
+                    this.dateJButton.setBackground(ActivityColor.RED);
                 } else if (dateActivityItem.getDateActivityStatus().equals("\"Terminée\"")) {
-                    this.dateButton.setBackground(activityColor.GREEN);
+                    this.dateJButton.setBackground(ActivityColor.GREEN);
                 }
             }
             else {
@@ -279,17 +284,17 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
                 this.buildDateButton(indexMonth, dayIndex);
             }
 
-            this.setDateButton(this.dateButton);
+            this.setDateButton(this.dateJButton);
     }
 
 
     /**
      *
-     *      * @param dateButton
+     *      * @param dateJButton
      *      return void
      */
-    public void setDateButton(JButton dateButton) {
-        this.dateButton = dateButton;
+    public void setDateButton(JButton dateJButton) {
+        this.dateJButton = dateJButton;
     }
 
 
@@ -311,8 +316,8 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
         String formatedSelectedDate = this.reformatDate.formatMonthToString(newFirstDayTemp);
 
         if(!formatedReferenceDate.equals(formatedSelectedDate)) {
-            this.dateButton.setBackground(Color.LIGHT_GRAY);
-            this.dateButton.setEnabled(false);
+            this.dateJButton.setBackground(Color.LIGHT_GRAY);
+            this.dateJButton.setEnabled(false);
         }
     }
 
@@ -356,7 +361,6 @@ public class DateButton extends JPanel implements DateButtonInterface, ActionLis
      * @return void
      */
     public void displayDateButton() {
-        // TODO implement here
-    }
+        this.logger.log(Level.INFO, () -> "info (displayDateButton): "+ this.dateJButton); }
 
 }

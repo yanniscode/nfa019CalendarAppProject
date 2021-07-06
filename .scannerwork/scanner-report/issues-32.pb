@@ -1,15 +1,0 @@
-ã
-javaS1319pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList". 2VV  é
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2^^$ 9é
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2mm 3ç
-javaS1319pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList". 2
-    ê
-javaS1319sThe type of the "daysList" object should be an interface such as "List" rather than the implementation "ArrayList". 2
-““ 1C
-javaS1128*Remove this unused import 'java.sql.Date'. 2
-
- G
-javaS1948,Make "connection" transient or serializable. 2== ©
-javaS2293çReplace the type specification in this constructor call with the diamond operator ("<>"). (sonar.java.source not set. Assuming 7 or greater.) 2((% 1M
-javaS11352Complete the task associated to this TODO comment. 2‹‹ O
-javaS14814Remove this unused "connectResponse" local variable. 2 

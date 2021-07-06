@@ -3,21 +3,35 @@ package fr.cnam.putils.penums;
 /**
  * @author Yannis Guéguen
  */
-public class ErrorMessage {
+public class ControlAction {
+
 
     /**
-     * String - valeur du message d'erreur
+     * Default constructor
      */
-    protected String DATA_ERROR = "Données saisies erronées";
+    private ControlAction() {
+        super();
+    }
+
 
     /**
-     * String - valeur du message d'erreur
+     * String - valeur de ControlButton
      */
-    protected String BDD_CONNECT_ERROR = "Erreur de connexion à la BDD";
+    public static final String LAST_MONTH = "Mois Précédent";
 
     /**
-     * String - valeur du message d'erreur
+     * String - valeur de ControlButton
      */
-    public String BDD_TIMEOUT_RECORD = "Durée de connexion à la BDD dépassée";
+    public static final String ADD_ACTIVITY = "Editer une Activité";
+
+    /**
+     * String - valeur de ControlButton
+     */
+    public static final String NEXT_MONTH = "Mois Suivant";
+
+    /**
+     * String - valeur de ControlButton
+     */
+    public static final String EXIT_PROGRAM = "Quitter Application";
 
 }

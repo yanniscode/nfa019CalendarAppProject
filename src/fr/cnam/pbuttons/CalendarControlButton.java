@@ -4,6 +4,7 @@ import fr.cnam.pdatabase.managment.model.DatePart;
 import fr.cnam.putils.penums.ControlAction;
 import fr.cnam.pmain.MainPanel;
 import fr.cnam.putils.MonthPageIncrement;
+import fr.cnam.putils.penums.ErrorMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static fr.cnam.pactivity.ActivityFormFrame.*;
 
@@ -21,6 +25,9 @@ import static fr.cnam.pactivity.ActivityFormFrame.*;
  * @author Yannis Guéguen
  */
 public class CalendarControlButton extends JPanel implements CalendarControlButtonInterface, ActionListener {
+
+
+
 
     /**
      *  constructor 2: utilisé par ControlButtonsPanel pour le changement de mois (<, >)
@@ -56,19 +63,20 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
     }
 
 
-    // ajouts:
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(CalendarControlButton.class.getSimpleName());
 
     /**
-     * Connection - variable de connexion à MySql
+     * Connection - variable de connexion à MySql (indiquée 'transient' car variable non-sérializable)
      */
-    private Connection connection;
-
+    private transient Connection connection;
 
     /**
      * MainPanel - mainPanel en param (à revoir si MainPanel = static -> nécessaire ??)
      */
     private MainPanel mainPanel;
-
 
     /**
      * Date - nouveau jour de référence (utilisé pour rendre inactif les boutons d'une page ne correspondant pas au mois)
@@ -78,7 +86,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
     /**
      * MonthPageIncrement - renvoie un int (static) pour incrémenter ou décrémenter le mois affiché
      */
-    private static MonthPageIncrement monthPageIncrement = new MonthPageIncrement();
+    private static MonthPageIncrement monthPageIncrement;
 
 
     /**
@@ -107,7 +115,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
             try {
                 setLastMonthControl();
             } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+                this.logger.log(Level.SEVERE, "Caught Exception: {0}", e.getStackTrace());
             }
 
         }
@@ -117,7 +125,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
                 this.enterActivityMainFormPanel();
             }
             catch(Exception e) {
-                e.printStackTrace();
+                this.logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
             }
         }
         else if(activedButton.equals(ControlAction.NEXT_MONTH)) {
@@ -127,7 +135,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
             try {
                 setNextMonthControl();
             } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+                this.logger.log(Level.SEVERE, ErrorMessage.BDD_CONNECT_ERROR, e.getStackTrace());
             }
         }
 
@@ -181,24 +189,21 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
      */
     public void setNextMonthControl() throws SQLException, ClassNotFoundException {
 
-        ArrayList<DateButton> newDatesList= new ArrayList<>();
+        List<DateButton> newDatesList = new ArrayList<>();
 
         this.connection =  this.mainPanel.getCalendarPanel().getConnection();
 
-
         for(int i = 0; i < 41; i++) {
 
-            // *** Recherche du premier lundi affiché dans une page de CalendarPanel:
+            // *** Recherche du premier lundi affiché dans une page de CalendarPanel
             DateButton newDateButton = new DateButton(this.indexMonth, i, this.connection);
             newDatesList.add(newDateButton);
-
         }
 
         // *** création de la liste de boutons avec les dates du mois actuel
         this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);
 
         // *** update des boutons ayant une activité déjà enregistré avant l'affichage de la page
-
         this.mainPanel.add(this.mainPanel.getCalendarPanel());
     }
 
@@ -234,7 +239,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
      */
     public void setLastMonthControl() throws SQLException, ClassNotFoundException {
 
-        ArrayList<DateButton> newDatesList= new ArrayList<>();
+        List<DateButton> newDatesList= new ArrayList<>();
 
         this.connection =  this.mainPanel.getCalendarPanel().getConnection();
 
@@ -250,11 +255,6 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
         this.mainPanel.getCalendarPanel().buildDaysList(newDatesList);
         this.mainPanel.add(this.mainPanel.getCalendarPanel());
     }
-
-
-
-// *******************************
-
 
 
     /**
@@ -303,7 +303,7 @@ public class CalendarControlButton extends JPanel implements CalendarControlButt
      */
     @Override
     public void displayCalendarControlButton() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> ErrorMessage.BDD_CONNECT_ERROR + this.controlBtnValue);
     }
 
 }

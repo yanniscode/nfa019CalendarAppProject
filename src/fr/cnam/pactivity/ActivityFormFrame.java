@@ -8,13 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
  * @author Yannis Guéguen
  */
 public class ActivityFormFrame extends JFrame implements ActivityFormPanelInterface, ActionListener {
-
 
     /**
      * Default constructor
@@ -43,6 +44,10 @@ public class ActivityFormFrame extends JFrame implements ActivityFormPanelInterf
     }
 
 
+    /**
+     * Logger - messages d'erreur ou informatifs
+     */
+    private transient Logger logger = Logger.getLogger(ActivityFormFrame.class.getSimpleName());
 
     /**
      * ActivityFormFrame - Frame de Création d'Activité (static)
@@ -234,13 +239,13 @@ public class ActivityFormFrame extends JFrame implements ActivityFormPanelInterf
 
     @Override
     public void displayActivityForm() {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (displayActivityForm): "+ this.dateTextField +" - "+ this.activityDescriptionText +" - "+ this.activityStatusText);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        // TODO implement here
+        this.logger.log(Level.INFO, () -> "info (actionPerformed): "+ actionEvent);
     }
 
 }
